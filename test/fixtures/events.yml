@@ -1,0 +1,31 @@
+# == Schema Information
+#
+# Table name: events
+#
+#  id           :bigint           not null, primary key
+#  brochure     :string
+#  description  :string
+#  end_date     :date
+#  end_time     :datetime
+#  event_code   :string
+#  event_type   :integer          default(0)
+#  start_date   :date
+#  start_time   :datetime
+#  status       :integer          default(0)
+#  stream_key   :string
+#  stream_type  :integer
+#  stream_video :string
+#  title        :string
+#  created_at   :datetime         not null
+#  updated_at   :datetime         not null
+#
+
+# This model initially had no columns defined. If you add columns to the
+# model remove the '{}' from the fixture names and add the columns immediately
+# below each fixture, per the syntax in the comments below
+#
+one: {}
+# column: value
+#
+two: {}
+# column: value
