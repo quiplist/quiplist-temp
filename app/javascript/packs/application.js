@@ -15,3 +15,25 @@ require("channels")
 //
 // const images = require.context('../images', true)
 // const imagePath = (name) => images(name, true)
+
+$(document).ready(function () {
+    //events table
+    $('#events_list').DataTable();
+
+    //single events table
+    $("#event_id_guest_list").DataTable();
+
+    //stream key fields
+    $("#streamValueType").html("<input type=\"file\" class=\"form-control\" id=\"streamKey\" accept=\"video/*\" required/>");
+    $("#stream_type").on("change", function(){
+        var streamType = $(this).val();
+        switch(streamType){
+            case 'Live Streaming':
+                $("#streamValueType").html("<input type=\"text\" class=\"form-control\" id=\"streamVideo\" placeholder=\"Enter Stream Key*\" required/>");
+                break;
+            case 'Video':
+                $("#streamValueType").html("<input type=\"file\" class=\"form-control\" id=\"streamKey\" accept=\"video/*\" required/>");
+                break;
+        }
+    })
+});
