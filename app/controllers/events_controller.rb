@@ -13,9 +13,7 @@ class EventsController < ApplicationController
   end
 
   def show
-    page = params[:page] || 1
-    per_page = params[:per_page] || 10
-    @event = @event.accessible_by(current_ability).page(page).per(per_page)
+    @users = User.client
   end
 
   def new

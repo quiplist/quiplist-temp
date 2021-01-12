@@ -448,6 +448,33 @@
    background: #fff;
  }
 
+ div#admin-login__wrapper {
+   background: url(../img/light_lines_bg.jpg);
+   background-size: cover;
+   background-position: 50% 50%;
+   background-repeat: no-repeat;
+ }
+
+ .login_form input {
+   background: #e6e6e6;
+   border-radius: 5px !important;
+   height: 45px;
+   font-family: 'Montserrat', sans-serif;
+ }
+
+ .login_form-btn-wrapper {
+   display: flex;
+   justify-content: flex-end;
+ }
+
+ .login_form-btn-wrapper .btn-login {
+   background: #3943ca;
+   border-radius: 5px;
+   color: #fff;
+   margin-top: 10px;
+   font-family: 'Montserrat', sans-serif;
+ }
+
 
  @media (max-width: 768px) {
    #sidebar {
