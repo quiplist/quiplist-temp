@@ -14,37 +14,32 @@
   </head>
 
   <body>
-    <nav class="navbar navbar-expand-lg navbar-light">
+    <nav class="navbar navbar-expand-lg navbar-light home-navbar">
         <div class="container-fluid">
-          <a class="navbar-brand" href="/">
-            <%= image_tag "logo.png", class: "img-fluid" %>
-            <!-- <img src="assets/img/logo.png" class="img-fluid"> -->
-          </a>
+          <%= image_tag "logo.png", class: "img-fluid" %>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav mb-auto mb-2 mb-lg-0">
-              <!-- <li class="nav-item">
-                <a class="nav-link" aria-current="page" href="/">Home</a>
-              </li> -->
+            <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
               <li class="nav-item">
-                <%#= link_to "login", new_user_session_path, class: "nav-link" %>
-                <!-- <a class="nav-link" href="/login.html">Login</a> -->
+                <a class="nav-link" aria-current="page" href="/">Home</a>
+              </li>
+              <li class="nav-item">
+                <% if current_user %>
+                  <%= link_to destroy_user_session_path, method: :delete, class: 'nav-link', id: "logout" do %>
+                    Logout
+                  <% end %>
+                <% end %>
               </li>
             </ul>
           </div>
         </div>
     </nav>
-    <div class="overlap_top-bg">
-      <%= image_tag "top.png", class: "img-fluid" %>
-      <!-- <img src="assets/img/top.png" alt="top" class="img-fluid"></img> -->
-    </div>
+
+
     <%= yield %>
-    <div class="overlap_bottom-bg">
-      <%= image_tag "bottom.png", class: "img-fluid" %>
-      <!-- <img src="assets/img/bottom.png" alt="bottom" class="img-fluid"></img> -->
-    </div>
+
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <!-- Popper.JS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
