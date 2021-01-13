@@ -48,7 +48,9 @@
  }
 
  .login-wrapper .col:nth-child(1) {
-   background: #3F48CC;
+   /* Note: original bg color */
+   /* background: #3F48CC; */
+   background: #8199AF;
    padding: 30px;
    border-top-left-radius: 5px;
    border-bottom-left-radius: 5px;
@@ -89,7 +91,7 @@
  .btn.btn-sign-in,
  .btn-sign-up {
    width: 100%;
-   background: #6C63FF;
+     background: #406685;
    color: #fff;
    font-family: 'Montserrat', sans-serif;
    font-weight: 600;
@@ -98,7 +100,7 @@
 
  .btn.btn-sign-in:hover,
  .btn-sign-up:hover {
-   background: #861CCE;
+   background: #939598;
    color: #fff;
  }
 
@@ -108,7 +110,7 @@
  }
 
  a.nav-link:hover{
-   color: #6C63FF;
+   color: #939598;
  }
 
  button.navbar-toggler {
@@ -116,7 +118,7 @@
  }
 
  .register-wrapper > .col:nth-child(1) {
-   background: #3F48CC;
+   background: #8199AF;
    padding: 30px;
    border-top-left-radius: 5px;
    border-bottom-left-radius: 5px;
@@ -382,7 +384,7 @@
      color: #3943ca;
  }
 
- .event_cover_btn {
+ .event_brochure_btn {
    background: #3943ca;
    color: #fff;
    display: grid;
@@ -394,7 +396,7 @@
    text-align: center;
  }
 
- .event_cover_btn i.fas.fa-upload {
+ .event_brochure_btn i.fas.fa-upload {
    font-size: 50px;
    margin-bottom: 10px;
  }
@@ -449,7 +451,7 @@
  }
 
  div#admin-login__wrapper {
-   background: url(../img/light_lines_bg.jpg);
+   background: url("light_lines_bg.jpg");
    background-size: cover;
    background-position: 50% 50%;
    background-repeat: no-repeat;
@@ -570,7 +572,7 @@
 
    section#home_section_2:after {
      content: '';
-     background: url(../img/cropped.png);
+     background: url("cropped.png");
      background-repeat: no-repeat;
      position: absolute;
      background-size: contain;

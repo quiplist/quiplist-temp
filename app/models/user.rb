@@ -88,4 +88,15 @@ class User < ApplicationRecord
   def client?
     role == CLIENT
   end
+
+  def self.generate_new
+    full_xname     = Faker::Name.name
+    password = "password"
+    birthdate    = Date.today
+    email      = Faker::Internet.email
+    User.create!(full_name:     full_xname,
+                 password: password,
+                 email:    email,
+                 birthdate: birthdate)
+  end
 end

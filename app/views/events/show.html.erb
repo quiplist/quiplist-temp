@@ -1,18 +1,18 @@
 <div class="container content-wrapper">
   <div class="row event-wrapper">
     <div class="col col-md-3 col-lg-2">
-      <form class="upload_wrapper mb-3">
-        <input type="file" id="event_cover" hidden onchange="form.submit()">
-        <label for="event_cover" class="event_cover_btn"><i class="fas fa-upload"></i>Upload<br/>Event Cover Here</label>
-      </form>
+      <%= form_for @event, as: :event, url: upload_brochure_event_path(@event), method: :put, html: { class: "upload_wrapper mb-3", multipart: true } do |f| %>
+        <label for="event_brochure" class="event_brochure_btn">
+          <i class="fas fa-upload"></i>Upload<br/>Event Cover Here
+          <input type="file" id="event_brochure" 	accepts="image/png,image/jpg,image/jpeg,application/pdf" name="event[brochure]" hidden onchange="form.submit()">
+        </label>
+      <% end %>
     </div>
     <div class="col col-md-9 col-lg-10 text-start">
       <h2 class="event_title"><%= @event.title %></h2>
       <span class="event_status"><%= Event::STATUSES[@event.status] %></span>
       <p class="event_description">
-        Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore
-        magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis
-        nisl ut aliquip ex ea commodo consequat. Duis autem vel
+        <%= @event.description %>
       </p>
     </div>
   </div>
@@ -21,11 +21,11 @@
       <h5>Schedule</h5>
       <div class="event_date_wrapper">
         <span class="mr-3"><strong>Date: </strong></span>
-        <span class="event_date">2021-01-16 to 2021-01-17</span>
+        <span class="event_date"><%= date_formatter(@event.start_date) %> to <%= date_formatter(@event.end_date) %></span>
       </div>
       <div class="event_time_wrapper">
         <span class="mr-3"><strong>Time: </strong></span>
-        <span class="event_time">09:00 to 18:00</span>
+        <span class="event_time"><%= time_formatter(@event.start_time) %> to <%= time_formatter(@event.end_time) %></span>
       </div>
     </div>
   </div>
