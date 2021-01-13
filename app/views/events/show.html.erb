@@ -1,5 +1,7 @@
 <div class="container content-wrapper">
   <div class="row event-wrapper-admin">
+    <%= render partial: "layouts/shared/success_messages", locals: { messages: flash[:notice] } %>
+    <%= render partial: "layouts/shared/alert_messages", locals: { messages: flash[:alert] } %>
     <div class="col col-md-3 col-lg-2">
       <%= form_for @event, as: :event, url: upload_brochure_event_path(@event), method: :put, html: { class: "upload_wrapper mb-3", multipart: true } do |f| %>
         <label for="event_brochure" class="event_brochure_btn">

@@ -1,6 +1,6 @@
   class EventsController < ApplicationController
   #layout 'false'
-  layout 'admin', only: [:index, :show]
+  layout 'admin'
   #layout 'raffle', only: [:draw_raffles]
 
   before_action :authenticate_admin!
@@ -78,7 +78,7 @@
       search = params[:search]
       @guest_lists = @event.guest_lists
       @guest_lists = @guest_lists.sorted.page(page).per(per_page)
-      flash.now[:alert] = 'No more contestant'
+      flash.now[:alert] = 'No player available to draw!'
       render :show
     else
       @guest_list = GuestList.find(winner_id)
