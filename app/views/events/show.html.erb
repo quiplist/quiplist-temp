@@ -43,41 +43,31 @@
       </nav>
       <div class="tab-content" id="nav-tabContent">
         <div class="tab-pane fade show active" id="nav-users" role="tabpanel" aria-labelledby="nav-users-tab">
-          <table id="event_id_guest_list" class="display">
+          <table id="event_id_guest_list" class="table">
             <thead>
               <tr>
                 <th>Full Name</th>
-                <th>Birth Date</th>
                 <th>Email</th>
-                <th>Password</th>
-                <th>Member ID</th>
-                <th>Member Type</th>
-                <th>Affiliation</th>
+                <th>Contact</th>
+                <th>Birth Date</th>
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <td>JuanDelaCruz01</td>
-                <td>December 12, 1998</td>
-                <td>juandelacruz@gmail.com</td>
-                <td>encryptedpassword</td>
-                <td>12345</td>
-                <td>Member</td>
-                <td>N/A</td>
-              </tr>
-              <tr>
-                <td>JuanDelaCruz01</td>
-                <td>December 12, 1998</td>
-                <td>juandelacruz@gmail.com</td>
-                <td>encryptedpassword</td>
-                <td>12345</td>
-                <td>Member</td>
-                <td>N/A</td>
-              </tr>
+              <% @users.each do |user| %>
+                <tr>
+                  <td><%= user.full_name %></td>
+                  <td><%= user.email %></td>
+                  <td><%= user.contact_number %></td>
+                  <td><%= date_formatter(user.birthdate) %></td>
+                </tr>
+              <% end %>
             </tbody>
           </table>
         </div>
       </div>
     </div>
   </div>
+  <%= link_to_previous_page @users, '<< ', class: "text-primary" %>
+  <%= page_entries_info @users %>
+  <%= link_to_next_page @users, ' >>', class: "text-primary" %>
 </div>

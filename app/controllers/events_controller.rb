@@ -14,7 +14,11 @@ class EventsController < ApplicationController
   end
 
   def show
+    page = params[:page] || 1
+    per_page = params[:per_page] || 10
+    search = params[:search]
     @users = User.client
+    @users = @users.accessible_by(current_ability).sorted.page(page).per(per_page)
   end
 
   def create
