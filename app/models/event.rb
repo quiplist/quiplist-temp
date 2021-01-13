@@ -20,7 +20,7 @@
 #  updated_at   :datetime         not null
 #
 class Event < ApplicationRecord
-  has_many :guest_lists
+  has_many :guest_lists, dependent: :destroy
   has_many :users, through: :guest_lists
   #has_many :questionnaires
   #has_many :raffles

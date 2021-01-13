@@ -1,7 +1,8 @@
 <div class="container content-wrapper">
+  <%= render partial: "layouts/shared/success_messages", locals: { messages: flash[:notice] } %>
+  <%= render partial: "layouts/shared/alert_messages", locals: { messages: flash[:alert] } %>
   <div class="row text-end mb-3">
     <div class="col col-lg-12">
-      <%= render partial: "layouts/shared/success_messages", locals: { messages: flash[:notice] } %>
       <button type="button" class="btn btn-blue" data-bs-toggle="modal" data-bs-target="#createEvent">
       Create Event
       </button>

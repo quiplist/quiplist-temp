@@ -1,6 +1,6 @@
   class EventsController < ApplicationController
   #layout 'false'
-  layout 'admin', only: [:index, :show]
+  layout 'admin'
   #layout 'raffle', only: [:draw_raffles]
 
   before_action :authenticate_admin!
@@ -78,7 +78,7 @@
       search = params[:search]
       @guest_lists = @event.guest_lists
       @guest_lists = @guest_lists.sorted.page(page).per(per_page)
-      flash.now[:alert] = 'No more contestant'
+      flash.now[:alert] = 'No player available to draw!'
       render :show
     else
       @guest_list = GuestList.find(winner_id)
@@ -90,7 +90,7 @@
   def draw_winner
     @guest_list = GuestList.find(params[:guest_list_id])
     if @guest_list.update_attributes winner_params
-      redirect_to event_path(@event)
+      redirect_to event_path(@event), notice: "#{@guest_list.user.full_name} won the raffle!"
     else
       render :draw_raffles
     end
