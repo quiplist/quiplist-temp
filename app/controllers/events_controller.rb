@@ -58,6 +58,11 @@ class EventsController < ApplicationController
     end
   end
 
+  def draw_raffles
+    @event
+    ids = User.ids
+  end
+
   private
 
   def event_params
