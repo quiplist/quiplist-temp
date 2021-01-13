@@ -5,14 +5,45 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # before_action :configure_account_update_params, only: [:update]
 
   # GET /resource/sign_up
-  # def new
-  #   super
-  # end
+  def new
+    event = check_event_code(params[:event_code])
+    if event.nil?
+      redirect_to root_path, alert: "Invalid Event Code!"
+    else
+      build_resource
+      yield resource if block_given?
+      respond_with resource
+    end
+  end
 
   # POST /resource
-  # def create
-  #   super
-  # end
+  def create
+    event = check_event_code(params[:event_code])
+    if event.nil?
+      redirect_to root_path, alert: "Invalid Event Code!"
+    else
+     build_resource(sign_up_params)
+
+     resource.save
+     yield resource if block_given?
+     if resource.persisted?
+       if resource.active_for_authentication?
+         GuestList.create_guest_list(resource, event)
+         set_flash_message! :notice, :signed_up
+         sign_up(resource_name, resource)
+         respond_with resource, location: after_sign_up_path_for(resource, event)
+       else
+         set_flash_message! :notice, :"signed_up_but_#{resource.inactive_message}"
+         expire_data_after_sign_in!
+         respond_with resource, location: after_inactive_sign_up_path_for(resource)
+       end
+     else
+       clean_up_passwords resource
+       set_minimum_password_length
+       respond_with resource
+     end
+   end
+  end
 
   # GET /resource/edit
   # def edit
@@ -52,9 +83,9 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # end
 
   # The path used after sign up.
-  def after_sign_up_path_for(resource)
+  def after_sign_up_path_for(resource, event)
     #super(resource)
-    root_path
+    home_path(event_code: event.event_code)
   end
 
   # The path used after sign up for inactive accounts.

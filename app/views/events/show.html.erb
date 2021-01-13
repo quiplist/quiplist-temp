@@ -1,5 +1,5 @@
 <div class="container content-wrapper">
-  <div class="row event-wrapper">
+  <div class="row event-wrapper-admin">
     <div class="col col-md-3 col-lg-2">
       <%= form_for @event, as: :event, url: upload_brochure_event_path(@event), method: :put, html: { class: "upload_wrapper mb-3", multipart: true } do |f| %>
         <label for="event_brochure" class="event_brochure_btn">
@@ -11,6 +11,9 @@
     <div class="col col-md-9 col-lg-10 text-start">
       <h2 class="event_title"><%= @event.title %></h2>
       <span class="event_status"><%= Event::STATUSES[@event.status] %></span>
+      <%= link_to "Raffle Draw", draw_raffles_event_path(@event), class: "btn btn-draw event_raffle", target: :_blank %>
+      <h5 class="event_code"><%= @event.event_code %></h5>
+
       <p class="event_description">
         <%= @event.description %>
       </p>
@@ -50,15 +53,17 @@
                 <th>Email</th>
                 <th>Contact</th>
                 <th>Birth Date</th>
+                <th>Has Won Raffle<th>
               </tr>
             </thead>
             <tbody>
-              <% @users.each do |user| %>
+              <% @guest_lists.each do |guest_list| %>
                 <tr>
-                  <td><%= user.full_name %></td>
-                  <td><%= user.email %></td>
-                  <td><%= user.contact_number %></td>
-                  <td><%= date_formatter(user.birthdate) %></td>
+                  <td><%= guest_list.user.full_name %></td>
+                  <td><%= guest_list.user.email %></td>
+                  <td><%= guest_list.user.contact_number %></td>
+                  <td><%= date_formatter(guest_list.user.birthdate) %></td>
+                  <td><%= guest_list.won? %></td>
                 </tr>
               <% end %>
             </tbody>
@@ -67,7 +72,7 @@
       </div>
     </div>
   </div>
-  <%= link_to_previous_page @users, '<< ', class: "text-primary" %>
-  <%= page_entries_info @users %>
-  <%= link_to_next_page @users, ' >>', class: "text-primary" %>
+  <%= link_to_previous_page @guest_lists, '<< ', class: "text-primary" %>
+  <%= page_entries_info @guest_lists %>
+  <%= link_to_next_page @guest_lists, ' >>', class: "text-primary" %>
 </div>
