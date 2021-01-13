@@ -10,37 +10,44 @@ class EventsController < ApplicationController
     search = params[:search]
     @events = @events.search(search) if search.present?
     @events = @events.accessible_by(current_ability).sorted.page(page).per(per_page)
+    @event = Event.new
   end
 
   def show
     @users = User.client
   end
 
-  def new
-  end
-
   def create
     if @event.save
       redirect_to event_path(@event), notice: "Event #{@event.title} added successfully!"
     else
-      render :new
+      page = params[:page] || 1
+      per_page = params[:per_page] || 10
+      search = params[:search]
+      @events = Event.sorted
+      @events = @events.search(search) if search.present?
+      @events = @events.accessible_by(current_ability).sorted.page(page).per(per_page)
+      render :index
     end
-  end
-
-  def edit
   end
 
   def update
     if @event.update_attributes event_params
       redirect_to event_path(@event), notice: "Event #{@event.title} updated successfully!"
     else
-      render :edit
+      page = params[:page] || 1
+      per_page = params[:per_page] || 10
+      search = params[:search]
+      @events = Event.sorted
+      @events = @events.search(search) if search.present?
+      @events = @events.accessible_by(current_ability).sorted.page(page).per(per_page)
+      render :index
     end
   end
 
   def destroy
     @event.destroy
-    redirect_to events_path
+    redirect_to events_path, notice: "Event deleted successfully!"
   end
 
   def upload_brochure

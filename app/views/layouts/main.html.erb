@@ -27,7 +27,7 @@
               </li>
               <li class="nav-item">
                 <% if current_user %>
-                  <%= link_to destroy_user_session_path, method: :delete, class: 'nav-link', id: "logout" do %>
+                  <%= link_to destroy_user_session_path, class: 'nav-link', id: "logout" do %>
                     Logout
                   <% end %>
                 <% end %>

@@ -1,0 +1,12 @@
+<% unless messages.empty? %>
+  <div class="alert alert-danger" role="alert">
+    <h6><span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+        <span class="sr-only">Error:</span><%= messages.length %> <%= messages.length > 1 ? "errors" : "error" %> prohibited this information from being saved:
+    </h6>
+    <ul>
+      <% messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
