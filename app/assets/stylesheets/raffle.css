@@ -7,6 +7,10 @@
     align-items: center;
 }
 
+.draw-btn-wrapper {
+  display: flex;
+}
+
 .name-wrapper {
     background: url("winner_template_body.png");
     background-position: 50% 50%;

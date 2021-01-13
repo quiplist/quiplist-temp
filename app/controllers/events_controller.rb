@@ -19,8 +19,8 @@
     page = params[:page] || 1
     per_page = params[:per_page] || 10
     search = params[:search]
-    @users = User.client
-    @users = @users.accessible_by(current_ability).sorted.page(page).per(per_page)
+    @guest_lists = @event.guest_lists
+    @guest_lists = @guest_lists.sorted.page(page).per(per_page)
   end
 
   def create
@@ -60,16 +60,41 @@
     if @event.update_attributes upload_params
       redirect_to event_path(@event), notice: "brochure uploaded successfully!"
     else
+      page = params[:page] || 1
+      per_page = params[:per_page] || 10
+      search = params[:search]
+      @guest_lists = @event.guest_lists
+      @guest_lists = @guest_lists.sorted.page(page).per(per_page)
       render :show
     end
   end
 
   def draw_raffles
-    @event
-    ids = User.ids
-    id = ids.sample
+    guest_lists = @event.guest_lists.eligible
+    winner_id = GuestList.winner(guest_lists)
+    if winner_id.nil?
+      page = params[:page] || 1
+      per_page = params[:per_page] || 10
+      search = params[:search]
+      @guest_lists = @event.guest_lists
+      @guest_lists = @guest_lists.sorted.page(page).per(per_page)
+      flash.now[:alert] = 'No more contestant'
+      render :show
+    else
+      @guest_list = GuestList.find(winner_id)
+      @winner = @guest_list.user
+      render layout: "raffle"
+    end
+  end
 
-    render layout: "raffle"
+  def draw_winner
+    @guest_list = GuestList.find(params[:guest_list_id])
+    if @guest_list.update_attributes winner_params
+      redirect_to event_path(@event)
+    else
+      render :draw_raffles
+    end
+
   end
 
   private
@@ -81,5 +106,9 @@
 
   def upload_params
     params.require(:event).permit(:brochure)
+  end
+
+  def winner_params
+    params.require(:guest_list).permit(:raffle_status)
   end
 end

@@ -102,4 +102,10 @@ class GuestList < ApplicationRecord
     temp_raffle_number
   end
 
+  def self.winner(guest_lists)
+    ids = guest_lists.ids
+    winner = ids.sample
+    winner
+  end
+
 end

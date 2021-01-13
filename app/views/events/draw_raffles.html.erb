@@ -2,10 +2,16 @@
   <div class="row mb-3 text-center">
     <div class="col col-lg-12">
       <div class="name-wrapper">
-        <h2>Name of Winner Long Name Bla</h2>
+        <h2><%= @winner.full_name %></h2>
       </div>
-      <button class="btn btn-draw">Draw</button>
-      <button class="btn btn-winner">Winner</button>
+      <div class="draw-btn-wrapper">
+        <%= link_to "Draw", draw_raffles_event_path(@event), class: "btn btn-draw" %>
+        <%= form_for @guest_list, as: :guest_list, url: draw_winner_event_path(@event, guest_list_id: @guest_list.id), method: :put, html: { } do |f| %>
+            <%= f.hidden_field :raffle_status, value: 2 %>
+            <%= submit_tag "Winner", class: "btn btn-winner" %>
+          </label>
+        <% end %>
+      </div>
     </div>
   </div>
 </div>

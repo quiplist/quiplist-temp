@@ -7,6 +7,7 @@ Rails.application.routes.draw do
     resources :events, except: [:new, :edit] do
       put :upload_brochure, to: 'events#upload_brochure', on: :member
       get :draw_raffles, to: 'events#draw_raffles', on: :member
+      put :draw_winner, to: 'events#draw_winner', on: :member
       resources :guest_lists
       # resources :raffles
       # resources :questionnaires
