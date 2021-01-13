@@ -1,0 +1,109 @@
+.raffle-wrapper {
+    background: url("CSI BG.jpg") no-repeat;
+    background-size: cover;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.name-wrapper {
+    background: url("winner_template_body.png");
+    background-position: 50% 50%;
+    background-size: cover;
+    border-style: dotted;
+    border-color: #f15a24;
+    border-width: 5px;
+    padding: 30px;
+    position: relative;
+}
+
+.name-wrapper:before {
+    content: '';
+    background: url("winner_template_header.png");
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-repeat: no-repeat;
+    background-size: contain;
+    top: -95px;
+    left: 0;
+}
+
+.name-wrapper h2 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 50px;
+    font-weight: 700;
+}
+
+.btn-draw {
+    background: #f7931d;
+    border: 3px solid #f7931d;
+    border-radius: 8px;
+    color: #fff;
+    font-family: "Montserrat", sans-serif;
+    font-weight: 700;
+    font-size: 22px;
+    margin-top: 20px;
+    padding: 10px 40px;
+    margin: 20px 10px;
+}
+
+.btn-winner {
+    background: #55D3AF;
+    border: 3px solid #55D3AF;
+    border-radius: 8px;
+    color: #fff;
+    font-family: "Montserrat", sans-serif;
+    font-weight: 700;
+    font-size: 22px;
+    margin-top: 20px;
+    padding: 10px 30px;
+    margin: 20px 10px;
+}
+
+.btn-winner:hover{
+    border: 3px solid #55D3AF;
+    background: transparent;
+    color: #fff;
+}
+
+.btn-draw:hover{
+    border: 3px solid #f7931d;
+    background: transparent;
+    color: #fff;
+}
+
+
+@media screen and (max-width:768px){
+    .name-wrapper:before {
+        top: -77px;
+    }
+}
+
+
+@media screen and (max-width:767px){
+    .name-wrapper h2 {
+        font-family: 'Montserrat', sans-serif;
+        font-size: 30px;
+        font-weight: 700;
+    }
+
+    .name-wrapper:before {
+        content: '';
+        background: url(../img/winner_template_header.png);
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background-repeat: no-repeat;
+        background-size: contain;
+        top: -40px;
+        left: 0;
+    }
+}
+
+@media screen and (max-width:320px){
+    .name-wrapper:before {
+        top: -34px;
+    }
+}

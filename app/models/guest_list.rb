@@ -93,15 +93,13 @@ class GuestList < ApplicationRecord
     end
   end
 
-  private
-
-  # def included?
-
-  def generate_raffle_number(event)
+  def self.generate_raffle_number(event)
+    temp_raffle_number = 0
     loop do
-      raffle_number = rand(9999)
-      break temp_raffle_number unless GuestList.where(raffle_number: raffle_number, event: event).exists?
+      temp_raffle_number = rand(9999)
+      break temp_raffle_number unless GuestList.where(raffle_number: temp_raffle_number, event: event).exists?
     end
-    raffle_number
+    temp_raffle_number
   end
+
 end

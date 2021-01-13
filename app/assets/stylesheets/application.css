@@ -479,6 +479,45 @@
      justify-content: center;
  }
 
+ .event-wrapper{
+   background: url("SITE BG.jpg") no-repeat;
+   background-size: cover;
+   height: 100vh;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+ }
+
+ .event-box{
+   background: #8199AF;
+   max-width: 500px;
+   margin: 0 auto;
+   -webkit-box-shadow: 0px 0px 15px 5px #CDCDCD;
+   box-shadow: 0px 0px 15px 5px #CDCDCD;
+   font-family: 'Montserrat', sans-serif;
+   color: #fff;
+   border-radius: 5px;
+   padding: 30px;
+ }
+
+ .btn-event-code {
+   background: #406685;
+   font-family: 'Montserrat', sans-serif;
+   color: #fff;
+   text-transform: uppercase;
+   box-shadow: none;
+   border-radius: 7px;
+ }
+
+ .btn-event-code:hover{
+   background: #939598;
+   color: #ffff;
+ }
+
+ .form-check{
+   display: flex;
+ }
+
 
  @media (max-width: 768px) {
    #sidebar {

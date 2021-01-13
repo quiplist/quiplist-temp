@@ -1,5 +1,7 @@
-class EventsController < ApplicationController
-  layout 'admin'
+  class EventsController < ApplicationController
+  #layout 'false'
+  layout 'admin', only: [:index, :show]
+  #layout 'raffle', only: [:draw_raffles]
 
   before_action :authenticate_admin!
   load_and_authorize_resource :event
@@ -65,7 +67,9 @@ class EventsController < ApplicationController
   def draw_raffles
     @event
     ids = User.ids
-    ids.sample
+    id = ids.sample
+
+    render layout: "raffle"
   end
 
   private
