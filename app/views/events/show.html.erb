@@ -1,10 +1,12 @@
 <div class="container content-wrapper">
   <div class="row event-wrapper">
     <div class="col col-md-3 col-lg-2">
-      <form class="upload_wrapper mb-3">
-        <input type="file" id="event_cover" hidden onchange="form.submit()">
-        <label for="event_cover" class="event_cover_btn"><i class="fas fa-upload"></i>Upload<br/>Event Cover Here</label>
-      </form>
+      <%= form_for @event, as: :event, url: upload_brochure_event_path(@event), method: :put, html: { class: "upload_wrapper mb-3", multipart: true } do |f| %>
+        <label for="event_brochure" class="event_brochure_btn">
+          <i class="fas fa-upload"></i>Upload<br/>Event Cover Here
+          <input type="file" id="event_brochure" 	accepts="image/png,image/jpg,image/jpeg,application/pdf" name="event[brochure]" hidden onchange="form.submit()">
+        </label>
+      <% end %>
     </div>
     <div class="col col-md-9 col-lg-10 text-start">
       <h2 class="event_title"><%= @event.title %></h2>

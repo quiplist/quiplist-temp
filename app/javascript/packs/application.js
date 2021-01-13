@@ -18,10 +18,10 @@ require("channels")
 
 $(document).ready(function () {
     //events table
-    $('#events_list').DataTable();
+    //$('#events_list').DataTable();
 
     //single events table
-    $("#event_id_guest_list").DataTable();
+    //$("#event_id_guest_list").DataTable();
 
     //stream key fields
     $("#streamValueType").html("<input type=\"file\" class=\"form-control\" id=\"streamKey\" accept=\"video/*\" required/>");

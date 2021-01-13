@@ -382,7 +382,7 @@
      color: #3943ca;
  }
 
- .event_cover_btn {
+ .event_brochure_btn {
    background: #3943ca;
    color: #fff;
    display: grid;
@@ -394,7 +394,7 @@
    text-align: center;
  }
 
- .event_cover_btn i.fas.fa-upload {
+ .event_brochure_btn i.fas.fa-upload {
    font-size: 50px;
    margin-bottom: 10px;
  }
