@@ -450,13 +450,6 @@
    background: #fff;
  }
 
- div#admin-login__wrapper {
-   background: url("light_lines_bg.jpg");
-   background-size: cover;
-   background-position: 50% 50%;
-   background-repeat: no-repeat;
- }
-
  .login_form input {
    background: #e6e6e6;
    border-radius: 5px !important;
@@ -475,6 +468,15 @@
    color: #fff;
    margin-top: 10px;
    font-family: 'Montserrat', sans-serif;
+ }
+
+ .single-page-layout {
+     background: url("SITE BG.jpg");
+     background-size: cover;
+     height: 100vh;
+     display: flex;
+     align-items: center;
+     justify-content: center;
  }
 
 
@@ -500,10 +502,6 @@
    .login-wrapper .col:nth-child(1) {
      width: 100%;
      flex: 0 0 100%;
-   }
-
-   .login-wrapper{
-     margin: 10px 30px;
    }
 
    .overlap_top-bg,
@@ -579,5 +577,10 @@
      width: 100%;
      height: 100px;
      bottom: 0;
+   }
+
+   .register-wrapper .img-wrapper,
+   .login-wrapper .img-wrapper{
+     display: none;
    }
  }

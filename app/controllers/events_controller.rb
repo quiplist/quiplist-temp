@@ -65,6 +65,7 @@ class EventsController < ApplicationController
   def draw_raffles
     @event
     ids = User.ids
+    ids.sample
   end
 
   private
