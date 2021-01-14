@@ -8,7 +8,15 @@ Rails.application.routes.draw do
       put :upload_brochure, to: 'events#upload_brochure', on: :member
       get :draw_raffles, to: 'events#draw_raffles', on: :member
       put :draw_winner, to: 'events#draw_winner', on: :member
-      resources :guest_lists
+      resources :guest_lists do
+        post :set_status, on: :collection
+        post :batch_approved, on: :collection
+        post :batch_denied, on: :collection
+        post :set_raffle_status, on: :collection
+        post :batch_eligible, on: :collection
+        post :batch_not_eligible, on: :collection
+        get :reset_raffle_statuses, on: :collection
+      end
       # resources :raffles
       # resources :questionnaires
     end
