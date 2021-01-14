@@ -23,6 +23,11 @@ $(document).ready(function () {
                 break;
         }
     })
+    
+    var checkbox = document.querySelector('#terms');
+    checkbox.addEventListener('change', function (e) {
+       this.checked ? $(".btn-event-code").prop('disabled', false) : $(".btn-event-code").prop('disabled', true);;
+    });
 });
 
 //require("@rails/ujs").start()
