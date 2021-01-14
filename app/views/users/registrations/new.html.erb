@@ -31,6 +31,16 @@
                   </div>
               </div>
               <div class="row">
+                  <div class="col col-md-12 col-lg-6">
+                      <label for="affiliation">Contact Number</label>
+                      <%= f.text_field :contact_number, class: "form-control" %>
+                  </div>
+                  <div class="col col-md-12 col-lg-6">
+                      <label for="affiliation">Affiliation</label>
+                      <%= f.text_field :affiliation, class: "form-control" %>
+                  </div>
+              </div>
+              <div class="row">
                 <div class="col col-md-12 col-lg-6">
                     <label for="member_type">Member Type</label>
                     <%= f.select :member_type, User::MEMBER_TYPES.invert, {}, { class: 'form-select' } %>
@@ -40,12 +50,6 @@
                       <%= f.text_field :member_id, class: "form-control" %>
                   </div>
 
-              </div>
-              <div class="row">
-                  <div class="col col-lg-12">
-                      <label for="affiliation">Affiliation</label>
-                      <%= f.text_field :affiliation, class: "form-control" %>
-                  </div>
               </div>
               <div class="row mt-3">
                   <div class="col col-lg-12">
