@@ -18,7 +18,7 @@ class GuestListsController < ApplicationController
     @guest_lists = @event.guest_lists
     @guest_lists = @guest_lists.sorted.page(page).per(per_page)
 
-    guest_lists = :GuestList.where(id: params[:ids])
+    guest_lists = GuestList.where(id: params[:ids])
     approver = User.find(id: params[:user_id])
     response = update_guest_list_statuses(guest_lists, user, GuestList::APPROVED)
 
@@ -26,7 +26,7 @@ class GuestListsController < ApplicationController
   end
 
   def batch_denied
-    guest_lists = :GuestList.where(id: params[:ids])
+    guest_lists = GuestList.where(id: params[:ids])
     approver = User.find(id: params[:user_id])
     response = update_guest_list_statuses(guest_lists, user, GuestList::DENIED)
     #render json: response, adapter: :json
@@ -60,15 +60,28 @@ class GuestListsController < ApplicationController
   end
 
   def batch_eligible
-    guest_lists = :GuestList.where(id: params[:ids])
+    guest_lists = GuestList.where(id: params[:ids])
     response = update_raffle_statuses(guest_lists, GuestList::ELIGIBLE)
     #render json: response, adapter: :json
   end
 
   def batch_not_eligible
-    guest_lists = :GuestList.where(id: params[:ids])
+    guest_lists = GuestList.where(id: params[:ids])
     response = update_raffle_statuses(guest_lists, GuestList::NOT_ELIGIBLE)
     #render json: response, adapter: :json
+  end
+
+  def download_csv
+    page = params[:page] || 1
+    per_page = params[:per_page] || 10
+    search = params[:search]
+    @guest_lists = @event.guest_lists
+    @guest_lists = @guest_lists.sorted.page(page).per(per_page)
+
+    respond_to do |format|
+      format.html
+      format.csv { send_data @guest_lists.to_csv, filename: "#{@event.title}-guestlists-#{@event.start_date}-#{@event.end_date}.csv" }
+    end
   end
 
   private

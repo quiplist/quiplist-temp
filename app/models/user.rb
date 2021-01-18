@@ -99,4 +99,5 @@ class User < ApplicationRecord
                  email:    email,
                  birthdate: birthdate)
   end
+
 end
