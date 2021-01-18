@@ -18,6 +18,7 @@
 #  index_guest_lists_on_event_id     (event_id)
 #  index_guest_lists_on_user_id      (user_id)
 #
+require 'csv'
 class GuestList < ApplicationRecord
   belongs_to :user, class_name: 'User', foreign_key: 'user_id'
   belongs_to :approver, class_name: 'User', foreign_key: 'approver_id', optional: true
@@ -106,6 +107,18 @@ class GuestList < ApplicationRecord
     ids = guest_lists.ids
     winner = ids.sample
     winner
+  end
+
+  def self.to_csv
+    attributes = %w{id full_name email contact_number}
+
+    CSV.generate(headers: true) do |csv|
+      csv << attributes
+
+      all.each do |guest_list|
+        csv << attributes.map{ |attr| guest_list.user.send(attr) }
+      end
+    end
   end
 
 end

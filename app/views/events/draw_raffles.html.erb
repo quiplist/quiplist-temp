@@ -9,7 +9,6 @@
         <%= form_for @guest_list, as: :guest_list, url: draw_winner_event_path(@event, guest_list_id: @guest_list.id), method: :put, html: { } do |f| %>
             <%= f.hidden_field :raffle_status, value: 2 %>
             <%= submit_tag "Winner", class: "btn btn-winner" %>
-          </label>
         <% end %>
       </div>
     </div>

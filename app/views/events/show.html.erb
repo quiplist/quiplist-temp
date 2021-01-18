@@ -86,6 +86,9 @@
       </div>
     </div>
   </div>
+  <div>
+    Export: <%= link_to "CSV", download_csv_event_guest_lists_path(@event, format: "csv"), class: "text-primary" %>
+  </div>
   <%= link_to_previous_page @guest_lists, '<< ', class: "text-primary" %>
   <%= page_entries_info @guest_lists %>
   <%= link_to_next_page @guest_lists, ' >>', class: "text-primary" %>
