@@ -76,11 +76,12 @@ class GuestListsController < ApplicationController
     per_page = params[:per_page] || 10
     search = params[:search]
     @guest_lists = @event.guest_lists
+    guest_lists = @guest_list
     @guest_lists = @guest_lists.sorted.page(page).per(per_page)
 
     respond_to do |format|
       format.html
-      format.csv { send_data @guest_lists.to_csv, filename: "#{@event.title}-guestlists-#{@event.start_date}-#{@event.end_date}.csv" }
+      format.csv { send_data guest_lists.to_csv, filename: "#{@event.title}-guestlists-#{@event.start_date}-#{@event.end_date}.csv" }
     end
   end
 
