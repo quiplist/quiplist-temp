@@ -76,8 +76,8 @@ class GuestListsController < ApplicationController
     per_page = params[:per_page] || 10
     search = params[:search]
     @guest_lists = @event.guest_lists
-    guest_lists = @guest_lists
-    @guest_lists = @guest_lists.sorted.page(page).per(per_page)
+    guest_lists = @guest_lists.sorted
+    @guest_lists = guest_lists.page(page).per(per_page)
 
     respond_to do |format|
       format.html
