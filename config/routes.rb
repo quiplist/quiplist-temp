@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   get '/events/:event_code', to: 'home#index', as: :home
   get '/find_event', to: 'home#find_event', as: :find_event
 
-  scope 'admin' do
+  scope 'admins' do
     resources :events, except: [:new, :edit] do
       put :upload_brochure, to: 'events#upload_brochure', on: :member
       get :draw_raffles, to: 'events#draw_raffles', on: :member
