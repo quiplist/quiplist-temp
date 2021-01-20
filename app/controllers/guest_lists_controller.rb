@@ -33,7 +33,6 @@ class GuestListsController < ApplicationController
   end
 
   def set_raffle_status
-
     page = params[:page] || 1
     per_page = params[:per_page] || 10
     search = params[:search]
@@ -43,7 +42,6 @@ class GuestListsController < ApplicationController
     response = update_raffle_statuses([guest_list], raffle_status_params)
 
     redirect_to event_path(@event), notice: "Guest #{guest_list.user.full_name} updated successfully!"
-    #puts "======= #{response.inspect}"
   end
 
   def reset_raffle_statuses

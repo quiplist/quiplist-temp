@@ -97,11 +97,24 @@
 
   end
 
+  # def set_raffle_status
+  #   page = params[:page] || 1
+  #   per_page = params[:per_page] || 10
+  #   search = params[:search]
+  #   @guest_lists = @event.guest_lists
+  #   @guest_lists = @guest_lists.sorted.page(page).per(per_page)
+  #   guest_list = GuestList.find(params[:guest_list_id])
+  #   response = update_raffle_statuses([guest_list], raffle_status_params)
+  #
+  #   redirect_to events_path, notice: "Guest #{guest_list.user.full_name} updated successfully!"
+  # end
+
   private
 
   def event_params
     params.require(:event).permit(:title, :description, :event_code,
-      :start_date, :end_date, :start_time, :end_time, :event_type, :stream_type, :stream_key, :stream_video)
+      :start_date, :end_date, :start_time, :end_time, :event_type,
+      :stream_type, :stream_key, :stream_video, :status)
   end
 
   def upload_params
