@@ -9,6 +9,10 @@ class Users::RegistrationsController < Devise::RegistrationsController
     event = check_event_code(params[:event_code])
     if event.nil?
       redirect_to root_path, alert: "Invalid Event Code!"
+    elsif event.queued?
+      redirect_to root_path, alert: "Event not yet started!"
+    elsif event.done?
+      redirect_to root_path, alert: "Event already done!"
     else
       build_resource
       yield resource if block_given?
@@ -21,6 +25,10 @@ class Users::RegistrationsController < Devise::RegistrationsController
     event = check_event_code(params[:event_code])
     if event.nil?
       redirect_to root_path, alert: "Invalid Event Code!"
+    elsif event.queued?
+      redirect_to root_path, alert: "Event not yet started!"
+    elsif event.done?
+      redirect_to root_path, alert: "Event already done!"
     else
      build_resource(sign_up_params)
 

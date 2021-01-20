@@ -21,10 +21,10 @@
 require 'csv'
 class GuestList < ApplicationRecord
   belongs_to :user, class_name: 'User', foreign_key: 'user_id'
-  belongs_to :approver, class_name: 'User', foreign_key: 'approver_id', optional: true
+  belongs_to :approver, class_name: 'Admin', foreign_key: 'approver_id', optional: true
   belongs_to :event
-  #has_many :answers
-  #has_many :raffles
+  has_many :answers
+  has_many :raffles
 
   PENDING = 0
   APPROVED = 1
@@ -110,7 +110,7 @@ class GuestList < ApplicationRecord
   end
 
   def self.to_csv
-    attributes = %w{id full_name email contact_number}
+    attributes = %w{id full_name email contact_number member_name member_id}
 
     CSV.generate(headers: true) do |csv|
       csv << attributes

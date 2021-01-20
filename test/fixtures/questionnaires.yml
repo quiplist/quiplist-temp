@@ -1,21 +1,19 @@
 # == Schema Information
 #
-# Table name: admins
+# Table name: questionnaires
 #
 #  id                 :bigint           not null, primary key
-#  affiliation        :string
-#  birthdate          :date
-#  contact_number     :string
-#  email              :string           default(""), not null
-#  encrypted_password :string           default(""), not null
-#  full_name          :string
-#  role               :integer          default(2)
+#  answer             :string           is an Array
+#  choices            :string           is an Array
+#  question           :string
+#  questionnaire_type :integer          default(0)
 #  created_at         :datetime         not null
 #  updated_at         :datetime         not null
+#  event_id           :bigint
 #
 # Indexes
 #
-#  index_admins_on_email  (email) UNIQUE
+#  index_questionnaires_on_event_id  (event_id)
 #
 
 # This model initially had no columns defined. If you add columns to the
