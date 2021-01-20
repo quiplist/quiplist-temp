@@ -110,7 +110,7 @@ class GuestList < ApplicationRecord
   end
 
   def self.to_csv
-    attributes = %w{id full_name email contact_number}
+    attributes = %w{id full_name email contact_number member_name member_id}
 
     CSV.generate(headers: true) do |csv|
       csv << attributes
