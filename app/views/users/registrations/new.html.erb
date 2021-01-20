@@ -45,16 +45,18 @@
                     <label for="member_type">Member Type</label>
                     <%= f.select :member_type, User::MEMBER_TYPES.invert, {}, { class: 'form-select' } %>
                 </div>
-                  <div class="col col-md-12 col-lg-6">
-                      <label for="member_id">Member ID</label>
-                      <%= f.text_field :member_id, class: "form-control" %>
-                  </div>
-
+                <div class="col col-md-12 col-lg-6">
+                    <label for="member_id">Member ID</label>
+                    <%= f.text_field :member_id, class: "form-control" %>
+                </div>
               </div>
               <div class="row mt-3">
-                  <div class="col col-lg-12">
-                    <%= f.submit "Sign up", class:"btn btn-sign-up w-100" %>
-                  </div>
+                <div class="col col-md-12 col-lg-8" style="text-align: left;">
+                  <%= link_to "Sign in instead", user_session_path %>
+                </div>
+                <div class="col col-md-12 col-lg-4">
+                  <%= f.submit "Sign up", class:"btn btn-sign-up w-100" %>
+                </div>
               </div>
             <% end %>
         </div>
