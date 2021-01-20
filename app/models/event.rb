@@ -10,9 +10,9 @@
 #  event_code               :string
 #  event_type               :integer          default(0)
 #  main_background          :string
-#  main_background_color    :string           default("#3F48CC")
-#  main_mouse_out           :string           default("#6C63FF")
-#  main_mouse_over          :string           default("#861CCE")
+#  main_background_color    :string           default("#fefefe")
+#  main_mouse_out           :string           default("#0A48AC")
+#  main_mouse_over          :string           default("#007bff")
 #  session_background       :string
 #  session_background_color :string           default("#3F48CC")
 #  session_mouse_out        :string           default("#6C63FF")

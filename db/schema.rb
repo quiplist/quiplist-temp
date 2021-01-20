@@ -59,9 +59,9 @@ ActiveRecord::Schema.define(version: 2021_01_20_174003) do
     t.string "session_mouse_over", default: "#861CCE"
     t.string "session_mouse_out", default: "#6C63FF"
     t.string "main_background"
-    t.string "main_background_color", default: "#3F48CC"
-    t.string "main_mouse_over", default: "#861CCE"
-    t.string "main_mouse_out", default: "#6C63FF"
+    t.string "main_background_color", default: "#fefefe"
+    t.string "main_mouse_over", default: "#007bff"
+    t.string "main_mouse_out", default: "#0A48AC"
   end
 
   create_table "guest_lists", force: :cascade do |t|
