@@ -22,6 +22,8 @@ class Admin < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :validatables
 
+  has_many :approved, foreign_key: "approver_id", class_name: "GuestList"
+
   SUPER_ADMIN = 0
   ADMIN = 1
 
