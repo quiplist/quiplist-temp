@@ -18,8 +18,14 @@ class HomeController < ApplicationController
     if @event.nil?
       flash.now[:alert] = 'Invalid Event Code!'
       render :welcome
+    elsif @event.queued?
+      flash.now[:alert] = 'Event not yet started!'
+      render :welcome
+    elsif @event.done?
+      flash.now[:alert] = 'Event already done!'
+      render :welcome
     else
-      redirect_to new_user_session_path(event_code: @event.event_code)
+      redirect_to new_user_registration_path(event_code: @event.event_code)
     end
   end
 

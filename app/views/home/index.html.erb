@@ -1,25 +1,17 @@
 
 <section id="home_section_1">
-  <%= image_tag "banner.png", class: "img-fluid" %>
+  <%= image_tag @event.main_background.url, class: "img-fluid" %>
 </section>
 <section id="home_section_2" class="mb-3">
-  <div class="container">
+  <div class="container" style="background: <%= @event.main_background_color %>">
     <div class="row text-center py-5">
         <div class="col col-lg-12">
-            <h1>Welcome!</h1>
-            <p>ARE YOU READY TO BE PLUSITIVE?
-            KNOW MORE ABOUT THE AMWAY CUSTOMER SALES INCENTIVE that will definitely give you PLUS earnings.<br/><br/>
-
-            JOIN US via Zoom Meetings and enjoy the program, games and win exciting prizes!<br/><br/>
-
-            See you on Friday, January 15, 2021 at 6 in the evening.<br/><br/>
-
-            Meeting ID: 919 5784 8994<br/>
-            Passcode: CSI2021<br/><br/>
-
-            #APHLCSI #CorePlus</p>
+            <h1 style="color: <%= @event.main_mouse_out %>;">Welcome!</h1>
+            <p><%= @event.description %></p>
+            <%#= render partial: "home/shared/facebook_live" %>
+            <br/>
             <% unless @event&.brochure&.file.nil? %>
-              <p>Click <%= link_to "here", @event.brochure.url, target: :_blank %> to download your brochure.</p>
+              <p>Click <%= link_to "here", @event.brochure.url, target: :_blank, style: "color: #{@event.main_mouse_out};", onmouseover:"this.style.color='#{@event.main_mouse_over}'", onmouseout:"this.style.color='#{@event.main_mouse_out}'" %> to download your brochure.</p>
             <% end %>
         </div>
       </div>

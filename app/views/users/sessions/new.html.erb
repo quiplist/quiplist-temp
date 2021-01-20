@@ -1,7 +1,6 @@
-
-<div class="container-fluid single-page-layout">
+<div class="container-fluid single-page-layout" style="<%= @event.session_background? ? "background-image: url(\'#{@event.session_background.url}\')" : "" %>">
     <div class="row login-wrapper">
-        <div class="col col-lg-5">
+        <div class="col col-lg-5" style="background: <%= @event.session_background_color %>;">
             <h2>Login</h2>
             <h5 class="mb-3">Doesn't have an account yet? <%= link_to "Sign up", new_user_registration_path %></h5>
             <% if notice %>
@@ -22,7 +21,7 @@
               </div>
 
               <div class="actions">
-                <%= f.submit "Sign in", class: "btn btn-sign-in" %>
+                <%= f.submit "Sign in", class:"btn btn-sign-in", style: "background: #{@event.session_mouse_out};", onmouseover:"this.style.background='#{@event.session_mouse_over}'", onmouseout:"this.style.background='#{@event.session_mouse_out}'" %>
               </div>
             <% end %>
 

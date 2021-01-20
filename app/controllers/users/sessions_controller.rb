@@ -5,9 +5,13 @@ class Users::SessionsController < Devise::SessionsController
 
   # GET /resource/sign_in
   def new
-    event = check_event_code(params[:event_code])
-    if event.nil?
+    @event = check_event_code(params[:event_code])
+    if @event.nil?
       redirect_to root_path, alert: "Invalid Event Code!"
+    elsif @event.queued?
+      redirect_to root_path, alert: "Event not yet started!"
+    elsif @event.done?
+      redirect_to root_path, alert: "Event already done!"
     else
       self.resource = resource_class.new(sign_in_params)
       clean_up_passwords(resource)
@@ -18,16 +22,20 @@ class Users::SessionsController < Devise::SessionsController
 
   # POST /resource/sign_in
   def create
-    event = check_event_code(params[:event_code])
-    if event.nil?
+    @event = check_event_code(params[:event_code])
+    if @event.nil?
       redirect_to root_path, alert: "Invalid Event Code!"
+    elsif @event.queued?
+      redirect_to root_path, alert: "Event not yet started!"
+    elsif @event.done?
+      redirect_to root_path, alert: "Event already done!"
     else
       self.resource = warden.authenticate!(auth_options)
-      GuestList.create_guest_list(resource, event)
+      GuestList.create_guest_list(resource, @event)
       set_flash_message!(:notice, :signed_in)
       sign_in(resource_name, resource)
       yield resource if block_given?
-      respond_with resource, location: after_sign_in_path_for(resource, event)
+      respond_with resource, location: after_sign_in_path_for(resource, @event)
     end
 
   end

@@ -6,9 +6,13 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   # GET /resource/sign_up
   def new
-    event = check_event_code(params[:event_code])
-    if event.nil?
+    @event = check_event_code(params[:event_code])
+    if @event.nil?
       redirect_to root_path, alert: "Invalid Event Code!"
+    elsif @event.queued?
+      redirect_to root_path, alert: "Event not yet started!"
+    elsif @event.done?
+      redirect_to root_path, alert: "Event already done!"
     else
       build_resource
       yield resource if block_given?
@@ -18,9 +22,13 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   # POST /resource
   def create
-    event = check_event_code(params[:event_code])
-    if event.nil?
+    @event = check_event_code(params[:event_code])
+    if @event.nil?
       redirect_to root_path, alert: "Invalid Event Code!"
+    elsif @event.queued?
+      redirect_to root_path, alert: "Event not yet started!"
+    elsif @event.done?
+      redirect_to root_path, alert: "Event already done!"
     else
      build_resource(sign_up_params)
 
@@ -28,10 +36,10 @@ class Users::RegistrationsController < Devise::RegistrationsController
      yield resource if block_given?
      if resource.persisted?
        if resource.active_for_authentication?
-         GuestList.create_guest_list(resource, event)
+         GuestList.create_guest_list(resource, @event)
          set_flash_message! :notice, :signed_up
          sign_up(resource_name, resource)
-         respond_with resource, location: after_sign_up_path_for(resource, event)
+         respond_with resource, location: after_sign_up_path_for(resource, @event)
        else
          set_flash_message! :notice, :"signed_up_but_#{resource.inactive_message}"
          expire_data_after_sign_in!
