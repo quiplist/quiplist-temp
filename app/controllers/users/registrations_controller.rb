@@ -6,12 +6,12 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   # GET /resource/sign_up
   def new
-    event = check_event_code(params[:event_code])
-    if event.nil?
+    @event = check_event_code(params[:event_code])
+    if @event.nil?
       redirect_to root_path, alert: "Invalid Event Code!"
-    elsif event.queued?
+    elsif @event.queued?
       redirect_to root_path, alert: "Event not yet started!"
-    elsif event.done?
+    elsif @event.done?
       redirect_to root_path, alert: "Event already done!"
     else
       build_resource
@@ -22,12 +22,12 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   # POST /resource
   def create
-    event = check_event_code(params[:event_code])
-    if event.nil?
+    @event = check_event_code(params[:event_code])
+    if @event.nil?
       redirect_to root_path, alert: "Invalid Event Code!"
-    elsif event.queued?
+    elsif @event.queued?
       redirect_to root_path, alert: "Event not yet started!"
-    elsif event.done?
+    elsif @event.done?
       redirect_to root_path, alert: "Event already done!"
     else
      build_resource(sign_up_params)

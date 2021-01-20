@@ -114,7 +114,9 @@
   def event_params
     params.require(:event).permit(:title, :description, :event_code,
       :start_date, :end_date, :start_time, :end_time, :event_type,
-      :stream_type, :stream_key, :stream_video, :status)
+      :stream_type, :stream_key, :stream_video, :status, :session_background,
+      :session_mouse_out, :session_mouse_over, :session_background_color,
+      :main_background, :main_mouse_out, :main_mouse_over, :main_background_color)
   end
 
   def upload_params

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_01_20_052020) do
+ActiveRecord::Schema.define(version: 2021_01_20_174003) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -54,6 +54,14 @@ ActiveRecord::Schema.define(version: 2021_01_20_052020) do
     t.integer "status", default: 0
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "session_background"
+    t.string "session_background_color", default: "#3F48CC"
+    t.string "session_mouse_over", default: "#861CCE"
+    t.string "session_mouse_out", default: "#6C63FF"
+    t.string "main_background"
+    t.string "main_background_color", default: "#3F48CC"
+    t.string "main_mouse_over", default: "#861CCE"
+    t.string "main_mouse_out", default: "#6C63FF"
   end
 
   create_table "guest_lists", force: :cascade do |t|

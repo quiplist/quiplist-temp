@@ -5,12 +5,12 @@ class Users::SessionsController < Devise::SessionsController
 
   # GET /resource/sign_in
   def new
-    event = check_event_code(params[:event_code])
-    if event.nil?
+    @event = check_event_code(params[:event_code])
+    if @event.nil?
       redirect_to root_path, alert: "Invalid Event Code!"
-    elsif event.queued?
+    elsif @event.queued?
       redirect_to root_path, alert: "Event not yet started!"
-    elsif event.done?
+    elsif @event.done?
       redirect_to root_path, alert: "Event already done!"
     else
       self.resource = resource_class.new(sign_in_params)
@@ -22,12 +22,12 @@ class Users::SessionsController < Devise::SessionsController
 
   # POST /resource/sign_in
   def create
-    event = check_event_code(params[:event_code])
-    if event.nil?
+    @event = check_event_code(params[:event_code])
+    if @event.nil?
       redirect_to root_path, alert: "Invalid Event Code!"
-    elsif event.queued?
+    elsif @event.queued?
       redirect_to root_path, alert: "Event not yet started!"
-    elsif event.done?
+    elsif @event.done?
       redirect_to root_path, alert: "Event already done!"
     else
       self.resource = warden.authenticate!(auth_options)
