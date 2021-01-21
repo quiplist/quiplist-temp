@@ -29,7 +29,7 @@
           <td><%= guest_list.approver&.full_name %></td>
           <td>
             <%= form_for guest_list, as: :guest_list, url: set_status_event_guest_lists_path(@event, guest_list_id: guest_list.id), method: :post, html: { class: "" } do |f| %>
-              <%= f.select :status, GuestList::STATUSES.invert, {}, { class: 'form-select', onchange: "form.submit()" } %>
+              <%= f.select :status, GuestList::STATUSES.invert, {}, { class: 'form-select', onchange: "form.submit()", disabled: @event.public? } %>
             <% end %>
           </td>
           <td>
