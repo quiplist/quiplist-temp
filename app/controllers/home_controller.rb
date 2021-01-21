@@ -24,8 +24,10 @@ class HomeController < ApplicationController
     elsif @event.done?
       flash.now[:alert] = 'Event already done!'
       render :welcome
-    else
+    elsif current_user.nil?
       redirect_to new_user_registration_path(event_code: @event.event_code)
+    else
+      redirect_to home_path(event_code: @event.event_code)
     end
   end
 
