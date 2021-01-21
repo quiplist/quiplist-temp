@@ -3,6 +3,8 @@ class ApplicationController < ActionController::Base
   def after_sign_in_path_for(resource, event=nil)
     if resource.super_admin? && event.nil?
       events_path
+    elsif event.nil?
+      root_path
     else
       home_path(event_code: event.event_code)
     end
