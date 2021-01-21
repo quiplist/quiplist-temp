@@ -2,7 +2,7 @@
     <div class="row login-wrapper">
         <div class="col col-lg-5" style="background: <%= @event.session_background_color %>;">
             <h2>Login</h2>
-            <h5 class="mb-3">Doesn't have an account yet? <%= link_to "Sign up", new_user_registration_path %></h5>
+            <h5 class="mb-3">Doesn't have an account yet? <%= link_to "Sign up", new_user_registration_path(event_code: @event.event_code) %></h5>
             <% if notice %>
               <p class="alert alert-success"><%= notice %></p>
             <% end %>
