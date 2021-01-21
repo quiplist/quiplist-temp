@@ -4,9 +4,24 @@ class HomeController < ApplicationController
 
   def index
     @event = check_event_code(params[:event_code])
-    if @event.nil?
-      render_404
+    render_404 if @event.nil?
+    GuestList.create_guest_list(current_user, @event)
+    guest = GuestList.where(user: current_user, event: @event).first
+    if @event.private? && guest.pending?
+      redirect_to thank_you_path(event_code: @event.event_code)
+    elsif @event.private? && guest.denied?
+      redirect_to denied_path(event_code: @event.event_code)
     end
+  end
+
+  def thank_you
+    @event = check_event_code(params[:event_code])
+    render_404 if @event.nil?
+  end
+
+  def denied
+    @event = check_event_code(params[:event_code])
+    render_404 if @event.nil?
   end
 
   def welcome

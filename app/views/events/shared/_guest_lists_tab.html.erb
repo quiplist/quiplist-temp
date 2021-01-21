@@ -6,6 +6,8 @@
         <th>Email</th>
         <th>Contact</th>
         <th>Birth Date</th>
+        <th>Approved by:</th>
+        <th>Status</th>
         <th>
           Raffle status
           <%= link_to reset_raffle_statuses_event_guest_lists_path(@event), class: "text-xl-start text-primary" do %>
@@ -24,6 +26,12 @@
           <td><%= guest_list.user.email %></td>
           <td><%= guest_list.user.contact_number %></td>
           <td><%= date_formatter(guest_list.user.birthdate) %></td>
+          <td><%= guest_list.approver&.full_name %></td>
+          <td>
+            <%= form_for guest_list, as: :guest_list, url: set_status_event_guest_lists_path(@event, guest_list_id: guest_list.id), method: :post, html: { class: "" } do |f| %>
+              <%= f.select :status, GuestList::STATUSES.invert, {}, { class: 'form-select', onchange: "form.submit()" } %>
+            <% end %>
+          </td>
           <td>
             <%= form_for guest_list, as: :guest_list, url: set_raffle_status_event_guest_lists_path(@event, guest_list_id: guest_list.id), method: :post, html: { class: "" } do |f| %>
               <%= f.select :raffle_status, GuestList::RAFFLE_STATUSES.invert, {}, { class: 'form-select', onchange: "form.submit()" } %>

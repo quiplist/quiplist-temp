@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
   root to: 'home#welcome'
   get '/events/:event_code', to: 'home#index', as: :home
+  get '/events/:event_code/thank_you', to: 'home#thank_you', as: :thank_you
+  get '/events/:event_code/denied', to: 'home#denied', as: :denied
   get '/find_event', to: 'home#find_event', as: :find_event
 
   scope 'admins' do
