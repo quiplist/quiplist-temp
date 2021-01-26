@@ -46,13 +46,17 @@ class Event < ApplicationRecord
     PUBLIC => "Public"
   }
 
-  STREAM_KEY = 0
+  NONE = 0
   UPLOAD = 1
+  FB_VIDEO = 2
 
   STREAM_TYPES = {
-    STREAM_KEY => "Stream Key",
-    UPLOAD => "Upload"
+    NONE => "None",
+    UPLOAD => "Upload",
+    FB_VIDEO => "Facebook Live/Video"
   }
+
+  LIVE_STREAMS = [FB_VIDEO]
 
   QUEUED = 0
   ONGOING = 1
@@ -100,8 +104,12 @@ class Event < ApplicationRecord
     stream_type == UPLOAD
   end
 
+  def fb_video?
+    stream_type == FB_VIDEO
+  end
+
   def lived_stream?
-    stream_type == STREAM_KEY
+    LIVE_STREAMS.include? stream_type
   end
 
   def status_name

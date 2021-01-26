@@ -329,14 +329,16 @@
  }
 
  .btn-blue {
-   background: #090567;
-   color: #fff;
+   background: #090567 !important;
+   color: #fff !important;
    font-weight: 600;
+   border: 1px solid #090567 !important;
  }
 
  .btn-blue:hover {
-   background: #090593;
-   color: #fff;
+   background: #090593 !important;
+   color: #fff !important;
+   border: 1px solid #090567 !important;
  }
 
  .modal-header h5 {

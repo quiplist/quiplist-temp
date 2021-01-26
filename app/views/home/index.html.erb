@@ -7,8 +7,12 @@
     <div class="row text-center py-5">
         <div class="col col-lg-12">
             <h1 style="color: <%= @event.main_mouse_out %>;">Welcome!</h1>
+
+            <% if @event.fb_video? %>
+              <%= render partial: "home/shared/facebook_live", locals: { url: @event.stream_key } %>
+            <% end %>
+            <br/>
             <p><%= @event.description %></p>
-            <%#= render partial: "home/shared/facebook_live" %>
             <br/>
             <% unless @event&.brochure&.file.nil? %>
               <p>Click <%= link_to "here", @event.brochure.url, target: :_blank, style: "color: #{@event.main_mouse_out};", onmouseover:"this.style.color='#{@event.main_mouse_over}'", onmouseout:"this.style.color='#{@event.main_mouse_out}'" %> to download your brochure.</p>

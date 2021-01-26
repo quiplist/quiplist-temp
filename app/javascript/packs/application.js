@@ -10,25 +10,86 @@ $(document).ready(function () {
     //$("#event_id_guest_list").DataTable();
 
     //stream key fields
-    $("#streamValueType").html("<input type=\"text\" class=\"form-control\" id=\"streamVideo\" placeholder=\"Enter Stream Key\" name=\"event[stream_key]\"/>");
-    $("#stream_type").on("change", function(){
-        var streamType = $(this).val();
-        console.log(streamType === '0')
+
+    var btnEdit = $( ".btn-edit" );
+    for(var i = 0; i < btnEdit.length; i++){
+      console.log(btnEdit.length)
+      $( ".btn-edit" ).click(function() {
+
+        var id = $(this).attr("id");
+        var streamType = $(".stream_type_"+id).val();
         switch(streamType){
-            case '0':
-                $("#streamValueType").html("<input type=\"text\" class=\"form-control\" id=\"streamVideo\" placeholder=\"Enter Stream Key\" name=\"event[stream_key]\"/>");
-                break;
-            case '1':
-                $("#streamValueType").html("<input type=\"file\" class=\"form-control\" id=\"streamKey\" accept=\"video/*\" name=\"event[stream_video]\"/>");
-                break;
+          case '0':
+              $(".uploadVideo_"+id).hide();
+              $(".streamVideo_"+id).hide();
+              break;
+          case '1':
+              $(".uploadVideo_"+id).show();
+              $(".streamVideo_"+id).hide();
+              break;
+          case '2':
+              $(".uploadVideo_"+id).hide();
+              $(".streamVideo_"+id).show();
+              break;
         }
-    })
-    
+      })
+    }
+    // var streamType = $(".stream_type_"+id).val();
+    // console.log(streamType)
+    // switch(streamType){
+    //     case '0':
+    //         $(".uploadVideo_"+id).hide();
+    //         $(".streamVideo_"+id).hide();
+    //         break;
+    //     case '1':
+    //         $(".uploadVideo_"+id).show();
+    //         $(".streamVideo_"+id).hide();
+    //         break;
+    //     case '2':
+    //         $(".uploadVideo_"+id).hide();
+    //         $(".streamVideo_"+id).show();
+    //         break;
+    // }
+    // $("#stream_type").on("change", function(){
+    //   var streamType = $(".stream_type_"+id).val();
+    //   switch(streamType){
+    //       case '0':
+    //           $(".streamValueType_"+id).html("");
+    //           break;
+    //       case '1':
+    //           $(".streamValueType_"+id).html("<input type=\"file\" class=\"form-control\" id=\"streamKey\" accept=\"video/*\" name=\"event[stream_video]\"/>");
+    //           break;
+    //       case '2':
+    //           $(".streamValueType_"+id).html("<input type=\"text\" class=\"form-control\" id=\"streamVideo\" placeholder=\"Enter Stream Key\" name=\"event[stream_key]\"/>");
+    //           break;
+    //   }
+    // });
+
     var checkbox = document.querySelector('#terms');
     checkbox.addEventListener('change', function (e) {
        this.checked ? $(".btn-event-code").prop('disabled', false) : $(".btn-event-code").prop('disabled', true);;
     });
+
+
 });
+
+window.streamValueTypeChange = function(id) {
+  var streamType = $(".stream_type_"+id).val();
+  switch(streamType){
+      case '0':
+          $(".uploadVideo_"+id).hide();
+          $(".streamVideo_"+id).hide();
+          break;
+      case '1':
+          $(".uploadVideo_"+id).show();
+          $(".streamVideo_"+id).hide();
+          break;
+      case '2':
+          $(".uploadVideo_"+id).hide();
+          $(".streamVideo_"+id).show();
+          break;
+  }
+}
 
 //require("@rails/ujs").start()
 // require("turbolinks").start()
