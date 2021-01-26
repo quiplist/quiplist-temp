@@ -10,7 +10,10 @@
 
             <% if @event.fb_video? %>
               <%= render partial: "home/shared/facebook_live", locals: { url: @event.stream_key } %>
+            <% elsif @event.youtube_video? %>
+              <%= render partial: "home/shared/youtube_live", locals: { url: @event.stream_key }  %>
             <% end %>
+
             <br/>
             <p><%= @event.description %></p>
             <br/>

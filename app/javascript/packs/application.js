@@ -28,6 +28,7 @@ $(document).ready(function () {
               $(".streamVideo_"+id).hide();
               break;
           case '2':
+          case '3':
               $(".uploadVideo_"+id).hide();
               $(".streamVideo_"+id).show();
               break;
@@ -85,6 +86,7 @@ window.streamValueTypeChange = function(id) {
           $(".streamVideo_"+id).hide();
           break;
       case '2':
+      case '3':
           $(".uploadVideo_"+id).hide();
           $(".streamVideo_"+id).show();
           break;

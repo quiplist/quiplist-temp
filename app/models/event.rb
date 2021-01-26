@@ -49,14 +49,16 @@ class Event < ApplicationRecord
   NONE = 0
   UPLOAD = 1
   FB_VIDEO = 2
+  YOUTUBE_VIDEO = 3
 
   STREAM_TYPES = {
     NONE => "None",
     UPLOAD => "Upload",
-    FB_VIDEO => "Facebook Live/Video"
+    FB_VIDEO => "Facebook Live/Video",
+    YOUTUBE_VIDEO => "Youtube Live/Video"
   }
 
-  LIVE_STREAMS = [FB_VIDEO]
+  LIVE_STREAMS = [FB_VIDEO, YOUTUBE_VIDEO]
 
   QUEUED = 0
   ONGOING = 1
@@ -106,6 +108,10 @@ class Event < ApplicationRecord
 
   def fb_video?
     stream_type == FB_VIDEO
+  end
+
+  def youtube_video?
+    stream_type == YOUTUBE_VIDEO
   end
 
   def lived_stream?
