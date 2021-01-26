@@ -5,10 +5,17 @@ class GuestListsController < ApplicationController
   load_and_authorize_resource :event
 
   def set_status
-    guest_list = GuestList.find(params[:id])
-    approver = User.find(id: params[:user_id])
-    response = update_guest_list_statuses([guest_list], approver, params[:status])
-    #render json: response, adapter: :json
+    page = params[:page] || 1
+    per_page = params[:per_page] || 10
+    search = params[:search]
+    @guest_lists = @event.guest_lists
+    @guest_lists = @guest_lists.sorted.page(page).per(per_page)
+    guest_list = GuestList.find(params[:guest_list_id])
+    new_params = status_params
+    new_params[:approver_id] = current_admin.id
+    response = update_guest_list_statuses([guest_list], new_params)
+
+    redirect_to event_path(@event), notice: "Guest #{guest_list.user.full_name} updated successfully!"
   end
 
   def batch_approved
@@ -93,15 +100,13 @@ class GuestListsController < ApplicationController
     params.require(:guest_list).permit(:status)
   end
 
-  def update_guest_list_statuses(guest_lists, approver, status)
+  def update_guest_list_statuses(guest_lists, params)
     guest_lists.each do |gl|
-      gl.update_attributes(status: status, approver: approver)
+      gl.update_attributes(params)
     end
   end
 
   def update_raffle_statuses(guest_lists, status)
-    puts "======== #{guest_lists}"
-    puts "======== #{status}"
     guest_lists.each do |gl|
       gl.update_attributes(status)
     end

@@ -43,12 +43,16 @@
   </div>
 </div>
 <div class="mb-3">
-  <label for="streamType">Stream Type<span class="required">*</span></label>
-  <div class="row">
+  <label for="streamType">Stream Type <span class="required">*</span></label>
+  <div class="row stream">
     <div class="col col-lg-6">
-      <%= f.select :stream_type, Event::STREAM_TYPES.invert, {}, { class: 'form-select', id: 'stream_type' } %>
+      <%= f.select :stream_type, Event::STREAM_TYPES.invert, {}, { class: "form-select stream_type_#{id}", onchange: "streamValueTypeChange(#{id})" } %>
     </div>
-    <div class="col col-lg-6" id="streamValueType">
+    <div class="col col-lg-6 uploadVideo_<%= id %>">
+      <input type="file" id="event" accept="video/*" name="event[stream_video]">
+    </div>
+    <div class="col col-lg-6 streamVideo_<%= id %>">
+      <%= f.text_field :stream_key, class: 'form-control', id: "stream_key", placeholder: "Stream Key/Url" %>
     </div>
   </div>
 </div>

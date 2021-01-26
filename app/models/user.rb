@@ -52,7 +52,24 @@ class User < ApplicationRecord
 
   validates :email, presence: true, uniqueness: true
   validates :full_name, presence: true
-  validates :birthdate, presence: true
+  validates :contact_number, presence: true
+  validates :member_type, presence: true
+  validates :member_id, presence: true, if: :member?
+
+  #  affiliation            :string
+  #  birthdate              :date
+  #  contact_number         :string
+  #  email                  :string           default(""), not null
+  #  encrypted_password     :string           default(""), not null
+  #  full_name              :string
+  #  member_type            :integer          default(0)
+  #  remember_created_at    :datetime
+  #  reset_password_sent_at :datetime
+  #  reset_password_token   :string
+  #  role                   :integer          default(2)
+  #  created_at             :datetime         not null
+  #  updated_at             :datetime         not null
+  #  member_id              :string
 
   scope :super_admin, -> { where(role: SUPER_ADMIN) }
   scope :admin, -> { where(role: ADMIN) }
@@ -75,6 +92,14 @@ class User < ApplicationRecord
 
   def member_name
     MEMBER_TYPES[member_type]
+  end
+
+  def member?
+    member_type == MEMBER
+  end
+
+  def non_member?
+    member_type == NON_MEMBER
   end
 
   def super_admin?
