@@ -25,6 +25,12 @@ Rails.application.routes.draw do
       # resources :questionnaires
     end
   end
+  
+  namespace :api, defaults: { format: :json } do
+    namespace :v1 do
+      resources :reactions, only: [:create, :destroy]
+    end
+  end
 
   # devise_for :users, skip: [:sessions]
   # as :user do

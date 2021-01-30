@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_01_20_174003) do
+ActiveRecord::Schema.define(version: 2021_01_30_103457) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -99,6 +99,17 @@ ActiveRecord::Schema.define(version: 2021_01_20_174003) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["event_id"], name: "index_raffles_on_event_id"
     t.index ["guest_list_id"], name: "index_raffles_on_guest_list_id"
+  end
+
+  create_table "reactions", force: :cascade do |t|
+    t.bigint "event_id"
+    t.string "responder_type"
+    t.bigint "responder_id"
+    t.integer "emotion", default: 0
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["event_id"], name: "index_reactions_on_event_id"
+    t.index ["responder_type", "responder_id"], name: "index_reactions_on_responder_type_and_responder_id"
   end
 
   create_table "users", force: :cascade do |t|

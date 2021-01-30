@@ -23,13 +23,14 @@ class Admin < ApplicationRecord
   devise :database_authenticatable, :validatables
 
   has_many :approved, foreign_key: "approver_id", class_name: "GuestList"
+  has_many :reactions, as: :responder
 
   SUPER_ADMIN = 0
   ADMIN = 1
 
   ROLE_TYPES = {
     SUPER_ADMIN => "Super Admin",
-    ADMIN => "Admin",
+    ADMIN => "Admin"
   }
 
 

@@ -18,6 +18,14 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def render_jsonapi_response(resource)
+    if resource.errors.empty?
+      render json: resource, adapter: :json
+    else
+      render json: { error: resource.errors }, status: 400
+    end
+  end
+
   protected
 
   def check_event_code(event_code)
