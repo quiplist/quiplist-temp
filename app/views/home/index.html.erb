@@ -52,6 +52,12 @@
                     wow: @reaction.wow?,
                     angry: @reaction.angry?,
                   }) %>
+                  <br/>
+                  <p style="color: <%= @event.main_background_color %>"><%= @event.description %></p>
+                  <br/>
+                  <% unless @event&.brochure&.file.nil? %>
+                    <p style="color: <%= @event.main_background_color %>">Click <%= link_to "here", @event.brochure.url, target: :_blank, style: "color: #{@event.main_mouse_out};", onmouseover:"this.style.color='#{@event.main_mouse_over}'", onmouseout:"this.style.color='#{@event.main_mouse_out}'" %> to download your brochure.</p>
+                  <% end %>
                 </div>
               </div>
             </div>
