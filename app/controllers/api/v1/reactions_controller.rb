@@ -3,11 +3,13 @@ class Api::V1::ReactionsController < ApplicationController
   skip_before_action :verify_authenticity_token
 
   def create
-    @reaction = Reaction.create(reaction_params)
-    render_jsonapi_response @reaction
+    @reaction = Reaction.upsert(reaction_params)
+    render json: @reaction, adapter: :json
   end
 
   def destroy
+    @reaction = Reaction.where(reaction_params).destroy_all
+    render json: @reaction, adapter: :json
   end
 
   private

@@ -6,5 +6,6 @@ class CreateReactions < ActiveRecord::Migration[6.0]
       t.integer :emotion, default: 0
       t.timestamps
     end
+    add_index :reactions, [:event_id, :responder_id, :responder_type], unique: true
   end
 end

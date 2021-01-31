@@ -17,7 +17,13 @@ class Reactions extends React.Component {
       activeHappy: this.props.happy,
       activeWow: this.props.wow,
       activeSad: this.props.sad,
-      activeAngry: this.props.angry
+      activeAngry: this.props.angry,
+      like: 1,
+      heart: 2,
+      happy: 3,
+      wow: 4,
+      sad: 5,
+      angry: 6
     };
     this.setLikeIcon = this.setLikeIcon.bind(this);
     this.setLoveIcon = this.setLoveIcon.bind(this);
@@ -25,8 +31,6 @@ class Reactions extends React.Component {
     this.setWowIcon = this.setWowIcon.bind(this);
     this.setSadIcon = this.setSadIcon.bind(this);
     this.setAngryIcon = this.setAngryIcon.bind(this);
-    //this.createReaction = this.createReaction.bind(this);
-    this.destroyReaction = this.destroyReaction.bind(this);
   }
 
   componentDidMount() {
@@ -52,7 +56,8 @@ class Reactions extends React.Component {
       label.innerHTML = "Angry";
     } else {
       image.src = Default;
-      label.innerHTML = this.state.activeLabel;
+      //label.innerHTML = this.state.activeLabel;
+      label.innerHTML = "Like";
     }
   }
 
@@ -65,7 +70,11 @@ class Reactions extends React.Component {
     image.src = (this.state.activeLike) ? (Like) : (Default);
     label.innerHTML = (this.state.activeLike) ? "Like" : "Like";
 
-
+    if (this.state.activeLike) {
+      createReaction(this.state.like, this.props.currentUserId, this.props.eventId)
+    } else {
+      destroyReaction(this.props.currentUserId, this.props.eventId)
+    }
   }
 
   setLoveIcon = () => {
@@ -74,13 +83,14 @@ class Reactions extends React.Component {
     })
     var image = document.getElementById("activeEmoji");
     var label = document.getElementById("activeLabel");
-    // if(this.state.activeHeart){
-    //   image.src = Heart;
-    // }else{
-    //   image.src = Default;
-    // }
     image.src = (this.state.activeHeart) ? (Heart) : (Default);
     label.innerHTML = (this.state.activeHeart) ? "Heart" : "Like";
+
+    if (this.state.activeHeart) {
+      createReaction(this.state.heart, this.props.currentUserId, this.props.eventId)
+    } else {
+      destroyReaction(this.props.currentUserId, this.props.eventId)
+    }
   }
 
   setHahaIcon = () => {
@@ -91,26 +101,44 @@ class Reactions extends React.Component {
     var label = document.getElementById("activeLabel");
     image.src = (this.state.activeHappy) ? (Laugh) : (Default);
     label.innerHTML = (this.state.activeHappy) ? "Haha" : "Like";
+
+    if (this.state.activeHappy) {
+      createReaction(this.state.happy, this.props.currentUserId, this.props.eventId)
+    } else {
+      destroyReaction(this.props.currentUserId, this.props.eventId)
+    }
   }
 
   setWowIcon = () => {
-    this.setState({
-      activeSad: !this.state.activeSad,
-    })
-    var image = document.getElementById("activeEmoji");
-    var label = document.getElementById("activeLabel");
-    image.src = (this.state.activeSad) ? (Wow) : (Default);
-    label.innerHTML = (this.state.activeSad) ? "Wow" : "Like";
-  }
-
-  setSadIcon = () => {
     this.setState({
       activeWow: !this.state.activeWow,
     })
     var image = document.getElementById("activeEmoji");
     var label = document.getElementById("activeLabel");
-    image.src = (this.state.activeWow) ? (Sad) : (Default);
-    label.innerHTML = (this.state.activeWow) ? "Sad" : "Like";
+    image.src = (this.state.activeWow) ? (Wow) : (Default);
+    label.innerHTML = (this.state.activeWow) ? "Wow" : "Like";
+
+    if (this.state.activeWow) {
+      createReaction(this.state.wow, this.props.currentUserId, this.props.eventId)
+    } else {
+      destroyReaction(this.props.currentUserId, this.props.eventId)
+    }
+  }
+
+  setSadIcon = () => {
+    this.setState({
+      activeSad: !this.state.activeSad,
+    })
+    var image = document.getElementById("activeEmoji");
+    var label = document.getElementById("activeLabel");
+    image.src = (this.state.activeSad) ? (Sad) : (Default);
+    label.innerHTML = (this.state.activeSad) ? "Sad" : "Like";
+
+    if (this.state.activeSad) {
+      createReaction(this.state.sad, this.props.currentUserId, this.props.eventId)
+    } else {
+      destroyReaction(this.props.currentUserId, this.props.eventId)
+    }
   }
 
   setAngryIcon = () => {
@@ -121,6 +149,12 @@ class Reactions extends React.Component {
     var label = document.getElementById("activeLabel");
     image.src = (this.state.activeAngry) ? (Angry) : (Default);
     label.innerHTML = (this.state.activeAngry) ? "Angry" : "Like";
+
+    if (this.state.activeAngry) {
+      createReaction(this.state.angry, this.props.currentUserId, this.props.eventId)
+    } else {
+      destroyReaction(this.props.currentUserId, this.props.eventId)
+    }
   }
 
 
@@ -158,8 +192,6 @@ class Reactions extends React.Component {
             </div>
           </a>
         </div>
-        {this.props.eventId}
-        {this.props.currentUserId}
       </React.Fragment>
     );
   }
@@ -189,6 +221,32 @@ function createReaction(emotion, userId, eventId) {
 
   fetch(url, {
     method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify(body)
+  }).then(response => {
+    if (response.ok) {
+      return response.json();
+    }
+    console.log(response)
+    throw new Error(response);
+  }).catch(error => console.log(error.message));
+
+}
+
+function destroyReaction(userId, eventId) {
+  const url = "/api/v1/reactions";
+  const body = {
+    reaction: {
+      responder_id: userId,
+      responder_type: "User",
+      event_id: eventId
+    }
+  };
+
+  fetch(url, {
+    method: "DELETE",
     headers: {
       "Content-Type": "application/json"
     },
