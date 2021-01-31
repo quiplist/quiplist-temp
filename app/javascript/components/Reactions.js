@@ -12,14 +12,12 @@ class Reactions extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      eventId: this.props.eventId,
-      currentUserId: this.props.currentUserId,
-      activeLike: false,
-      activeHeart: false,
-      activeHappy: false,
-      activeWow: false,
-      activeSad: false,
-      activeAngry: false
+      activeLike: this.props.like,
+      activeHeart: this.props.heart,
+      activeHappy: this.props.happy,
+      activeWow: this.props.wow,
+      activeSad: this.props.sad,
+      activeAngry: this.props.angry
     };
     this.setLikeIcon = this.setLikeIcon.bind(this);
     this.setLoveIcon = this.setLoveIcon.bind(this);
@@ -31,18 +29,41 @@ class Reactions extends React.Component {
     this.destroyReaction = this.destroyReaction.bind(this);
   }
 
+  componentDidMount() {
+    var image = document.getElementById("activeEmoji");
+    var label = document.getElementById("activeLabel");
+    if (this.state.activeLike){
+      image.src = Like;
+      label.innerHTML = "Like";
+    } else if (this.state.activeHeart) {
+      image.src = Heart;
+      label.innerHTML = "Heart";
+    } else if (this.state.activeHappy) {
+      image.src = Happy;
+      label.innerHTML = "Happy";
+    } else if (this.state.activeSad) {
+      image.src = Sad;
+      label.innerHTML = "Sad";
+    } else if (this.state.activeWow) {
+      image.src = Wow;
+      label.innerHTML = "Wow";
+    } else if (this.state.activeAngry) {
+      image.src = Angry;
+      label.innerHTML = "Angry";
+    } else {
+      image.src = Default;
+      label.innerHTML = this.state.activeLabel;
+    }
+  }
+
   setLikeIcon = () => {
     this.setState({
       activeLike: !this.state.activeLike,
     })
     var image = document.getElementById("activeEmoji");
+    var label = document.getElementById("activeLabel");
     image.src = (this.state.activeLike) ? (Like) : (Default);
-
-    if(this.state.activeHeart){
-      createReaction(1, this.state.currentUserId, this.state.eventId)
-    }else{
-      image.src = Default;
-    }
+    label.innerHTML = (this.state.activeLike) ? "Like" : "Like";
 
 
   }
@@ -52,12 +73,14 @@ class Reactions extends React.Component {
       activeHeart: !this.state.activeHeart,
     })
     var image = document.getElementById("activeEmoji");
+    var label = document.getElementById("activeLabel");
     // if(this.state.activeHeart){
     //   image.src = Heart;
     // }else{
     //   image.src = Default;
     // }
     image.src = (this.state.activeHeart) ? (Heart) : (Default);
+    label.innerHTML = (this.state.activeHeart) ? "Heart" : "Like";
   }
 
   setHahaIcon = () => {
@@ -65,7 +88,9 @@ class Reactions extends React.Component {
       activeHappy: !this.state.activeHappy,
     })
     var image = document.getElementById("activeEmoji");
+    var label = document.getElementById("activeLabel");
     image.src = (this.state.activeHappy) ? (Laugh) : (Default);
+    label.innerHTML = (this.state.activeHappy) ? "Haha" : "Like";
   }
 
   setWowIcon = () => {
@@ -73,7 +98,9 @@ class Reactions extends React.Component {
       activeSad: !this.state.activeSad,
     })
     var image = document.getElementById("activeEmoji");
+    var label = document.getElementById("activeLabel");
     image.src = (this.state.activeSad) ? (Wow) : (Default);
+    label.innerHTML = (this.state.activeSad) ? "Wow" : "Like";
   }
 
   setSadIcon = () => {
@@ -81,7 +108,9 @@ class Reactions extends React.Component {
       activeWow: !this.state.activeWow,
     })
     var image = document.getElementById("activeEmoji");
+    var label = document.getElementById("activeLabel");
     image.src = (this.state.activeWow) ? (Sad) : (Default);
+    label.innerHTML = (this.state.activeWow) ? "Sad" : "Like";
   }
 
   setAngryIcon = () => {
@@ -89,7 +118,9 @@ class Reactions extends React.Component {
       activeAngry: !this.state.activeAngry,
     })
     var image = document.getElementById("activeEmoji");
+    var label = document.getElementById("activeLabel");
     image.src = (this.state.activeAngry) ? (Angry) : (Default);
+    label.innerHTML = (this.state.activeAngry) ? "Angry" : "Like";
   }
 
 
@@ -104,6 +135,7 @@ class Reactions extends React.Component {
         <div className="feed">
           <a className="like-btn">
             <img src={Default} alt="emoji" className="active-emoji" id="activeEmoji"/>
+            <h2 id="activeLabel"></h2>
             <div className="reaction-box">
                 <div className="reaction-icon" onClick={this.setLikeIcon}>
                   <img src={Like} alt="like"/><label>Like</label>
@@ -126,8 +158,8 @@ class Reactions extends React.Component {
             </div>
           </a>
         </div>
-        {this.state.eventId}
-        {this.state.currentUserId}
+        {this.props.eventId}
+        {this.props.currentUserId}
       </React.Fragment>
     );
   }
@@ -136,6 +168,12 @@ class Reactions extends React.Component {
 Reactions.propTypes = {
   eventId: PropTypes.number.isRequired,
   currentUserId: PropTypes.number.isRequired,
+  like: PropTypes.bool.isRequired,
+  heart: PropTypes.bool.isRequired,
+  happy: PropTypes.bool.isRequired,
+  sad: PropTypes.bool.isRequired,
+  wow: PropTypes.bool.isRequired,
+  angry: PropTypes.bool.isRequired,
 };
 
 function createReaction(emotion, userId, eventId) {

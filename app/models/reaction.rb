@@ -28,7 +28,8 @@ class Reaction < ApplicationRecord
 
   EMOTIONS = {
     DEFAULT => "Default",
-    HEART => "Like",
+    LIKE => "Like",
+    HEART => "Heart",
     HAPPY => "Happy",
     WOW => "Wow",
     SAD => "Sad",

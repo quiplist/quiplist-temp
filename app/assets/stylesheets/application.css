@@ -535,6 +535,256 @@
    display: flex;
  }
 
+ .live-stream-container {
+     display: flex;
+     flex-wrap: wrap;
+ }
+
+ .chat-user-number {
+     font-size: 60px;
+     font-weight: 700;
+     font-family: 'Arial';
+ }
+
+ .chat-name h3 {
+     font-weight: 500;
+     font-size: 20px;
+     font-family: 'Arial';
+ }
+
+ .chat-wrapper p {
+     text-align: left;
+     font-size: 16px;
+     font-family: 'Arial';
+ }
+
+ .chat-wrapper {
+     height: 400px;
+     background: #fff;
+     overflow-y: auto;
+ }
+
+ .chat-container{
+     background: #fff;
+ }
+
+ .chat-container form input[type="text"] {
+     border-radius: 0px !important;
+     border-bottom: 1px solid #000;
+     width: 100%;
+ }
+
+ .chat-container input[type="submit"] {
+     border-radius: 0px !important;
+     font-family: 'Arial';
+     width: 100%;
+ }
+
+ .video-wrapper {
+    height: 500px;
+    display: flex;
+    align-items: center;
+}
+
+.no-video-wrapper{
+  height: 500px;
+  width:100%;
+  display: flex;
+  align-items: center;
+  background: #000;
+  text-align: center;
+  color: #fff;
+  justify-content: center;
+  font-size: 50px;
+}
+
+.chat-live-wrapper{
+  background-size: cover !important;
+  padding-top: 400px;
+  background-position: center !important;
+}
+
+#activeLabel {
+    margin: 0 10px;
+    font-size: 18px;
+}
+
+
+ .feed {
+   position: relative;
+   height: 80px;
+   border-top: 1px solid #f1f1f1;
+   border-bottom: 1px solid #f1f1f1;
+   margin-top: 20px;
+ }
+
+ .like-btn {
+     width: auto;
+     height: auto;
+     position: absolute;
+     left: 0px;
+     cursor: pointer;
+     color: #fff;
+     font-family: 'Arial';
+     transform: translate(0%, -50%);
+     top: 50%;
+     display: inline-flex;
+     align-items: center;
+ }
+
+ .like-btn:hover {
+     color: #fff;
+ }
+
+ .like-btn .reaction-box {
+       position: absolute;
+       width: 312px; height: 55px;
+       background: transparent;
+       border-radius: 28px;
+       left: -25px; bottom: 25px;
+       display: none;
+ }
+
+ .like-btn:hover .reaction-box {
+     display: block;
+ }
+
+ .reaction-box{
+     left: -25px;
+     bottom: 35px;
+ }
+
+ .reaction-box .reaction-icon {
+       width: 40px;
+       height: 40px;
+       display: inline-block;
+       border-radius: 20px;
+       margin: 8px -1px 0 8px;
+       text-align: center;
+ }
+
+ .reaction-box .reaction-icon img {
+     width: 40px;
+     height: 40px;
+ }
+
+ .reaction-box .reaction-icon label {
+     padding: 3px 5px 3px 5px;
+     position: relative;
+     top: -24px;
+     border-radius: 10px;
+     font-size: 11px;
+     color: #FFF;
+     background: #333;
+ }
+
+ .like-btn:hover .reaction-box{
+     transition: 1s ease-in;
+ }
+
+ .like-btn:hover .reaction-box .reaction-icon:hover {
+     transform: scale(1.4);
+     transform-origin: bottom;
+ }
+
+
+ .like-btn::before {
+     content: ".";
+     opacity: 0;
+     display: block;
+     width: 44px; height: 10px;
+     position: absolute;
+     top: -10px; left: 0;
+ }
+
+ .like-btn label {
+     visibility: hidden;
+  }
+
+  .reaction-icon:hover label {
+     visibility: visible;
+
+  }
+
+ .reaction-icon {
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    /* opacity: 0;
+    transform: translate(0, 100px) scale(0); */
+  }
+
+ .like-btn:hover .reaction-box .reaction-icon.show{
+     opacity: 1;
+     transform: translate(0, 0) scale(1);
+ }
+
+
+ .reaction-box .show {
+     opacity: 1;
+     width: 40px;
+     height: 40px;
+     display: inline-block;
+     border-radius: 20px;
+     margin: 8px -1px 0 8px;
+     text-align: center;
+     transform: translateY(-20px);
+     transition: 0.3s ease-in;
+ }
+
+ .reaction-box .show img {
+     width: 40px;
+     height: 40px;
+ }
+
+ a.like-btn .active-emoji {
+     width: 40px;
+     height: 40px;
+     background: transparent;
+ }
+
+ a.like-btn h4 {
+     font-size: 14px;
+     font-family: 'Arial';
+     margin: 0px 0px 0px 10px;
+ }
+
+#fb-root {
+  display: none;
+}
+
+.fb_iframe_widget, .fb_iframe_widget span, .fb_iframe_widget span iframe[style] {
+  width: 100% !important;
+  height: 100% !important;
+}
+
+.fb-wrapper {
+    overflow: hidden;
+    padding-bottom: 56.25% !important;
+    position: relative;
+    height: 0;
+}
+
+.fb-wrapper iframe {
+    left: 0;
+    top: 0;
+    height: 100% !important;
+    width: 100% !important;
+    position: absolute !important;
+}
+
+.reaction-icon img {
+    z-index: 2;
+}
+
+.reaction-icon label {
+    z-index: 1;
+}
+
+ @media screen and (max-width:1024px){
+     .button-wrapper button {
+         width: 10%;
+         height: 10%;
+     }
+ }
 
  @media (max-width: 768px) {
    #sidebar {
@@ -555,6 +805,10 @@
  }
 
  @media screen and (max-width:767px){
+   .chat-live-wrapper .col {
+       width: 100%;
+   }
+
    .login-wrapper .col:nth-child(1) {
      width: 100%;
      flex: 0 0 100%;
@@ -638,6 +892,19 @@
    .register-wrapper .img-wrapper,
    .login-wrapper .img-wrapper{
      display: none;
+   }
+
+   .chat-live-wrapper .col {
+       width: 100%;
+   }
+
+   .button-wrapper button {
+       width: 20%;
+       height: 20%;
+   }
+
+   .button-wrapper{
+       margin-bottom: 30px;
    }
  }
 

@@ -1,15 +1,17 @@
 class HomeController < ApplicationController
   layout 'main'
   before_action :authenticate_user!, except: [:welcome, :find_event]
+  before_action :fetch_reaction, except: [:welcome, :find_event]
 
   def index
     @event = check_event_code(params[:event_code])
     render_404 if @event.nil?
+
     GuestList.create_guest_list(current_user, @event)
     guest = GuestList.where(user: current_user, event: @event).first
-    if @event.private? && guest.pending?
+    if guest.pending?
       redirect_to thank_you_path(event_code: @event.event_code)
-    elsif @event.private? && guest.denied?
+    elsif guest.denied?
       redirect_to denied_path(event_code: @event.event_code)
     end
   end
@@ -18,9 +20,9 @@ class HomeController < ApplicationController
     @event = check_event_code(params[:event_code])
     render_404 if @event.nil?
     guest = GuestList.where(user: current_user, event: @event).first
-    if @event.private? && guest.approved?
+    if guest.approved?
       redirect_to home_path(event_code: @event.event_code)
-    elsif @event.private? && guest.denied?
+    elsif guest.denied?
       redirect_to denied_path(event_code: @event.event_code)
     end
   end
@@ -29,9 +31,9 @@ class HomeController < ApplicationController
     @event = check_event_code(params[:event_code])
     render_404 if @event.nil?
     guest = GuestList.where(user: current_user, event: @event).first
-    if @event.private? && guest.approved?
+    if guest.approved?
       redirect_to home_path(event_code: @event.event_code)
-    elsif @event.private? && guest.pending?
+    elsif guest.pending?
       redirect_to thank_you_path(event_code: @event.event_code)
     end
   end
@@ -56,6 +58,12 @@ class HomeController < ApplicationController
     else
       redirect_to home_path(event_code: @event.event_code)
     end
+  end
+
+  private
+
+  def fetch_reaction
+    @reaction = current_user.reactions.first || current_user.reactions.new
   end
 
 end
