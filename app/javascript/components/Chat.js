@@ -11,7 +11,6 @@ class Chat extends React.Component {
       currentUser: {},
       currentEvent: {},
       chats: [],
-      guestLists: []
     }
   }
 
@@ -21,7 +20,6 @@ class Chat extends React.Component {
     fetch('/api/v1/fetch_current_user')
     .then(response => response.json())
     .then(result => {
-      console.log(result)
       this.setState({ currentUser: result })
     });
 
@@ -29,9 +27,7 @@ class Chat extends React.Component {
     fetch(fetchEventUrl)
     .then(resp => resp.json())
     .then(result => {
-      console.log(result.chats)
       this.setState({ currentEvent: result })
-      this.setState({ guestLists: result.guest_lists })
       this.setState({ chats: result.chats })
     });
 
