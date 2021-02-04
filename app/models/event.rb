@@ -32,6 +32,7 @@ class Event < ApplicationRecord
   has_many :users, through: :guest_lists
   has_many :questionnaires
   has_many :raffles
+  has_many :chats
 
   mount_uploader :brochure, BrochureUploader
   mount_uploader :stream_video, StreamVideoUploader

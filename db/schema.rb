@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_01_31_162930) do
+ActiveRecord::Schema.define(version: 2021_02_03_103012) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -36,6 +36,17 @@ ActiveRecord::Schema.define(version: 2021_01_31_162930) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["guest_list_id"], name: "index_answers_on_guest_list_id"
     t.index ["questionnaire_id"], name: "index_answers_on_questionnaire_id"
+  end
+
+  create_table "chats", force: :cascade do |t|
+    t.string "sender_type"
+    t.bigint "sender_id"
+    t.bigint "event_id"
+    t.string "message"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["event_id"], name: "index_chats_on_event_id"
+    t.index ["sender_type", "sender_id"], name: "index_chats_on_sender_type_and_sender_id"
   end
 
   create_table "events", force: :cascade do |t|

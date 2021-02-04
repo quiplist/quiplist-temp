@@ -24,6 +24,7 @@ class Admin < ApplicationRecord
 
   has_many :approved, foreign_key: "approver_id", class_name: "GuestList"
   has_many :reactions, as: :responder
+  has_many :chats, as: :sender
 
   SUPER_ADMIN = 0
   ADMIN = 1

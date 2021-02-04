@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::Base
 
   def after_sign_in_path_for(resource, event=nil)
-    if resource.super_admin? && event.nil?
+    if (resource.super_admin? || resource.admin?) && event.nil?
       events_path
     elsif !event.nil? && resource.client?
       home_path(event_code: event.event_code)
@@ -29,6 +29,6 @@ class ApplicationController < ActionController::Base
   protected
 
   def check_event_code(event_code)
-    event = Event.find_by(event_code: params[:event_code])
+    @event = Event.find_by(event_code: event_code)
   end
 end

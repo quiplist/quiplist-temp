@@ -30,6 +30,7 @@ gem 'carrierwave', '~> 2.0'
 gem 'cancancan'
 gem 'kaminari'
 gem 'react-rails'
+gem 'active_model_serializers', '~> 0.10.1'
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.2', require: false

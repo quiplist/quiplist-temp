@@ -6,7 +6,7 @@
 //require("@rails/ujs").start()
 //require("turbolinks").start()
 require("@rails/activestorage").start()
-require("channels")
+//require("channels")
 
 
 // Uncomment to copy all static images under ../images to the output folder and reference
@@ -85,6 +85,20 @@ $(document).ready(function () {
     //           break;
     //   }
     // });
+
+    //animation on the reaction component
+    var reactionBox = $(".reaction-main-wrapper");
+    if(reactionBox !== null){
+      $(".like-btn").hover(function() {
+          $(".reaction-icon").each(function(index, element) {
+              setTimeout(function() {
+                  $(element).addClass("show");
+              }, index * 50);
+          });
+      }, function() {
+          $(".reaction-icon").removeClass("show")
+      });
+    }
 
     var checkbox = document.querySelector('#terms');
     if (checkbox !== null) {

@@ -2,9 +2,9 @@ class HomeController < ApplicationController
   layout 'main'
   before_action :authenticate_user!, except: [:welcome, :find_event]
   before_action :fetch_reaction, except: [:welcome, :find_event]
+  before_action -> { check_event_code params[:event_code] }, except: [:welcome]
 
   def index
-    @event = check_event_code(params[:event_code])
     render_404 if @event.nil?
 
     GuestList.create_guest_list(current_user, @event)
@@ -17,8 +17,8 @@ class HomeController < ApplicationController
   end
 
   def thank_you
-    @event = check_event_code(params[:event_code])
     render_404 if @event.nil?
+
     guest = GuestList.where(user: current_user, event: @event).first
     if guest.approved?
       redirect_to home_path(event_code: @event.event_code)
@@ -28,8 +28,8 @@ class HomeController < ApplicationController
   end
 
   def denied
-    @event = check_event_code(params[:event_code])
     render_404 if @event.nil?
+
     guest = GuestList.where(user: current_user, event: @event).first
     if guest.approved?
       redirect_to home_path(event_code: @event.event_code)
@@ -43,7 +43,6 @@ class HomeController < ApplicationController
   end
 
   def find_event
-    @event = check_event_code(params[:event_code])
     if @event.nil?
       flash.now[:alert] = 'Invalid Event Code!'
       render :welcome

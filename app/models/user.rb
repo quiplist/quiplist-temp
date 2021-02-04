@@ -32,6 +32,7 @@ class User < ApplicationRecord
   has_many :guest_lists
   has_many :events, through: :guest_lists
   has_many :reactions, as: :responder
+  has_many :chats, as: :sender
 
   SUPER_ADMIN = 0
   ADMIN = 1

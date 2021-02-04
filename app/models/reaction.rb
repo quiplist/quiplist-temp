@@ -75,4 +75,8 @@ class Reaction < ApplicationRecord
     emotion == ANGRY
   end
 
+  def emotion_name
+    EMOTIONS[emotion]
+  end
+
 end
