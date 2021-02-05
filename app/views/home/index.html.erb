@@ -1,7 +1,7 @@
 <div class="chat-live-wrapper" style='background:url(<%= @event.main_background.url%>)'>
   <div class="container px-5 py-3">
       <div class="row">
-            <div class="col col-sm-12 col-xxl-8">
+            <div class="col-12 col-md-8 col-lg-8">
               <div class="row">
                 <div class="col-12">
                     <div class="video-wrapper">
@@ -24,6 +24,9 @@
                     sad: @reaction.sad?,
                     wow: @reaction.wow?,
                     angry: @reaction.angry?,
+                    dislike: @reaction.dislike?,
+                    clap: @reaction.clap?
+
                   }) %>
                   <br/>
                   <p style="color: <%= @event.main_background_color %>"><%= @event.description %></p>
@@ -34,9 +37,9 @@
                 </div>
               </div>
             </div>
-            <div class="col col-sm-12 col-xxl-4">
+            <div class="col-12 col-md-4 col-lg-4">
               <%= react_component("Chat", { eventId: @event.id })%>
             </div>
       </div>
-    </div>
+  </div>
 </div>

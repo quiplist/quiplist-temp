@@ -26,6 +26,8 @@ class Reaction < ApplicationRecord
   WOW = 4
   SAD = 5
   ANGRY = 6
+  DISLIKE = 7
+  CLAP = 8
 
   EMOTIONS = {
     DEFAULT => "Default",
@@ -34,7 +36,9 @@ class Reaction < ApplicationRecord
     HAPPY => "Happy",
     WOW => "Wow",
     SAD => "Sad",
-    ANGRY => "Angry"
+    ANGRY => "Angry",
+    DISLIKE => "Dislike",
+    CLAP => "Clap"
   }
 
   validates :event_id, uniqueness: { scope: [:responder_id, :responder_type] }
@@ -46,6 +50,8 @@ class Reaction < ApplicationRecord
   scope :wow, -> { where(emotion: WOW) }
   scope :sad, -> { where(emotion: SAD) }
   scope :angry, -> { where(emotion: ANGRY) }
+  scope :dislike, -> { where(emotion: DISLIKE) }
+  scope :clap, -> { where(emotion: CLAP) }
 
   def default?
     emotion == DEFAULT
@@ -73,6 +79,14 @@ class Reaction < ApplicationRecord
 
   def angry?
     emotion == ANGRY
+  end
+
+  def dislike?
+    emotion == DISLIKE
+  end
+
+  def clap?
+    emotion == CLAP
   end
 
   def emotion_name

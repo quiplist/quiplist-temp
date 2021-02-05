@@ -1,10 +1,12 @@
-import React from "react"
 import PropTypes from "prop-types"
 import ActionCable from 'actioncable';
 import ChatInput from './ChatInput'
 import ChatMessage from './ChatMessage'
-
+import React from 'react'
+import ReactDOM from 'react-dom'
 class Chat extends React.Component {
+
+
   constructor(props) {
     super(props);
     this.state = {
@@ -12,9 +14,21 @@ class Chat extends React.Component {
       currentEvent: {},
       chats: [],
     }
+    this.scrollToBottom = this.scrollToBottom.bind(this);
+  }
+
+  scrollToBottom = () => {
+      const messagesContainer = ReactDOM.findDOMNode(this.messagesContainer);
+      messagesContainer.scrollTop = messagesContainer.scrollHeight;
+  };
+
+  componentDidUpdate() {
+      this.scrollToBottom();
   }
 
   componentDidMount() {
+
+    this.scrollToBottom();
     this.cable = ActionCable.createConsumer('/cable');
 
     fetch('/api/v1/fetch_current_user')
@@ -52,6 +66,8 @@ class Chat extends React.Component {
 
   addChat = chat => {
     this.setState(state => ({ chats: [chat, ...state.chats] }))
+
+
   }
 
 
@@ -67,6 +83,8 @@ class Chat extends React.Component {
       }
     }
 
+
+
     fetch(url, {
         method: "POST",
         headers: {
@@ -79,19 +97,15 @@ class Chat extends React.Component {
     .then(result => {
       this.addChat(result)
       this.eventsChannel.send({result})
-
     })
   }
+
 
   render () {
     return (
       <React.Fragment>
         <div className="chat-container">
-          <div className="chat-name">
-            <h2 className="chat-user-number">You are <span className="chat-number">#{this.state.currentEvent.id}</span></h2>
-            <hr/>
-          </div>
-          <div className="chat-wrapper">
+          <div className="chat-wrapper" ref={(el) => { this.messagesContainer = el; }} >
             {this.state.chats.reverse().map((chat, index) =>
               <ChatMessage
                 key={index}

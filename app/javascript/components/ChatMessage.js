@@ -2,12 +2,17 @@ import React, { Component } from 'react';
 
 class ChatMessage extends Component {
   whichUser = () => {
-    if ((this.props.chat.sender_id === parseInt(this.props.currentUser.id)) &&
-        (this.props.chat.sender_type === this.props.currentUser.user_type)) {
-      return 'current-user-message'
+    let classNameValue = "";
+    if ((this.props.chat.sender_type === 'Admin') &&
+        (this.props.currentUser.user_type === 'Admin')) {
+      classNameValue += 'current-admin-message'
+    } if ((this.props.chat.sender_id === parseInt(this.props.currentUser.id)) &&
+          (this.props.chat.sender_type === this.props.currentUser.user_type)) {
+      classNameValue += ' current-user-message'
     } else {
-      return 'other-user-message'
+      classNameValue += ' other-user-message'
     }
+    return classNameValue;
   }
 
   render() {
@@ -15,7 +20,7 @@ class ChatMessage extends Component {
       // if it is my current user, I will align the chat message div to the right of the page, and use a different color to differentiate their messages from the others' messages
     return (
       <div id="chat-message" className={this.whichUser()}>
-        <h6>{this.props.chat.sender_name}</h6>
+        <h6>{this.props.chat.sender_name}: </h6>
         <p>{this.props.chat.message}</p>
       </div>
     )

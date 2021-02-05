@@ -1,6 +1,8 @@
 import React from "react"
 import PropTypes from "prop-types"
 import Like from "images/active-like.png";
+import Dislike from "images/active-dislike.png";
+import Clap from "images/active-clap.png";
 import Heart from "images/active-heart.png";
 import Laugh from "images/active-laugh.png";
 import Wow from "images/active-wow.png";
@@ -13,6 +15,8 @@ class Reactions extends React.Component {
     super(props);
     this.state = {
       activeLike: this.props.like,
+      activeDislike: this.props.dislike,
+      activeClap: this.props.clap,
       activeHeart: this.props.heart,
       activeHappy: this.props.happy,
       activeWow: this.props.wow,
@@ -23,9 +27,13 @@ class Reactions extends React.Component {
       happy: 3,
       wow: 4,
       sad: 5,
-      angry: 6
+      angry: 6,
+      dislike: 7,
+      clap: 8,
     };
     this.setLikeIcon = this.setLikeIcon.bind(this);
+    this.setDislikeIcon = this.setDislikeIcon.bind(this);
+    this.setClapIcon = this.setClapIcon.bind(this);
     this.setLoveIcon = this.setLoveIcon.bind(this);
     this.setHahaIcon = this.setHahaIcon.bind(this);
     this.setWowIcon = this.setWowIcon.bind(this);
@@ -41,6 +49,8 @@ class Reactions extends React.Component {
       label.innerHTML = "Like";
       this.setState({
         activeLike: this.state.activeLike,
+        activeDislike: true,
+        activeClap: true,
         activeHeart: true,
         activeHappy: true,
         activeWow: true,
@@ -53,6 +63,8 @@ class Reactions extends React.Component {
       this.setState({
         activeLike: true,
         activeHeart: this.state.activeHeart,
+        activeDislike: true,
+        activeClap: true,
         activeHappy: true,
         activeWow: true,
         activeSad: true,
@@ -65,6 +77,8 @@ class Reactions extends React.Component {
         activeLike: true,
         activeHeart: true,
         activeHappy: this.state.activeHappy,
+        activeDislike: true,
+        activeClap: true,
         activeWow: true,
         activeSad: true,
         activeAngry: true
@@ -78,6 +92,8 @@ class Reactions extends React.Component {
         activeHappy: true,
         activeWow: true,
         activeSad: this.state.activeSad,
+        activeDislike: true,
+        activeClap: true,
         activeAngry: true
       })
     } else if (this.state.activeWow) {
@@ -88,6 +104,8 @@ class Reactions extends React.Component {
         activeHeart: true,
         activeHappy: true,
         activeWow: this.state.activeWow,
+        activeDislike: true,
+        activeClap: true,
         activeSad: true,
         activeAngry: true
       })
@@ -101,6 +119,34 @@ class Reactions extends React.Component {
         activeWow: true,
         activeSad: true,
         activeAngry:  this.state.activeAngry,
+        activeDislike: true,
+        activeClap: true,
+      })
+    } else if (this.state.activeDislike){
+      image.src = Dislike;
+      label.innerHTML = "Dislike";
+      this.setState({
+        activeLike: true,
+        activeHeart: true,
+        activeHappy: true,
+        activeWow: true,
+        activeSad: true,
+        activeAngry:  true,
+        activeDislike: this.state.activeDislike,
+        activeClap: true,
+      })
+    } else if (this.state.activeClap){
+      image.src = Clap;
+      label.innerHTML = "Clap";
+      this.setState({
+        activeLike: true,
+        activeHeart: true,
+        activeHappy: true,
+        activeWow: true,
+        activeSad: true,
+        activeAngry:  true,
+        activeDislike: true,
+        activeClap: this.state.activeClap,
       })
     } else {
       image.src = Default;
@@ -126,6 +172,52 @@ class Reactions extends React.Component {
 
     if (this.state.activeLike) {
       createReaction(this.state.like, this.props.currentUserId, this.props.eventId)
+    } else {
+      destroyReaction(this.props.currentUserId, this.props.eventId)
+    }
+  }
+
+  setDislikeIcon = () => {
+    this.setState({
+      activeDislike: !this.state.activeDislike,
+      activeClap: true,
+      activeHeart: true,
+      activeLike: true,
+      activeHappy: true,
+      activeWow: true,
+      activeSad: true,
+      activeAngry: true
+    })
+    var image = document.getElementById("activeEmoji");
+    var label = document.getElementById("activeLabel");
+    image.src = (this.state.activeDislike) ? (Dislike) : (Default);
+    label.innerHTML = (this.state.activeDislike) ? "Dislike" : "Like";
+
+    if (this.state.activeDislike) {
+      createReaction(this.state.dislike, this.props.currentUserId, this.props.eventId)
+    } else {
+      destroyReaction(this.props.currentUserId, this.props.eventId)
+    }
+  }
+
+  setClapIcon = () => {
+    this.setState({
+      activeClap: !this.state.activeClap,
+      activeHeart: true,
+      activeDislike: true,
+      activeLike: true,
+      activeHappy: true,
+      activeWow: true,
+      activeSad: true,
+      activeAngry: true
+    })
+    var image = document.getElementById("activeEmoji");
+    var label = document.getElementById("activeLabel");
+    image.src = (this.state.activeClap) ? (Clap) : (Default);
+    label.innerHTML = (this.state.activeClap) ? "Clap" : "Like";
+
+    if (this.state.activeClap) {
+      createReaction(this.state.clap, this.props.currentUserId, this.props.eventId)
     } else {
       destroyReaction(this.props.currentUserId, this.props.eventId)
     }
@@ -247,6 +339,12 @@ class Reactions extends React.Component {
                 <div className="reaction-icon" onClick={this.setLikeIcon}>
                   <img src={Like} alt="like"/><label>Like</label>
                 </div>
+                <div className="reaction-icon" onClick={this.setDislikeIcon}>
+                  <img src={Dislike} alt="dislike"/><label>Dislike</label>
+                </div>
+                <div className="reaction-icon" onClick={this.setClapIcon}>
+                  <img src={Clap} alt="clap"/><label>Clap</label>
+                </div>
                 <div className="reaction-icon" onClick={this.setLoveIcon}>
                   <img src={Heart} alt="Love"/><label>Love</label>
                 </div>
@@ -279,6 +377,8 @@ Reactions.propTypes = {
   sad: PropTypes.bool.isRequired,
   wow: PropTypes.bool.isRequired,
   angry: PropTypes.bool.isRequired,
+  dislike: PropTypes.bool.isRequired,
+  clap: PropTypes.bool.isRequired
 };
 
 function createReaction(emotion, userId, eventId) {
