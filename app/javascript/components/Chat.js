@@ -5,8 +5,6 @@ import ChatMessage from './ChatMessage'
 import React from 'react'
 import ReactDOM from 'react-dom'
 class Chat extends React.Component {
-
-
   constructor(props) {
     super(props);
     this.state = {
@@ -58,10 +56,6 @@ class Chat extends React.Component {
           this.addChat(data.result)
         }
       });
-
-    let messageDiv = document.getElementById('chat-message')
-    console.log(messageDiv)
-    //messageDiv.scrollToTop = messageDiv.scrollHeight
   }
 
   addChat = chat => {
@@ -116,6 +110,8 @@ class Chat extends React.Component {
           </div>
           <ChatInput
             onSubmitMessage={messageString => this.submitMessage(messageString)}
+            mouseOut={this.state.currentEvent.main_mouse_out}
+            mouseOver={this.state.currentEvent.main_mouse_over}
           />
         </div>
       </React.Fragment>
