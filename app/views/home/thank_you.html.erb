@@ -5,8 +5,20 @@
   <div class="container" style="background: <%= @event.main_background_color %>">
     <div class="row text-center py-5">
         <div class="col col-lg-12">
-            <h1 style="color: <%= @event.main_mouse_out %>;">Thank you!</h1>
-            <p class="lead">Please wait for the admin to approved you before entering this event.</p>
+            <h1 style="color: <%= @event.main_mouse_out %>;">Thank you for registering</h1>
+            <br/>
+            <p class="lead">The admin will check your login credentials before granting access.
+              <br/>
+              <br/>
+              Sign in
+              <% unless @event.start_date.nil? %>
+                on <%= date_formatter(@event.start_date) %>
+              <% end %>
+              <% unless @event.start_time.nil? %>
+               at <%= time_formatter(@event.start_time) %>
+              <% end %>
+              using the email address and password that you have registered to enjoy the show.
+            </p>
         </div>
       </div>
   </div>

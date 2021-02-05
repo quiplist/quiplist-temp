@@ -4,7 +4,6 @@
 #
 #  id                     :bigint           not null, primary key
 #  affiliation            :string
-#  birthdate              :date
 #  contact_number         :string
 #  email                  :string           default(""), not null
 #  encrypted_password     :string           default(""), not null
@@ -56,7 +55,8 @@ class User < ApplicationRecord
   validates :full_name, presence: true
   validates :contact_number, presence: true
   validates :member_type, presence: true
-  validates :member_id, presence: true, if: :member?
+  validates :member_id, presence: { message: "Id can't be blank" }, if: :member?
+  validates :affiliation, presence: true
 
   #  affiliation            :string
   #  birthdate              :date
@@ -119,12 +119,10 @@ class User < ApplicationRecord
   def self.generate_new
     full_xname     = Faker::Name.name
     password = "password"
-    birthdate    = Date.today
     email      = Faker::Internet.email
     User.create!(full_name:     full_xname,
                  password: password,
-                 email:    email,
-                 birthdate: birthdate)
+                 email:    email)
   end
 
 end

@@ -56,7 +56,13 @@
               <td><%= event.title %></td>
               <td><%= event.event_code %></td>
               <td><%= Event::EVENT_TYPES[event.event_type] %></td>
-              <td><%= date_formatter(event.start_date) %> - <%= date_formatter(event.end_date) %></td>
+              <td>
+                <%= date_formatter(event.start_date) %>
+                <% unless (event.start_date.nil? || event.end_date.nil?) %>
+                  -
+                <% end %>
+                <%= date_formatter(event.end_date) %>
+              </td>
               <td>
                 <%= form_for event, as: :event, url: event_path(event), method: :put, html: { class: "" } do |f| %>
                   <%= f.select :status, Event::STATUSES.invert, {}, { class: 'form-select', onchange: "form.submit()" } %>

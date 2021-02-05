@@ -11,11 +11,7 @@
                   </div>
               </div>
               <div class="row">
-                  <div class="col col-md-12 col-lg-6">
-                      <label for="birthdate">Birth Date</label>
-                      <input type="date" class="form-control" placeholder="birthdate" name="user[birthdate]" id="user_birthdate">
-                  </div>
-                  <div class="col col-md-12 col-lg-6">
+                  <div class="col col-md-12">
                       <label for="email">Email<span class="required">*</span></label>
                       <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control" %>
                   </div>
@@ -36,7 +32,7 @@
                       <%= f.text_field :contact_number, class: "form-control" %>
                   </div>
                   <div class="col col-md-12 col-lg-6">
-                      <label for="affiliation">Affiliation</label>
+                      <label for="affiliation">Affiliation<span class="required">*</span></label>
                       <%= f.text_field :affiliation, class: "form-control" %>
                   </div>
               </div>
@@ -46,13 +42,13 @@
                     <%= f.select :member_type, User::MEMBER_TYPES.invert, {}, { class: 'form-select' } %>
                 </div>
                 <div class="col col-md-12 col-lg-6">
-                    <label for="member_id">Member ID<span class="required">*</span></label>
+                    <label for="member_id">Member ID</label>
                     <%= f.text_field :member_id, class: "form-control" %>
                 </div>
               </div>
               <div class="row mt-3">
                 <div class="col col-md-12 col-lg-8" style="text-align: left;">
-                  <%= link_to "Sign in instead", user_session_path(event_code: @event.event_code) %>
+                  <%= link_to "Sign in instead", user_session_path(event_code: @event.event_code), style: "color: #{@event.session_mouse_out};", onmouseover:"this.style.color='#{@event.session_mouse_over}'", onmouseout:"this.style.color='#{@event.session_mouse_out}'" %>
                 </div>
                 <div class="col col-md-12 col-lg-4">
                   <%= f.submit "Sign up", class:"btn btn-sign-up w-100", style: "background: #{@event.session_mouse_out};", onmouseover:"this.style.background='#{@event.session_mouse_over}'", onmouseout:"this.style.background='#{@event.session_mouse_out}'" %>
