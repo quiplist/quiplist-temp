@@ -22,12 +22,15 @@
         <div class="logged-in_wrapper">
           <% if current_admin %>
           <h2 class="user_name"><%= current_admin.full_name %></h2>
-          <h6 class="user_role">Site Administrator</h6>
+          <h6 class="user_role"><%= current_admin.role_name %></h6>
           <% end %>
         </div>
         <ul class="list-unstyled components">
           <li>
             <%= link_to "Events", events_path %>
+          </li>
+          <li>
+            <%= link_to "Admins", admins_path %>
           </li>
           <li>
             <% if current_admin %>

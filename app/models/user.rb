@@ -28,7 +28,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  has_many :guest_lists
+  has_many :guest_lists, dependent: :destroy
   has_many :events, through: :guest_lists
   has_many :reactions, as: :responder
   has_many :chats, as: :sender
@@ -58,27 +58,12 @@ class User < ApplicationRecord
   validates :member_id, presence: { message: "Id can't be blank" }, if: :member?
   validates :affiliation, presence: true
 
-  #  affiliation            :string
-  #  birthdate              :date
-  #  contact_number         :string
-  #  email                  :string           default(""), not null
-  #  encrypted_password     :string           default(""), not null
-  #  full_name              :string
-  #  member_type            :integer          default(0)
-  #  remember_created_at    :datetime
-  #  reset_password_sent_at :datetime
-  #  reset_password_token   :string
-  #  role                   :integer          default(2)
-  #  created_at             :datetime         not null
-  #  updated_at             :datetime         not null
-  #  member_id              :string
-
   scope :super_admin, -> { where(role: SUPER_ADMIN) }
   scope :admin, -> { where(role: ADMIN) }
   scope :client, -> { where(role: CLIENT) }
   scope :non_member, -> { where(member_type: NON_MEMBER) }
   scope :member, -> { where(member_type: MEMBER) }
-  scope :sorted, -> { order(created_at: :asc) }
+  scope :sorted, -> { order(full_name: :asc) }
   scope :search, lambda {|query|
     where("email ILIKE ? OR
           full_name ILIKE ?", "%#{query}%", "%#{query}%")

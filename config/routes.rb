@@ -24,6 +24,10 @@ Rails.application.routes.draw do
       # resources :raffles
       # resources :questionnaires
     end
+    resources :admins, except: [:new, :edit] do
+      post :create_admin_events, on: :collection
+      delete :destroy_admin_events, on: :collection
+    end
   end
 
   namespace :api, defaults: { format: :json } do

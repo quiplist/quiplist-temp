@@ -1,0 +1,123 @@
+<div class="container content-wrapper">
+    <div class="row">
+        <div class="col-12 text-start">
+            <h2 class="event_title"><%= @admin.full_name %></h2>
+            <span class="event_status"><%= @admin.role_name %></span>
+        </div>
+        <hr/>
+    </div>
+    <div class="row text-start mb-3">
+        <div class="col col-lg-12">
+            <h5>Information:</h5>
+            <div class="admin_wrapper">
+                <span class="mr-3"><strong>Email Address:</strong></span>
+                <span class="admin_detail"><%= @admin.email %></span>
+            </div>
+            <div class="event_time_wrapper">
+                <span class="mr-3"><strong>Affiliation:</strong></span>
+                <span class="admin_detail"><%= @admin.affiliation %></span>
+            </div>
+            <div class="event_time_wrapper">
+                <span class="mr-3"><strong>Member Type:</strong></span>
+                <span class="admin_detail"><%= @admin.member_name %></span>
+            </div>
+            <div class="event_time_wrapper">
+                <span class="mr-3"><strong>Member Id:</strong></span>
+                <span class="admin_detail"><%= @admin.member_id %></span>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+      <div class="col col-lg-12">
+        <hr/>
+      </div>
+    </div>
+   <div class="row">
+      <div class="col col-lg-12">
+         <nav class="mb-4">
+            <div class="nav nav-tabs" id="admins_views" role="tablist">
+               <a class="nav-link active" id="nav-events-tab" data-bs-toggle="tab" href="#nav-events" role="tab" aria-controls="nav-events" aria-selected="true">EVENTS</a>
+            </div>
+         </nav>
+         <div class="tab-content" id="nav-tabContent">
+            <div class="tab-pane fade show active" id="nav-events" role="tabpanel" aria-labelledby="nav-events-tab">
+                <div class="row text-end">
+                    <div class="col-12">
+                        <button type="button" class="btn btn-blue my-3 " data-bs-toggle="modal" data-bs-target="#adminAddEvent">
+                            Add Event
+                        </button>
+                    </div>
+                </div>
+                <div class="modal fade" id="adminAddEvent" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="adminAddEvent" aria-hidden="true">
+                <div class="modal-dialog modal-md">
+                    <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="adminAddEvent">Add Event</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body my-3">
+                        <div class="container">
+                        <div class="row">
+                            <div class="col col-lg-12">
+                                <form>
+                                    <div class="row">
+                                        <div class="col-8">
+                                            <select class="form-select" id="stream_type">
+                                                <option disabled>Choose Event</option>
+                                                <option value="event01">Event 01</option>
+                                                <option value="event01">Event 01</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-4">
+                                            <button type="button" class="btn btn-blue">Add Event</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+                </div>
+               <table id="event_list_table" class="display">
+                  <thead>
+                     <tr>
+                        <th>Event Title</th>
+                        <th>Event Code</th>
+                        <th>Type</th>
+                        <th>Event Date</th>
+                        <th>Status</th>
+                        <th>Event Creation</th>
+                        <th>Event Last Update</th>
+                        <th></th>
+                     </tr>
+                  </thead>
+                  <tbody>
+                     <tr>
+                        <td>Event 03</td>
+                        <td>EVNT03</td>
+                        <td>Public</td>
+                        <td>2021-01-16 09:00:00</td>
+                        <td>Pending</td>
+                        <td>2021-01-10 16:14:46</td>
+                        <td>2021-01-10 16:14:46</td>
+                        <td><button class="btn btn-remove">Remove</button></td>
+                     </tr>
+                     <tr>
+                        <td>Event 03</td>
+                        <td>EVNT03</td>
+                        <td>Public</td>
+                        <td>2021-01-16 09:00:00</td>
+                        <td>Pending</td>
+                        <td>2021-01-10 16:14:46</td>
+                        <td>2021-01-10 16:14:46</td>
+                        <td><button class="btn btn-remove">Remove</button></td>
+                     </tr>
+                  </tbody>
+               </table>
+            </div>
+         </div>
+      </div>
+   </div>
+</div>

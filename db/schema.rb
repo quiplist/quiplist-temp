@@ -10,10 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_02_05_162732) do
+ActiveRecord::Schema.define(version: 2021_02_05_184835) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "admin_events", force: :cascade do |t|
+    t.bigint "event_id"
+    t.bigint "admin_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["admin_id"], name: "index_admin_events_on_admin_id"
+    t.index ["event_id"], name: "index_admin_events_on_event_id"
+  end
 
   create_table "admins", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -24,6 +33,8 @@ ActiveRecord::Schema.define(version: 2021_02_05_162732) do
     t.integer "role", default: 2
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "member_type", default: 0
+    t.string "member_id"
     t.index ["email"], name: "index_admins_on_email", unique: true
   end
 
