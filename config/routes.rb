@@ -24,7 +24,7 @@ Rails.application.routes.draw do
       # resources :raffles
       # resources :questionnaires
     end
-    resources :admins, except: [:new, :edit] do
+    resources :admins do
       post :create_admin_events, on: :collection
       delete :destroy_admin_events, on: :collection
     end

@@ -1,5 +1,14 @@
 class ApplicationController < ActionController::Base
 
+
+  rescue_from CanCan::AccessDenied do |exception|
+    respond_to do |format|
+      format.json { head :forbidden, content_type: 'text/html' }
+      format.html { redirect_to main_app.root_url, alert: exception.message }
+      format.js   { head :forbidden, content_type: 'text/html' }
+    end
+  end
+
   def after_sign_in_path_for(resource, event=nil)
     if (resource.super_admin? || resource.admin?) && event.nil?
       events_path
@@ -24,6 +33,12 @@ class ApplicationController < ActionController::Base
     else
       render json: { error: resource.errors }, status: 400
     end
+  end
+
+  private
+
+  def current_ability
+    @current_ability ||= current_admin ? Ability.new(current_admin) : Ability.new(current_user)
   end
 
   protected

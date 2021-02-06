@@ -130,6 +130,6 @@ class Event < ApplicationRecord
   end
 
   def event_type_name
-    EVENT_TYPES[stream_type]
+    EVENT_TYPES[event_type]
   end
 end

@@ -12,7 +12,7 @@
     </div>
     <div class="col col-md-9 col-lg-10 text-start">
       <h2 class="event_title"><%= @event.title %></h2>
-      <span class="event_status"><%= Event::STATUSES[@event.status] %></span>
+      <span class="event_status"><%= @event.status_name %></span>
       <%= link_to "Raffle Draw", draw_raffles_event_path(@event), class: "btn btn-edit btn-lg event_raffle", target: :_blank %>
       <h5 class="event_code"><%= @event.event_code %></h5>
 

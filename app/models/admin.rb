@@ -28,6 +28,9 @@ class Admin < ApplicationRecord
   has_many :chats, as: :sender
   has_many :admin_events, dependent: :destroy
   has_many :events, through: :admin_events
+  has_many :access_rights, dependent: :destroy
+
+  accepts_nested_attributes_for :access_rights
 
   SUPER_ADMIN = 0
   ADMIN = 1

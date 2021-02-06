@@ -52,3 +52,12 @@
     </div>
   </div>
 </div>
+<% @admin.access_rights.each_with_index do |ar, index| %>
+  <%= f.fields_for :access_rights, ar do |ff| %>
+    <label><%= ar.access_right_name %></label>
+    <%= ff.hidden_field :name, value: ar.name %>
+    <%= ff.radio_button :privilege, AccessRight::VIEW_ONLY, class: "form-check-input" %>
+    <%= ff.radio_button :privilege, AccessRight::FULL_ACCESS, class: "form-check-input" %>
+    <%= ff.radio_button :privilege, AccessRight::NO_ACCESS, class: "form-check-input" %>
+  <% end %>
+<% end %>

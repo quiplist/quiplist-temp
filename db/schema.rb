@@ -10,10 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_02_05_184835) do
+ActiveRecord::Schema.define(version: 2021_02_06_104134) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "access_rights", force: :cascade do |t|
+    t.bigint "admin_id"
+    t.integer "name"
+    t.integer "privilege", default: 0
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["admin_id"], name: "index_access_rights_on_admin_id"
+  end
 
   create_table "admin_events", force: :cascade do |t|
     t.bigint "event_id"
