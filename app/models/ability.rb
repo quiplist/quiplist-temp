@@ -4,7 +4,18 @@ class Ability
   include CanCan::Ability
 
   def initialize(user)
-    can :manage, :all
+    alias_action :create, :update, :destroy, to: :write
+    if user.super_admin? || user.admin?
+      can_manage_events?(user)
+      can_manage_guest_lists?(user)
+      can_manage_raffles?(user)
+      can_manage_questionnaires?(user)
+      can_manage_admins?(user)
+      can_manage_clients?(user)
+      return
+    elsif user.client?
+      can :manage, :all
+    end
     # Define abilities for the passed in user here. For example:
     #
     #   user ||= User.new # guest user (not logged in)
@@ -31,5 +42,53 @@ class Ability
     #
     # See the wiki for details:
     # https://github.com/CanCanCommunity/cancancan/wiki/Defining-Abilities
+  end
+
+  def can_manage_events?(user)
+    if user.access_rights.event.view_only?
+      can :read, Event
+    elsif user.access_rights.event.full_access?
+      can :manage, Event
+    end
+  end
+
+  def can_manage_guest_lists?(user)
+    if user.access_rights.guest_list.view_only?
+      can :read, GuestList
+    elsif user.access_rights.guest_list.full_access?
+      can :manage, GuestList
+    end
+  end
+
+  def can_manage_raffles?(user)
+    if user.access_rights.raffle.view_only?
+      can :read, Raffle
+    elsif user.access_rights.raffle.full_access?
+      can :manage, Raffle
+    end
+  end
+
+  def can_manage_questionnaires?(user)
+    if user.access_rights.questionnaire.view_only?
+      can :read, Questionnaire
+    elsif user.access_rights.questionnaire.full_access?
+      can :manage, Questionnaire
+    end
+  end
+
+  def can_manage_admins?(user)
+    if user.access_rights.admin.view_only?
+      can :read, Admin
+    elsif user.access_rights.admin.full_access?
+      can :manage, Admin
+    end
+  end
+
+  def can_manage_clients?(user)
+    if user.access_rights.client.view_only?
+      can :read, User
+    elsif user.access_rights.client.full_access?
+      can :manage, User
+    end
   end
 end

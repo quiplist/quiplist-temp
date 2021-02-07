@@ -4,14 +4,15 @@
 #
 #  id                 :bigint           not null, primary key
 #  affiliation        :string
-#  birthdate          :date
 #  contact_number     :string
 #  email              :string           default(""), not null
 #  encrypted_password :string           default(""), not null
 #  full_name          :string
+#  member_type        :integer          default(0)
 #  role               :integer          default(2)
 #  created_at         :datetime         not null
 #  updated_at         :datetime         not null
+#  member_id          :string
 #
 # Indexes
 #

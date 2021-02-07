@@ -32,6 +32,9 @@ class Event < ApplicationRecord
   has_many :users, through: :guest_lists
   has_many :questionnaires
   has_many :raffles
+  has_many :chats
+  has_many :admin_events, dependent: :destroy
+  has_many :admins, through: :admin_events
 
   mount_uploader :brochure, BrochureUploader
   mount_uploader :stream_video, StreamVideoUploader
@@ -127,6 +130,6 @@ class Event < ApplicationRecord
   end
 
   def event_type_name
-    EVENT_TYPES[stream_type]
+    EVENT_TYPES[event_type]
   end
 end
