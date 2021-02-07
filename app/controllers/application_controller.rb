@@ -1,10 +1,26 @@
 class ApplicationController < ActionController::Base
 
+  # rescue_from ActiveRecord::RecordNotFound do |exception|
+  #   respond_to do |format|
+  #     format.json { head :forbidden, content_type: 'text/html' }
+  #     format.html { redirect_to unauthorized_path, alert: exception.message }
+  #     format.js   { head :forbidden, content_type: 'text/html' }
+  #   end
+  # end
+  #
+  # rescue_from ActionController::RoutingError do |exception|
+  #   respond_to do |format|
+  #     format.json { head :forbidden, content_type: 'text/html' }
+  #     format.html { redirect_to unauthorized_path, alert: exception.message }
+  #     format.js   { head :forbidden, content_type: 'text/html' }
+  #   end
+  # end
+  # rescue_from ActionController::RoutingError, with: :render_404
 
   rescue_from CanCan::AccessDenied do |exception|
     respond_to do |format|
       format.json { head :forbidden, content_type: 'text/html' }
-      format.html { redirect_to main_app.root_url, alert: exception.message }
+      format.html { redirect_to unauthorized_path }
       format.js   { head :forbidden, content_type: 'text/html' }
     end
   end
@@ -33,6 +49,18 @@ class ApplicationController < ActionController::Base
     else
       render json: { error: resource.errors }, status: 400
     end
+  end
+
+  def authenticate!
+    if @current_user == current_admin
+      :authenticate_admin!
+    elsif @current_user == current_user
+      :authenticate_user!
+    end
+  end
+
+  def set_current_user
+    @current_user = current_user || current_admin
   end
 
   private

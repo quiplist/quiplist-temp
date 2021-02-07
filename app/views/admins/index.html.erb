@@ -3,7 +3,9 @@
   <%= render partial: "layouts/shared/alert_messages", locals: { messages: flash[:alert] } %>
   <div class="row text-end mb-3">
     <div class="col col-lg-12">
-      <%= link_to "Create Admin", new_admin_path, class: "btn btn-edit btn-blue" %>
+      <% if can? :create, Admin %>
+        <%= link_to "Create Admin", new_admin_path, class: "btn btn-edit btn-blue" %>
+      <% end %>
     </div>
   </div>
   <div class="row">
@@ -26,10 +28,16 @@
               <td><%= admin.email %></td>
               <td><%= admin.role_name %></td>
               <td class="actions">
-                <%= link_to "Show", admin_path(admin), class: 'btn btn-view' %>
-                <%= link_to "Edit", edit_admin_path(admin), class: 'btn btn-edit' %>
+                <% if can? :show, Admin %>
+                  <%= link_to "Show", admin_path(admin), class: 'btn btn-view' %>
+                <% end %>
+                <% if can? :update, Admin %>
+                  <%= link_to "Edit", edit_admin_path(admin), class: 'btn btn-edit' %>
+                <% end %>
+                <% if can? :destroy, Admin %>
                 <a class="btn btn-remove" href="#" data-bs-toggle="modal" data-bs-target="#delete-modal-id-<%= admin.id %>">Delete</a>
-                <%= render partial: "layouts/shared/delete_modal", locals: { index_id: "#{admin.id}", m_name: "Admin", name: admin.full_name, path: admin_path(admin) } %>
+                  <%= render partial: "layouts/shared/delete_modal", locals: { index_id: "#{admin.id}", m_name: "Admin", name: admin.full_name, path: admin_path(admin) } %>
+                <% end %>
               </td>
             </tr>
           <% end %>

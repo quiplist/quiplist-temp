@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'errors/show'
+  get 'errors/unauthorized'
   root to: 'home#welcome'
   get '/events/:event_code', to: 'home#index', as: :home
   get '/events/:event_code/thank_you', to: 'home#thank_you', as: :thank_you
@@ -75,5 +77,9 @@ Rails.application.routes.draw do
   # devise_for :users, controllers: { sessions: 'users/sessions', registrations: 'users/registrations' }
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+  # %w( 404 422 500 503 ).each do |code|
+  #   match code, to: "errors#show", code: code
+  # end
+  get '/unauthorized', to: "errors#unauthorized"
   mount ActionCable.server => '/cable'
 end

@@ -70,6 +70,7 @@
   end
 
   def draw_raffles
+    authorize! :manage, Raffle
     guest_lists = @event.guest_lists.eligible
     winner_id = GuestList.winner(guest_lists)
     if winner_id.nil?
@@ -88,6 +89,7 @@
   end
 
   def draw_winner
+    authorize! :manage, Raffle
     @guest_list = GuestList.find(params[:guest_list_id])
     if @guest_list.update_attributes winner_params
       redirect_to event_path(@event), notice: "#{@guest_list.user.full_name} won the raffle!"

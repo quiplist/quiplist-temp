@@ -6,14 +6,16 @@
       <%= form_for @event, as: :event, url: upload_brochure_event_path(@event), method: :put, html: { class: "upload_wrapper mb-3", multipart: true } do |f| %>
         <label for="event_brochure" class="event_brochure_btn">
           <i class="fas fa-upload"></i>Upload<br/>Event Cover Here
-          <input type="file" id="event_brochure" 	accepts="image/png,image/jpg,image/jpeg,application/pdf" name="event[brochure]" hidden onchange="form.submit()">
+          <input type="file" id="event_brochure" 	accepts="image/png,image/jpg,image/jpeg,application/pdf" name="event[brochure]" hidden onchange="form.submit()" disabled=<%= (cannot? :update, Event) %>>
         </label>
       <% end %>
     </div>
     <div class="col col-md-9 col-lg-10 text-start">
       <h2 class="event_title"><%= @event.title %></h2>
       <span class="event_status"><%= @event.status_name %></span>
-      <%= link_to "Raffle Draw", draw_raffles_event_path(@event), class: "btn btn-edit btn-lg event_raffle", target: :_blank %>
+      <% if can? :manage, Raffle %>
+        <%= link_to "Raffle Draw", draw_raffles_event_path(@event), class: "btn btn-edit btn-lg event_raffle", target: :_blank %>
+      <% end %>
       <h5 class="event_code"><%= @event.event_code %></h5>
 
       <p class="event_description">
@@ -55,13 +57,21 @@
     <div class="col col-lg-12">
       <nav class="mb-4">
         <div class="nav nav-tabs" id="events_views" role="tablist">
-          <a class="nav-link active" id="nav-users-tab" data-bs-toggle="tab" href="#nav-users" role="tab" aria-controls="nav-users" aria-selected="true">GUEST LIST</a>
-          <a class="nav-link" id="nav-customizations-tab" data-bs-toggle="tab" href="#nav-customizations" role="tab" aria-controls="nav-customizations" aria-selected="true">CUSTOMIZE EVENT</a>
+          <% if can? :index, GuestList %>
+            <a class="nav-link active" id="nav-users-tab" data-bs-toggle="tab" href="#nav-users" role="tab" aria-controls="nav-users" aria-selected="true">GUEST LIST</a>
+          <% end %>
+          <% if can? :update, Event %>
+            <a class="nav-link" id="nav-customizations-tab" data-bs-toggle="tab" href="#nav-customizations" role="tab" aria-controls="nav-customizations" aria-selected="true">CUSTOMIZE EVENT</a>
+          <% end %>
         </div>
       </nav>
       <div class="tab-content" id="nav-tabContent">
-        <%= render partial: "events/shared/guest_lists_tab" %>
-        <%= render partial: "events/shared/customizations_tab" %>
+        <% if can? :index, GuestList %>
+          <%= render partial: "events/shared/guest_lists_tab" %>
+        <% end %>
+        <% if can? :update, Event %>
+          <%= render partial: "events/shared/customizations_tab" %>
+        <% end %>
       </div>
     </div>
   </div>

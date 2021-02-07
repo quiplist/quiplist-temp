@@ -20,7 +20,7 @@ class AccessRight < ApplicationRecord
   EVENT = 0
   GUEST_LIST = 1
   RAFFLE = 2
-  QUESTIONAIRE = 3
+  QUESTIONNAIRE = 3
   ADMIN = 4
   CLIENT = 5
 
@@ -29,7 +29,7 @@ class AccessRight < ApplicationRecord
     EVENT => "Events",
     GUEST_LIST => "Guest Lists",
     RAFFLE => "Raffles",
-    QUESTIONAIRE => "Questionnaires",
+    QUESTIONNAIRE => "Questionnaires",
     ADMIN => "Admins",
     CLIENT => "Clients"
   }
@@ -43,6 +43,15 @@ class AccessRight < ApplicationRecord
     FULL_ACCESS => "Full Access",
     NO_ACCESS => "No Access"
   }
+
+  scope :event, -> { find_by(name: EVENT) }
+  scope :guest_list, -> { find_by(name: GUEST_LIST) }
+  scope :raffle, -> { find_by(name: RAFFLE) }
+  scope :questionnaire, -> { find_by(name: QUESTIONNAIRE) }
+  scope :admin, -> { find_by(name: ADMIN) }
+  scope :client, -> { find_by(name: CLIENT) }
+
+
 
   def access_right_name
     NAMES[name]
