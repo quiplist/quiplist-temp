@@ -32,7 +32,7 @@ class Event < ApplicationRecord
   has_many :users, through: :guest_lists
   has_many :questionnaires
   has_many :raffles
-  has_many :chats
+  has_many :chats, dependent: :destroy
   has_many :admin_events, dependent: :destroy
   has_many :admins, through: :admin_events
 
