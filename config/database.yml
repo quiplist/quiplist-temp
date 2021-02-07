@@ -23,7 +23,7 @@ default: &default
 
 development:
   <<: *default
-  database: <%= ENV['DATABASE_URL'] %>
+  database: quiplist_temp_develop
   username: <%= ENV['DATABASE_USERNAME'] %>
   password: <%= ENV['DATABASE_PASSWORD'] %>
   host: <%= ENV['DATABASE_HOSTNAME'] %>
@@ -84,7 +84,10 @@ test:
 #
 production:
   <<: *default
-
-  database: <%= ENV['DATABASE_URL'] %>
+  adapter: postgresql
+  encoding: utf8
+  database: quiplist_temp_production
   username: <%= ENV['DATABASE_USERNAME'] %>
   password: <%= ENV['DATABASE_PASSWORD'] %>
+  host: localhost
+  pool: 5
