@@ -4,7 +4,7 @@
     <title>Quiplist</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.css">
@@ -22,12 +22,19 @@
         <div class="logged-in_wrapper">
           <% if current_admin %>
           <h2 class="user_name"><%= current_admin.full_name %></h2>
-          <h6 class="user_role">Site Administrator</h6>
+          <h6 class="user_role"><%= current_admin.role_name %></h6>
           <% end %>
         </div>
         <ul class="list-unstyled components">
           <li>
-            <%= link_to "Events", events_path %>
+            <% if can? :index, Event %>
+              <%= link_to "Events", events_path %>
+            <% end %>
+          </li>
+          <li>
+            <% if can? :index, Admin %>
+              <%= link_to "Admins", admins_path %>
+            <% end %>
           </li>
           <li>
             <% if current_admin %>

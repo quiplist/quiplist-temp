@@ -1,26 +1,45 @@
+<div class="chat-live-wrapper" style='background:url(<%= @event.main_background.url%>)'>
+  <div class="container px-5 py-3">
+      <div class="row">
+            <div class="col-12 col-md-8 col-lg-8">
+              <div class="row">
+                <div class="col-12">
+                    <div class="video-wrapper">
+                      <% if @event.fb_video? %>
+                        <%= render partial: "home/shared/facebook_live", locals: { url: @event.stream_key } %>
+                      <% elsif @event.youtube_video? %>
+                        <%= render partial: "home/shared/youtube_live", locals: { url: @event.stream_key }  %>
+                      <% else %>
+                        <%= render partial: "home/shared/none" %>
+                      <% end %>
+                    </div>
+                </div>
+                <div class="col-12">
+                  <%= react_component("Reactions", {
+                    currentUserId: @current_user.id,
+                    eventId: @event.id,
+                    like: @reaction.like?,
+                    heart: @reaction.heart?,
+                    happy: @reaction.happy?,
+                    sad: @reaction.sad?,
+                    wow: @reaction.wow?,
+                    angry: @reaction.angry?,
+                    dislike: @reaction.dislike?,
+                    clap: @reaction.clap?
 
-<section id="home_section_1">
-  <%= image_tag @event.main_background.url, class: "img-fluid" %>
-</section>
-<section id="home_section_2" class="mb-3">
-  <div class="container" style="background: <%= @event.main_background_color %>">
-    <div class="row text-center py-5">
-        <div class="col col-lg-12">
-            <h1 style="color: <%= @event.main_mouse_out %>;">Welcome!</h1>
-
-            <% if @event.fb_video? %>
-              <%= render partial: "home/shared/facebook_live", locals: { url: @event.stream_key } %>
-            <% elsif @event.youtube_video? %>
-              <%= render partial: "home/shared/youtube_live", locals: { url: @event.stream_key }  %>
-            <% end %>
-
-            <br/>
-            <p><%= @event.description %></p>
-            <br/>
-            <% unless @event&.brochure&.file.nil? %>
-              <p>Click <%= link_to "here", @event.brochure.url, target: :_blank, style: "color: #{@event.main_mouse_out};", onmouseover:"this.style.color='#{@event.main_mouse_over}'", onmouseout:"this.style.color='#{@event.main_mouse_out}'" %> to download your brochure.</p>
-            <% end %>
-        </div>
+                  }) %>
+                  <br/>
+                  <p style="color: <%= @event.main_background_color %>"><%= @event.description %></p>
+                  <br/>
+                  <% unless @event&.brochure&.file.nil? %>
+                    <p style="color: <%= @event.main_background_color %>">Click <%= link_to "here", @event.brochure.url, target: :_blank, style: "color: #{@event.main_mouse_out};", onmouseover:"this.style.color='#{@event.main_mouse_over}'", onmouseout:"this.style.color='#{@event.main_mouse_out}'" %> to download your brochure.</p>
+                  <% end %>
+                </div>
+              </div>
+            </div>
+            <div class="col-12 col-md-4 col-lg-4">
+              <%= react_component("Chat", { eventId: @event.id })%>
+            </div>
       </div>
   </div>
-</section>
+</div>

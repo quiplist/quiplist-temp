@@ -10,21 +10,40 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_01_20_174003) do
+ActiveRecord::Schema.define(version: 2021_02_06_104134) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "access_rights", force: :cascade do |t|
+    t.bigint "admin_id"
+    t.integer "name"
+    t.integer "privilege", default: 0
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["admin_id"], name: "index_access_rights_on_admin_id"
+  end
+
+  create_table "admin_events", force: :cascade do |t|
+    t.bigint "event_id"
+    t.bigint "admin_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["admin_id"], name: "index_admin_events_on_admin_id"
+    t.index ["event_id"], name: "index_admin_events_on_event_id"
+  end
 
   create_table "admins", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "full_name"
-    t.date "birthdate"
     t.string "contact_number"
     t.string "affiliation"
     t.integer "role", default: 2
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "member_type", default: 0
+    t.string "member_id"
     t.index ["email"], name: "index_admins_on_email", unique: true
   end
 
@@ -36,6 +55,17 @@ ActiveRecord::Schema.define(version: 2021_01_20_174003) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["guest_list_id"], name: "index_answers_on_guest_list_id"
     t.index ["questionnaire_id"], name: "index_answers_on_questionnaire_id"
+  end
+
+  create_table "chats", force: :cascade do |t|
+    t.string "sender_type"
+    t.bigint "sender_id"
+    t.bigint "event_id"
+    t.string "message"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["event_id"], name: "index_chats_on_event_id"
+    t.index ["sender_type", "sender_id"], name: "index_chats_on_sender_type_and_sender_id"
   end
 
   create_table "events", force: :cascade do |t|
@@ -101,6 +131,18 @@ ActiveRecord::Schema.define(version: 2021_01_20_174003) do
     t.index ["guest_list_id"], name: "index_raffles_on_guest_list_id"
   end
 
+  create_table "reactions", force: :cascade do |t|
+    t.bigint "event_id"
+    t.string "responder_type"
+    t.bigint "responder_id"
+    t.integer "emotion", default: 0
+    t.datetime "created_at", precision: 6, default: -> { "now()" }, null: false
+    t.datetime "updated_at", precision: 6, default: -> { "now()" }, null: false
+    t.index ["event_id", "responder_id", "responder_type"], name: "index_reactions_on_event_id_and_responder_id_and_responder_type", unique: true
+    t.index ["event_id"], name: "index_reactions_on_event_id"
+    t.index ["responder_type", "responder_id"], name: "index_reactions_on_responder_type_and_responder_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -108,7 +150,6 @@ ActiveRecord::Schema.define(version: 2021_01_20_174003) do
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
     t.string "full_name"
-    t.date "birthdate"
     t.string "contact_number"
     t.integer "member_type", default: 0
     t.string "member_id"

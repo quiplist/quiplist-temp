@@ -2,6 +2,27 @@
 // present in this directory. You're encouraged to place your actual application logic in
 // a relevant structure within app/javascript and only use these pack files to reference
 // that code so it'll be compiled.
+
+//require("@rails/ujs").start()
+//require("turbolinks").start()
+require("@rails/activestorage").start()
+//require("channels")
+
+
+// Uncomment to copy all static images under ../images to the output folder and reference
+// them with the image_pack_tag helper in views (e.g <%= image_pack_tag 'rails.png' %>)
+// or the `imagePath` JavaScript helper below.
+//
+// const images = require.context('../images', true)
+// const imagePath = (name) => images(name, true)
+// Support component names relative to this directory:
+var componentRequireContext = require.context("components", true);
+var ReactRailsUJS = require("react_ujs");
+ReactRailsUJS.useContext(componentRequireContext);
+
+window.jQuery = $;
+window.$ = $;
+
 $(document).ready(function () {
     //events table
     //$('#events_list').DataTable();
@@ -13,7 +34,6 @@ $(document).ready(function () {
 
     var btnEdit = $( ".btn-edit" );
     for(var i = 0; i < btnEdit.length; i++){
-      console.log(btnEdit.length)
       $( ".btn-edit" ).click(function() {
 
         var id = $(this).attr("id");
@@ -66,12 +86,26 @@ $(document).ready(function () {
     //   }
     // });
 
+    //animation on the reaction component
+    var reactionBox = $(".reaction-main-wrapper");
+    if(reactionBox !== null){
+      $(".like-btn").hover(function() {
+          $(".reaction-icon").each(function(index, element) {
+              setTimeout(function() {
+                  $(element).addClass("show");
+              }, index * 50);
+          });
+      }, function() {
+          $(".reaction-icon").removeClass("show")
+      });
+    }
+
     var checkbox = document.querySelector('#terms');
-    checkbox.addEventListener('change', function (e) {
-       this.checked ? $(".btn-event-code").prop('disabled', false) : $(".btn-event-code").prop('disabled', true);;
-    });
-
-
+    if (checkbox !== null) {
+      checkbox.addEventListener('change', function (e) {
+         this.checked ? $(".btn-event-code").prop('disabled', false) : $(".btn-event-code").prop('disabled', true);;
+      });
+    }
 });
 
 window.streamValueTypeChange = function(id) {
@@ -92,16 +126,3 @@ window.streamValueTypeChange = function(id) {
           break;
   }
 }
-
-//require("@rails/ujs").start()
-// require("turbolinks").start()
-// require("@rails/activestorage").start()
-// require("channels")
-
-
-// Uncomment to copy all static images under ../images to the output folder and reference
-// them with the image_pack_tag helper in views (e.g <%= image_pack_tag 'rails.png' %>)
-// or the `imagePath` JavaScript helper below.
-//
-// const images = require.context('../images', true)
-// const imagePath = (name) => images(name, true)

@@ -4,7 +4,6 @@
 #
 #  id                     :bigint           not null, primary key
 #  affiliation            :string
-#  birthdate              :date
 #  contact_number         :string
 #  email                  :string           default(""), not null
 #  encrypted_password     :string           default(""), not null
@@ -29,8 +28,10 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  has_many :guest_lists
+  has_many :guest_lists, dependent: :destroy
   has_many :events, through: :guest_lists
+  has_many :reactions, as: :responder
+  has_many :chats, as: :sender
 
   SUPER_ADMIN = 0
   ADMIN = 1
@@ -54,29 +55,15 @@ class User < ApplicationRecord
   validates :full_name, presence: true
   validates :contact_number, presence: true
   validates :member_type, presence: true
-  validates :member_id, presence: true, if: :member?
-
-  #  affiliation            :string
-  #  birthdate              :date
-  #  contact_number         :string
-  #  email                  :string           default(""), not null
-  #  encrypted_password     :string           default(""), not null
-  #  full_name              :string
-  #  member_type            :integer          default(0)
-  #  remember_created_at    :datetime
-  #  reset_password_sent_at :datetime
-  #  reset_password_token   :string
-  #  role                   :integer          default(2)
-  #  created_at             :datetime         not null
-  #  updated_at             :datetime         not null
-  #  member_id              :string
+  validates :member_id, presence: { message: "Id can't be blank" }, if: :member?
+  validates :affiliation, presence: true
 
   scope :super_admin, -> { where(role: SUPER_ADMIN) }
   scope :admin, -> { where(role: ADMIN) }
   scope :client, -> { where(role: CLIENT) }
   scope :non_member, -> { where(member_type: NON_MEMBER) }
   scope :member, -> { where(member_type: MEMBER) }
-  scope :sorted, -> { order(created_at: :asc) }
+  scope :sorted, -> { order(full_name: :asc) }
   scope :search, lambda {|query|
     where("email ILIKE ? OR
           full_name ILIKE ?", "%#{query}%", "%#{query}%")
@@ -117,12 +104,10 @@ class User < ApplicationRecord
   def self.generate_new
     full_xname     = Faker::Name.name
     password = "password"
-    birthdate    = Date.today
     email      = Faker::Internet.email
     User.create!(full_name:     full_xname,
                  password: password,
-                 email:    email,
-                 birthdate: birthdate)
+                 email:    email)
   end
 
 end

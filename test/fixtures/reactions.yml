@@ -1,0 +1,28 @@
+# == Schema Information
+#
+# Table name: reactions
+#
+#  id             :bigint           not null, primary key
+#  emotion        :integer          default(0)
+#  responder_type :string
+#  created_at     :datetime         not null
+#  updated_at     :datetime         not null
+#  event_id       :bigint
+#  responder_id   :bigint
+#
+# Indexes
+#
+#  index_reactions_on_event_id                                      (event_id)
+#  index_reactions_on_event_id_and_responder_id_and_responder_type  (event_id,responder_id,responder_type) UNIQUE
+#  index_reactions_on_responder_type_and_responder_id               (responder_type,responder_id)
+#
+
+# This model initially had no columns defined. If you add columns to the
+# model remove the '{}' from the fixture names and add the columns immediately
+# below each fixture, per the syntax in the comments below
+#
+one: {}
+# column: value
+#
+two: {}
+# column: value

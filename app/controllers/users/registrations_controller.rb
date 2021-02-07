@@ -3,10 +3,10 @@
 class Users::RegistrationsController < Devise::RegistrationsController
   before_action :configure_sign_up_params, only: [:create]
   # before_action :configure_account_update_params, only: [:update]
+  before_action -> { check_event_code params[:event_code] }, only: [:new, :create]
 
   # GET /resource/sign_up
   def new
-    @event = check_event_code(params[:event_code])
     if @event.nil?
       redirect_to root_path, alert: "Invalid Event Code!"
     elsif @event.queued?
@@ -22,7 +22,6 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   # POST /resource
   def create
-    @event = check_event_code(params[:event_code])
     if @event.nil?
       redirect_to root_path, alert: "Invalid Event Code!"
     elsif @event.queued?
@@ -81,7 +80,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   # If you have extra params to permit, append them to the sanitizer.
   def configure_sign_up_params
-    added_attrs = [:email, :password, :password_confirmation, :contact_number, :birthdate, :full_name, :member_id, :member_type, :affiliation]
+    added_attrs = [:email, :password, :password_confirmation, :contact_number, :full_name, :member_id, :member_type, :affiliation]
     devise_parameter_sanitizer.permit(:sign_up, keys: added_attrs)
   end
 

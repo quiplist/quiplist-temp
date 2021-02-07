@@ -2,10 +2,10 @@
 
 class Users::SessionsController < Devise::SessionsController
   before_action :configure_sign_in_params, only: [:create]
+  before_action -> { check_event_code params[:event_code] }, only: [:new, :create]
 
   # GET /resource/sign_in
   def new
-    @event = check_event_code(params[:event_code])
     if @event.nil?
       redirect_to root_path, alert: "Invalid Event Code!"
     elsif @event.queued?
@@ -22,7 +22,6 @@ class Users::SessionsController < Devise::SessionsController
 
   # POST /resource/sign_in
   def create
-    @event = check_event_code(params[:event_code])
     if @event.nil?
       redirect_to root_path, alert: "Invalid Event Code!"
     elsif @event.queued?
