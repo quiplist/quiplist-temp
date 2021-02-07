@@ -91,4 +91,9 @@ class Admin < ApplicationRecord
   def self.last_super_admin?
     Admin.super_admin.count == 1
   end
+
+  # def self.available_events
+  #   ids = self.events.ids
+  #   return Event.where.not(id: ids)
+  # end
 end

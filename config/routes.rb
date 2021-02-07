@@ -27,8 +27,8 @@ Rails.application.routes.draw do
       # resources :questionnaires
     end
     resources :admins do
-      post :create_admin_events, on: :collection
-      delete :destroy_admin_events, on: :collection
+      post :create_admin_events, on: :member
+      delete :destroy_admin_events, on: :member
     end
   end
 

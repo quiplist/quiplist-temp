@@ -35,7 +35,7 @@
                   <%= link_to "Edit", edit_admin_path(admin), class: 'btn btn-edit' %>
                 <% end %>
                 <% if can? :destroy, Admin %>
-                <a class="btn btn-remove" href="#" data-bs-toggle="modal" data-bs-target="#delete-modal-id-<%= admin.id %>">Delete</a>
+                  <a class="btn btn-remove" href="#" data-bs-toggle="modal" data-bs-target="#delete-modal-id-<%= admin.id %>">Delete</a>
                   <%= render partial: "layouts/shared/delete_modal", locals: { index_id: "#{admin.id}", m_name: "Admin", name: admin.full_name, path: admin_path(admin) } %>
                 <% end %>
               </td>

@@ -60,7 +60,7 @@
           <% if can? :index, GuestList %>
             <a class="nav-link active" id="nav-users-tab" data-bs-toggle="tab" href="#nav-users" role="tab" aria-controls="nav-users" aria-selected="true">GUEST LIST</a>
           <% end %>
-          <% if can? :update, Event %>
+          <% if (can? :update, Event) && current_admin.super_admin? %>
             <a class="nav-link" id="nav-customizations-tab" data-bs-toggle="tab" href="#nav-customizations" role="tab" aria-controls="nav-customizations" aria-selected="true">CUSTOMIZE EVENT</a>
           <% end %>
         </div>
@@ -69,7 +69,7 @@
         <% if can? :index, GuestList %>
           <%= render partial: "events/shared/guest_lists_tab" %>
         <% end %>
-        <% if can? :update, Event %>
+        <% if (can? :update, Event) && current_admin.super_admin? %>
           <%= render partial: "events/shared/customizations_tab" %>
         <% end %>
       </div>

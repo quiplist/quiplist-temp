@@ -846,3 +846,19 @@
   background-color: #090593;
   border-color: #090593;
 }
+
+.error-page {
+  background: #3F48CC;
+  height: 100vh;
+}
+
+.error-page-title {
+  color: #fff;
+  font-family: 'Montserrat', sans-serif;
+  margin-top: 30px;
+}
+
+.error-page-subtitle{
+  color: #fff;
+  font-family: 'Montserrat', sans-serif;
+}

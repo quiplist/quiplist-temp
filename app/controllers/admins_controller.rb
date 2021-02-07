@@ -19,6 +19,9 @@ class AdminsController < ApplicationController
     search = params[:search]
     @admin_events = @admin.admin_events
     @admin_events = @admin_events.page(page).per(per_page)
+    @admin_event = @admin.admin_events.new
+    ids = @admin.events.ids
+    @events = Event.where.not(id: ids)
   end
 
   def new
@@ -48,12 +51,13 @@ class AdminsController < ApplicationController
     if @admin.update_attributes admin_params
       redirect_to admin_path(@admin), notice: "Admin #{@admin.full_name} updated successfully!"
     else
-      # page = params[:page] || 1
-      # per_page = params[:per_page] || 10
-      # search = params[:search]
-      # @admins = Admin.sorted
-      # @admins = @admins.search(search) if search.present?
-      # @admins = @admins.accessible_by(current_ability).sorted.page(page).per(per_page)
+      page = params[:page] || 1
+      per_page = params[:per_page] || 10
+      search = params[:search]
+      @admin_events = @admin.admin_events
+      @admin_events = @admin_events.page(page).per(per_page)
+      @admin_event = @admin.admin_events.new
+      @events = Event.all
       render :edit
     end
   end
@@ -73,9 +77,26 @@ class AdminsController < ApplicationController
   end
 
   def create_admin_events
+    @admin_event = AdminEvent.new(admin_events_params)
+    if @admin_event.save
+      redirect_to admin_path(@admin), notice: "Event #{@admin_event.event.title} added successfully to #{@admin.full_name}!"
+    else
+      page = params[:page] || 1
+      per_page = params[:per_page] || 10
+      search = params[:search]
+      @admin_events = @admin.admin_events
+      @admin_events = @admin_events.page(page).per(per_page)
+      @admin_event = @admin.admin_events.new
+      ids = @admin.events.ids
+      @events = Event.where.not(id: ids)
+      render :show
+    end
   end
 
   def destroy_admin_events
+    @admin_event = AdminEvent.find(params[:admin_event_id])
+    @admin_event.destroy
+    redirect_to admin_path(@admin), notice: "Admin Event deleted successfully!"
   end
 
   private
@@ -83,5 +104,9 @@ class AdminsController < ApplicationController
   def admin_params
     params.require(:admin).permit(:email, :password, :password_confirmation, :contact_number,
       :full_name, :member_id, :member_type, :affiliation, :role, access_rights_attributes: [:id, :name, :privilege])
+  end
+
+  def admin_events_params
+    params.require(:admin_event).permit(:event_id, :admin_id)
   end
 end

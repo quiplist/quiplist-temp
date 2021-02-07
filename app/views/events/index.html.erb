@@ -3,7 +3,7 @@
   <%= render partial: "layouts/shared/alert_messages", locals: { messages: flash[:alert] } %>
   <div class="row text-end mb-3">
     <div class="col col-lg-12">
-      <% if can? :create, Event %>
+      <% if (can? :create, Event) && current_admin.super_admin? %>
         <button type="button" class="btn btn-edit btn-blue" data-bs-toggle="modal" data-bs-target="#createEvent" id="0">
         Create Event
         </button>
@@ -77,8 +77,6 @@
                 <% end %>
                 <% if can? :update, Event %>
                   <button class="btn btn-edit" id="<%= event.id %>" data-bs-toggle="modal" data-bs-target="#editEvent-<%= event.id %>">Edit</button>
-                  <a class="btn btn-remove" href="#" data-bs-toggle="modal" data-bs-target="#delete-modal-id-<%= event.id %>">Delete</a>
-
                   <div class="modal fade" id="editEvent-<%= event.id %>" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="editSingleEvent" aria-hidden="true">
                     <div class="modal-dialog modal-lg">
                       <div class="modal-content">
@@ -107,7 +105,8 @@
                     </div>
                   </div>
                 <% end %>
-                <% if can? :destroy, Event %>
+                <% if (can? :destroy, Event) && current_admin.super_admin? %>
+                  <a class="btn btn-remove" href="#" data-bs-toggle="modal" data-bs-target="#delete-modal-id-<%= event.id %>">Delete</a>
                   <%= render partial: "layouts/shared/delete_modal", locals: { index_id: "#{event.id}", m_name: "Event", name: event.title, path: event_path(event) } %>
                 <% end %>
               </td>
