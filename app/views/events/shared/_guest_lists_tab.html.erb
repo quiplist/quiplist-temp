@@ -6,6 +6,8 @@
         <th>Email</th>
         <th>Contact</th>
         <th>Affiliation</th>
+        <th>Member Type</th>
+        <th>Member Id</th>
         <th>Approved by:</th>
         <th>Status</th>
         <th>
@@ -28,6 +30,8 @@
           <td><%= guest_list.user.email %></td>
           <td><%= guest_list.user.contact_number %></td>
           <td><%= guest_list.user.affiliation %></td>
+          <td><%= guest_list.user.member_name %></td>
+          <td><%= guest_list.user.member_id %></td>
           <td><%= guest_list.approver&.full_name %></td>
           <td>
             <%= form_for guest_list, as: :guest_list, url: set_status_event_guest_lists_path(@event, guest_list_id: guest_list.id), method: :post, html: { class: "" } do |f| %>
