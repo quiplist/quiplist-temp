@@ -534,6 +534,7 @@
      font-size: 50px;
 }
  .chat-live-wrapper{
+     /* background: url('/images/welcome_page_bg.png'); */
      background-size: cover !important;
      padding-top: 400px;
      background-position: center !important;

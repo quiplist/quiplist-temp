@@ -19,5 +19,5 @@ class Chat < ApplicationRecord
   belongs_to :sender, polymorphic: true
   belongs_to :event
 
-  default_scope { order(created_at: :desc) }
+  default_scope { order(created_at: :asc) }
 end
