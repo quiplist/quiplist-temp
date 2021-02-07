@@ -89,7 +89,7 @@ class Chat extends React.Component {
     })
     .then(resp => resp.json())
     .then(result => {
-      this.addChat(result)
+      // this.addChat(result)
       this.eventsChannel.send({result})
     })
   }
