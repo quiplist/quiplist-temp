@@ -59,9 +59,7 @@ class Chat extends React.Component {
   }
 
   addChat = chat => {
-    this.setState(state => ({ chats: [chat, ...state.chats] }))
-
-
+    this.setState(state => ({ chats: [...state.chats, chat] }))
   }
 
 
@@ -89,7 +87,7 @@ class Chat extends React.Component {
     })
     .then(resp => resp.json())
     .then(result => {
-      // this.addChat(result)
+      //this.addChat(result)
       this.eventsChannel.send({result})
     })
   }
@@ -100,7 +98,7 @@ class Chat extends React.Component {
       <React.Fragment>
         <div className="chat-container">
           <div className="chat-wrapper" ref={(el) => { this.messagesContainer = el; }} >
-            {this.state.chats.reverse().map((chat, index) =>
+            {this.state.chats.map((chat, index) =>
               <ChatMessage
                 key={index}
                 chat={chat}
