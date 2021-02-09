@@ -47,11 +47,16 @@
                 </div>
               </div>
               <div class="row mt-3">
-                <div class="col col-md-12 col-lg-8" style="text-align: left;">
-                  <%= link_to "Sign in instead", user_session_path(event_code: @event.event_code), class:"btn btn-sign-in", style: "background: #{@event.session_mouse_out};", onmouseover:"this.style.background='#{@event.session_mouse_over}'", onmouseout:"this.style.background='#{@event.session_mouse_out}'" %>
-                </div>
-                <div class="col col-md-12 col-lg-4">
+                <div class="col-12">
                   <%= f.submit "Sign up", class:"btn btn-sign-up w-100", style: "background: #{@event.session_mouse_out};", onmouseover:"this.style.background='#{@event.session_mouse_over}'", onmouseout:"this.style.background='#{@event.session_mouse_out}'" %>
+                </div>
+              </div>
+              <div class="row mt-3">
+                <div class="col-6">
+                   <h6 class="text-start">Already have an account?</h6>
+                </div>
+                <div class="col-6">
+                  <%= link_to "Sign in instead", user_session_path(event_code: @event.event_code), class:"btn btn-sign-in", style: "background: #{@event.session_mouse_out};", onmouseover:"this.style.background='#{@event.session_mouse_over}'", onmouseout:"this.style.background='#{@event.session_mouse_out}'" %>
                 </div>
               </div>
             <% end %>

@@ -1,13 +1,12 @@
-<section id="home_section_1">
-  <%= image_tag @event.main_background.url, class: "img-fluid" %>
-</section>
-<section id="home_section_2" class="mb-3">
-  <div class="container" style="background: <%= @event.main_background_color %>">
-    <div class="row text-center py-5">
-        <div class="col col-lg-12">
-            <h1 style="color: <%= @event.main_mouse_out %>;">Denied!</h1>
-            <p class="lead">Sorry, you've been denied from entering this event.</p>
-        </div>
+<div class="chat-live-wrapper denied" style="<%= @event.main_background? ? "background-image: url(\'#{@event.main_background.url}\')" : "" %>">
+  <div class="container px-5 py-3">
+      <div class="row">
+            <div class="col-12">
+              <div class="denied-wrapper">
+                <h1 style="color: <%= @event.main_mouse_out %>;">Denied!</h1>
+                <p class="lead">Sorry, you've been denied from entering this event.</p>
+              </div>
+            </div>
       </div>
   </div>
-</section>
+</div>
