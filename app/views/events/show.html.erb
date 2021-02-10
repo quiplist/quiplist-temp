@@ -6,7 +6,7 @@
       <%= form_for @event, as: :event, url: upload_brochure_event_path(@event), method: :put, html: { class: "upload_wrapper mb-3", multipart: true } do |f| %>
         <label for="event_brochure" class="event_brochure_btn">
           <i class="fas fa-upload"></i>Upload<br/>Event Cover Here
-          <input type="file" id="event_brochure" 	accepts="image/png,image/jpg,image/jpeg,application/pdf" name="event[brochure]" hidden onchange="form.submit()" disabled=<%= (cannot? :update, Event) %>>
+          <input type="file" id="event_brochure" 	accepts="image/png,image/jpg,image/jpeg,application/pdf" name="event[brochure]" hidden onchange="form.submit()" <%= (can? :update, Event) ? "" : "disabled" %>>
         </label>
       <% end %>
     </div>
