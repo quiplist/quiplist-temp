@@ -8,7 +8,6 @@ class GuestListsController < ApplicationController
     page = params[:page] || 1
     per_page = params[:per_page] || 10
     search = params[:search]
-    puts "============== #{page}"
     @guest_lists = @event.guest_lists
     @guest_lists = @guest_lists.sorted.page(page).per(per_page)
     guest_list = GuestList.find(params[:guest_list_id])
@@ -16,7 +15,7 @@ class GuestListsController < ApplicationController
     new_params[:approver_id] = current_admin.id
     response = update_guest_list_statuses([guest_list], new_params)
 
-    redirect_to event_path(@event), notice: "Guest #{guest_list.user.full_name} updated successfully!"
+    redirect_to event_path(@event, page: page, per_page: per_page), notice: "Guest #{guest_list.user.full_name} updated successfully!"
   end
 
   def batch_approved
@@ -49,7 +48,7 @@ class GuestListsController < ApplicationController
     guest_list = GuestList.find(params[:guest_list_id])
     response = update_raffle_statuses([guest_list], raffle_status_params)
 
-    redirect_to event_path(@event), notice: "Guest #{guest_list.user.full_name} updated successfully!"
+    redirect_to event_path(@event, page: page, per_page: per_page), notice: "Guest #{guest_list.user.full_name} updated successfully!"
   end
 
   def reset_raffle_statuses
