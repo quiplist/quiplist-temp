@@ -8,6 +8,7 @@ class GuestListsController < ApplicationController
     page = params[:page] || 1
     per_page = params[:per_page] || 10
     search = params[:search]
+    puts "============== #{page}"
     @guest_lists = @event.guest_lists
     @guest_lists = @guest_lists.sorted.page(page).per(per_page)
     guest_list = GuestList.find(params[:guest_list_id])
