@@ -9,6 +9,7 @@
 #  encrypted_password :string           default(""), not null
 #  full_name          :string
 #  member_type        :integer          default(0)
+#  profile_image      :string
 #  role               :integer          default(2)
 #  created_at         :datetime         not null
 #  updated_at         :datetime         not null
@@ -29,6 +30,8 @@ class Admin < ApplicationRecord
   has_many :admin_events, dependent: :destroy
   has_many :events, through: :admin_events
   has_many :access_rights, dependent: :destroy
+
+  mount_uploader :profile_image, ProfileImageUploader
 
   accepts_nested_attributes_for :access_rights
 

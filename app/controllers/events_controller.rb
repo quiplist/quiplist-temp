@@ -119,7 +119,16 @@
       :start_date, :end_date, :start_time, :end_time, :event_type,
       :stream_type, :stream_key, :stream_video, :status, :session_background,
       :session_mouse_out, :session_mouse_over, :session_background_color,
-      :main_background, :main_mouse_out, :main_mouse_over, :main_background_color)
+      :main_background, :main_mouse_out, :main_mouse_over, :main_background_color,
+      :include_abo_number, :required_abo_number, :include_aes_number, :required_aes_number,
+      :include_affiliation, :required_affiliation, :include_company, :required_company,
+      :include_contact_number, :required_contact_number, :include_distributor_number,
+      :required_distributor_number, :include_employee_number, :required_employee_number,
+      :include_id_number, :required_id_number, :include_mailing_address, :required_mailing_address,
+      :include_member_company, :required_member_company, :include_member_id, :required_member_id,
+      :include_member_type, :required_member_type, :include_upline, :required_upline, :include_who_invited_you,
+      :required_who_invited_you, :include_abo_type, :include_distributor_type, :required_abo_type,
+      :required_distributor_type, :with_guest_member_type, :with_guest_abo_type, :with_guest_distributor_type)
   end
 
   def upload_params

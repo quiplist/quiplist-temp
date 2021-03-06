@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_02_06_104134) do
+ActiveRecord::Schema.define(version: 2021_03_06_123518) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -44,6 +44,7 @@ ActiveRecord::Schema.define(version: 2021_02_06_104134) do
     t.datetime "updated_at", precision: 6, null: false
     t.integer "member_type", default: 0
     t.string "member_id"
+    t.string "profile_image"
     t.index ["email"], name: "index_admins_on_email", unique: true
   end
 
@@ -92,6 +93,41 @@ ActiveRecord::Schema.define(version: 2021_02_06_104134) do
     t.string "main_background_color", default: "#fefefe"
     t.string "main_mouse_over", default: "#007bff"
     t.string "main_mouse_out", default: "#0A48AC"
+    t.boolean "include_affiliation", default: true
+    t.boolean "include_company", default: true
+    t.boolean "include_member_company", default: true
+    t.boolean "include_mailing_address", default: true
+    t.boolean "include_contact_number", default: true
+    t.boolean "include_who_invited_you", default: true
+    t.boolean "include_upline", default: true
+    t.boolean "include_abo_number", default: true
+    t.boolean "include_aes_number", default: true
+    t.boolean "include_distributor_number", default: true
+    t.boolean "include_id_number", default: true
+    t.boolean "include_employee_number", default: true
+    t.boolean "include_member_type", default: true
+    t.boolean "include_member_id", default: true
+    t.boolean "include_abo_type", default: true
+    t.boolean "include_distributor_type", default: true
+    t.boolean "required_affiliation", default: false
+    t.boolean "required_company", default: false
+    t.boolean "required_member_company", default: false
+    t.boolean "required_mailing_address", default: false
+    t.boolean "required_contact_number", default: false
+    t.boolean "required_who_invited_you", default: false
+    t.boolean "required_upline", default: false
+    t.boolean "required_abo_number", default: false
+    t.boolean "required_aes_number", default: false
+    t.boolean "required_distributor_number", default: false
+    t.boolean "required_id_number", default: false
+    t.boolean "required_employee_number", default: false
+    t.boolean "required_member_type", default: false
+    t.boolean "required_member_id", default: false
+    t.boolean "required_abo_type", default: true
+    t.boolean "required_distributor_type", default: true
+    t.boolean "with_guest_member_type", default: true
+    t.boolean "with_guest_abo_type", default: true
+    t.boolean "with_guest_distributor_type", default: true
   end
 
   create_table "guest_lists", force: :cascade do |t|
@@ -157,6 +193,19 @@ ActiveRecord::Schema.define(version: 2021_02_06_104134) do
     t.integer "role", default: 2
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "company"
+    t.string "member_company"
+    t.string "mailing_address"
+    t.string "who_invited_you?"
+    t.string "upline"
+    t.string "abo_number"
+    t.string "aes_number"
+    t.string "distributor_number"
+    t.string "id_number"
+    t.string "employee_number"
+    t.string "profile_image"
+    t.integer "abo_type", default: 0
+    t.integer "distributor_type", default: 0
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end

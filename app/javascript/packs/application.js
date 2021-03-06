@@ -106,6 +106,14 @@ $(document).ready(function () {
          this.checked ? $(".btn-event-code").prop('disabled', false) : $(".btn-event-code").prop('disabled', true);;
       });
     }
+
+    //admin dashboard user_dropdown
+    var dropdown_trigger = $(".user_dropdown_wrapper i");
+    if(dropdown_trigger !== null){
+      $(dropdown_trigger).click(function(){
+        $(".user_dropdown").toggle();
+      })
+    }
 });
 
 window.streamValueTypeChange = function(id) {

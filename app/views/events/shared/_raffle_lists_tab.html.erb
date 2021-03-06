@@ -1,0 +1,50 @@
+<div class="tab-pane fade show" id="nav-raffle" role="tabpanel" aria-labelledby="nav-raffle-tab">
+  <table id="event_id_guest_list" class="table">
+    <thead>
+      <tr>
+        <th>Raffle Type</th>
+        <th>Raffle Prize</th>
+        <th>
+          Raffle status
+          <% if can? :update, GuestList %>
+            <%= link_to reset_raffle_statuses_event_guest_lists_path(@event), class: "text-xl-start text-primary" do %>
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-clockwise" viewBox="0 0 16 16">
+                <path fill-rule="evenodd" d="M8 3a5 5 0 1 0 4.546 2.914.5.5 0 0 1 .908-.417A6 6 0 1 1 8 2v1z"/>
+                <path d="M8 4.466V.534a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384L8.41 4.658A.25.25 0 0 1 8 4.466z"/>
+              </svg>
+            <% end %>
+          <% end %>
+        <th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @guest_lists.each do |guest_list| %>
+        <tr>
+          <td><%= guest_list.user.full_name %></td>
+          <td><%= guest_list.user.email %></td>
+          <td><%= guest_list.user.contact_number %></td>
+          <td><%= guest_list.user.affiliation %></td>
+          <td><%= guest_list.user.member_name %></td>
+          <td><%= guest_list.user.member_id %></td>
+          <td><%= guest_list.approver&.full_name %></td>
+          <td>
+            <%= form_for guest_list, as: :guest_list, url: set_status_event_guest_lists_path(@event, guest_list_id: guest_list.id, page: @guest_lists.current_page), method: :post, html: { class: "" } do |f| %>
+              <%= f.select :status, GuestList::STATUSES.invert, {}, { class: 'form-select', onchange: "form.submit()", disabled: (cannot? :update, GuestList) } %>
+            <% end %>
+          </td>
+          <td>
+            <%= form_for guest_list, as: :guest_list, url: set_raffle_status_event_guest_lists_path(@event, guest_list_id: guest_list.id, page: @guest_lists.current_page), method: :post, html: { class: "" } do |f| %>
+              <%= f.select :raffle_status, GuestList::RAFFLE_STATUSES.invert, {}, { class: 'form-select', onchange: "form.submit()", disabled: (cannot? :update, GuestList) } %>
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <div>
+    Export: <%= link_to "CSV", download_csv_event_guest_lists_path(@event, format: "csv"), class: "text-primary" %>
+  </div>
+  <%= link_to_previous_page @guest_lists, '<< ', class: "text-primary" %>
+  <%= page_entries_info @guest_lists %>
+  <%= link_to_next_page @guest_lists, ' >>', class: "text-primary" %>
+</div>

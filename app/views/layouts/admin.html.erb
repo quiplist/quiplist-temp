@@ -14,48 +14,95 @@
   </head>
 
   <body>
-    <div class="wrapper">
-      <nav id="sidebar">
-        <div class="sidebar-header">
-          <%= image_tag "white-logo.png", class: "img-fluid" %>
+    <div class="sidebar_wrapper">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-2 px-0">
+                    <div class="sidebar">
+                          <%= image_tag "white-logo.png", class: "img-fluid" %>
+                        <ul class="px-2 sidebar-list">
+                          <li>
+                            <% if can? :index, Event %>
+                              <%= link_to events_path do %>
+                                <i class="fas fa-desktop"></i>
+                                <span>Dashboard</span>
+                              <% end %>
+                            <% end %>
+                          </li>
+                            <li>
+                              <% if can? :index, Event %>
+                                <%= link_to events_path do %>
+                                  <i class="fas fa-calendar-alt"></i>
+                                  <span>Events</span>
+                                <% end %>
+                              <% end %>
+                            </li>
+                            <li>
+                              <% if can? :index, Admin %>
+                                <%= link_to admins_path do %>
+                                  <i class="fas fa-users"></i>
+                                  <span>Admins</span>
+                                <% end %>
+                              <% end %>
+                            </li>
+                            <li>
+                              <% if can? :index, Event %>
+                                <%= link_to events_path do %>
+                                  <i class="fas fa-user-plus"></i>
+                                  <span>Client</span>
+                                <% end %>
+                              <% end %>
+                            </li>
+                            <li>
+                              <% if current_admin %>
+                                <%= link_to destroy_admin_session_path, id: "logout" do %>
+                                <i class="fas fa-sign-out-alt"></i>
+                                  <span>Logout</span>
+                                <% end %>
+                              <% end %>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-10 px-0">
+                    <div class="topbar">
+                        <div class="profile-wrapper text-end">
+                            <%= image_tag "user.png", class: "img-fluid" %>
+                            <div class="name_wrapper text-start">
+                                <% if current_admin %>
+                                <h2 class="user_name"><%= current_admin.full_name %></h2>
+                                <h3 class="user_title"><%= current_admin.role_name %></h3>
+                                <% end %>
+                            </div>
+                            <div class="user_dropdown_wrapper">
+                              <i class="fas fa-chevron-down"></i>
+                              <div class="user_dropdown">
+                                <ul>
+                                  <li>Profile</li>
+                                  <li>Change Password</li>
+                                  <li>
+                                    <% if current_admin %>
+                                      <%= link_to destroy_admin_session_path, id: "logout" do %>
+                                        Logout
+                                      <% end %>
+                                    <% end %>
+                                  </li>
+                                </ul>
+                              </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="content pb-0">
+                        <div class="breadcrumbs_wrapper">
+                            <span>Home</span><span class="active">Dashboard</span>
+                        </div>
+                        <%= yield %>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="logged-in_wrapper">
-          <% if current_admin %>
-          <h2 class="user_name"><%= current_admin.full_name %></h2>
-          <h6 class="user_role"><%= current_admin.role_name %></h6>
-          <% end %>
-        </div>
-        <ul class="list-unstyled components">
-          <li>
-            <% if can? :index, Event %>
-              <%= link_to "Events", events_path %>
-            <% end %>
-          </li>
-          <li>
-            <% if can? :index, Admin %>
-              <%= link_to "Admins", admins_path %>
-            <% end %>
-          </li>
-          <li>
-            <% if current_admin %>
-              <%= link_to destroy_admin_session_path, class: 'nav-link', id: "logout" do %>
-                Logout
-              <% end %>
-            <% end %>
-          </li>
-        </ul>
-      </nav>
-      <div id="content">
-        <!-- <nav class="navbar navbar-expand-lg navbar-light bg-light">
-          <div class="container-fluid">
-            <button type="button" id="sidebarCollapse" class="btn btn-collapse">
-            <i class="fas fa-align-left"></i>
-            </button>
-          </div>
-        </nav> -->
-        <%= yield %>
-      </div>
     </div>
+
 
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <!-- Popper.JS -->

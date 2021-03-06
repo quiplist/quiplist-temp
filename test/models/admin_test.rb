@@ -9,6 +9,7 @@
 #  encrypted_password :string           default(""), not null
 #  full_name          :string
 #  member_type        :integer          default(0)
+#  profile_image      :string
 #  role               :integer          default(2)
 #  created_at         :datetime         not null
 #  updated_at         :datetime         not null
