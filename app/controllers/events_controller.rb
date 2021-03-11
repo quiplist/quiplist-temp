@@ -22,6 +22,9 @@
     search = params[:search]
     @guest_lists = @event.guest_lists
     @guest_lists = @guest_lists.sorted.page(page).per(per_page)
+
+    @raffles = @event.raffles
+    @raffles = @raffles.sorted.page(page).per(per_page)
   end
 
   def create
@@ -66,6 +69,9 @@
       search = params[:search]
       @guest_lists = @event.guest_lists
       @guest_lists = @guest_lists.sorted.page(page).per(per_page)
+
+      @raffles = @event.raffles
+      @raffles = @raffles.sorted.page(page).per(per_page)
       render :show
     end
   end
@@ -80,6 +86,9 @@
       search = params[:search]
       @guest_lists = @event.guest_lists
       @guest_lists = @guest_lists.sorted.page(page).per(per_page)
+
+      @raffles = @event.raffles
+      @raffles = @raffles.sorted.page(page).per(per_page)
       flash.now[:alert] = 'No player available to draw!'
       render :show
     else

@@ -1,0 +1,40 @@
+<div class="tab-pane fade show" id="nav-raffles" role="tabpanel" aria-labelledby="nav-raffles-tab">
+  <% if (can? :create, Raffle) %>
+    <%= link_to "Create", new_event_raffle_path(event_id: @event.id), class: 'btn' %>
+  <% end %>
+  <table id="event_id_guest_list" class="table">
+    <thead>
+      <tr>
+        <th>Raffle Type</th>
+        <th>Raffle Prize</th>
+        <th>Winner</th>
+        <th></th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @raffles.each do |raffle| %>
+        <tr>
+          <td><%= raffle.raffle_type_name %></td>
+          <td><%= raffle.prize %></td>
+          <td><%= raffle.winner&.user&.full_name %></td>
+          <td class="actions">
+            <% if can? :update, Raffle %>
+              <%= link_to "Edit", edit_event_raffle_path(event_id: @event.id, id: raffle.id), class: 'btn btn-view' %>
+            <% end %>
+            <% if (can? :destroy, Raffle) %>
+              <a class="btn btn-remove" href="#" data-bs-toggle="modal" data-bs-target="#delete-modal-id-<%= raffle.id %>">Delete</a>
+              <%= render partial: "layouts/shared/delete_modal", locals: { index_id: "#{raffle.id}", m_name: "Raffle", name: raffle.raffle_type_name, path: event_raffle_path(event_id: @event.id, id: raffle.id) } %>
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <div>
+    Export: <%= link_to "CSV", download_csv_event_guest_lists_path(@event, format: "csv"), class: "text-primary" %>
+  </div>
+  <%= link_to_previous_page @raffles, '<< ', class: "text-primary" %>
+  <%= page_entries_info @raffles %>
+  <%= link_to_next_page @raffles, ' >>', class: "text-primary" %>
+</div>

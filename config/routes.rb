@@ -23,7 +23,7 @@ Rails.application.routes.draw do
         get :reset_raffle_statuses, on: :collection
         get :download_csv, on: :collection
       end
-      # resources :raffles
+      resources :raffles, except: [:index, :show]
       # resources :questionnaires
     end
     resources :admins do
