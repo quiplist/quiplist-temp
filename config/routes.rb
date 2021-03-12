@@ -24,7 +24,7 @@ Rails.application.routes.draw do
         get :download_csv, on: :collection
       end
       resources :raffles, except: [:index, :show]
-      # resources :questionnaires
+      resources :questionnaires, except: [:index, :show]
     end
     resources :admins do
       post :create_admin_events, on: :member

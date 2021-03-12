@@ -8,7 +8,7 @@
         <th>Raffle Type</th>
         <th>Raffle Prize</th>
         <th>Winner</th>
-        <th></th>
+        <th>Status</th>
         <th></th>
       </tr>
     </thead>
@@ -18,6 +18,7 @@
           <td><%= raffle.raffle_type_name %></td>
           <td><%= raffle.prize %></td>
           <td><%= raffle.winner&.user&.full_name %></td>
+          <td><%= raffle.status_name %></td>
           <td class="actions">
             <% if can? :update, Raffle %>
               <%= link_to "Edit", edit_event_raffle_path(event_id: @event.id, id: raffle.id), class: 'btn btn-view' %>

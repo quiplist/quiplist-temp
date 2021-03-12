@@ -40,6 +40,9 @@ class Raffle < ApplicationRecord
     DONE => "Done"
   }
 
+  validates :raffle_type, presence: true
+  validates :prize, presence: true
+
   scope :queued, -> { where(status: QUEUED) }
   scope :ongoing, -> { where(status: ONGOING) }
   scope :done, -> { where(status: DONE) }

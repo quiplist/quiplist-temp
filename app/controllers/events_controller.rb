@@ -25,6 +25,9 @@
 
     @raffles = @event.raffles
     @raffles = @raffles.sorted.page(page).per(per_page)
+
+    @questionnaires = @event.questionnaires
+    @questionnaires = @questionnaires.sorted.page(page).per(per_page)
   end
 
   def create
@@ -72,6 +75,9 @@
 
       @raffles = @event.raffles
       @raffles = @raffles.sorted.page(page).per(per_page)
+
+      @questionnaires = @event.questionnaires
+      @questionnaires = @questionnaires.sorted.page(page).per(per_page)
       render :show
     end
   end
@@ -89,6 +95,9 @@
 
       @raffles = @event.raffles
       @raffles = @raffles.sorted.page(page).per(per_page)
+
+      @questionnaires = @event.questionnaires
+      @questionnaires = @questionnaires.sorted.page(page).per(per_page)
       flash.now[:alert] = 'No player available to draw!'
       render :show
     else
