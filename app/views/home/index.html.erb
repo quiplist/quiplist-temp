@@ -6,11 +6,11 @@
                 <div class="col-12">
                     <div class="video-wrapper">
                       <% if @event.fb_video? %>
-                        <%= render partial: "home/shared/facebook_live", locals: { url: @event.stream_key } %>
+                        <%= react_component("_shared/FacebookLive", { url: @event.stream_key })%>
                       <% elsif @event.youtube_video? %>
-                        <%= render partial: "home/shared/youtube_live", locals: { url: @event.stream_key }  %>
+                        <%= react_component("_shared/YoutubeLive", { url: @event.stream_key })%>
                       <% else %>
-                        <%= render partial: "home/shared/none" %>
+                        <%= react_component("_shared/None")%>
                       <% end %>
                     </div>
                 </div>
@@ -26,6 +26,7 @@
                     angry: @reaction.angry?,
                     dislike: @reaction.dislike?,
                     clap: @reaction.clap?
+
 
                   }) %>
                   <br/>

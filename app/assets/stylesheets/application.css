@@ -720,12 +720,11 @@
  #fb-root {
      display: none;
 }
- .fb_iframe_widget, .fb_iframe_widget span, .fb_iframe_widget span iframe[style] {
+ /* .fb_iframe_widget, .fb_iframe_widget span, .fb_iframe_widget span iframe[style] {
      width: 100% !important;
      height: 100% !important;
-}
- .fb-wrapper {
-     overflow: hidden;
+} */
+ /* .fb-wrapper {
      padding-bottom: 56.25% !important;
      position: relative;
      height: 0;
@@ -736,6 +735,16 @@
      height: 100% !important;
      width: 100% !important;
      position: absolute !important;
+} */
+div[data-react-class="_shared/FacebookLive"],
+.fb-wrapper, .fb-video, .fb-video iframe, .fb-video span {
+    width: 100%;
+    text-align: center;
+    height: 100% !important;
+}
+div[data-react-class="_shared/YoutubeLive"],
+div[data-react-class="_shared/None"] {
+    width: 100%;
 }
  .reaction-icon img {
      z-index: 2;
@@ -1175,6 +1184,8 @@ ul.sidebar-list li {
 ul.sidebar-list{
   margin-top: 50px;
 }
+
+
 
 @media screen and (max-width:1024px){
     .button-wrapper button {
