@@ -22,7 +22,7 @@ class YoutubeLive extends React.Component {
 }
 
 YoutubeLive.propTypes = {
-  url: PropTypes.string.isRequired
+  url: PropTypes.string
 };
 
 export default YoutubeLive

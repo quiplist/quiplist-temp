@@ -28,7 +28,7 @@ class FacebookLive extends React.Component {
 }
 
 FacebookLive.propTypes = {
-  url: PropTypes.string.isRequired
+  url: PropTypes.string
 };
 
 export default FacebookLive

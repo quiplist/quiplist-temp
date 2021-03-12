@@ -541,11 +541,12 @@
 }
  .chat-input {
      display: flex;
+     background: #E6E6E6;
+     padding: 10px 5px;
 }
  .chat-input input[type="text"] {
      border-radius: 0px;
      border: 0px;
-     border-bottom: 2px solid #f9ae39;
      width: 100%;
      max-width: 100%;
 }
@@ -566,7 +567,7 @@
 }
 
 .video-wrapper {
-     height: 500px;
+     /* height: 500px; */
      display: flex;
      align-items: center;
 }
@@ -582,11 +583,12 @@
      font-size: 50px;
 }
  .chat-live-wrapper{
-     background: url("welcome_page_bg.png");
+     /* background: url("welcome_page_bg.png"); */
+     background-color: #0D1152;
      background-size: cover !important;
-     padding-top: 400px;
      background-position: center !important;
-     overflow: hidden;
+     /* height: 100vh; */
+     padding: 100px 20px;
 }
  #activeLabel {
      margin: 0 10px;
@@ -594,10 +596,8 @@
 }
  .feed {
      position: relative;
-     height: 80px;
-     border-top: 1px solid #f1f1f1;
-     border-bottom: 1px solid #f1f1f1;
-     margin-top: 20px;
+     height: 120px;
+     background: #E6E6E6;
 }
  .like-btn {
      width: auto;
@@ -616,14 +616,14 @@
      color: #fff;
 }
  .like-btn .reaction-box {
-     position: absolute;
-     width: 500px;
-     height: 55px;
+     /* position: absolute; */
+     width: 100%;
+     /* height: 55px; */
      background: transparent;
      border-radius: 28px;
-     left: -25px;
-     bottom: 25px;
-     display: none;
+     /* left: -25px;
+     bottom: 25px; */
+     display: block;
 }
  .like-btn:hover .reaction-box {
      display: block;
@@ -639,10 +639,16 @@
      border-radius: 20px;
      margin: 8px -1px 0 8px;
      text-align: center;
+
+     position: relative;
+     overflow: hidden;
+
 }
+
  .reaction-box .reaction-icon img {
      width: 40px;
      height: 40px;
+     z-index: 2;
 }
  .reaction-box .reaction-icon label {
      padding: 3px 5px 3px 5px;
@@ -652,6 +658,7 @@
      font-size: 11px;
      color: #FFF;
      background: #333;
+     z-index: 1;
 }
  .like-btn:hover .reaction-box{
      transition: 1s ease-in;
@@ -661,16 +668,6 @@
      transition: 0.3s ease-in;
      transform-origin: bottom;
 }
- .like-btn::before {
-     content: ".";
-     opacity: 0;
-     display: block;
-     width: 44px;
-     height: 10px;
-     position: absolute;
-     top: -10px;
-     left: 0;
-}
  .like-btn label {
      visibility: hidden;
 }
@@ -678,9 +675,9 @@
      visibility: visible;
 }
  .reaction-icon {
-     transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+     /* transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
      opacity: 0;
-     transform: translate(0, 100px) scale(0);
+     transform: translate(0, 100px) scale(0); */
 }
  .like-btn:hover .reaction-box .reaction-icon.show{
      opacity: 1;
@@ -689,7 +686,7 @@
 }
  .like-btn:hover .reaction-box .reaction-icon:hover {
      transform: translateY(-20px);
-     transition: 0.3s ease-in;
+     transition: 0.1s ease-in;
      transform-origin: bottom;
 }
  .reaction-box .show {
@@ -701,7 +698,7 @@
      margin: 8px -1px 0 8px;
      text-align: center;
      transform: translateY(-20px);
-     transition: 0.3s ease-in;
+     transition: 0.1s ease-in;
 }
  .reaction-box .show img {
      width: 40px;
@@ -740,17 +737,10 @@ div[data-react-class="_shared/FacebookLive"],
 .fb-wrapper, .fb-video, .fb-video iframe, .fb-video span {
     width: 100%;
     text-align: center;
-    height: 100% !important;
 }
 div[data-react-class="_shared/YoutubeLive"],
 div[data-react-class="_shared/None"] {
     width: 100%;
-}
- .reaction-icon img {
-     z-index: 2;
-}
- .reaction-icon label {
-     z-index: 1;
 }
 
 .image-card {
@@ -1192,9 +1182,7 @@ ul.sidebar-list{
         width: 10%;
         height: 10%;
    }
-    .chat-live-wrapper{
-        padding-top: 500px;
-   }
+
 }
 @media (max-width: 768px) {
     #sidebar {
@@ -1311,9 +1299,7 @@ ul.sidebar-list{
         background-position: top !important;
         background-repeat: no-repeat !important;
    }
-    .chat-live-wrapper{
-        padding-top: 350px;
-   }
+
 
    ul.sidebar-list li a span {
      display: none;
