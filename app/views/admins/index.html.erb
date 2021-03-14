@@ -16,9 +16,10 @@
             <th>Full Name</th>
             <th>Email Address</th>
             <th>Role</th>
+            <th>Reset Password?</th>
+            <th>Temporary Password</th>
             <th></th>
-            <th></th>
-            <th></th>
+
           </tr>
         </thead>
         <tbody>
@@ -27,7 +28,14 @@
               <td><%= admin.full_name %></td>
               <td><%= admin.email %></td>
               <td><%= admin.role_name %></td>
+              <td><%= admin.reset_password %></td>
+              <td><%= admin.temporary_password %></td>
               <td class="actions">
+                <% if can? :edit, Admin %>
+                  <%= form_for admin, as: :admin, url: reset_password_admin_path(admin), method: :put, html: { class: "", multipart: true } do |f| %>
+                    <%= submit_tag "Reset Password", class: "btn btn-edit" %>
+                  <% end %>
+                <% end %>
                 <% if can? :show, Admin %>
                   <%= link_to "Show", admin_path(admin), class: 'btn btn-view' %>
                 <% end %>

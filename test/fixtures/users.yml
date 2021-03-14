@@ -21,9 +21,11 @@
 #  member_type            :integer          default(0)
 #  profile_image          :string
 #  remember_created_at    :datetime
+#  reset_password         :boolean          default(FALSE)
 #  reset_password_sent_at :datetime
 #  reset_password_token   :string
 #  role                   :integer          default(2)
+#  temporary_password     :string
 #  upline                 :string
 #  who_invited_you?       :string
 #  created_at             :datetime         not null

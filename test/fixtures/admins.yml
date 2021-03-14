@@ -10,7 +10,9 @@
 #  full_name          :string
 #  member_type        :integer          default(0)
 #  profile_image      :string
+#  reset_password     :boolean          default(FALSE)
 #  role               :integer          default(2)
+#  temporary_password :string
 #  created_at         :datetime         not null
 #  updated_at         :datetime         not null
 #  member_id          :string

@@ -21,9 +21,11 @@
 #  member_type            :integer          default(0)
 #  profile_image          :string
 #  remember_created_at    :datetime
+#  reset_password         :boolean          default(FALSE)
 #  reset_password_sent_at :datetime
 #  reset_password_token   :string
 #  role                   :integer          default(2)
+#  temporary_password     :string
 #  upline                 :string
 #  who_invited_you?       :string
 #  created_at             :datetime         not null
@@ -36,10 +38,11 @@
 #  index_users_on_reset_password_token  (reset_password_token) UNIQUE
 #
 class User < ApplicationRecord
+  include ResetPassword
   # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
+  # :recoverable, :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable
+         :rememberable, :validatable
 
   has_many :guest_lists, dependent: :destroy
   has_many :events, through: :guest_lists
@@ -143,7 +146,7 @@ class User < ApplicationRecord
     where("email ILIKE ? OR
           full_name ILIKE ?", "%#{query}%", "%#{query}%")
   }
-  scope :admin_users, -> (event_ids) { joins(:guest_lists).where("guest_lists.event_id IN (?)", event_ids).distinct } 
+  scope :admin_users, -> (event_ids) { joins(:guest_lists).where("guest_lists.event_id IN (?)", event_ids).distinct }
 
   def set_default_role
     self.role ||= :client
@@ -178,67 +181,67 @@ class User < ApplicationRecord
   end
 
   def required_abo_number?
-    current_event.required_abo_number?
+    current_event&.required_abo_number? || false
   end
 
   def required_aes_number?
-    current_event.required_aes_number?
+    current_event&.required_aes_number? || false
   end
 
   def required_affiliation?
-    current_event.required_affiliation?
+    current_event&.required_affiliation? || false
   end
 
   def required_company?
-    current_event.required_company?
+    current_event&.required_company? || false
   end
 
   def required_contact_number?
-    current_event.required_contact_number?
+    current_event&.required_contact_number? || false
   end
 
   def required_id_number?
-    current_event.required_id_number?
+    current_event&.required_id_number? || false
   end
 
   def required_distributor_number?
-    current_event.required_distributor_number?
+    current_event&.required_distributor_number? || false
   end
 
   def required_employee_number?
-    current_event.required_employee_number?
+    current_event&.required_employee_number? || false
   end
 
   def required_mailing_address?
-    current_event.required_mailing_address?
+    current_event&.required_mailing_address? || false
   end
 
   def required_member_company?
-    current_event.required_member_company?
+    current_event&.required_member_company? || false
   end
 
   def required_member_type?
-    current_event.required_member_type?
+    current_event&.required_member_type? || false
   end
 
   def required_abo_type?
-    current_event.required_abo_type?
+    current_event&.required_abo_type? || false
   end
 
   def required_distributor_type?
-    current_event.required_distributor_type?
+    current_event&.required_distributor_type? || false
   end
 
   def required_upline?
-    current_event.required_upline?
+    current_event&.required_upline? || false
   end
 
   def required_who_invited_you?
-    current_event.required_who_invited_you?
+    current_event&.required_who_invited_you? || false
   end
 
   def required_member_id?
-    current_event.required_member_id?
+    current_event&.required_member_id? || false
   end
 
   def self.generate_new

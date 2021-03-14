@@ -29,8 +29,11 @@ Rails.application.routes.draw do
     resources :admins do
       post :create_admin_events, on: :member
       delete :destroy_admin_events, on: :member
+      put :reset_password, on: :member
     end
-    resources :users, except: [:new, :edit, :create, :update, :destroy]
+    resources :users, except: [:new, :edit, :create, :update, :destroy] do
+      put :reset_password, on: :member
+    end
   end
 
   namespace :api, defaults: { format: :json } do

@@ -99,6 +99,20 @@ class AdminsController < ApplicationController
     redirect_to admin_path(@admin), notice: "Admin Event deleted successfully!"
   end
 
+  def reset_password
+    @admin = @admin.generate_temporary_password
+    if @admin.save
+      redirect_to admin_path(@admin), notice: "Admin #{@admin.full_name} reset password successfully!"
+    else
+      page = params[:page] || 1
+      per_page = params[:per_page] || 10
+      search = params[:search]
+      @admins = @admins.search(search) if search.present?
+      @admins = @admins.accessible_by(current_ability).sorted.page(page).per(per_page)
+      render :index
+    end
+  end
+
   private
 
   def admin_params
