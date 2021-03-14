@@ -143,6 +143,7 @@ class User < ApplicationRecord
     where("email ILIKE ? OR
           full_name ILIKE ?", "%#{query}%", "%#{query}%")
   }
+  scope :admin_users, -> (event_ids) { joins(:guest_lists).where("guest_lists.event_id IN (?)", event_ids).distinct } 
 
   def set_default_role
     self.role ||= :client

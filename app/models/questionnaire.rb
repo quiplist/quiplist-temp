@@ -22,13 +22,15 @@ class Questionnaire < ApplicationRecord
 
   MULTIPLE_CHOICE = 0
   YES_OR_NO = 1
-  SELECT_LETTERS = 2
-  Q_AND_A = 3
-  POLL = 4
+  IDENTIFICATION = 2
+  SELECT_LETTERS = 3
+  Q_AND_A = 4
+  POLL = 5
 
   QUESTIONNAIRE_TYPES = {
     MULTIPLE_CHOICE => "Multiple Choice",
     YES_OR_NO => "Yes or No",
+    IDENTIFICATION => "Indentification",
     SELECT_LETTERS => "Select Letters",
     Q_AND_A => "Question and Answer",
     POLL => "Poll"
@@ -67,6 +69,10 @@ class Questionnaire < ApplicationRecord
 
   def yes_or_no?
     questionnaire_type == YES_OR_NO
+  end
+
+  def indentification?
+    questionnaire_type == IDENTIFICATION
   end
 
   def select_letters?

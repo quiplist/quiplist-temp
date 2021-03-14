@@ -1,0 +1,34 @@
+<div class="container content-wrapper">
+  <%= render partial: "layouts/shared/success_messages", locals: { messages: flash[:notice] } %>
+  <%= render partial: "layouts/shared/alert_messages", locals: { messages: flash[:alert] } %>
+  <div class="row">
+    <div class="col col-lg-12">
+      <table id="user_list" class="table">
+        <thead>
+          <tr>
+            <th>Full Name</th>
+            <th>Email Address</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @users.each do |user| %>
+            <tr>
+              <td><%= user.full_name %></td>
+              <td><%= user.email %></td>
+              <td class="actions">
+                <% if can? :show, Admin %>
+                  <%= link_to "Show", user_path(user), class: 'btn btn-view' %>
+                <% end %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<%= link_to_previous_page @users, '<< previous ' %>
+<%= page_entries_info @users %>
+<%= link_to_next_page @users, ' next >>' %>

@@ -46,18 +46,10 @@
                               <% end %>
                             </li>
                             <li>
-                              <% if can? :index, Event %>
-                                <%= link_to events_path do %>
+                              <% if can? :index, User %>
+                                <%= link_to users_path do %>
                                   <i class="fas fa-user-plus"></i>
                                   <span>Client</span>
-                                <% end %>
-                              <% end %>
-                            </li>
-                            <li>
-                              <% if current_admin %>
-                                <%= link_to destroy_admin_session_path, id: "logout" do %>
-                                <i class="fas fa-sign-out-alt"></i>
-                                  <span>Logout</span>
                                 <% end %>
                               <% end %>
                             </li>
