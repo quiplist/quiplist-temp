@@ -5,7 +5,9 @@ import YoutubeLive from "./_shared/YoutubeLive";
 import None from "./_shared/None";
 import Chat from "./Chat";
 import Reactions from "./Reactions";
-
+import EventDescription from "./EventDescription";
+import Announcement from "./Announcement";
+import Questions from "./Questions";
 
 class Live extends React.Component {
   constructor(props) {
@@ -26,6 +28,7 @@ class Live extends React.Component {
       angry: this.props.angry,
       dislike: this.props.dislike,
       clap: this.props.clap,
+      eventDescription: this.props.eventDescription,
     };
 
 
@@ -48,13 +51,17 @@ class Live extends React.Component {
 
     return (
       <div className="row">
-        <div className="col-12 col-md-8 col-lg-9">
+        <div className="col-12 col-md-12 col-lg-8">
+            <Announcement />
             {video}
+            <Questions />
         </div>
-        <div className="col-12 col-md-4 col-lg-3">
+        <div className="col-12 col-md-12 col-lg-4">
           <div className="row">
             <div className="col-12">
-
+              <EventDescription
+              eventDescription = {this.state.eventDescription}
+              currentUserId = {this.state.currentUserId} />
             </div>
           </div>
           <div className="row">
@@ -75,6 +82,7 @@ class Live extends React.Component {
               angry= {this.state.angry}
               dislike= {this.state.dislike}
               clap= {this.state.clap}
+              eventDescription = {this.state.eventDescription}
               />
             </div>
           </div>
@@ -99,6 +107,7 @@ Live.propTypes = {
   angry: PropTypes.bool.isRequired,
   dislike: PropTypes.bool.isRequired,
   clap: PropTypes.bool.isRequired,
+  eventDescription: PropTypes.string.isRequired
 };
 
 export default Live

@@ -387,28 +387,28 @@ class Reactions extends React.Component {
           {/*<h2 id="activeLabel"></h2>*/}
             <div className="reaction-box">
                 <div className="reaction-icon" onClick={this.setLikeIcon}>
-                  <img src={Like} alt="like"/><label>Like</label>
+                  <img src={Like} alt="like"/><label>{this.state.countLike}</label>
                 </div>
                 <div className="reaction-icon" onClick={this.setDislikeIcon}>
-                  <img src={Dislike} alt="dislike"/><label>Dislike</label>
+                  <img src={Dislike} alt="dislike"/><label>{this.state.countDislike}</label>
                 </div>
                 <div className="reaction-icon" onClick={this.setClapIcon}>
-                  <img src={Clap} alt="clap"/><label>Clap</label>
+                  <img src={Clap} alt="clap"/><label>{this.state.countClap}</label>
                 </div>
                 <div className="reaction-icon" onClick={this.setLoveIcon}>
-                  <img src={Heart} alt="Love"/><label>Love</label>
+                  <img src={Heart} alt="Love"/><label>{this.state.countLove}</label>
                 </div>
                 <div className="reaction-icon" onClick={this.setHahaIcon}>
-                  <img src={Laugh} alt="Haha"/><label>Haha</label>
+                  <img src={Laugh} alt="Haha"/><label>{this.state.countHaha}</label>
                 </div>
                 <div className="reaction-icon" onClick={this.setWowIcon}>
-                  <img src={Wow} alt="Wow"/><label>Wow</label>
+                  <img src={Wow} alt="Wow"/><label>{this.state.countWow}</label>
                 </div>
                 <div className="reaction-icon" onClick={this.setSadIcon}>
-                  <img src={Sad} alt="Sad"/><label>Sad</label>
+                  <img src={Sad} alt="Sad"/><label>{this.state.countSad}</label>
                 </div>
                 <div className="reaction-icon" onClick={this.setAngryIcon}>
-                  <img src={Angry} alt="Angry"/><label>Angry</label>
+                  <img src={Angry} alt="Angry"/><label>{this.state.countAngry}</label>
                 </div>
             </div>
           </a>
