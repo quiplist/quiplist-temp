@@ -9,8 +9,7 @@ class Announcement extends React.Component {
       <div className="announcement">
         <div className="row">
           <div className="col-12">
-            <marquee>Announcement: Lorem ipsum dolor sit amet, consectetuer adipiscing elit, s
-            ed diam nonummy nibh euismod tincidunt ut laoreet Lorem ipsum dolor sit amet,</marquee>
+            <marquee>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh</marquee>
           </div>
         </div>
       </div>

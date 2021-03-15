@@ -1,13 +1,13 @@
 import React  from 'react';
 import PropTypes from "prop-types";
-import FacebookLive from "./_shared/FacebookLive";
-import YoutubeLive from "./_shared/YoutubeLive";
-import None from "./_shared/None";
+import FacebookLive from "./FacebookLive";
+import YoutubeLive from "./YoutubeLive";
+import None from "./None";
 import Chat from "./Chat";
 import Reactions from "./Reactions";
 import EventDescription from "./EventDescription";
 import Announcement from "./Announcement";
-import Questions from "./Questions";
+import Actions from "./Actions";
 
 class Live extends React.Component {
   constructor(props) {
@@ -50,40 +50,42 @@ class Live extends React.Component {
     }
 
     return (
-      <div className="row">
-        <div className="col-12 col-md-12 col-lg-8">
-            <Announcement />
-            {video}
-            <Questions />
-        </div>
-        <div className="col-12 col-md-12 col-lg-4">
-          <div className="row">
-            <div className="col-12">
-              <EventDescription
-              eventDescription = {this.state.eventDescription}
-              currentUserId = {this.state.currentUserId} />
-            </div>
+      <div>
+        <Actions eventId={this.state.eventId}/>
+        <div className="row">
+          <div className="col-12 col-md-12 col-lg-8">
+              <Announcement />
+              {video}
           </div>
-          <div className="row">
-            <div className="col-12">
-              <Chat eventId={this.state.eventId}/>
+          <div className="col-12 col-md-12 col-lg-4">
+            <div className="row">
+              <div className="col-12">
+                <EventDescription
+                eventDescription = {this.state.eventDescription}
+                currentUserId = {this.state.currentUserId} />
+              </div>
             </div>
-          </div>
-          <div className="row">
-            <div className="col-12">
-              <Reactions
-              currentUserId= {this.state.currentUserId}
-              eventId= {this.state.eventId}
-              like= {this.state.like}
-              heart= {this.state.heart}
-              happy= {this.state.happy}
-              sad= {this.state.sad}
-              wow= {this.state.wow}
-              angry= {this.state.angry}
-              dislike= {this.state.dislike}
-              clap= {this.state.clap}
-              eventDescription = {this.state.eventDescription}
-              />
+            <div className="row">
+              <div className="col-12">
+                <Chat eventId={this.state.eventId}/>
+              </div>
+            </div>
+            <div className="row">
+              <div className="col-12">
+                <Reactions
+                currentUserId= {this.state.currentUserId}
+                eventId= {this.state.eventId}
+                like= {this.state.like}
+                heart= {this.state.heart}
+                happy= {this.state.happy}
+                sad= {this.state.sad}
+                wow= {this.state.wow}
+                angry= {this.state.angry}
+                dislike= {this.state.dislike}
+                clap= {this.state.clap}
+                eventDescription = {this.state.eventDescription}
+                />
+              </div>
             </div>
           </div>
         </div>

@@ -727,14 +727,19 @@
      width: 100% !important;
      position: absolute !important;
 } */
-div[data-react-class="_shared/FacebookLive"],
+div[data-react-class="FacebookLive"],
 .fb-wrapper, .fb-video, .fb-video iframe, .fb-video span {
     width: 100% !important;
     text-align: center !important;
 }
-div[data-react-class="_shared/YoutubeLive"],
-div[data-react-class="_shared/None"] {
+div[data-react-class="YoutubeLive"],
+div[data-react-class="None"] {
     width: 100%;
+}
+
+.youtube-wrapper,
+.fb-wrapper{
+  position: relative;
 }
 
 .image-card {
@@ -1221,10 +1226,10 @@ ul.sidebar-list{
   z-index: 1;
   background: rgb(13,17,82, 0.6);
   top: 15px;
+  width: 100%;
 }
 
 .question-wrapper {
-    position: relative;
     color: #fff;
 }
 
@@ -1233,7 +1238,7 @@ ul.sidebar-list{
       z-index: 1;
       background: rgb(13,17,82, 0.6);
       border-radius: 10px;
-      top: -250px;
+      top: 50%;
       margin: 0px 10px;
       padding: 10px;
 }
@@ -1264,9 +1269,43 @@ ul.sidebar-list{
   background-color: #dfd;
 }
 
+.answer--show {
+    background-color: #6A3BBD;
+    border-color: #6A3BBD;
+    border-radius: 7px;
+    padding: 10px 30px;
+    margin: 10px 0px;
+}
+
+.answer h3 {
+    font-size: 18px;
+}
+
+.answer h2 {
+    font-weight: 800;
+}
+
+fieldset{
+    border: solid 1px #DDD !important;
+    padding: 0 10px 20px 10px;
+    border-bottom: none;
+    color: #fff;
+}
+
+fieldset legend {
+    width: auto !important;
+    border: none;
+    font-size: 14px;
+    float: none;
+    color: #fff;
+}
+
 @media screen and (min-width:1024px){
-  div[data-react-class="_shared/FacebookLive"], .fb-wrapper, .fb-video, .fb-video iframe, .fb-video span{
+  div[data-react-class="FacebookLive"], .fb-wrapper, .fb-video, .fb-video iframe, .fb-video span{
     height: 100% !important;
+  }
+  fieldset{
+    height: 180px;
   }
 }
 
@@ -1419,7 +1458,7 @@ ul.sidebar-list{
      height: 70px;
    }
 
-   div[data-react-class="_shared/FacebookLive"], .fb-wrapper, .fb-video, .fb-video iframe, .fb-video span {
+   div[data-react-class="FacebookLive"], .fb-wrapper, .fb-video, .fb-video iframe, .fb-video span {
     height: 100% !important;
    }
 
@@ -1429,6 +1468,10 @@ ul.sidebar-list{
      margin: 0px;
      border-radius: 0px;
    }
+
+   .answer h3 {
+        margin: 20px 0px;
+    }
 
 
 }
