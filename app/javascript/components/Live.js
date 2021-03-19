@@ -29,7 +29,7 @@ class Live extends React.Component {
       angry: this.props.angry,
       dislike: this.props.dislike,
       clap: this.props.clap,
-      eventDescription: this.props.eventDescription,
+      eventDescription: this.props.eventDescription
     };
 
 
@@ -85,6 +85,14 @@ class Live extends React.Component {
                 dislike= {this.state.dislike}
                 clap= {this.state.clap}
                 eventDescription = {this.state.eventDescription}
+                countLike= {this.props.countLike}
+                countDislike= {this.props.countDislike}
+                countClap= {this.props.countClap}
+                countLove= {this.props.countLove}
+                countHaha= {this.props.countHaha}
+                countWow= {this.props.countWow}
+                countSad= {this.props.countSad}
+                countAngry= {this.props.countAngry}
                 />
               </div>
             </div>
@@ -112,6 +120,14 @@ Live.propTypes = {
   clap: PropTypes.bool.isRequired,
   eventDescription: PropTypes.string.isRequired,
   raffleId: PropTypes.number.isRequired,
+  countLike: PropTypes.number.isRequired,
+  countDislike: PropTypes.number.isRequired,
+  countClap: PropTypes.number.isRequired,
+  countLove: PropTypes.number.isRequired,
+  countHaha: PropTypes.number.isRequired,
+  countWow: PropTypes.number.isRequired,
+  countSad: PropTypes.number.isRequired,
+  countAngry: PropTypes.number.isRequired
 };
 
 export default Live

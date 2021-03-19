@@ -31,14 +31,14 @@ class Reactions extends React.Component {
       dislike: 7,
       clap: 8,
       currentEvent: {},
-      countLike: 0,
-      countDislike: 0,
-      countClap: 0,
-      countLove: 0,
-      countHaha: 0,
-      countWow: 0,
-      countSad: 0,
-      countAngry: 0,
+      countLike: this.props.countLike,
+      countDislike: this.props.countDislike,
+      countClap: this.props.countClap,
+      countLove: this.props.countLove,
+      countHaha: this.props.countHaha,
+      countWow: this.props.countWow,
+      countSad: this.props.countSad,
+      countAngry: this.props.countAngry
     };
     this.setLikeIcon = this.setLikeIcon.bind(this);
     this.setDislikeIcon = this.setDislikeIcon.bind(this);
@@ -186,7 +186,6 @@ class Reactions extends React.Component {
     // var label = document.getElementById("activeLabel");
     // image.src = (this.state.activeLike) ? (Like) : (Default);
     // label.innerHTML = (this.state.activeLike) ? "Like" : "Like";
-    console.log(cnt)
     if (this.state.activeLike) {
       createReaction(this.state.like, this.props.currentUserId, this.state.currentEvent.id)
     } else {
@@ -428,7 +427,15 @@ Reactions.propTypes = {
   wow: PropTypes.bool.isRequired,
   angry: PropTypes.bool.isRequired,
   dislike: PropTypes.bool.isRequired,
-  clap: PropTypes.bool.isRequired
+  clap: PropTypes.bool.isRequired,
+  countLike: PropTypes.number.isRequired,
+  countDislike: PropTypes.number.isRequired,
+  countClap: PropTypes.number.isRequired,
+  countLove: PropTypes.number.isRequired,
+  countHaha: PropTypes.number.isRequired,
+  countWow: PropTypes.number.isRequired,
+  countSad: PropTypes.number.isRequired,
+  countAngry: PropTypes.number.isRequired
 };
 
 function createReaction(emotion, userId, eventId) {

@@ -9,7 +9,7 @@ class EventDescription extends React.Component {
       <div className="event-description">
         <div className="row">
           <div className="col-12 col-md-12 col-lg-8 event-description--content">
-            <h5>Event Description</h5>
+            <h5>Event</h5>
             <p>{this.props.eventDescription}</p>
           </div>
           <div className="col-12 col-md-12 col-lg-4 event-description--number">

@@ -12,9 +12,8 @@
 #
 # Indexes
 #
-#  index_reactions_on_event_id                                      (event_id)
-#  index_reactions_on_event_id_and_responder_id_and_responder_type  (event_id,responder_id,responder_type) UNIQUE
-#  index_reactions_on_responder_type_and_responder_id               (responder_type,responder_id)
+#  index_reactions_on_event_id                         (event_id)
+#  index_reactions_on_responder_type_and_responder_id  (responder_type,responder_id)
 #
 class Reaction < ApplicationRecord
   belongs_to :responder, polymorphic: true
@@ -41,7 +40,7 @@ class Reaction < ApplicationRecord
     CLAP => "Clap"
   }
 
-  validates :event_id, uniqueness: { scope: [:responder_id, :responder_type] }
+  # validates :event_id, uniqueness: { scope: [:responder_id, :responder_type] }
 
   scope :default, -> { where(emotion: DEFAULT) }
   scope :like, -> { where(emotion: LIKE) }
@@ -52,6 +51,8 @@ class Reaction < ApplicationRecord
   scope :angry, -> { where(emotion: ANGRY) }
   scope :dislike, -> { where(emotion: DISLIKE) }
   scope :clap, -> { where(emotion: CLAP) }
+  scope :count_reactions, -> (emotion, responder_type, responder_id, event_id) { where(emotion: emotion,
+    responder_type: responder_type, responder_id: responder_id, event_id: event_id).count }
 
   def default?
     emotion == DEFAULT
