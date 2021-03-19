@@ -53,6 +53,7 @@ class GuestList < ApplicationRecord
   scope :not_eligible, -> { where(raffle_status: NOT_ELIGIBLE) }
   scope :won, -> { where(raffle_status: WON) }
   scope :sorted, -> { order(created_at: :asc) }
+  scope :invitation, -> (user, event) { find_by(user: user, event: event) }
 
   def status_name
     STATUSES[status]

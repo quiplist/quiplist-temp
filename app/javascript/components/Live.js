@@ -20,6 +20,7 @@ class Live extends React.Component {
       url: this.props.url,
       eventId: this.props.eventId,
       currentUserId: this.props.currentUserId,
+      raffleId: this.props.raffleId,
       like: this.props.like,
       heart: this.props.heart,
       happy: this.props.happy,
@@ -62,7 +63,7 @@ class Live extends React.Component {
               <div className="col-12">
                 <EventDescription
                 eventDescription = {this.state.eventDescription}
-                currentUserId = {this.state.currentUserId} />
+                raffleId = {this.state.raffleId} />
               </div>
             </div>
             <div className="row">
@@ -109,7 +110,8 @@ Live.propTypes = {
   angry: PropTypes.bool.isRequired,
   dislike: PropTypes.bool.isRequired,
   clap: PropTypes.bool.isRequired,
-  eventDescription: PropTypes.string.isRequired
+  eventDescription: PropTypes.string.isRequired,
+  raffleId: PropTypes.number.isRequired,
 };
 
 export default Live

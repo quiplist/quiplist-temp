@@ -13,7 +13,7 @@ class EventDescription extends React.Component {
             <p>{this.props.eventDescription}</p>
           </div>
           <div className="col-12 col-md-12 col-lg-4 event-description--number">
-            <h3 className="currentNumber">{this.props.currentUserId}</h3>
+            <h3 className="currentNumber">{this.props.raffleId}</h3>
             <h4> You are # </h4>
           </div>
         </div>
@@ -25,7 +25,7 @@ class EventDescription extends React.Component {
 
 EventDescription.propTypes = {
   eventDescription: PropTypes.string,
-  currentUserId: PropTypes.number
+  raffleId: PropTypes.number
 };
 
 export default EventDescription
