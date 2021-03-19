@@ -152,6 +152,10 @@ class Event < ApplicationRecord
     stream_type == YOUTUBE_VIDEO
   end
 
+  def no_video?
+    stream_type == NONE
+  end
+
   def lived_stream?
     LIVE_STREAMS.include? stream_type
   end

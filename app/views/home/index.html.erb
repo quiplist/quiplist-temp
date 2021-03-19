@@ -3,7 +3,7 @@
       <%= react_component("Live", {
         fbVideo: @event.fb_video?,
         ytVideo: @event.youtube_video?,
-        noVideo: false,
+        noVideo: @event.no_video?,
         url: @event.stream_key,
         eventId: @event.id,
         currentUserId: @current_user.id,
