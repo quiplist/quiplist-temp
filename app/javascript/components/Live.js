@@ -102,7 +102,6 @@ class Live extends React.Component {
             <div className="row">
               <div className="col-12">
                 <Chat
-                eventId={this.state.eventId}
                 addChat={chat => this.addChat(chat)}
                 chats={this.state.chats}
                 currentEvent={this.state.currentEvent}
@@ -113,7 +112,7 @@ class Live extends React.Component {
               <div className="col-12">
                 <Reactions
                 currentUserId= {this.state.currentUserId}
-                eventId= {this.state.eventId}
+                currentEvent={this.state.currentEvent}
                 like= {this.state.like}
                 heart= {this.state.heart}
                 happy= {this.state.happy}
@@ -142,31 +141,31 @@ class Live extends React.Component {
   }
 }
 
-Live.propTypes = {
-  fbVideo: PropTypes.bool.isRequired,
-  ytVideo: PropTypes.bool.isRequired,
-  noVideo: PropTypes.bool.isRequired,
-  url: PropTypes.string.isRequired,
-  eventId: PropTypes.number.isRequired,
-  currentUserId: PropTypes.number.isRequired,
-  like: PropTypes.bool.isRequired,
-  heart: PropTypes.bool.isRequired,
-  happy: PropTypes.bool.isRequired,
-  sad: PropTypes.bool.isRequired,
-  wow: PropTypes.bool.isRequired,
-  angry: PropTypes.bool.isRequired,
-  dislike: PropTypes.bool.isRequired,
-  clap: PropTypes.bool.isRequired,
-  eventDescription: PropTypes.string.isRequired,
-  raffleId: PropTypes.number.isRequired,
-  countLike: PropTypes.number.isRequired,
-  countDislike: PropTypes.number.isRequired,
-  countClap: PropTypes.number.isRequired,
-  countLove: PropTypes.number.isRequired,
-  countHaha: PropTypes.number.isRequired,
-  countWow: PropTypes.number.isRequired,
-  countSad: PropTypes.number.isRequired,
-  countAngry: PropTypes.number.isRequired
-};
+// Live.propTypes = {
+//   fbVideo: PropTypes.bool.isRequired,
+//   ytVideo: PropTypes.bool.isRequired,
+//   noVideo: PropTypes.bool.isRequired,
+//   url: PropTypes.string.isRequired,
+//   eventId: PropTypes.number.isRequired,
+//   currentUserId: PropTypes.number.isRequired,
+//   like: PropTypes.bool.isRequired,
+//   heart: PropTypes.bool.isRequired,
+//   happy: PropTypes.bool.isRequired,
+//   sad: PropTypes.bool.isRequired,
+//   wow: PropTypes.bool.isRequired,
+//   angry: PropTypes.bool.isRequired,
+//   dislike: PropTypes.bool.isRequired,
+//   clap: PropTypes.bool.isRequired,
+//   eventDescription: PropTypes.string.isRequired,
+//   raffleId: PropTypes.number.isRequired,
+//   countLike: PropTypes.number.isRequired,
+//   countDislike: PropTypes.number.isRequired,
+//   countClap: PropTypes.number.isRequired,
+//   countLove: PropTypes.number.isRequired,
+//   countHaha: PropTypes.number.isRequired,
+//   countWow: PropTypes.number.isRequired,
+//   countSad: PropTypes.number.isRequired,
+//   countAngry: PropTypes.number.isRequired
+// };
 
 export default Live
