@@ -94,4 +94,8 @@ class Reaction < ApplicationRecord
     EMOTIONS[emotion]
   end
 
+  def message
+    "#{self.responder.full_name} #{emotion_name}!"
+  end
+
 end

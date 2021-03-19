@@ -8,6 +8,7 @@ import Reactions from "./Reactions";
 import EventDescription from "./EventDescription";
 import Announcement from "./Announcement";
 import Actions from "./Actions";
+import ActionCable from 'actioncable';
 
 class Live extends React.Component {
   constructor(props) {
@@ -29,10 +30,42 @@ class Live extends React.Component {
       angry: this.props.angry,
       dislike: this.props.dislike,
       clap: this.props.clap,
-      eventDescription: this.props.eventDescription
+      eventDescription: this.props.eventDescription,
+      chats: [],
+      currentEvent: {}
     };
 
 
+  }
+
+  componentDidMount() {
+    this.cable = ActionCable.createConsumer('/cable');
+
+    const fetchEventUrl = `/api/v1/events/${this.props.eventId}`;
+    fetch(fetchEventUrl)
+    .then(resp => resp.json())
+    .then(result => {
+      this.setState({ currentEvent: result })
+      this.setState({ chats: result.chats })
+    });
+
+    this.eventsChannel = this.cable.subscriptions.create(
+      {
+        channel: `EventsChannel`,
+        id: this.props.eventId
+      },{
+        connected: () => {
+          console.log("connected!")
+        },
+        disconnected: () => {},
+        received: data => {
+          this.addChat(data.result)
+        }
+      });
+  }
+
+  addChat = chat => {
+    this.setState(state => ({ chats: [...state.chats, chat] }))
   }
 
 
@@ -68,7 +101,12 @@ class Live extends React.Component {
             </div>
             <div className="row">
               <div className="col-12">
-                <Chat eventId={this.state.eventId}/>
+                <Chat
+                eventId={this.state.eventId}
+                addChat={chat => this.addChat(chat)}
+                chats={this.state.chats}
+                currentEvent={this.state.currentEvent}
+                chatCable={this.eventsChannel}/>
               </div>
             </div>
             <div className="row">
@@ -93,6 +131,7 @@ class Live extends React.Component {
                 countWow= {this.props.countWow}
                 countSad= {this.props.countSad}
                 countAngry= {this.props.countAngry}
+                chatCable={this.eventsChannel}
                 />
               </div>
             </div>

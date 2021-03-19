@@ -3,6 +3,7 @@
 # Table name: chats
 #
 #  id          :bigint           not null, primary key
+#  chat_type   :integer          default(0)
 #  message     :string
 #  sender_type :string
 #  created_at  :datetime         not null

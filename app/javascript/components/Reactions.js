@@ -187,7 +187,7 @@ class Reactions extends React.Component {
     // image.src = (this.state.activeLike) ? (Like) : (Default);
     // label.innerHTML = (this.state.activeLike) ? "Like" : "Like";
     if (this.state.activeLike) {
-      createReaction(this.state.like, this.props.currentUserId, this.state.currentEvent.id)
+      createReaction(this.state.like, this.props.currentUserId, this.state.currentEvent.id, this.props.chatCable)
     } else {
       // destroyReaction(this.props.currentUserId, this.state.currentEvent.id)
     }
@@ -213,7 +213,7 @@ class Reactions extends React.Component {
     // label.innerHTML = (this.state.activeDislike) ? "Dislike" : "Like";
 
     if (this.state.activeDislike) {
-      createReaction(this.state.dislike, this.props.currentUserId, this.state.currentEvent.id)
+      createReaction(this.state.dislike, this.props.currentUserId, this.state.currentEvent.id, this.props.chatCable)
     } else {
       //destroyReaction(this.props.currentUserId, this.state.currentEvent.id)
     }
@@ -239,7 +239,7 @@ class Reactions extends React.Component {
     // label.innerHTML = (this.state.activeClap) ? "Clap" : "Like";
 
     if (this.state.activeClap) {
-      createReaction(this.state.clap, this.props.currentUserId, this.state.currentEvent.id)
+      createReaction(this.state.clap, this.props.currentUserId, this.state.currentEvent.id, this.props.chatCable)
     } else {
       //destroyReaction(this.props.currentUserId, this.state.currentEvent.id)
     }
@@ -265,7 +265,7 @@ class Reactions extends React.Component {
     // label.innerHTML = (this.state.activeHeart) ? "Heart" : "Like";
 
     if (this.state.activeHeart) {
-      createReaction(this.state.heart, this.props.currentUserId, this.state.currentEvent.id)
+      createReaction(this.state.heart, this.props.currentUserId, this.state.currentEvent.id, this.props.chatCable)
     } else {
       //destroyReaction(this.props.currentUserId, this.state.currentEvent.id)
     }
@@ -291,7 +291,7 @@ class Reactions extends React.Component {
     // label.innerHTML = (this.state.activeHappy) ? "Haha" : "Like";
 
     if (this.state.activeHappy) {
-      createReaction(this.state.happy, this.props.currentUserId, this.state.currentEvent.id)
+      createReaction(this.state.happy, this.props.currentUserId, this.state.currentEvent.id, this.props.chatCable)
     } else {
       //destroyReaction(this.props.currentUserId, this.state.currentEvent.id)
     }
@@ -317,7 +317,7 @@ class Reactions extends React.Component {
     // label.innerHTML = (this.state.activeWow) ? "Wow" : "Like";
 
     if (this.state.activeWow) {
-      createReaction(this.state.wow, this.props.currentUserId, this.state.currentEvent.id)
+      createReaction(this.state.wow, this.props.currentUserId, this.state.currentEvent.id, this.props.chatCable)
     } else {
       //destroyReaction(this.props.currentUserId, this.state.currentEvent.id)
     }
@@ -343,7 +343,7 @@ class Reactions extends React.Component {
     // label.innerHTML = (this.state.activeSad) ? "Sad" : "Like";
 
     if (this.state.activeSad) {
-      createReaction(this.state.sad, this.props.currentUserId, this.state.currentEvent.id)
+      createReaction(this.state.sad, this.props.currentUserId, this.state.currentEvent.id, this.props.chatCable)
     } else {
       //destroyReaction(this.props.currentUserId, this.state.currentEvent.id)
     }
@@ -369,7 +369,7 @@ class Reactions extends React.Component {
     // label.innerHTML = (this.state.activeAngry) ? "Angry" : "Like";
 
     if (this.state.activeAngry) {
-      createReaction(this.state.angry, this.props.currentUserId, this.state.currentEvent.id)
+      createReaction(this.state.angry, this.props.currentUserId, this.state.currentEvent.id, this.props.chatCable)
     } else {
       //destroyReaction(this.props.currentUserId, this.state.currentEvent.id)
     }
@@ -417,28 +417,28 @@ class Reactions extends React.Component {
   }
 }
 
-Reactions.propTypes = {
-  eventId: PropTypes.number.isRequired,
-  currentUserId: PropTypes.number.isRequired,
-  like: PropTypes.bool.isRequired,
-  heart: PropTypes.bool.isRequired,
-  happy: PropTypes.bool.isRequired,
-  sad: PropTypes.bool.isRequired,
-  wow: PropTypes.bool.isRequired,
-  angry: PropTypes.bool.isRequired,
-  dislike: PropTypes.bool.isRequired,
-  clap: PropTypes.bool.isRequired,
-  countLike: PropTypes.number.isRequired,
-  countDislike: PropTypes.number.isRequired,
-  countClap: PropTypes.number.isRequired,
-  countLove: PropTypes.number.isRequired,
-  countHaha: PropTypes.number.isRequired,
-  countWow: PropTypes.number.isRequired,
-  countSad: PropTypes.number.isRequired,
-  countAngry: PropTypes.number.isRequired
-};
+// Reactions.propTypes = {
+//   eventId: PropTypes.number.isRequired,
+//   currentUserId: PropTypes.number.isRequired,
+//   like: PropTypes.bool.isRequired,
+//   heart: PropTypes.bool.isRequired,
+//   happy: PropTypes.bool.isRequired,
+//   sad: PropTypes.bool.isRequired,
+//   wow: PropTypes.bool.isRequired,
+//   angry: PropTypes.bool.isRequired,
+//   dislike: PropTypes.bool.isRequired,
+//   clap: PropTypes.bool.isRequired,
+//   countLike: PropTypes.number.isRequired,
+//   countDislike: PropTypes.number.isRequired,
+//   countClap: PropTypes.number.isRequired,
+//   countLove: PropTypes.number.isRequired,
+//   countHaha: PropTypes.number.isRequired,
+//   countWow: PropTypes.number.isRequired,
+//   countSad: PropTypes.number.isRequired,
+//   countAngry: PropTypes.number.isRequired
+// };
 
-function createReaction(emotion, userId, eventId) {
+function createReaction(emotion, userId, eventId, chatCable) {
   const url = "/api/v1/reactions";
   const body = {
     reaction: {
@@ -455,13 +455,11 @@ function createReaction(emotion, userId, eventId) {
       "Content-Type": "application/json"
     },
     body: JSON.stringify(body)
-  }).then(response => {
-    if (response.ok) {
-      return response.json();
-    }
-    console.log(response)
-    throw new Error(response);
-  }).catch(error => console.log(error.message));
+  }).then(resp => resp.json())
+  .then(result => {
+    //this.addChat(result)
+    chatCable.send({result})
+  })
 
 }
 
