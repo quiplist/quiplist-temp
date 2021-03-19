@@ -25,7 +25,8 @@
         countHaha: Reaction.count_reactions(Reaction::HAPPY, "User", current_user.id, @event.id),
         countWow: Reaction.count_reactions(Reaction::WOW, "User", current_user.id, @event.id),
         countSad: Reaction.count_reactions(Reaction::SAD, "User", current_user.id, @event.id),
-        countAngry: Reaction.count_reactions(Reaction::ANGRY, "User", current_user.id, @event.id)
+        countAngry: Reaction.count_reactions(Reaction::ANGRY, "User", current_user.id, @event.id),
+        hasBrochure: @event.has_brochure?
       })%>
 
   </div>

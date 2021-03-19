@@ -95,8 +95,9 @@ class Live extends React.Component {
             <div className="row">
               <div className="col-12">
                 <EventDescription
-                eventDescription = {this.state.eventDescription}
-                raffleId = {this.state.raffleId} />
+                currentEvent = {this.state.currentEvent}
+                raffleId = {this.state.raffleId}
+                hasBrochure = {this.props.hasBrochure} />
               </div>
             </div>
             <div className="row">

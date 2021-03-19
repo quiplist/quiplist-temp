@@ -171,4 +171,8 @@ class Event < ApplicationRecord
   def event_type_name
     EVENT_TYPES[event_type]
   end
+
+  def has_brochure?
+    !brochure.file.nil?
+  end
 end
