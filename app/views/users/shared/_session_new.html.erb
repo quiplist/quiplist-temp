@@ -1,6 +1,5 @@
 <div class="col col-lg-6 px-5 py-3 img-wrapper">
     <h2 style="color: <%= "#{@event.session_mouse_out}"%>">Login</h2>
-    <h5 class="mb-3" style="color: <%= "#{@event.session_mouse_out}"%>">Doesn't have an account yet? <%= link_to "Sign up", new_user_registration_path(event_code: @event.event_code), style: "color: #{@event.session_mouse_out};", onmouseover:"this.style.color='#{@event.session_mouse_over}'", onmouseout:"this.style.color='#{@event.session_mouse_out}'"%></h5>
     <% if notice %>
       <p class="alert alert-success"><%= notice %></p>
     <% end %>
