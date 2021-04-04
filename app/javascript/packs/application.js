@@ -6,6 +6,7 @@
 //require("@rails/ujs").start()
 //require("turbolinks").start()
 require("@rails/activestorage").start()
+require('datatables.net-dt');
 //require("channels")
 
 
@@ -31,6 +32,8 @@ $(document).ready(function () {
     //$("#event_id_guest_list").DataTable();
 
     //stream key fields
+    $('.data-table').DataTable({
+    });
 
     var btnEdit = $( ".btn-edit" );
     for(var i = 0; i < btnEdit.length; i++){

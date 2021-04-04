@@ -104,7 +104,7 @@
     <!-- FontAwesome -->
     <script src="https://kit.fontawesome.com/3a36b194f0.js" crossorigin="anonymous"></script><!-- jQuery Custom Scroller CDN -->
     <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.concat.min.js"></script> -->
-    <!-- <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.23/js/jquery.dataTables.js"></script> -->
+    <script src="https://cdn.datatables.net/1.10.23/js/jquery.dataTables.js"></script>
     <!-- Swal JS -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
@@ -120,6 +120,13 @@
               $('a[aria-expanded=true]').attr('aria-expanded', 'false');
           });
       });
+    </script> -->
+    <!-- <script type='text/javascript'>
+
+      $(document).ready(function() {
+          $('.data-table').DataTable();
+      } );
+
     </script> -->
   </body>
 </html>

@@ -7,12 +7,12 @@
   load_and_authorize_resource :event
 
   def index
-    page = params[:page] || 1
-    per_page = params[:per_page] || 10
-    search = params[:search]
+    # page = params[:page] || 1
+    # per_page = params[:per_page] || 10
+    # search = params[:search]
     @events = current_admin.events if current_admin.admin?
-    @events = @events.search(search) if search.present?
-    @events = @events.accessible_by(current_ability).sorted.page(page).per(per_page)
+    #@events = @events.search(search) if search.present?
+    @events = @events.accessible_by(current_ability).sorted#.page(page).per(per_page)
     @event = Event.new
   end
 

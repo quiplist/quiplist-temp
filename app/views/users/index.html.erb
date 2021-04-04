@@ -3,7 +3,7 @@
   <%= render partial: "layouts/shared/alert_messages", locals: { messages: flash[:alert] } %>
   <div class="row">
     <div class="col col-lg-12">
-      <table id="user_list" class="table">
+      <table id="user_list" class="table data-table">
         <thead>
           <tr>
             <th>Full Name</th>
@@ -37,7 +37,3 @@
     </div>
   </div>
 </div>
-
-<%= link_to_previous_page @users, '<< previous ' %>
-<%= page_entries_info @users %>
-<%= link_to_next_page @users, ' next >>' %>

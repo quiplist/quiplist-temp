@@ -8,6 +8,7 @@ environment.plugins.append(
     'Provide',
     new webpack.ProvidePlugin({
         $: 'jquery',
-        jQuery: 'jquery'
+        jQuery: 'jquery',
+        DataTable: 'datatables.net-dt/js/dataTables.dataTables'
     })
 )

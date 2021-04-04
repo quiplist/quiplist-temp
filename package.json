@@ -10,6 +10,7 @@
     "actioncable": "^5.2.4-4",
     "babel-plugin-transform-react-remove-prop-types": "^0.4.24",
     "datatables.net-bs4": "^1.10.23",
+    "datatables.net-dt": "^1.10.24",
     "jquery": "^3.5.1",
     "popper.js": "^1.16.1",
     "prop-types": "^15.7.2",
