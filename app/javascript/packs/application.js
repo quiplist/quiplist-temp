@@ -114,6 +114,60 @@ $(document).ready(function () {
         $(".user_dropdown").toggle();
       })
     }
+
+    //admin dashboard questionnaire
+    var raffle_slct = $("#raffle_choices");
+    if(raffle_slct.length > 0){
+        $(".multiple-choice-wrapper").addClass("show-question");
+
+        $("#raffle_choices").on("change", function(){
+            var raffle_val = $(this).val()
+            switch(raffle_val) {
+                // multiple choice
+                case '0':
+                    $(".multiple-choice-wrapper").addClass("show-question");
+                    $(".yes-no-wrapper").removeClass("show-question");
+                    $(".identification-wrapper").removeClass("show-question");
+                    $(".poll-wrapper").removeClass("show-question");
+                    $(".select-letters-wrapper").removeClass("show-question");
+                    break;
+                // yes or no
+                case '1':
+                    $(".yes-no-wrapper").addClass("show-question");
+                    $(".multiple-choice-wrapper").removeClass("show-question");
+                    $(".identification-wrapper").removeClass("show-question");
+                    $(".poll-wrapper").removeClass("show-question");
+                    $(".select-letters-wrapper").removeClass("show-question");
+                    break;
+                //identification
+                case '2':
+                    $(".identification-wrapper").addClass("show-question");
+                    $(".multiple-choice-wrapper").removeClass("show-question");
+                    $(".yes-no-wrapper").removeClass("show-question");
+                    $(".poll-wrapper").removeClass("show-question");
+                    $(".select-letters-wrapper").removeClass("show-question");
+                    break;
+                //select letters
+                case '3':
+                  $(".select-letters-wrapper").addClass("show-question");
+                  $(".multiple-choice-wrapper").removeClass("show-question");
+                  $(".yes-no-wrapper").removeClass("show-question");
+                  $(".poll-wrapper").removeClass("show-question");
+                  $(".identification-wrapper").removeClass("show-question");
+                  break;
+                //poll
+                case '5':
+                    $(".poll-wrapper").addClass("show-question");
+                    $(".multiple-choice-wrapper").removeClass("show-question");
+                    $(".yes-no-wrapper").removeClass("show-question");
+                    $(".identification-wrapper").removeClass("show-question");
+                    $(".select-letters-wrapper").removeClass("show-question");
+                    break;
+                default:
+                    console.log("mc");
+            }
+        })
+    }
 });
 
 window.streamValueTypeChange = function(id) {

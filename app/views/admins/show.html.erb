@@ -9,25 +9,32 @@
       <hr/>
   </div>
   <div class="row text-start mb-3">
-      <div class="col col-lg-12">
-          <h5>Information:</h5>
+      <div class="col col-lg-4">
           <div class="admin_wrapper">
-              <span class="mr-3"><strong>Email Address:</strong></span>
+              <span class="mr-3"><strong>Email Address:</strong></span><br>
               <span class="admin_detail"><%= @admin.email %></span>
           </div>
-          <div class="event_time_wrapper">
-              <span class="mr-3"><strong>Affiliation:</strong></span>
-              <span class="admin_detail"><%= @admin.affiliation %></span>
-          </div>
-          <div class="event_time_wrapper">
-              <span class="mr-3"><strong>Member Type:</strong></span>
-              <span class="admin_detail"><%= @admin.member_name %></span>
-          </div>
-          <div class="event_time_wrapper">
-              <span class="mr-3"><strong>Member Id:</strong></span>
-              <span class="admin_detail"><%= @admin.member_id %></span>
-          </div>
       </div>
+      <div class="col col-lg-4">
+        <div class="admin_wrapper">
+            <span class="mr-3"><strong>Affiliation:</strong></span><br>
+            <span class="admin_detail"><%= @admin.affiliation %></span>
+        </div>
+      </div>
+  </div>
+  <div class="row text-start mb-3">
+    <div class="col col-lg-4">
+      <div class="admin_wrapper">
+        <span class="mr-3"><strong>Member Type:</strong></span><br>
+        <span class="admin_detail"><%= @admin.member_name %></span>
+      </div>
+    </div>
+    <div class="col col-lg-4">
+      <div class="admin_wrapper">
+          <span class="mr-3"><strong>Member Id:</strong></span><br>
+          <span class="admin_detail"><%= @admin.member_id %></span>
+      </div>
+    </div>
   </div>
     <div class="row">
       <div class="col col-lg-12">

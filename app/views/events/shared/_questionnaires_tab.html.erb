@@ -1,7 +1,4 @@
 <div class="tab-pane fade show" id="nav-questionnaires" role="tabpanel" aria-labelledby="nav-questionnaires-tab">
-  <% if (can? :create, Questionnaire) %>
-    <%= link_to "Create", new_event_questionnaire_path(event_id: @event.id), class: 'btn' %>
-  <% end %>
   <table id="event_id_guest_list" class="table">
     <thead>
       <tr>
@@ -40,4 +37,9 @@
   <%= link_to_previous_page @questionnaires, '<< ', class: "text-primary" %>
   <%= page_entries_info @questionnaires %>
   <%= link_to_next_page @questionnaires, ' >>', class: "text-primary" %>
+
+  <% if (can? :create, Questionnaire) %>
+  </br>
+  <%= link_to "Add Question", new_event_questionnaire_path(event_id: @event.id), class: 'btn btn-blue mt-2' %>
+  <% end %>
 </div>
