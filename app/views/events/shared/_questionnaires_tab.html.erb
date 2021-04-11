@@ -32,7 +32,7 @@
     </tbody>
   </table>
   <div>
-    Export: <%= link_to "CSV", download_csv_event_guest_lists_path(@event, format: "csv"), class: "text-primary" %>
+    <%= link_to "Export CSV", download_csv_event_guest_lists_path(@event, format: "csv"), class: "btn-dowload-csv" %>
   </div>
   <%= link_to_previous_page @questionnaires, '<< ', class: "text-primary" %>
   <%= page_entries_info @questionnaires %>

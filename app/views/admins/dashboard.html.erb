@@ -1,0 +1,15 @@
+<div class="container content-wrapper">
+  <%= render partial: "layouts/shared/success_messages", locals: { messages: flash[:notice] } %>
+  <%= render partial: "layouts/shared/alert_messages", locals: { messages: flash[:alert] } %>
+  <div class="row text-end mb-3">
+    <div class="col-6">
+      <!-- events status https://chartkick.com/ -->
+      <%= pie_chart Event.group(:status).count, title: "Events Status" %>
+    </div>
+    <div class="col-6">
+      <!-- count events -->
+      <%= column_chart Event.group(:start_date).count, title: "Number of Events" %>
+    </div>
+  </div>
+  
+</div>

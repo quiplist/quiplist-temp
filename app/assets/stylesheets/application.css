@@ -304,15 +304,16 @@
      margin-top: 50px;
      padding: 20px;
      overflow: auto;
+     height: 100vh;
 }
  .dataTables_wrapper{
      overflow: auto;
 }
  .btn-blue {
-     background: #090567 !important;
+     background: #3943CB !important;
      color: #fff !important;
      font-weight: 600;
-     border: 1px solid #090567 !important;
+     border: 1px solid #3943CB !important;
 }
  .btn-blue:hover {
      background: #090593 !important;
@@ -970,8 +971,6 @@ a.sidebar_menu {
     background: #f1f1f1;
     padding: 10px;
     text-align: right;
-    bottom: 0;
-    position: fixed;
     width: 100%;
 }
 
@@ -1003,6 +1002,38 @@ a.sidebar_menu {
 hr{
     color: #000;
     opacity: 1;
+}
+
+.data-table th {
+    color: #737374;
+}
+
+.data-table td {
+    color: #909090;
+}
+
+.dataTables_filter{
+    margin: 10px 0px;
+}
+
+.data-table {
+    margin: 20px 0px;
+}
+
+.data-table th, .data-table td {
+    border: 1px solid #BEBFBF;
+}
+
+.data-table .queued{
+    color: #eb1e23;
+}
+
+.data-table .going{
+    color: #f9ae39;
+}
+
+.data-table .done{
+    color: #8DD497;
 }
 
 .dataTables_wrapper label {
@@ -1085,7 +1116,6 @@ form.create-event_form input, form.create-event_form textarea, form.create-event
     color: #f9ae39;
 }
 
-.dataTables_wrapper .on-going,
 .dataTables_wrapper .btn-delete {
     background: #eb1e23;
 }
@@ -1096,9 +1126,6 @@ form.create-event_form input, form.create-event_form textarea, form.create-event
     color: #eb1e23;
 }
 
-.dataTables_wrapper .done {
-    background: #69bb45;
-}
 
 .dataTables_wrapper .btn-view {
     background: #3943ca;
@@ -1115,6 +1142,18 @@ form.create-event_form input, form.create-event_form textarea, form.create-event
     color: #fff;
     font-family: "Arial";
     border: 0;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.btn-user{
+    color: #917BB8;
+    font-weight: 700;
+}
+
+.btn-reset{
+    background: #917BB8;
+    color: #fff;
 }
 
 .btn-dowload-csv:hover{
@@ -1526,5 +1565,7 @@ fieldset legend {
         margin: 20px 0px;
     }
 
-
+    .sidebar_wrapper .footer{
+        text-align: center;
+    }
 }

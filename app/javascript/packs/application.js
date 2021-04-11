@@ -7,6 +7,9 @@
 //require("turbolinks").start()
 require("@rails/activestorage").start()
 require('datatables.net-dt');
+require("chartkick/chart.js")
+require("chartkick")
+require("chart.js")
 //require("channels")
 
 
@@ -116,6 +119,7 @@ $(document).ready(function () {
       $(dropdown_trigger).click(function(){
         $(".user_dropdown").toggle();
       })
+
     }
 
     //admin dashboard questionnaire
@@ -170,6 +174,32 @@ $(document).ready(function () {
                     console.log("mc");
             }
         })
+    }
+
+    //admin dashboard status
+
+    var eventForm = $('.event-status');
+    if(eventForm.length > 0){
+        for(var i = 0; i <= eventForm.length; i++){
+            var eventValue = $('select#'+i);
+            switch(eventValue.val()){
+                case '0':
+                        eventValue.addClass('queued');
+                        eventValue.removeClass('going');
+                        eventValue.removeClass('done');
+                    break;
+                case '1':
+                        eventValue.addClass('going');
+                        eventValue.removeClass('queued');
+                        eventValue.removeClass('done');
+                    break;
+                case '2':
+                        eventValue.addClass('done');
+                        eventValue.removeClass('queued');
+                        eventValue.removeClass('going');
+                    break;
+            }
+        }
     }
 });
 
