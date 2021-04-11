@@ -14,7 +14,7 @@
       <h2 class="event_title"><%= @event.title %></h2>
       <span class="event_status"><%= @event.status_name %></span>
       <% if can? :manage, Raffle %>
-        <%= link_to "Raffle Draw", draw_raffles_event_path(@event), class: "btn btn-edit btn-lg event_raffle", target: :_blank %>
+        <%= link_to "Go to Event", launch_event_path(@event), class: "btn btn-edit btn-lg event_raffle", target: :_blank %>
       <% end %>
       <h5 class="event_code"><%= @event.event_code %></h5>
 

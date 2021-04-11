@@ -158,7 +158,7 @@ class Live extends React.Component {
             <div className="row">
               <div className="col-12">
                 <Reactions
-                currentUserId= {this.state.currentUserId}
+                currentUser= {this.state.currentUser}
                 currentEvent={this.state.currentEvent}
                 like= {this.state.like}
                 heart= {this.state.heart}
@@ -168,7 +168,6 @@ class Live extends React.Component {
                 angry= {this.state.angry}
                 dislike= {this.state.dislike}
                 clap= {this.state.clap}
-                eventDescription = {this.state.eventDescription}
                 countLike= {this.props.countLike}
                 countDislike= {this.props.countDislike}
                 countClap= {this.props.countClap}

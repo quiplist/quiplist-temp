@@ -187,9 +187,9 @@ class Reactions extends React.Component {
     // image.src = (this.state.activeLike) ? (Like) : (Default);
     // label.innerHTML = (this.state.activeLike) ? "Like" : "Like";
     if (this.state.activeLike) {
-      createReaction(this.state.like, this.props.currentUserId, this.props.currentEvent.id, this.props.chatCable)
+      createReaction(this.state.like, this.props.currentUser.id, this.props.currentUser.user_type, this.props.currentEvent.id, this.props.chatCable)
     } else {
-      // destroyReaction(this.props.currentUserId, this.props.currentEvent.id)
+      // destroyReaction(this.props.currentUser.id, this.props.currentUser.user_type, this.props.currentEvent.id)
     }
   }
 
@@ -213,9 +213,9 @@ class Reactions extends React.Component {
     // label.innerHTML = (this.state.activeDislike) ? "Dislike" : "Like";
 
     if (this.state.activeDislike) {
-      createReaction(this.state.dislike, this.props.currentUserId, this.props.currentEvent.id, this.props.chatCable)
+      createReaction(this.state.dislike, this.props.currentUser.id, this.props.currentUser.user_type, this.props.currentEvent.id, this.props.chatCable)
     } else {
-      //destroyReaction(this.props.currentUserId, this.props.currentEvent.id)
+      //destroyReaction(this.props.currentUser.id, this.props.currentUser.user_type, this.props.currentEvent.id)
     }
   }
 
@@ -239,9 +239,9 @@ class Reactions extends React.Component {
     // label.innerHTML = (this.state.activeClap) ? "Clap" : "Like";
 
     if (this.state.activeClap) {
-      createReaction(this.state.clap, this.props.currentUserId, this.props.currentEvent.id, this.props.chatCable)
+      createReaction(this.state.clap, this.props.currentUser.id, this.props.currentUser.user_type, this.props.currentEvent.id, this.props.chatCable)
     } else {
-      //destroyReaction(this.props.currentUserId, this.props.currentEvent.id)
+      //destroyReaction(this.props.currentUser.id, this.props.currentUser.user_type, this.props.currentEvent.id)
     }
   }
 
@@ -265,9 +265,9 @@ class Reactions extends React.Component {
     // label.innerHTML = (this.state.activeHeart) ? "Heart" : "Like";
 
     if (this.state.activeHeart) {
-      createReaction(this.state.heart, this.props.currentUserId, this.props.currentEvent.id, this.props.chatCable)
+      createReaction(this.state.heart, this.props.currentUser.id, this.props.currentUser.user_type, this.props.currentEvent.id, this.props.chatCable)
     } else {
-      //destroyReaction(this.props.currentUserId, this.props.currentEvent.id)
+      //destroyReaction(this.props.currentUser.id, this.props.currentUser.user_type, this.props.currentEvent.id)
     }
   }
 
@@ -291,9 +291,9 @@ class Reactions extends React.Component {
     // label.innerHTML = (this.state.activeHappy) ? "Haha" : "Like";
 
     if (this.state.activeHappy) {
-      createReaction(this.state.happy, this.props.currentUserId, this.props.currentEvent.id, this.props.chatCable)
+      createReaction(this.state.happy, this.props.currentUser.id, this.props.currentUser.user_type, this.props.currentEvent.id, this.props.chatCable)
     } else {
-      //destroyReaction(this.props.currentUserId, this.props.currentEvent.id)
+      //destroyReaction(this.props.currentUser.id, this.props.currentUser.user_type, this.props.currentEvent.id)
     }
   }
 
@@ -317,9 +317,9 @@ class Reactions extends React.Component {
     // label.innerHTML = (this.state.activeWow) ? "Wow" : "Like";
 
     if (this.state.activeWow) {
-      createReaction(this.state.wow, this.props.currentUserId, this.props.currentEvent.id, this.props.chatCable)
+      createReaction(this.state.wow, this.props.currentUser.id, this.props.currentUser.user_type, this.props.currentEvent.id, this.props.chatCable)
     } else {
-      //destroyReaction(this.props.currentUserId, this.props.currentEvent.id)
+      //destroyReaction(this.props.currentUser.id, this.props.currentUser.user_type, this.props.currentEvent.id)
     }
   }
 
@@ -343,9 +343,9 @@ class Reactions extends React.Component {
     // label.innerHTML = (this.state.activeSad) ? "Sad" : "Like";
 
     if (this.state.activeSad) {
-      createReaction(this.state.sad, this.props.currentUserId, this.props.currentEvent.id, this.props.chatCable)
+      createReaction(this.state.sad, this.props.currentUser.id, this.props.currentUser.user_type, this.props.currentEvent.id, this.props.chatCable)
     } else {
-      //destroyReaction(this.props.currentUserId, this.props.currentEvent.id)
+      //destroyReaction(this.props.currentUser.id, this.props.currentUser.user_type, this.props.currentEvent.id)
     }
   }
 
@@ -369,9 +369,9 @@ class Reactions extends React.Component {
     // label.innerHTML = (this.state.activeAngry) ? "Angry" : "Like";
 
     if (this.state.activeAngry) {
-      createReaction(this.state.angry, this.props.currentUserId, this.props.currentEvent.id, this.props.chatCable)
+      createReaction(this.state.angry, this.props.currentUser.id, this.props.currentUser.user_type, this.props.currentEvent.id, this.props.chatCable)
     } else {
-      //destroyReaction(this.props.currentUserId, this.props.currentEvent.id)
+      //destroyReaction(this.props.currentUser.id, this.props.currentUser.user_type, this.props.currentEvent.id)
     }
   }
 
@@ -438,13 +438,13 @@ class Reactions extends React.Component {
 //   countAngry: PropTypes.number.isRequired
 // };
 
-function createReaction(emotion, userId, eventId, chatCable) {
+function createReaction(emotion, userId, userType, eventId, chatCable) {
   const url = "/api/v1/reactions";
   const body = {
     reaction: {
       emotion: emotion,
       responder_id: userId,
-      responder_type: "User",
+      responder_type: userType,
       event_id: eventId
     }
   };
