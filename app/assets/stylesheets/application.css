@@ -235,6 +235,10 @@
      color: #fff;
      background: #6d7fcc;
 }
+.sidebar--box{
+    height: 84px;
+    background: #142694;
+}
  a[data-toggle="collapse"] {
      position: relative;
 }
@@ -855,7 +859,6 @@ div[data-react-class="None"] {
     left: 0;
     background-color: #090567;
     overflow-x: hidden;
-    padding: 10px;
 }
 
 .sidebar_wrapper .content {
@@ -1231,7 +1234,7 @@ ul.sidebar-list li {
 }
 
 ul.sidebar-list{
-  margin-top: 50px;
+  margin-top: 20px;
 }
 
 .raffle-form-wrapper,
