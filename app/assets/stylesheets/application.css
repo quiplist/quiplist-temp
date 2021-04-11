@@ -114,13 +114,13 @@
  .register-wrapper {
      max-width: 1000px;
      margin: 0 auto;
-     -webkit-box-shadow: 0px 0px 15px 5px #CDCDCD;
-     box-shadow: 0px 0px 15px 5px #CDCDCD;
+     /* -webkit-box-shadow: 0px 0px 15px 5px #CDCDCD;
+     box-shadow: 0px 0px 15px 5px #CDCDCD; */
      background: #fff;
      font-family: 'Montserrat', sans-serif;
      color: #fff;
-     border-radius: 5px;
-     margin-top: 150px;
+     border-radius: 10px;
+     /* margin-top: 150px; */
 }
  .register-wrapper h2{
      font-family: 'Montserrat', sans-serif;
