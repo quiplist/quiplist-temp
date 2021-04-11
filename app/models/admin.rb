@@ -33,6 +33,7 @@ class Admin < ApplicationRecord
   has_many :admin_events, dependent: :destroy
   has_many :events, through: :admin_events
   has_many :access_rights, dependent: :destroy
+  has_many :announcements, dependent: :destroy
 
   mount_uploader :profile_image, ProfileImageUploader
 

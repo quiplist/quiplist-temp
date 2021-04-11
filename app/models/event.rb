@@ -70,6 +70,7 @@ class Event < ApplicationRecord
   has_many :chats, dependent: :destroy
   has_many :admin_events, dependent: :destroy
   has_many :admins, through: :admin_events
+  has_many :announcements, dependent: :destroy
 
   mount_uploader :brochure, BrochureUploader
   mount_uploader :stream_video, StreamVideoUploader

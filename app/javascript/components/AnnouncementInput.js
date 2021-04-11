@@ -2,22 +2,46 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
 class AnnouncementInput extends Component {
-  static propTypes = {
-    onSubmitMessage: PropTypes.func.isRequired,
-  }
+
   state = {
     message: '',
   }
 
   onMouseOver = event => {
     const el = event.target;
-    el.style.background = this.props.mouseOver;
+    el.style.background = this.props.currentEvent.mouseOver;
   };
 
   onMouseOut = event => {
     const el = event.target;
-    el.style.background = this.props.mouseOut;
+    el.style.background = this.props.currentEvent.main_mouse_out;
   };
+
+  submitAnnouncement = messageString => {
+    // on submitting the ChatInput form, send the message, add it to the list and reset the input
+    const url = `/api/v1/announcements?event_id=${this.props.currentEvent.id}`;
+    const body = {
+      announcement: {
+        admin_id: 1,
+        message: messageString,
+        event_id: this.props.currentEvent.id
+      }
+    }
+
+    fetch(url, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json"
+        },
+        body: JSON.stringify(body)
+    })
+    .then(resp => resp.json())
+    .then(result => {
+      this.props.announcementCable.send({result})
+    })
+  }
+
 
   render() {
     return (
@@ -25,7 +49,7 @@ class AnnouncementInput extends Component {
         action="."
         onSubmit={e => {
           e.preventDefault()
-          this.props.onSubmitMessage(this.state.message)
+          this.submitAnnouncement(this.state.message)
           this.setState({ message: '' })
         }}>
         <div className="announcement-input mt-3">
@@ -36,7 +60,7 @@ class AnnouncementInput extends Component {
                  />
               <input
                 type="submit" value={'Send'}
-                style={{ background : this.props.mouseOut, border : '1px solid' + this.props.mouseOut }}
+                style={{ background : this.props.currentEvent.main_mouse_out, border : '1px solid' + this.props.currentEvent.main_mouse_out }}
                 onMouseEnter={event => this.onMouseOver(event)}
                 onMouseOut={event => this.onMouseOut(event)} />
         </div>

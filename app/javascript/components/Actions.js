@@ -37,8 +37,12 @@ class Actions extends React.Component {
             <div className="action-wrapper">
               <fieldset>
                 <legend>Announcement</legend>
-                <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, </p>
-                <AnnouncementInput/>
+                <p>Input message here: </p>
+                <AnnouncementInput
+                currentEvent = {this.props.currentEvent}
+                currentUser = {this.props.currentUser}
+                announcementCable = {this.props.announcementCable}
+                updateAnnouncement = {announcement => this.props.updateAnnouncement(announcement)} />
               </fieldset>
             </div>
           </div>
@@ -48,8 +52,8 @@ class Actions extends React.Component {
   }
 }
 
-Actions.propTypes = {
-  eventId: PropTypes.number.isRequired
-};
+// Actions.propTypes = {
+//   eventId: PropTypes.number.isRequired
+// };
 
 export default Actions

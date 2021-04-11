@@ -32,7 +32,10 @@ class Live extends React.Component {
       clap: this.props.clap,
       eventDescription: this.props.eventDescription,
       chats: [],
-      currentEvent: {}
+      currentEvent: {},
+      announcements: [],
+      currentAnnouncement: {},
+      currentUser: {}
     };
 
 
@@ -47,6 +50,20 @@ class Live extends React.Component {
     .then(result => {
       this.setState({ currentEvent: result })
       this.setState({ chats: result.chats })
+      this.setState({ announcements: result.announcements })
+    });
+
+    fetch('/api/v1/fetch_current_user')
+    .then(response => response.json())
+    .then(result => {
+      this.setState({ currentUser: result })
+    });
+
+    const fetchAnnouncementUrl = `/api/v1/announcements?event_id=${this.props.eventId}`;
+    fetch(fetchAnnouncementUrl)
+    .then(response => response.json())
+    .then(result => {
+      this.setState({ currentAnnouncement: result })
     });
 
     this.eventsChannel = this.cable.subscriptions.create(
@@ -62,12 +79,29 @@ class Live extends React.Component {
           this.addChat(data.result)
         }
       });
+
+    this.announcementsChannel = this.cable.subscriptions.create(
+      {
+        channel: `AnnouncementsChannel`,
+        id: this.props.eventId
+      },{
+        connected: () => {
+          console.log("connected!")
+        },
+        disconnected: () => {},
+        received: data => {
+          this.updateAnnouncement(data.result)
+        }
+      });
   }
 
   addChat = chat => {
     this.setState(state => ({ chats: [...state.chats, chat] }))
   }
 
+  updateAnnouncement = announcement => {
+    this.setState(state => ({ currentAnnouncement: announcement }))
+  }
 
   render() {
     const isFB = this.state.isFB;
@@ -85,10 +119,16 @@ class Live extends React.Component {
 
     return (
       <div>
-        <Actions eventId={this.state.eventId}/>
+        <Actions
+        currentUser = {this.state.currentUser}
+        currentEvent = {this.state.currentEvent}
+        announcementCable = {this.announcementsChannel}
+        updateAnnouncement = {announcement => this.updateAnnouncement(announcement)} />
         <div className="row">
           <div className="col-12 col-md-12 col-lg-8">
-              <Announcement />
+              <Announcement
+              announcements = {this.state.announcements}
+              currentAnnouncement = {this.state.currentAnnouncement} />
               {video}
           </div>
           <div className="col-12 col-md-12 col-lg-4">
@@ -106,6 +146,7 @@ class Live extends React.Component {
                 addChat={chat => this.addChat(chat)}
                 chats={this.state.chats}
                 currentEvent={this.state.currentEvent}
+                currentUser = {this.state.currentUser}
                 chatCable={this.eventsChannel}/>
               </div>
             </div>

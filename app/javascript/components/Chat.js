@@ -8,7 +8,7 @@ class Chat extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      currentUser: {},
+      //currentUser: {},
       // currentEvent: {},
       //currentEvent: this.props.currentEvent,
       //chats: []
@@ -31,11 +31,11 @@ class Chat extends React.Component {
     this.scrollToBottom();
     // this.cable = ActionCable.createConsumer('/cable');
 
-    fetch('/api/v1/fetch_current_user')
-    .then(response => response.json())
-    .then(result => {
-      this.setState({ currentUser: result })
-    });
+    // fetch('/api/v1/fetch_current_user')
+    // .then(response => response.json())
+    // .then(result => {
+    //   this.setState({ currentUser: result })
+    // });
 
     // const fetchEventUrl = `/api/v1/events/${this.props.eventId}`;
     // fetch(fetchEventUrl)
@@ -70,8 +70,8 @@ class Chat extends React.Component {
     const url = "/api/v1/chats";
     const body = {
       chat: {
-        sender_id: this.state.currentUser.id,
-        sender_type: this.state.currentUser.user_type,
+        sender_id: this.props.currentUser.id,
+        sender_type: this.props.currentUser.user_type,
         message: messageString,
         event_id: this.props.currentEvent.id
       }
@@ -104,7 +104,7 @@ class Chat extends React.Component {
               <ChatMessage
                 key={index}
                 chat={chat}
-                currentUser={this.state.currentUser}
+                currentUser={this.props.currentUser}
               />,
             )}
           </div>
