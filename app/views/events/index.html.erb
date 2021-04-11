@@ -39,7 +39,7 @@
   </div>
   <div class="row">
     <div class="col col-lg-12">
-      <table id="events_list" class="table">
+      <table id="events_list" class="table data-table">
         <thead>
           <tr>
             <th>Event Title</th>
@@ -47,8 +47,6 @@
             <th>Type</th>
             <th>Event Date</th>
             <th>Status</th>
-            <th></th>
-            <th></th>
             <th></th>
           </tr>
         </thead>
@@ -120,7 +118,3 @@
     </div>
   </div>
 </div>
-
-<%= link_to_previous_page @events, '<< previous ' %>
-<%= page_entries_info @events %>
-<%= link_to_next_page @events, ' next >>' %>

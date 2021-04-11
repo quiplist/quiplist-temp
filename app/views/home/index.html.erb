@@ -1,45 +1,33 @@
 <div class="chat-live-wrapper" style="<%= @event.main_background? ? "background-image: url(\'#{@event.main_background.url}\')" : "" %>">
-  <div class="container px-5 py-3">
-      <div class="row">
-            <div class="col-12 col-md-8 col-lg-8">
-              <div class="row">
-                <div class="col-12">
-                    <div class="video-wrapper">
-                      <% if @event.fb_video? %>
-                        <%= render partial: "home/shared/facebook_live", locals: { url: @event.stream_key } %>
-                      <% elsif @event.youtube_video? %>
-                        <%= render partial: "home/shared/youtube_live", locals: { url: @event.stream_key }  %>
-                      <% else %>
-                        <%= render partial: "home/shared/none" %>
-                      <% end %>
-                    </div>
-                </div>
-                <div class="col-12">
-                  <%= react_component("Reactions", {
-                    currentUserId: @current_user.id,
-                    eventId: @event.id,
-                    like: @reaction.like?,
-                    heart: @reaction.heart?,
-                    happy: @reaction.happy?,
-                    sad: @reaction.sad?,
-                    wow: @reaction.wow?,
-                    angry: @reaction.angry?,
-                    dislike: @reaction.dislike?,
-                    clap: @reaction.clap?
+  <div class="container-fluid px-3 py-5">
+      <%= react_component("Live", {
+        fbVideo: @event.fb_video?,
+        ytVideo: @event.youtube_video?,
+        noVideo: @event.no_video?,
+        url: @event.stream_key,
+        eventId: @event.id,
+        currentUserId: @current_user.id,
+        eventId: @event.id,
+        like: @reaction.like?,
+        heart: @reaction.heart?,
+        happy: @reaction.happy?,
+        sad: @reaction.sad?,
+        wow: @reaction.wow?,
+        angry: @reaction.angry?,
+        dislike: @reaction.dislike?,
+        clap: @reaction.clap?,
+        eventDescription: @event.description,
+        raffleId: @guest.raffle_number,
+        countLike: Reaction.count_reactions(Reaction::LIKE, "User", current_user.id, @event.id),
+        countDislike: Reaction.count_reactions(Reaction::DISLIKE, "User", current_user.id, @event.id),
+        countClap: Reaction.count_reactions(Reaction::CLAP, "User", current_user.id, @event.id),
+        countLove: Reaction.count_reactions(Reaction::HEART, "User", current_user.id, @event.id),
+        countHaha: Reaction.count_reactions(Reaction::HAPPY, "User", current_user.id, @event.id),
+        countWow: Reaction.count_reactions(Reaction::WOW, "User", current_user.id, @event.id),
+        countSad: Reaction.count_reactions(Reaction::SAD, "User", current_user.id, @event.id),
+        countAngry: Reaction.count_reactions(Reaction::ANGRY, "User", current_user.id, @event.id),
+        hasBrochure: @event.has_brochure?
+      })%>
 
-                  }) %>
-                  <br/>
-                  <p style="color: <%= @event.main_background_color %>"><%= @event.description %></p>
-                  <br/>
-                  <% unless @event&.brochure&.file.nil? %>
-                    <p style="color: <%= @event.main_background_color %>">Click <%= link_to "here", @event.brochure.url, target: :_blank, style: "color: #{@event.main_mouse_out};", onmouseover:"this.style.color='#{@event.main_mouse_over}'", onmouseout:"this.style.color='#{@event.main_mouse_out}'" %> to download your brochure.</p>
-                  <% end %>
-                </div>
-              </div>
-            </div>
-            <div class="col-12 col-md-4 col-lg-4">
-              <%= react_component("Chat", { eventId: @event.id })%>
-            </div>
-      </div>
   </div>
 </div>

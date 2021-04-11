@@ -3,6 +3,7 @@
 # Table name: chats
 #
 #  id          :bigint           not null, primary key
+#  chat_type   :integer          default(0)
 #  message     :string
 #  sender_type :string
 #  created_at  :datetime         not null
@@ -19,5 +20,26 @@ class Chat < ApplicationRecord
   belongs_to :sender, polymorphic: true
   belongs_to :event
 
+  DEFAULT = 0
+  REACTION = 1
+
+  CHAT_TYPES = {
+    DEFAULT => "Default",
+    REACTION => "Reaction"
+  }
+
   default_scope { order(created_at: :asc) }
+
+  def default?
+    chat_type == DEFAULT
+  end
+
+  def reaction?
+    chat_type == REACTION
+  end
+
+  def chat_type_name
+    CHAT_TYPES[message_type]
+  end
+
 end

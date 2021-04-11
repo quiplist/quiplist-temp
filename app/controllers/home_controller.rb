@@ -8,10 +8,10 @@ class HomeController < ApplicationController
     render_404 if @event.nil?
 
     GuestList.create_guest_list(current_user, @event)
-    guest = GuestList.where(user: current_user, event: @event).first
-    if guest.pending?
+    @guest = GuestList.invitation(current_user, @event)
+    if @guest.pending?
       redirect_to thank_you_path(event_code: @event.event_code)
-    elsif guest.denied?
+    elsif @guest.denied?
       redirect_to denied_path(event_code: @event.event_code)
     end
   end
@@ -19,10 +19,10 @@ class HomeController < ApplicationController
   def thank_you
     render_404 if @event.nil?
 
-    guest = GuestList.where(user: current_user, event: @event).first
-    if guest.approved?
+    @guest = GuestList.invitation(current_user, @event)
+    if @guest.approved?
       redirect_to home_path(event_code: @event.event_code)
-    elsif guest.denied?
+    elsif @guest.denied?
       redirect_to denied_path(event_code: @event.event_code)
     end
   end
@@ -30,10 +30,10 @@ class HomeController < ApplicationController
   def denied
     render_404 if @event.nil?
 
-    guest = GuestList.where(user: current_user, event: @event).first
-    if guest.approved?
+    @guest = GuestList.invitation(current_user, @event)
+    if @guest.approved?
       redirect_to home_path(event_code: @event.event_code)
-    elsif guest.pending?
+    elsif @guest.pending?
       redirect_to thank_you_path(event_code: @event.event_code)
     end
   end

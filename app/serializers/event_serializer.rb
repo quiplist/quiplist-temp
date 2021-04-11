@@ -63,11 +63,17 @@
 #  required_member_id          :boolean          default(FALSE)
 #
 class EventSerializer < ActiveModel::Serializer
-  attributes :id, :title, :description, :event_code, :main_mouse_out, :main_mouse_over
+  attributes :id, :title, :description, :event_code, :main_background, :main_background_color,
+    :main_mouse_out, :main_mouse_over, :session_background, :session_background_color,
+    :session_mouse_out, :session_mouse_over, :brochure, :stream_key, :brochure_url
 
   has_many :guest_lists
   has_many :users, through: :guest_lists
   has_many :chats
+
+  def brochure_url
+    object.has_brochure? ? object.brochure.url : ""
+  end
 
 
 end

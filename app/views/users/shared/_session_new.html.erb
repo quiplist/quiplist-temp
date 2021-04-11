@@ -1,0 +1,24 @@
+<div class="col col-lg-6 px-5 py-3 img-wrapper">
+    <h2 style="color: <%= "#{@event.session_mouse_out}"%>">Login</h2>
+    <% if notice %>
+      <p class="alert alert-success"><%= notice %></p>
+    <% end %>
+    <% if alert %>
+      <p class="alert alert-danger"><%= alert %></p>
+    <% end %>
+    <%= form_for(resource, as: resource_name, url: session_path(resource_name), html: { class: 'text-center'} ) do |f| %>
+      <div class="mb-3">
+        <%= f.label :email, style: "color: #{@event.session_mouse_out};" %><br />
+        <%= f.email_field :email, class: "form-control", autofocus: true, autocomplete: "email" %>
+      </div>
+
+      <div class="mb-3">
+        <%= f.label :password, style: "color: #{@event.session_mouse_out};" %><br />
+        <%= f.password_field :password, class: "form-control", autocomplete: "current-password" %>
+      </div>
+
+      <div class="actions">
+        <%= f.submit "Sign in", class:"btn btn-sign-in", style: "background: #{@event.session_mouse_out};", onmouseover:"this.style.background='#{@event.session_mouse_over}'", onmouseout:"this.style.background='#{@event.session_mouse_out}'" %>
+      </div>
+    <% end %>
+</div>

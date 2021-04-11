@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_14_053308) do
+ActiveRecord::Schema.define(version: 2021_03_19_154439) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -67,6 +67,7 @@ ActiveRecord::Schema.define(version: 2021_03_14_053308) do
     t.string "message"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "chat_type", default: 0
     t.index ["event_id"], name: "index_chats_on_event_id"
     t.index ["sender_type", "sender_id"], name: "index_chats_on_sender_type_and_sender_id"
   end
@@ -177,7 +178,6 @@ ActiveRecord::Schema.define(version: 2021_03_14_053308) do
     t.integer "emotion", default: 0
     t.datetime "created_at", precision: 6, default: -> { "now()" }, null: false
     t.datetime "updated_at", precision: 6, default: -> { "now()" }, null: false
-    t.index ["event_id", "responder_id", "responder_type"], name: "index_reactions_on_event_id_and_responder_id_and_responder_type", unique: true
     t.index ["event_id"], name: "index_reactions_on_event_id"
     t.index ["responder_type", "responder_id"], name: "index_reactions_on_responder_type_and_responder_id"
   end
