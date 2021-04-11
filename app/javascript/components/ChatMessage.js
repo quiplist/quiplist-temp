@@ -8,7 +8,7 @@ class ChatMessage extends Component {
     } else {
       if ((this.props.chat.sender_type === 'Admin') &&
           (this.props.currentUser.user_type === 'Admin')) {
-        classNameValue += 'current-admin-message'
+        classNameValue += ' current-admin-message'
       } if ((this.props.chat.sender_id === parseInt(this.props.currentUser.id)) &&
             (this.props.chat.sender_type === this.props.currentUser.user_type)) {
         classNameValue += ' current-user-message'

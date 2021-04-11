@@ -22,7 +22,7 @@ class AnnouncementInput extends Component {
     const url = `/api/v1/announcements?event_id=${this.props.currentEvent.id}`;
     const body = {
       announcement: {
-        admin_id: 1,
+        admin_id: this.props.currentUser.id,
         message: messageString,
         event_id: this.props.currentEvent.id
       }

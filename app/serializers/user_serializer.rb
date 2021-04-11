@@ -48,6 +48,6 @@ class UserSerializer < ActiveModel::Serializer
   end
 
   def user_type
-    object.client? ? "User" : "Admin"
+    (object.admin? || object.super_admin?) ? "Admin" : "User"
   end
 end

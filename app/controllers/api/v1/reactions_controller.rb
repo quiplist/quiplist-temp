@@ -2,6 +2,7 @@ class Api::V1::ReactionsController < Api::ApplicationController
 
   def create
     @reaction = Reaction.new(reaction_params)
+    puts "============= #{params}\n\n\n"
     if @reaction.save
       @chat = Chat.new(sender_id: @reaction.responder_id, sender_type: @reaction.responder_type,
         event_id: @reaction.event_id, message: @reaction.message, chat_type: Chat::REACTION)

@@ -4,6 +4,7 @@
   #layout 'raffle', only: [:draw_raffles]
 
   before_action :authenticate_admin!
+  before_action :fetch_reaction, only: [:launch]
   load_and_authorize_resource :event
 
   def index
@@ -130,6 +131,9 @@
   #   redirect_to events_path, notice: "Guest #{guest_list.user.full_name} updated successfully!"
   # end
 
+  def launch
+  end
+
   private
 
   def event_params
@@ -155,5 +159,9 @@
 
   def winner_params
     params.require(:guest_list).permit(:raffle_status)
+  end
+
+  def fetch_reaction
+    @reaction = current_admin.reactions.first || current_admin.reactions.new
   end
 end

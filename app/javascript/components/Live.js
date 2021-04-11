@@ -107,6 +107,7 @@ class Live extends React.Component {
     const isFB = this.state.isFB;
     const isYT = this.state.isYT;
     const isNone = this.state.isNoVideo;
+    const isAdmin = (this.state.currentUser.user_type === 'Admin')
     let video;
 
     if(isFB){
@@ -119,11 +120,15 @@ class Live extends React.Component {
 
     return (
       <div>
-        <Actions
-        currentUser = {this.state.currentUser}
-        currentEvent = {this.state.currentEvent}
-        announcementCable = {this.announcementsChannel}
-        updateAnnouncement = {announcement => this.updateAnnouncement(announcement)} />
+      {isAdmin ?
+        (<Actions
+          currentUser = {this.state.currentUser}
+          currentEvent = {this.state.currentEvent}
+          announcementCable = {this.announcementsChannel}
+          updateAnnouncement = {announcement => this.updateAnnouncement(announcement)} />)
+        : ""
+      }
+
         <div className="row">
           <div className="col-12 col-md-12 col-lg-8">
               <Announcement

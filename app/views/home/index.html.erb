@@ -18,14 +18,14 @@
         clap: @reaction.clap?,
         eventDescription: @event.description,
         raffleId: @guest.raffle_number,
-        countLike: Reaction.count_reactions(Reaction::LIKE, "User", current_user.id, @event.id),
-        countDislike: Reaction.count_reactions(Reaction::DISLIKE, "User", current_user.id, @event.id),
-        countClap: Reaction.count_reactions(Reaction::CLAP, "User", current_user.id, @event.id),
-        countLove: Reaction.count_reactions(Reaction::HEART, "User", current_user.id, @event.id),
-        countHaha: Reaction.count_reactions(Reaction::HAPPY, "User", current_user.id, @event.id),
-        countWow: Reaction.count_reactions(Reaction::WOW, "User", current_user.id, @event.id),
-        countSad: Reaction.count_reactions(Reaction::SAD, "User", current_user.id, @event.id),
-        countAngry: Reaction.count_reactions(Reaction::ANGRY, "User", current_user.id, @event.id),
+        countLike: Reaction.count_reactions(Reaction::LIKE, "User", @current_user.id, @event.id),
+        countDislike: Reaction.count_reactions(Reaction::DISLIKE, "User", @current_user.id, @event.id),
+        countClap: Reaction.count_reactions(Reaction::CLAP, "User", @current_user.id, @event.id),
+        countLove: Reaction.count_reactions(Reaction::HEART, "User", @current_user.id, @event.id),
+        countHaha: Reaction.count_reactions(Reaction::HAPPY, "User", @current_user.id, @event.id),
+        countWow: Reaction.count_reactions(Reaction::WOW, "User", @current_user.id, @event.id),
+        countSad: Reaction.count_reactions(Reaction::SAD, "User", @current_user.id, @event.id),
+        countAngry: Reaction.count_reactions(Reaction::ANGRY, "User", @current_user.id, @event.id),
         hasBrochure: @event.has_brochure?
       })%>
 
