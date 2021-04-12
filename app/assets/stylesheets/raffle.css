@@ -2,21 +2,13 @@
     background: url("CSI BG.jpg") no-repeat;
     background-size: cover;
     height: 100vh;
+    display: flex;
     justify-content: center;
     align-items: center;
 }
 
-.raffle-wrapper .row{
-    height: 100vh;
-    display: flex;
-    align-items: center;
-    max-width: 900px;
-    margin: 0 auto;
-}
-
 .draw-btn-wrapper {
   display: flex;
-  justify-content: center;
 }
 
 .name-wrapper {
@@ -38,7 +30,7 @@
     height: 100%;
     background-repeat: no-repeat;
     background-size: contain;
-    top: -90px;
+    top: -95px;
     left: 0;
 }
 
@@ -56,8 +48,9 @@
     font-family: "Montserrat", sans-serif;
     font-weight: 700;
     font-size: 22px;
+    margin-top: 20px;
     padding: 10px 40px;
-    margin: 20px 5px;
+    margin: 20px 10px;
 }
 
 .btn-winner {
@@ -70,6 +63,7 @@
     font-size: 22px;
     margin-top: 20px;
     padding: 10px 30px;
+    margin: 20px 10px;
 }
 
 .btn-winner:hover{
@@ -100,7 +94,15 @@
     }
 
     .name-wrapper:before {
-        top: -36px;
+        content: '';
+        background: url(../img/winner_template_header.png);
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background-repeat: no-repeat;
+        background-size: contain;
+        top: -40px;
+        left: 0;
     }
 }
 
