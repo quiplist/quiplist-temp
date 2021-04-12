@@ -4,31 +4,37 @@
   <div class="row">
       <div class="col-12 text-start">
           <h2 class="event_title"><%= @user.full_name %></h2>
-          <span class="event_status"><%= @user.role_name %></span>
       </div>
-      <hr/>
   </div>
   <div class="row text-start mb-3">
-      <div class="col col-lg-12">
-          <h5>Information:</h5>
+      <div class="col col-lg-4">
           <div class="user_wrapper">
-              <span class="mr-3"><strong>Email Address:</strong></span>
+              <span class="mr-3"><strong>Email Address:</strong></span><br>
               <span class="user_detail"><%= @user.email %></span>
           </div>
-          <div class="event_time_wrapper">
-              <span class="mr-3"><strong>Affiliation:</strong></span>
-              <span class="user_detail"><%= @user.affiliation %></span>
-          </div>
-          <div class="event_time_wrapper">
-              <span class="mr-3"><strong>Member Type:</strong></span>
-              <span class="user_detail"><%= @user.member_name %></span>
-          </div>
-          <div class="event_time_wrapper">
-              <span class="mr-3"><strong>Member Id:</strong></span>
-              <span class="user_detail"><%= @user.member_id %></span>
-          </div>
+      </div>
+      <div class="col col-lg-4">
+        <div class="user_wrapper">
+            <span class="mr-3"><strong>Affiliation:</strong></span><br>
+            <span class="user_detail"><%= @user.affiliation %></span>
+        </div>
       </div>
   </div>
+  <div class="row text-start mb-3">
+    <div class="col col-lg-4">
+        <div class="user_wrapper">
+            <span class="mr-3"><strong>Member Type:</strong></span><br>
+            <span class="user_detail"><%= @user.member_name %></span>
+        </div>
+    </div>
+    <div class="col col-lg-4">
+        <div class="user_wrapper">
+            <span class="mr-3"><strong>Member Id:</strong></span><br>
+            <span class="user_detail"><%= @user.member_id %></span>
+        </div>
+    </div>
+  </div>
+  
     <div class="row">
       <div class="col col-lg-12">
         <hr/>

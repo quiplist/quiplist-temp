@@ -1,7 +1,7 @@
 <div class="container content-wrapper">
   <div class="row mb-3">
     <div class="col-12 text-start">
-      <h2 class="event_title">Create Admin</h2>
+      <h4>Details</h4>
     </div>
     <hr/>
   </div>
@@ -10,7 +10,7 @@
       <%= render partial: "layouts/shared/error_messages", locals: { messages: @admin.errors.full_messages } %>
       <%= render partial: "admins/shared/form", locals: {f: f, with_password: true} %>
       <div class="row">
-        <div class="col-12 text-end">
+        <div class="col-12 text-center">
           <%= submit_tag "Create Admin", class: "btn btn-submit" %>
         </div>
       </div>

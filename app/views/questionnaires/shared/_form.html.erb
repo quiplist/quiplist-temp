@@ -7,7 +7,7 @@
       <div class="row">
         <div class="col col-lg-6">
           <label for="questionnaireType">Questionnaire Type</label>
-          <%= f.select :questionnaire_type, Questionnaire::QUESTIONNAIRE_TYPES.invert, {}, { class: 'form-select' } %>
+          <%= f.select :questionnaire_type, Questionnaire::QUESTIONNAIRE_TYPES.invert, {}, { class: 'form-select', id: 'raffle_choices' } %>
         </div>
         <div class="col col-lg-6">
           <label for="question">Question</label>
@@ -15,107 +15,128 @@
         </div>
       </div>
     </div>
-    <div class="col-12 col-lg-2">
-        <label for="choices">Choices</label>
-    </div>
-    <div class="mb-3">
-      <div class="row">
-        <div class="col col-lg-6">
-          <%= f.text_field :choices, multiple: true, class: 'form-control', placeholder: "A" %>
-        </div>
-        <div class="col col-lg-6">
-          <%= f.text_field :choices, multiple: true, class: 'form-control', placeholder: "B" %>
+
+    <div class="multiple-choice-wrapper">
+      <div class="col-12 col-lg-2">
+          <label for="choices">Choices</label>
+      </div>
+      <div class="mb-3">
+        <div class="row">
+          <div class="col col-lg-6">
+            <%= f.text_field :choices, multiple: true, class: 'form-control', placeholder: "A" %>
+          </div>
+          <div class="col col-lg-6">
+            <%= f.text_field :choices, multiple: true, class: 'form-control', placeholder: "B" %>
+          </div>
         </div>
       </div>
-    </div>
-    <div class="mb-3">
-      <div class="row">
-        <div class="col col-lg-6">
-          <%= f.text_field :choices, multiple: true, class: 'form-control', placeholder: "C" %>
-        </div>
-        <div class="col col-lg-6">
-          <%= f.text_field :choices, multiple: true, class: 'form-control', placeholder: "D" %>
-        </div>
-      </div>
-    </div>
-    <div class="mb-3">
-      <div class="row">
-        <div class="col col-lg-6">
-          <%= f.text_field :choices, multiple: true, class: 'form-control', placeholder: "Yes" %>
-        </div>
-        <div class="col col-lg-6">
-          <%= f.text_field :choices, multiple: true, class: 'form-control', placeholder: "No" %>
+      <div class="mb-3">
+        <div class="row">
+          <div class="col col-lg-6">
+            <%= f.text_field :choices, multiple: true, class: 'form-control', placeholder: "C" %>
+          </div>
+          <div class="col col-lg-6">
+            <%= f.text_field :choices, multiple: true, class: 'form-control', placeholder: "D" %>
+          </div>
         </div>
       </div>
     </div>
 
-    <div class="mb-3">
-      <div class="row">
-        <div class="col col-lg-1">
-          <%= f.text_field :choices, multiple: true, class: 'form-control', placeholder: "" %>
-        </div>
-        <div class="col col-lg-1">
-          <%= f.text_field :choices, multiple: true, class: 'form-control', placeholder: "" %>
-        </div>
-        <div class="col col-lg-1">
-          <%= f.text_field :choices, multiple: true, class: 'form-control', placeholder: "" %>
-        </div>
-        <div class="col col-lg-1">
-          <%= f.text_field :choices, multiple: true, class: 'form-control', placeholder: "" %>
-        </div>
-        <div class="col col-lg-1">
-          <%= f.text_field :choices, multiple: true, class: 'form-control', placeholder: "" %>
-        </div>
-        <div class="col col-lg-1">
-          <%= f.text_field :choices, multiple: true, class: 'form-control', placeholder: "" %>
-        </div>
-        <div class="col col-lg-1">
-          <%= f.text_field :choices, multiple: true, class: 'form-control', placeholder: "" %>
-        </div>
-        <div class="col col-lg-1">
-          <%= f.text_field :choices, multiple: true, class: 'form-control', placeholder: "" %>
-        </div>
-        <div class="col col-lg-1">
-          <%= f.text_field :choices, multiple: true, class: 'form-control', placeholder: "" %>
-        </div>
-        <div class="col col-lg-1">
-          <%= f.text_field :choices, multiple: true, class: 'form-control', placeholder: "" %>
-        </div>
-        <div class="col col-lg-1">
-          <%= f.text_field :choices, multiple: true, class: 'form-control', placeholder: "" %>
-        </div>
-        <div class="col col-lg-1">
-          <%= f.text_field :choices, multiple: true, class: 'form-control', placeholder: "" %>
+    <div class="yes-no-wrapper">
+      <div class="col-12 col-lg-2">
+          <label for="choices">Choices</label>
+      </div>
+      <div class="mb-3">
+        <div class="row">
+          <div class="col col-lg-6">
+            <%= f.text_field :choices, multiple: true, class: 'form-control', placeholder: "Yes" %>
+          </div>
+          <div class="col col-lg-6">
+            <%= f.text_field :choices, multiple: true, class: 'form-control', placeholder: "No" %>
+          </div>
         </div>
       </div>
     </div>
 
-    <div class="mb-3">
-      <div class="row">
-        <div class="col col-lg-6">
-          <%= f.text_field :choices, multiple: true, class: 'form-control', placeholder: "Poll" %>
-        </div>
-        <div class="col col-lg-6">
-          <%= f.text_field :choices, multiple: true, class: 'form-control', placeholder: "Poll" %>
-        </div>
+    <div class="select-letters-wrapper">
+      <div class="col-12 col-lg-2">
+          <label for="choices">Choices</label>
       </div>
-    </div>
-    <div class="mb-3">
-      <div class="row">
-        <div class="col col-lg-6">
-          <%= f.text_field :choices, multiple: true, class: 'form-control', placeholder: "Poll" %>
-        </div>
-        <div class="col col-lg-6">
-          <%= f.text_field :choices, multiple: true, class: 'form-control', placeholder: "Poll" %>
+      <div class="mb-3">
+        <div class="row">
+          <div class="col col-lg-1">
+            <%= f.text_field :choices, multiple: true, class: 'form-control', placeholder: "" %>
+          </div>
+          <div class="col col-lg-1">
+            <%= f.text_field :choices, multiple: true, class: 'form-control', placeholder: "" %>
+          </div>
+          <div class="col col-lg-1">
+            <%= f.text_field :choices, multiple: true, class: 'form-control', placeholder: "" %>
+          </div>
+          <div class="col col-lg-1">
+            <%= f.text_field :choices, multiple: true, class: 'form-control', placeholder: "" %>
+          </div>
+          <div class="col col-lg-1">
+            <%= f.text_field :choices, multiple: true, class: 'form-control', placeholder: "" %>
+          </div>
+          <div class="col col-lg-1">
+            <%= f.text_field :choices, multiple: true, class: 'form-control', placeholder: "" %>
+          </div>
+          <div class="col col-lg-1">
+            <%= f.text_field :choices, multiple: true, class: 'form-control', placeholder: "" %>
+          </div>
+          <div class="col col-lg-1">
+            <%= f.text_field :choices, multiple: true, class: 'form-control', placeholder: "" %>
+          </div>
+          <div class="col col-lg-1">
+            <%= f.text_field :choices, multiple: true, class: 'form-control', placeholder: "" %>
+          </div>
+          <div class="col col-lg-1">
+            <%= f.text_field :choices, multiple: true, class: 'form-control', placeholder: "" %>
+          </div>
+          <div class="col col-lg-1">
+            <%= f.text_field :choices, multiple: true, class: 'form-control', placeholder: "" %>
+          </div>
+          <div class="col col-lg-1">
+            <%= f.text_field :choices, multiple: true, class: 'form-control', placeholder: "" %>
+          </div>
         </div>
       </div>
     </div>
 
-    <div class="mb-3">
-      <div class="row">
-        <label for="answer">Answer</label>
-        <div class="col col-lg-12">
-          <%= f.text_field :answer, class: 'form-control', placeholder: "Answer" %>
+    <div class="poll-wrapper">
+      <div class="col-12 col-lg-2">
+          <label for="choices">Choices</label>
+      </div>
+      <div class="mb-3">
+        <div class="row">
+          <div class="col col-lg-6">
+            <%= f.text_field :choices, multiple: true, class: 'form-control', placeholder: "Poll" %>
+          </div>
+          <div class="col col-lg-6">
+            <%= f.text_field :choices, multiple: true, class: 'form-control', placeholder: "Poll" %>
+          </div>
+        </div>
+      </div>
+      <div class="mb-3">
+        <div class="row">
+          <div class="col col-lg-6">
+            <%= f.text_field :choices, multiple: true, class: 'form-control', placeholder: "Poll" %>
+          </div>
+          <div class="col col-lg-6">
+            <%= f.text_field :choices, multiple: true, class: 'form-control', placeholder: "Poll" %>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="identification-wrapper">
+      <div class="mb-3">
+        <div class="row">
+          <label for="answer">Answer</label>
+          <div class="col col-lg-12">
+            <%= f.text_field :answer, class: 'form-control', placeholder: "Answer" %>
+          </div>
         </div>
       </div>
     </div>

@@ -19,8 +19,8 @@
             <div class="row">
                 <div class="col-2 px-0">
                     <div class="sidebar">
-                          <%= image_tag "white-logo.png", class: "img-fluid" %>
-                        <ul class="px-2 sidebar-list">
+                        <div class="sidebar--box"></div>
+                        <ul class="px-3 sidebar-list">
                           <li>
                             <% if can? :index, Event %>
                               <%= link_to events_path do %>
@@ -71,7 +71,6 @@
                               <div class="user_dropdown">
                                 <ul>
                                   <li>Profile</li>
-                                  <li>Change Password</li>
                                   <li>
                                     <% if current_admin %>
                                       <%= link_to destroy_admin_session_path, id: "logout" do %>
@@ -89,6 +88,9 @@
                             <span>Home</span><span class="active">Dashboard</span>
                         </div>
                         <%= yield %>
+                        <div class="footer">
+                          <p>©2020 Quiplist Events Production Inc. All rights reserved.</p>
+                        </div>
                     </div>
                 </div>
             </div>
