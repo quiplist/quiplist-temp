@@ -6,10 +6,10 @@
 //require("@rails/ujs").start()
 //require("turbolinks").start()
 require("@rails/activestorage").start()
-require('datatables.net-dt');
-require("chartkick/chart.js")
-require("chartkick")
-require("chart.js")
+// require('datatables.net-dt');
+// require("chartkick/chart.js")
+// require("chartkick")
+// require("chart.js")
 //require("channels")
 
 
@@ -35,8 +35,8 @@ $(document).ready(function () {
     //$("#event_id_guest_list").DataTable();
 
     //stream key fields
-    $('.data-table').DataTable({
-    });
+    // $('.data-table').DataTable({
+    // });
 
     var btnEdit = $( ".btn-edit" );
     for(var i = 0; i < btnEdit.length; i++){
@@ -200,6 +200,13 @@ $(document).ready(function () {
                     break;
             }
         }
+    }
+
+    var wheel = $('#wheel canvas');
+    var ctx = wheel[0].getContext('2d');
+    if(wheel.length > 0){
+        // ctx.canvas.height = 600;
+        // ctx.canvas.width = 600;
     }
 });
 

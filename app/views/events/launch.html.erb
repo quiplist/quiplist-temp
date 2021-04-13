@@ -1,7 +1,7 @@
 <div class="container content-wrapper">
   <div class="row event-wrapper-admin">
-    <div class="chat-live-wrapper" style="<%= @event.main_background? ? "background-image: url(\'#{@event.main_background.url}\')" : "" %>">
-      <div class="container-fluid px-3 py-5">
+    <div class="" style="<%= @event.main_background? ? "background-image: url(\'#{@event.main_background.url}\')" : "" %>">
+      <div class="container-fluid px-3">
           <%= react_component("Live", {
             fbVideo: @event.fb_video?,
             ytVideo: @event.youtube_video?,

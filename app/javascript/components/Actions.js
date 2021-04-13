@@ -13,7 +13,7 @@ class Actions extends React.Component {
     return (
       <React.Fragment>
         <div className="row my-3">
-          <div className="col-12 col-md-6 col-lg-3">
+          <div className="col-12 col-md-6 col-lg-4">
             <div className="raffle-wrapper">
               <fieldset>
                 <legend>Raffle</legend>
@@ -23,7 +23,7 @@ class Actions extends React.Component {
               </fieldset>
             </div>
           </div>
-          <div className="col-12 col-md-6 col-lg-3">
+          <div className="col-12 col-md-6 col-lg-4">
             <div className="action-wrapper">
               <fieldset>
                 <legend>Questionnaire</legend>
@@ -33,7 +33,7 @@ class Actions extends React.Component {
               </fieldset>
             </div>
           </div>
-          <div className="col-12 col-md-6 col-lg-3">
+          <div className="col-12 col-md-6 col-lg-4">
             <div className="action-wrapper">
               <fieldset>
                 <legend>Announcement</legend>

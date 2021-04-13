@@ -1,10 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Swal from 'sweetalert2';
-import FirstNumber from "images/firstnumber.png";
-import RandomNum from "images/random_num_temp.png";
-import LastNumber from "images/fourthnumber.png";
-class RandomNumber extends React.PureComponent {
+import Random from "images/random.png";
+
+class RandomPicker extends React.PureComponent {
   constructor() {
     super();
     
@@ -26,7 +25,8 @@ class RandomNumber extends React.PureComponent {
   
   start() {
     clearInterval(this.interval);
-    var element = document.getElementById("choiceNumber");
+    var element = document.getElementById("choice");
+    // var randomTemplate = document.getElementById("randomTemplate");
     element.classList.remove("winner");
     this.interval = setInterval(this.setChoice, this.intervalDuration);
     this.setState({ isRunning: true });
@@ -47,19 +47,38 @@ class RandomNumber extends React.PureComponent {
   stop() {
     clearInterval(this.interval);
     this.setState({ isRunning: false });
-    var element = document.getElementById("choiceNumber");
+    var element = document.getElementById("choice");
     element.classList.add("winner");
   }
   
   reset() {
-    var element = document.getElementById("choiceNumber");
+    var element = document.getElementById("choice");
     element.classList.remove("winner");
     clearInterval(this.interval);
     this.setState({ isRunning: false, currentChoice: '' });
   }
   
   pickChoice() {
-    const choice = (Math.floor(Math.random() * 10000) + 10000).toString().substring(1);
+    const namesList = [
+      'Marcelo Marcelo Marcelo',  
+      'Lizzette B. Marcelo',  
+      'Pauline B. Marcelo',  
+      'Fumiko B. Marcelo',  
+      'Tomasa B. Marcelo',  
+      'Bertha B. Marcelo',  
+      'Antoinette B. Antoinette',  
+      'Gavin Christopher Lim Lee',  
+      'Rey Christopher Dazo Lee',  
+      'Victorina B. Marcelo',  
+      'Marlon B. Marcelo',  
+      'Christine Marie Dazo Lee',  
+      'Arletha Dazo Marcelo',  
+      'Ellyn S. Marcelo',  
+      'Karol B. Marcelo',  
+      'Corrin C. Marcelo', 
+      'Josephine D. Marcelo',
+    ];
+    const choice = namesList[Math.floor(Math.random() * namesList.length)];
     return choice;
   }
   
@@ -73,8 +92,8 @@ class RandomNumber extends React.PureComponent {
     
     return (
       <div className="RandomPicker">
-        <RandomNumberChoice choice={currentChoice} />
-        <RandomNumberControls 
+        <RandomPickerChoice choice={currentChoice} />
+        <RandomPickerControls 
           isRunning={isRunning}
           hasChoice={currentChoice.trim().length > 0}
           start={this.start}
@@ -86,56 +105,30 @@ class RandomNumber extends React.PureComponent {
   }
 }
 
-RandomNumber.propTypes = {
+RandomPicker.propTypes = {
   items: PropTypes.array,
   duration: PropTypes.number
 };
 
-class RandomNumberChoice extends React.PureComponent {
+class RandomPickerChoice extends React.PureComponent {
   render() {
     const { choice } = this.props;
     const content = choice.trim().length > 0 ? choice : '';
     
-    if(content){
-      var str = content.toString(); 
-      var result1 = str.substring(0,1)  
-      result1 = parseInt(result1);
-      var result2 = str.substring(1,2)  
-      result2 = parseInt(result2);
-      var result3 = str.substring(2,3) 
-      result3 = parseInt(result3); 
-      var result4 = str.substring(3,4) 
-      result4 = parseInt(result4);
-    }
-    
     return (
-      <div className="RandomNumberPicker__choice px-2">
-        <div className="numberWrapper">
-            <img id="randomTemplate" className="img-fluid" src={FirstNumber} alt="first number"></img>
-            <span id="choiceNumber" className="RandomPicker__choiceItem">{result1}</span>
-        </div>
-        <div className="numberWrapper">
-            <img id="randomTemplate" className="img-fluid" src={RandomNum} alt="random number"></img>
-            <span id="choiceNumber" className="RandomPicker__choiceItem">{result2}</span>
-        </div>
-        <div className="numberWrapper">
-            <img id="randomTemplate" className="img-fluid" src={RandomNum} alt="random number"></img>
-            <span id="choiceNumber" className="RandomPicker__choiceItem">{result3}</span>
-        </div>
-        <div className="numberWrapper">
-            <img id="randomTemplate" className="img-fluid" src={LastNumber} alt="lastnumber"></img>
-            <span id="choiceNumber" className="RandomPicker__choiceItem">{result4}</span>
-        </div>
+      <div className="RandomPicker__choice px-2">
+        <img id="randomTemplate" className="img-fluid" src={Random} alt="template"></img>
+        <span id="choice" className="RandomPicker__choiceItem">{content}</span>
       </div>  
     );
   }
 }
 
-RandomNumberChoice.propTypes = {
+RandomPickerChoice.propTypes = {
   choice: PropTypes.string
 };
 
-class RandomNumberControls extends React.PureComponent {
+class RandomPickerControls extends React.PureComponent {
   render() {
     const { 
       isRunning, 
@@ -146,7 +139,7 @@ class RandomNumberControls extends React.PureComponent {
     } = this.props;
     
     return (
-      <div className="RandomNumber__controls">
+      <div className="RandomPicker__controls">
         <button 
           className={`RandomPicker__button ${isRunning && 'RandomPicker__button--stop'}`}
           onClick={isRunning ? stop : start}
@@ -166,7 +159,7 @@ class RandomNumberControls extends React.PureComponent {
 
 }
 
-RandomNumberControls.propTypes = {
+RandomPickerControls.propTypes = {
   isRunning: PropTypes.bool,
   hasChoice: PropTypes.bool,
   start: PropTypes.func,
@@ -174,4 +167,4 @@ RandomNumberControls.propTypes = {
   reset: PropTypes.func,
 };
 
-export default RandomNumber
+export default RandomPicker
