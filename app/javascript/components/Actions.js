@@ -16,9 +16,11 @@ class Actions extends React.Component {
           <div className="col-12 col-md-6 col-lg-4">
             <div className="raffle-wrapper">
               <fieldset>
-                <legend>Raffle</legend>
-                <p>Raffle Name: Sample Raffle</p>
-                <p>Raffle Prize: Sample Raffle</p>
+              <legend>Raffle</legend>
+                {this.props.raffles.map((raffle, index) =>
+                  <p key={index}>Raffle Name: {raffle.raffle_type_name}</p>
+
+                )}
                 <Raffle/>
               </fieldset>
             </div>
