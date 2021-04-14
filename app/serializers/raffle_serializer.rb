@@ -18,9 +18,10 @@
 #
 class RaffleSerializer < ActiveModel::Serializer
   attributes :id, :prize, :raffle_type, :raffle_type_name, :status,
-             :status_name, :guest_list_id, :won, :event_id
+             :status_name, :guest_list_id, :won, :event_id, :winner
 
   belongs_to :event
+  belongs_to :winner
 
   def won
     object&.winner&.user&.full_name

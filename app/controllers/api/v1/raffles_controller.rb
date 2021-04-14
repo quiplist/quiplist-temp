@@ -7,7 +7,10 @@ class Api::V1::RafflesController < Api::ApplicationController
   end
 
   def update
-    @raffle.update_attributes raffle_params
+    if @raffle.update_attributes raffle_params
+      @guest_list = GuestList.find(@raffle.guest_list_id)
+      @guest_list.update_attributes(raffle_status: GuestList::WON)
+    end
     render json: @raffle
   end
 

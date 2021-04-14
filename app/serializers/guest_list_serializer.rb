@@ -19,9 +19,17 @@
 #  index_guest_lists_on_user_id      (user_id)
 #
 class GuestListSerializer < ActiveModel::Serializer
-  attributes :id, :raffle_number, :user
+  attributes :id, :raffle_number, :user, :raffle_status, :raffle_status_name, :status, :status_name
 
   def user
     object.user
+  end
+
+  def raffle_status_name
+    object.raffle_status_name
+  end
+
+  def status_name
+    object.status_name
   end
 end

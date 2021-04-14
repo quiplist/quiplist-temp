@@ -11,9 +11,7 @@ class RandomPicker extends React.PureComponent {
       isRunning: false,
       currentChoice: {},
       currentEvent: {},
-      currentUser: {},
       currentRaffle: {},
-      raffles: [],
       guestLists: []
     };
 
@@ -31,26 +29,28 @@ class RandomPicker extends React.PureComponent {
   componentDidMount() {
     const fetchEventUrl = `/api/v1/events/${this.props.eventId}`;
     const fetchRaffleUrl = `/api/v1/raffles/${this.props.raffleId}`;
+    const fetchGuestListUrl = `/api/v1/guest_lists?event_id=${this.props.eventId}`;
 
     fetch(fetchEventUrl)
     .then(resp => resp.json())
     .then(result => {
       this.setState({ currentEvent: result })
-      this.setState({ raffles: result.raffles })
-      this.setState({ guestLists: result.guest_lists })
     });
-
 
     fetch(fetchRaffleUrl)
     .then(response => response.json())
     .then(result => {
+      console.log(result)
       this.setState({ currentRaffle: result })
+      if(this.state.currentRaffle.status === 2) {
+        this.setState({ currentChoice: result.winner})
+      }
     });
 
-    fetch('/api/v1/fetch_current_user')
+    fetch(fetchGuestListUrl)
     .then(response => response.json())
     .then(result => {
-      this.setState({ currentUser: result })
+      this.setState({ guestLists: result })
     });
   }
 
@@ -116,12 +116,13 @@ class RandomPicker extends React.PureComponent {
 
 
   render() {
-    const { isRunning, currentChoice, currentEvent } = this.state;
+    const { isRunning, currentChoice, currentEvent, currentRaffle } = this.state;
     return (
       <div className="RandomPicker">
         <RandomPickerChoice choice={currentChoice} />
         <RandomPickerControls
           currentEvent={currentEvent}
+          currentRaffle={currentRaffle}
           isRunning={isRunning}
           hasChoice={currentChoice}
           start={this.start}
@@ -180,9 +181,10 @@ class RandomPickerControls extends React.PureComponent {
       start,
       stop,
       setWinner,
-      currentEvent
+      currentEvent,
+      currentRaffle
     } = this.props;
-
+    let isDone = (currentRaffle.status === 2)
     return (
       <div className="RandomPicker__controls">
         <button
@@ -191,6 +193,7 @@ class RandomPickerControls extends React.PureComponent {
           style={{ background : currentEvent.random_name_draw_mouse_out, border : '1px solid' + currentEvent.random_name_draw_mouse_out }}
           onMouseEnter={event => this.onDrawMouseOver(event)}
           onMouseOut={event => this.onDrawMouseOut(event)}
+          disabled={isDone}
         >
           {isRunning ? 'STOP' : 'DRAW'}
         </button>
@@ -206,7 +209,8 @@ class RandomPickerControls extends React.PureComponent {
             className="btn"
             style={{ background : currentEvent.random_name_winner_mouse_out, border : '1px solid' + currentEvent.random_name_winner_mouse_out }}
             onMouseEnter={event => this.onWinnerMouseOver(event)}
-            onMouseOut={event => this.onWinnerMouseOut(event)} />
+            onMouseOut={event => this.onWinnerMouseOut(event)}
+            disabled={isDone} />
         </form>
       </div>
     );
