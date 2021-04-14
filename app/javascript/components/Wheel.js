@@ -17,6 +17,7 @@ const Wheel = () => {
       showCancelButton: false,
       showConfirmButton: false
     })
+
     var index = segments.indexOf(winner)
     if (index !== -1) {
       segments.splice(index, 1);
@@ -29,6 +30,8 @@ const Wheel = () => {
     }
   }
 
+
+
   return (
     <div className="wheel-wrapper" id="canvas-container">
       <WheelComponent
@@ -38,9 +41,10 @@ const Wheel = () => {
         onFinished={(winner)=>onFinished(winner)}
         primaryColor='#BBBBBC'
         contrastColor='white'
-        buttonText='Spin'
+        buttonText='Draw'
         isOnlyOnce = {false}
         size={290}/>
+        <button className="RandomPicker__button" id="winnerBtn">Winner</button>
     </div>
   );
 }

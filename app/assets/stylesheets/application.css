@@ -1550,6 +1550,8 @@ fieldset legend {
 
 /* raffle */
 
+
+
 .RandomPicker__choice,
 .RandomNumberPicker__choice {
 	position: relative;
@@ -1593,11 +1595,14 @@ button.RandomPicker__button {
 }
 
 .swal2-popup.swal2-modal.swal2-show {
-	background: url(winner_template_body.png);
-	background-size: cover;
-	height: 19%;
-	color: #000;
-	font-family: 'Montserrat';
+	/* background: url(winner_template_body.png); */
+    /* background-color: #C9C9C9; */
+    background: radial-gradient(circle, rgba(255,255,255,1) 0%, rgba(255,255,255,1) 10%, rgba(195,195,195,1) 100%);
+    border: 10px dotted #F3933D;
+    background-size: cover;
+    height: 19%;
+    color: #000;
+    font-family: 'Montserrat';
 }
 
 h2#swal2-title {
@@ -1686,12 +1691,12 @@ h2#swal2-title {
 	bottom: 20%;
 }
 
-#wheel{
+/* #wheel{
     position: absolute;
     left: 60%;
     top: 60%;
     transform: translate(-50%, -50%);
-}
+} */
 
 .wheel-wrapper{
     background-image: url(blue-bg.png);
@@ -1933,7 +1938,7 @@ h2#swal2-title {
         top: -34px;
     }
     #wheel canvas{
-        width: 500px;
+        width: 400px;
     }
 }
 
