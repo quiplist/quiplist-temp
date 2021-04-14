@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   scope 'admins' do
     resources :events, except: [:new, :edit] do
       put :upload_brochure, to: 'events#upload_brochure', on: :member
-      get :draw_raffles, to: 'events#draw_raffles', on: :member
+      #get "/raffles/:id", to: 'events#draw_raffles', on: :member
       put :draw_winner, to: 'events#draw_winner', on: :member
       get :launch, to: 'events#launch', on: :member
 
@@ -24,7 +24,7 @@ Rails.application.routes.draw do
         get :reset_raffle_statuses, on: :collection
         get :download_csv, on: :collection
       end
-      resources :raffles, except: [:index, :show]
+      resources :raffles, except: [:index]
       resources :questionnaires, except: [:index, :show]
     end
     resources :admins do
@@ -46,6 +46,7 @@ Rails.application.routes.draw do
       resources :announcements, only: [:index, :create]
       get '/fetch_current_user', to: 'users#fetch_current_user', as: :fetch_current_user
       resources :events, only: [:show]
+      resources :raffles, only: [:show, :update]
       #get '/fetch_current_event/:event_code', to: 'events#fetch_current_event', as: :fetch_current_event
     end
   end

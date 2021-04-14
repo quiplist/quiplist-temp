@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_11_101403) do
+ActiveRecord::Schema.define(version: 2021_04_13_142140) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -141,6 +141,24 @@ ActiveRecord::Schema.define(version: 2021_04_11_101403) do
     t.boolean "with_guest_member_type", default: true
     t.boolean "with_guest_abo_type", default: true
     t.boolean "with_guest_distributor_type", default: true
+    t.string "spin_a_wheel_background"
+    t.string "spin_a_wheel_background_color", default: "#3F48CC"
+    t.string "spin_a_wheel_draw_mouse_over", default: "#861CCE"
+    t.string "spin_a_wheel_draw_mouse_out", default: "#6C63FF"
+    t.string "spin_a_wheel_winner_mouse_over", default: "#861CCE"
+    t.string "spin_a_wheel_winner_mouse_out", default: "#6C63FF"
+    t.string "random_name_background"
+    t.string "random_name_background_color", default: "#3F48CC"
+    t.string "random_name_draw_mouse_over", default: "#861CCE"
+    t.string "random_name_draw_mouse_out", default: "#6C63FF"
+    t.string "random_name_winner_mouse_over", default: "#861CCE"
+    t.string "random_name_winner_mouse_out", default: "#6C63FF"
+    t.string "random_number_background"
+    t.string "random_number_background_color", default: "#3F48CC"
+    t.string "random_number_draw_mouse_over", default: "#861CCE"
+    t.string "random_number_draw_mouse_out", default: "#6C63FF"
+    t.string "random_number_winner_mouse_over", default: "#861CCE"
+    t.string "random_number_winner_mouse_out", default: "#6C63FF"
   end
 
   create_table "guest_lists", force: :cascade do |t|

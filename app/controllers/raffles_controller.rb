@@ -1,5 +1,5 @@
 class RafflesController < ApplicationController
-  layout 'admin'
+  layout 'admin', except: [:show]
 
   before_action :authenticate_admin!
   load_and_authorize_resource :event
@@ -17,6 +17,9 @@ class RafflesController < ApplicationController
   end
 
   def edit
+  end
+
+  def show
   end
 
   def update

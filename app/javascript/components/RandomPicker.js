@@ -6,23 +6,55 @@ import Random from "images/random.png";
 class RandomPicker extends React.PureComponent {
   constructor() {
     super();
-    
+
     this.state = {
       isRunning: false,
-      currentChoice: ''
+      currentChoice: {},
+      currentEvent: {},
+      currentUser: {},
+      currentRaffle: {},
+      raffles: [],
+      guestLists: []
     };
-    
+
     this.interval = null;
     this.intervalDuration = 25;
     this.duration = 1000;
-    
+
     this.start = this.start.bind(this);
     this.stop = this.stop.bind(this);
-    this.reset = this.reset.bind(this);
     this.pickChoice = this.pickChoice.bind(this);
     this.setChoice = this.setChoice.bind(this);
+    this.setWinner = this.setWinner.bind(this);
   }
-  
+
+  componentDidMount() {
+    const fetchEventUrl = `/api/v1/events/${this.props.eventId}`;
+    const fetchRaffleUrl = `/api/v1/raffles/${this.props.raffleId}`;
+
+    fetch(fetchEventUrl)
+    .then(resp => resp.json())
+    .then(result => {
+      this.setState({ currentEvent: result })
+      this.setState({ raffles: result.raffles })
+      this.setState({ guestLists: result.guest_lists })
+    });
+
+
+    fetch(fetchRaffleUrl)
+    .then(response => response.json())
+    .then(result => {
+      this.setState({ currentRaffle: result })
+    });
+
+    fetch('/api/v1/fetch_current_user')
+    .then(response => response.json())
+    .then(result => {
+      this.setState({ currentUser: result })
+    });
+  }
+
+
   start() {
     clearInterval(this.interval);
     var element = document.getElementById("choice");
@@ -34,71 +66,67 @@ class RandomPicker extends React.PureComponent {
       if (this.state.isRunning) {
         this.stop()
         element.classList.add("winner");
-        console.log(this.state.currentChoice);
         Swal.fire({
-          title: this.state.currentChoice,
+          title: this.state.currentChoice.user.full_name,
           showCancelButton: false,
           showConfirmButton: false
         })
       }
     }, this.duration);
   }
-  
+
   stop() {
     clearInterval(this.interval);
     this.setState({ isRunning: false });
     var element = document.getElementById("choice");
     element.classList.add("winner");
   }
-  
-  reset() {
-    var element = document.getElementById("choice");
-    element.classList.remove("winner");
-    clearInterval(this.interval);
-    this.setState({ isRunning: false, currentChoice: '' });
-  }
-  
+
   pickChoice() {
-    const namesList = [
-      'Marcelo Marcelo Marcelo',  
-      'Lizzette B. Marcelo',  
-      'Pauline B. Marcelo',  
-      'Fumiko B. Marcelo',  
-      'Tomasa B. Marcelo',  
-      'Bertha B. Marcelo',  
-      'Antoinette B. Antoinette',  
-      'Gavin Christopher Lim Lee',  
-      'Rey Christopher Dazo Lee',  
-      'Victorina B. Marcelo',  
-      'Marlon B. Marcelo',  
-      'Christine Marie Dazo Lee',  
-      'Arletha Dazo Marcelo',  
-      'Ellyn S. Marcelo',  
-      'Karol B. Marcelo',  
-      'Corrin C. Marcelo', 
-      'Josephine D. Marcelo',
-    ];
-    const choice = namesList[Math.floor(Math.random() * namesList.length)];
+    const choice = this.state.guestLists[Math.floor(Math.random() * this.state.guestLists.length)];
     return choice;
   }
-  
+
   setChoice() {
-    this.setState({ currentChoice: this.pickChoice() })
+    this.setState({ currentChoice: this.pickChoice() });
   }
 
-  
+  setWinner(winner) {
+    const url = `/api/v1/raffles/${this.state.currentRaffle.id}`;
+    const body = {
+      raffle: {
+        guest_list_id: winner.id,
+        status: 2
+      }
+    }
+
+    fetch(url, {
+        method: "PATCH",
+        headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json"
+        },
+        body: JSON.stringify(body)
+    })
+    .then(resp => resp.json())
+    .then(result => {
+      // set to next page
+    })
+  }
+
+
   render() {
-    const { isRunning, currentChoice } = this.state;
-    
+    const { isRunning, currentChoice, currentEvent } = this.state;
     return (
       <div className="RandomPicker">
         <RandomPickerChoice choice={currentChoice} />
-        <RandomPickerControls 
+        <RandomPickerControls
+          currentEvent={currentEvent}
           isRunning={isRunning}
-          hasChoice={currentChoice.trim().length > 0}
+          hasChoice={currentChoice}
           start={this.start}
           stop={this.stop}
-          reset={this.reset}
+          setWinner={winner => this.setWinner(winner)}
         />
       </div>
     );
@@ -113,58 +141,77 @@ RandomPicker.propTypes = {
 class RandomPickerChoice extends React.PureComponent {
   render() {
     const { choice } = this.props;
-    const content = choice.trim().length > 0 ? choice : '';
-    
+    const content = (Object.keys(choice).length == 0) ? '' : choice.user.full_name;
     return (
       <div className="RandomPicker__choice px-2">
         <img id="randomTemplate" className="img-fluid" src={Random} alt="template"></img>
         <span id="choice" className="RandomPicker__choiceItem">{content}</span>
-      </div>  
+      </div>
     );
   }
 }
 
-RandomPickerChoice.propTypes = {
-  choice: PropTypes.string
-};
-
 class RandomPickerControls extends React.PureComponent {
+
+  onWinnerMouseOver = event => {
+    const el = event.target;
+    el.style.background = this.props.currentEvent.random_name_winner_mouse_over;
+  };
+
+  onWinnerMouseOut = event => {
+    const el = event.target;
+    el.style.background = this.props.currentEvent.random_name_winner_mouse_out;
+  };
+
+  onDrawMouseOver = event => {
+    const el = event.target;
+    el.style.background = this.props.currentEvent.random_name_draw_mouse_over;
+  };
+
+  onDrawMouseOut = event => {
+    const el = event.target;
+    el.style.background = this.props.currentEvent.random_name_draw_mouse_out;
+  };
+
   render() {
-    const { 
-      isRunning, 
-      hasChoice, 
-      start, 
-      stop, 
-      reset 
+    const {
+      isRunning,
+      hasChoice,
+      start,
+      stop,
+      setWinner,
+      currentEvent
     } = this.props;
-    
+
     return (
       <div className="RandomPicker__controls">
-        <button 
+        <button
           className={`RandomPicker__button ${isRunning && 'RandomPicker__button--stop'}`}
           onClick={isRunning ? stop : start}
+          style={{ background : currentEvent.random_name_draw_mouse_out, border : '1px solid' + currentEvent.random_name_draw_mouse_out }}
+          onMouseEnter={event => this.onDrawMouseOver(event)}
+          onMouseOut={event => this.onDrawMouseOut(event)}
         >
-          {isRunning ? 'stop' : 'start'}
+          {isRunning ? 'STOP' : 'DRAW'}
         </button>
-        <button 
-          disabled={isRunning || !hasChoice} 
-          className="RandomPicker__button RandomPicker__button--reset" 
-          onClick={reset}
-        >
-          reset
-        </button>
+
+        <form
+          action="."
+          onSubmit={e => {
+            e.preventDefault()
+            setWinner(hasChoice)
+          }}>
+          <input
+            type="submit" value={'Winner'}
+            className="btn"
+            style={{ background : currentEvent.random_name_winner_mouse_out, border : '1px solid' + currentEvent.random_name_winner_mouse_out }}
+            onMouseEnter={event => this.onWinnerMouseOver(event)}
+            onMouseOut={event => this.onWinnerMouseOut(event)} />
+        </form>
       </div>
     );
   }
 
 }
-
-RandomPickerControls.propTypes = {
-  isRunning: PropTypes.bool,
-  hasChoice: PropTypes.bool,
-  start: PropTypes.func,
-  stop: PropTypes.func,
-  reset: PropTypes.func,
-};
 
 export default RandomPicker
