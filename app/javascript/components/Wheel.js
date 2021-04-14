@@ -1,10 +1,11 @@
 import React from 'react';
 import Swal from 'sweetalert2';
-import WheelComponent from 'react-wheel-of-prizes'
-import 'react-wheel-of-prizes/dist/index.css'
+//import WheelComponent from 'react-wheel-of-prizes'
+import WheelComponent from './WheelComponent';
+import 'react-wheel-of-prizes/dist/index.css';
 
 const Wheel = () => {
-  const segments = 
+  const segments =
   ['better luck next time1', 'won 70', 'won 10','better luck next time2', 'won 2', 'won uber pass', 'better luck next time3', 'won a voucher3'];
   const choice = segments[Math.floor(Math.random() * segments.length)];
   const segColors = [
@@ -22,8 +23,8 @@ const Wheel = () => {
     }else{
       Swal.fire({
         title: "No more names",
-        showCancelButton: false,
-        showConfirmButton: false
+        showCancelButton: true,
+        showConfirmButton: true
       })
     }
   }
@@ -45,8 +46,3 @@ const Wheel = () => {
 }
 
 export default Wheel;
-
-
-
-
-
