@@ -1,34 +1,25 @@
   class EventsController < ApplicationController
-  #layout 'false'
   layout 'admin'
-  #layout 'raffle', only: [:draw_raffles]
 
   before_action :authenticate_admin!
   before_action :fetch_reaction, only: [:launch]
   load_and_authorize_resource :event
 
   def index
-    # page = params[:page] || 1
-    # per_page = params[:per_page] || 10
-    # search = params[:search]
-    @events = current_admin.events if current_admin.admin?
-    #@events = @events.search(search) if search.present?
-    @events = @events.accessible_by(current_ability).sorted#.page(page).per(per_page)
+    @events = Event.where(admin: current_admin) if current_admin.admin?
+    @events = @events.accessible_by(current_ability).sorted
     @event = Event.new
   end
 
   def show
-    page = params[:page] || 1
-    per_page = params[:per_page] || 10
-    search = params[:search]
-    @guest_lists = @event.guest_lists
-    @guest_lists = @guest_lists.sorted.page(page).per(per_page)
+    @guest_lists = GuestList.where(event: @event)
+    @guest_lists = @guest_lists.sorted
 
-    @raffles = @event.raffles
-    @raffles = @raffles.sorted.page(page).per(per_page)
+    @raffles = Raffle.where(event: @event)
+    @raffles = @raffles.sorted
 
-    @questionnaires = @event.questionnaires
-    @questionnaires = @questionnaires.sorted.page(page).per(per_page)
+    @questionnaires = Questionnaire.where(event: @event)
+    @questionnaires = @questionnaires.sorted
   end
 
   def create

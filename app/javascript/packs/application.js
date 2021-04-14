@@ -6,7 +6,7 @@
 //require("@rails/ujs").start()
 //require("turbolinks").start()
 require("@rails/activestorage").start()
-// require('datatables.net-dt');
+require('datatables.net');
 // require("chartkick/chart.js")
 // require("chartkick")
 // require("chart.js")
@@ -27,6 +27,32 @@ ReactRailsUJS.useContext(componentRequireContext);
 window.jQuery = $;
 window.$ = $;
 
+var filteredEvent = ["Private", "Public"];
+
+$.fn.dataTable.ext.search.push(
+  function( settings, searchData, index, rowData, counter ) {
+    // Don't display rows if nothing is checked
+    console.log(settings.nTable.id)
+    if (settings.nTable.id === "events_list") {
+      if (filteredEvent.length === 0 ) {
+        console.log("2n")
+        return false;
+      }
+
+      if (filteredEvent.includes(searchData[2])) {
+        console.log("3r")
+        return true;
+      }
+    } else if (settings.nTable.id === "users_list") {
+
+    } else {
+      return true;
+    }
+
+    return false;
+  }
+);
+
 $(document).ready(function () {
     //events table
     //$('#events_list').DataTable();
@@ -35,8 +61,41 @@ $(document).ready(function () {
     //$("#event_id_guest_list").DataTable();
 
     //stream key fields
-    // $('.data-table').DataTable({
-    // });
+    var eventDT = $('.event-data-table').DataTable({
+      dom: 'f<"event toolbar">rtlip',
+      pagingType: "full_numbers",
+    });
+
+    $("div.event.toolbar").html("\
+      <div class=\"btn-group\" role=\"group\" aria-label=\"Basic checkbox toggle button group\">\
+        <input type=\"checkbox\" class=\"btn-check filterEvent\" id=\"btncheck1\" name=\"type\" value=\"Private\" checked>\
+        <label class=\"btn btn-outline-primary\" for=\"btncheck1\">Private</label>\
+        <input type=\"checkbox\" class=\"btn-check filterEvent\" id=\"btncheck2\" name=\"type\" value=\"Public\" checked>\
+        <label class=\"btn btn-outline-primary\" for=\"btncheck2\">Public</label>\
+      </div>\
+    ");
+
+    $('.filterEvent').on('change', function() {
+      var val = $(this).val();
+      var checked = $(this).prop('checked');
+      var index = filteredEvent.indexOf( val );
+
+      if (checked && index === -1) {
+        filteredEvent.push(val);
+      } else if (!checked && index > -1) {
+        filteredEvent.splice(index, 1);
+      }
+      console.log(filteredEvent);
+      eventDT.draw();
+    });
+
+    var userDT = $('.user-data-table').DataTable({
+      dom: 'f<"user toolbar">rtlip',
+      pagingType: "full_numbers",
+    });
+
+
+
 
     var btnEdit = $( ".btn-edit" );
     for(var i = 0; i < btnEdit.length; i++){
@@ -203,8 +262,8 @@ $(document).ready(function () {
     }
 
     var wheel = $('#wheel canvas');
-    var ctx = wheel[0].getContext('2d');
     if(wheel.length > 0){
+      var ctx = wheel[0].getContext('2d');
         // ctx.canvas.height = 600;
         // ctx.canvas.width = 600;
     }

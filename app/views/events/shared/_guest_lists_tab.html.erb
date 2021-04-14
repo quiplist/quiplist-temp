@@ -1,5 +1,5 @@
 <div class="tab-pane fade show active" id="nav-users" role="tabpanel" aria-labelledby="nav-users-tab">
-  <table id="event_id_guest_list" class="table">
+  <table id="event_id_guest_list" class="table data-table">
     <thead>
       <tr>
         <th>Full Name</th>
@@ -20,7 +20,7 @@
               </svg>
             <% end %>
           <% end %>
-        <th>
+        </th>
       </tr>
     </thead>
     <tbody>
@@ -34,12 +34,12 @@
           <td><%= guest_list.user.member_id %></td>
           <td><%= guest_list.approver&.full_name %></td>
           <td>
-            <%= form_for guest_list, as: :guest_list, url: set_status_event_guest_lists_path(@event, guest_list_id: guest_list.id, page: @guest_lists.current_page), method: :post, html: { class: "" } do |f| %>
+            <%= form_for guest_list, as: :guest_list, url: set_status_event_guest_lists_path(@event, guest_list_id: guest_list.id), method: :post, html: { class: "" } do |f| %>
               <%= f.select :status, GuestList::STATUSES.invert, {}, { class: 'form-select', onchange: "form.submit()", disabled: (cannot? :update, GuestList) } %>
             <% end %>
           </td>
           <td>
-            <%= form_for guest_list, as: :guest_list, url: set_raffle_status_event_guest_lists_path(@event, guest_list_id: guest_list.id, page: @guest_lists.current_page), method: :post, html: { class: "" } do |f| %>
+            <%= form_for guest_list, as: :guest_list, url: set_raffle_status_event_guest_lists_path(@event, guest_list_id: guest_list.id), method: :post, html: { class: "" } do |f| %>
               <%= f.select :raffle_status, GuestList::RAFFLE_STATUSES.invert, {}, { class: 'form-select', onchange: "form.submit()", disabled: (cannot? :update, GuestList) } %>
             <% end %>
           </td>
@@ -50,7 +50,4 @@
   <div>
     <%= link_to "Export CSV", download_csv_event_guest_lists_path(@event, format: "csv"), class: "btn-dowload-csv" %>
   </div>
-  <%= link_to_previous_page @guest_lists, '<< ', class: "text-primary" %>
-  <%= page_entries_info @guest_lists %>
-  <%= link_to_next_page @guest_lists, ' >>', class: "text-primary" %>
 </div>

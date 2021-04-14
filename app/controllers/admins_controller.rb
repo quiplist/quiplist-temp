@@ -6,19 +6,11 @@ class AdminsController < ApplicationController
   load_and_authorize_resource :admin
 
   def index
-    page = params[:page] || 1
-    per_page = params[:per_page] || 10
-    search = params[:search]
-    @admins = @admins.search(search) if search.present?
-    @admins = @admins.accessible_by(current_ability).sorted.page(page).per(per_page)
+    @admins = @admins.accessible_by(current_ability).sorted
   end
 
   def show
-    page = params[:page] || 1
-    per_page = params[:per_page] || 10
-    search = params[:search]
-    @admin_events = @admin.admin_events
-    @admin_events = @admin_events.page(page).per(per_page)
+    @admin_events = AdminEvent.where(admin: @admin)
     @admin_event = @admin.admin_events.new
     ids = @admin.events.ids
     @events = Event.where.not(id: ids)
@@ -34,12 +26,6 @@ class AdminsController < ApplicationController
     if @admin.save
       redirect_to admin_path(@admin), notice: "admin #{@admin.full_name} added successfully!"
     else
-      # page = params[:page] || 1
-      # per_page = params[:per_page] || 10
-      # search = params[:search]
-      # @admins = Admin.sorted
-      # @admins = @admins.search(search) if search.present?
-      # @admins = @admins.accessible_by(current_ability).sorted.page(page).per(per_page)
       render :new
     end
   end
@@ -51,11 +37,7 @@ class AdminsController < ApplicationController
     if @admin.update_attributes admin_params
       redirect_to admin_path(@admin), notice: "Admin #{@admin.full_name} updated successfully!"
     else
-      page = params[:page] || 1
-      per_page = params[:per_page] || 10
-      search = params[:search]
       @admin_events = @admin.admin_events
-      @admin_events = @admin_events.page(page).per(per_page)
       @admin_event = @admin.admin_events.new
       @events = Event.all
       render :edit
@@ -81,11 +63,7 @@ class AdminsController < ApplicationController
     if @admin_event.save
       redirect_to admin_path(@admin), notice: "Event #{@admin_event.event.title} added successfully to #{@admin.full_name}!"
     else
-      page = params[:page] || 1
-      per_page = params[:per_page] || 10
-      search = params[:search]
       @admin_events = @admin.admin_events
-      @admin_events = @admin_events.page(page).per(per_page)
       @admin_event = @admin.admin_events.new
       ids = @admin.events.ids
       @events = Event.where.not(id: ids)
@@ -104,11 +82,7 @@ class AdminsController < ApplicationController
     if @admin.save
       redirect_to admin_path(@admin), notice: "Admin #{@admin.full_name} reset password successfully!"
     else
-      page = params[:page] || 1
-      per_page = params[:per_page] || 10
-      search = params[:search]
-      @admins = @admins.search(search) if search.present?
-      @admins = @admins.accessible_by(current_ability).sorted.page(page).per(per_page)
+      @admins = @admins.accessible_by(current_ability).sorted
       render :index
     end
   end

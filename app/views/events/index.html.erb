@@ -39,7 +39,7 @@
   </div>
   <div class="row">
     <div class="col col-lg-12">
-      <table id="events_list" class="table data-table">
+      <table id="events_list" class="table event-data-table">
         <thead>
           <tr>
             <th>Event Title</th>
@@ -76,7 +76,7 @@
                   <%= link_to "Show", event_path(event), class: 'btn btn-view' %>
                 <% end %>
               </td>
-              <td class="text-center"> 
+              <td class="text-center">
                 <% if can? :update, Event %>
                 <button class="btn btn-edit" id="<%= event.id %>" data-bs-toggle="modal" data-bs-target="#editEvent-<%= event.id %>">Edit</button>
                 <div class="modal fade" id="editEvent-<%= event.id %>" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="editSingleEvent" aria-hidden="true">
