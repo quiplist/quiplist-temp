@@ -10,7 +10,10 @@ class RandomNumber extends React.PureComponent {
 
     this.state = {
       isRunning: false,
-      currentChoice: ''
+      currentChoice: {},
+      currentEvent: {},
+      currentRaffle: {},
+      guestLists: []
     };
 
     this.interval = null;
@@ -19,9 +22,36 @@ class RandomNumber extends React.PureComponent {
 
     this.start = this.start.bind(this);
     this.stop = this.stop.bind(this);
-    this.reset = this.reset.bind(this);
     this.pickChoice = this.pickChoice.bind(this);
     this.setChoice = this.setChoice.bind(this);
+    this.setWinner = this.setWinner.bind(this);
+  }
+
+  componentDidMount() {
+    const fetchEventUrl = `/api/v1/events/${this.props.eventId}`;
+    const fetchRaffleUrl = `/api/v1/raffles/${this.props.raffleId}`;
+    const fetchGuestListUrl = `/api/v1/guest_lists?event_id=${this.props.eventId}`;
+
+    fetch(fetchEventUrl)
+    .then(resp => resp.json())
+    .then(result => {
+      this.setState({ currentEvent: result })
+    });
+
+    fetch(fetchRaffleUrl)
+    .then(response => response.json())
+    .then(result => {
+      this.setState({ currentRaffle: result })
+      if(this.state.currentRaffle.status === 2) {
+        this.setState({ currentChoice: result.winner})
+      }
+    });
+
+    fetch(fetchGuestListUrl)
+    .then(response => response.json())
+    .then(result => {
+      this.setState({ guestLists: result })
+    });
   }
 
   start() {
@@ -34,11 +64,10 @@ class RandomNumber extends React.PureComponent {
       if (this.state.isRunning) {
         this.stop()
         element.classList.add("winner");
-        console.log(this.state.currentChoice);
         Swal.fire({
-          title: this.state.currentChoice,
-          showCancelButton: true,
-          showConfirmButton: true
+          title: this.state.currentChoice.raffle_number,
+          showCancelButton: false,
+          showConfirmButton: false
         })
       }
     }, this.duration);
@@ -55,11 +84,11 @@ class RandomNumber extends React.PureComponent {
     var element = document.getElementById("choiceNumber");
     element.classList.remove("winner");
     clearInterval(this.interval);
-    this.setState({ isRunning: false, currentChoice: '' });
+    this.setState({ isRunning: false, currentChoice: {} });
   }
 
   pickChoice() {
-    const choice = (Math.floor(Math.random() * 10000) + 10000).toString().substring(1);
+    const choice = this.state.guestLists[Math.floor(Math.random() * this.state.guestLists.length)];
     return choice;
   }
 
@@ -67,19 +96,44 @@ class RandomNumber extends React.PureComponent {
     this.setState({ currentChoice: this.pickChoice() })
   }
 
+  setWinner(winner) {
+    const url = `/api/v1/raffles/${this.state.currentRaffle.id}`;
+    const body = {
+      raffle: {
+        guest_list_id: winner.id,
+        status: 2
+      }
+    }
+
+    fetch(url, {
+        method: "PATCH",
+        headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json"
+        },
+        body: JSON.stringify(body)
+    })
+    .then(resp => resp.json())
+    .then(result => {
+      // set to next page
+    })
+  }
+
 
   render() {
-    const { isRunning, currentChoice } = this.state;
+    const { isRunning, currentChoice, currentEvent, currentRaffle } = this.state;
 
     return (
       <div className="RandomPicker">
         <RandomNumberChoice choice={currentChoice} />
         <RandomNumberControls
+          currentEvent={currentEvent}
+          currentRaffle={currentRaffle}
           isRunning={isRunning}
-          hasChoice={currentChoice.trim().length > 0}
+          hasChoice={currentChoice}
           start={this.start}
           stop={this.stop}
-          reset={this.reset}
+          setWinner={winner => this.setWinner(winner)}
         />
       </div>
     );
@@ -92,21 +146,22 @@ RandomNumber.propTypes = {
 };
 
 class RandomNumberChoice extends React.PureComponent {
+
+  zeroPadding(num) {
+    return num.toString().padStart(4, "0");
+  }
+
   render() {
     const { choice } = this.props;
-    const content = choice.trim().length > 0 ? choice : '';
-
+    const content = (Object.keys(choice).length == 0) ? '' : (choice.raffle_number);
     if(content){
-      var str = content.toString();
-      var result1 = str.substring(0,1)
-      result1 = parseInt(result1);
-      var result2 = str.substring(1,2)
-      result2 = parseInt(result2);
-      var result3 = str.substring(2,3)
-      result3 = parseInt(result3);
-      var result4 = str.substring(3,4)
-      result4 = parseInt(result4);
+      var paddedContent = this.zeroPadding(content)
+      var result1 = paddedContent.substring(0,1)
+      var result2 = paddedContent.substring(1,2)
+      var result3 = paddedContent.substring(2,3)
+      var result4 = paddedContent.substring(3,4)
     }
+
 
     return (
       <div className="RandomNumberPicker__choice px-2">
@@ -131,47 +186,69 @@ class RandomNumberChoice extends React.PureComponent {
   }
 }
 
-RandomNumberChoice.propTypes = {
-  choice: PropTypes.string
-};
-
 class RandomNumberControls extends React.PureComponent {
+  onWinnerMouseOver = event => {
+    const el = event.target;
+    el.style.background = this.props.currentEvent.random_number_winner_mouse_over;
+  };
+
+  onWinnerMouseOut = event => {
+    const el = event.target;
+    el.style.background = this.props.currentEvent.random_number_winner_mouse_out;
+  };
+
+  onDrawMouseOver = event => {
+    const el = event.target;
+    el.style.background = this.props.currentEvent.random_number_draw_mouse_over;
+  };
+
+  onDrawMouseOut = event => {
+    const el = event.target;
+    el.style.background = this.props.currentEvent.random_number_draw_mouse_out;
+  };
+
   render() {
     const {
       isRunning,
       hasChoice,
       start,
       stop,
-      reset
+      setWinner,
+      currentEvent,
+      currentRaffle
     } = this.props;
-
+    let isDone = (currentRaffle.status === 2)
     return (
       <div className="RandomNumber__controls">
         <button
           className={`RandomPicker__button ${isRunning && 'RandomPicker__button--stop'}`}
           onClick={isRunning ? stop : start}
+          style={{ background : currentEvent.random_number_draw_mouse_out, border : '1px solid' + currentEvent.random_number_draw_mouse_out }}
+          onMouseEnter={event => this.onDrawMouseOver(event)}
+          onMouseOut={event => this.onDrawMouseOut(event)}
+          disabled={isDone}
         >
-          {isRunning ? 'stop' : 'start'}
+          {isRunning ? 'STOP' : 'DRAW'}
         </button>
-        <button
-          disabled={isRunning || !hasChoice}
-          className="RandomPicker__button RandomPicker__button--reset"
-          onClick={reset}
-        >
-          reset
-        </button>
+
+        <form
+          action="."
+          onSubmit={e => {
+            e.preventDefault()
+            setWinner(hasChoice)
+          }}>
+          <input
+            type="submit" value={'Winner'}
+            className="btn"
+            style={{ background : currentEvent.random_number_winner_mouse_out, border : '1px solid' + currentEvent.random_number_winner_mouse_out }}
+            onMouseEnter={event => this.onWinnerMouseOver(event)}
+            onMouseOut={event => this.onWinnerMouseOut(event)}
+            disabled={isDone} />
+        </form>
       </div>
     );
   }
 
 }
-
-RandomNumberControls.propTypes = {
-  isRunning: PropTypes.bool,
-  hasChoice: PropTypes.bool,
-  start: PropTypes.func,
-  stop: PropTypes.func,
-  reset: PropTypes.func,
-};
 
 export default RandomNumber
