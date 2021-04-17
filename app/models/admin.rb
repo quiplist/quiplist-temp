@@ -24,7 +24,7 @@ class Admin < ApplicationRecord
   include ResetPassword
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
-  devise :database_authenticatable, :validatables
+  devise :database_authenticatable, :validatables, :registerable
 
   has_many :approved, foreign_key: "approver_id", class_name: "GuestList"
   has_many :reactions, as: :responder

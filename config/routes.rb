@@ -29,6 +29,10 @@ Rails.application.routes.draw do
       post :create_admin_events, on: :member
       delete :destroy_admin_events, on: :member
       put :reset_password, on: :member
+      get :profile, on: :collection
+      put :profile, to: 'admins#update_profile', on: :collection
+      get :change_password, on: :collection
+      put :change_password, to: 'admins#update_password', on: :collection
     end
     resources :users, except: [:new, :edit, :create, :update, :destroy] do
       put :reset_password, on: :member
@@ -57,7 +61,11 @@ Rails.application.routes.draw do
   #   get 'sign_out', to: 'devise/sessions#destroy'
   #   #root to: 'devise/sessions#new', as: 'authenticated_user_root'
   # end
-  devise_for :admins
+  devise_for :admins, :skip => [:registrations]
+    as :admin do
+    get 'admins/edit' => 'admins/registrations#edit', :as => 'edit_admin_registration'
+    put 'admins' => 'admins/registrations#update', :as => 'admin_registration'
+  end
   # devise_for :employees, path: 'dashboard/employees', skip: [:sessions]
   # as :employee do
   #   get 'login', to: 'devise/sessions#new', as: :new_app_account_session

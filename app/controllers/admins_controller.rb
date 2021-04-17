@@ -87,12 +87,42 @@ class AdminsController < ApplicationController
     end
   end
 
+  def profile
+    @admin = @current_admin
+  end
+
+  def update_profile
+    @admin = @current_admin
+    if @admin.update_attributes admin_params
+      redirect_to profile_admins_path, notice: "Profile updated successfully!"
+    else
+      render :profile
+    end
+  end
+
+  # def change_password
+  #   @admin = @current_admin
+  # end
+  #
+  # def update_password
+  #   @admin = @current_admin
+  #   if @admin.update_attributes admin_params
+  #     redirect_to profile_admins_path, notice: "Profile updated successfully!"
+  #   else
+  #     render :profile
+  #   end
+  # end
+
   private
 
   def admin_params
     params.require(:admin).permit(:email, :password, :password_confirmation, :contact_number,
-      :full_name, :member_id, :member_type, :affiliation, :role, access_rights_attributes: [:id, :name, :privilege])
+      :full_name, :position, :company, :role, access_rights_attributes: [:id, :name, :privilege])
   end
+
+  # def change_password_params
+  #   params.require(:admin).permit(:current_password, :password, :password_confirmation)
+  # end
 
   def admin_events_params
     params.require(:admin_event).permit(:event_id, :admin_id)
