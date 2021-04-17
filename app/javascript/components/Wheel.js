@@ -9,8 +9,11 @@ const Wheel = () => {
   ['better luck next time1', 'won 70', 'won 10','better luck next time2', 'won 2', 'won uber pass', 'better luck next time3', 'won a voucher3'];
   const choice = segments[Math.floor(Math.random() * segments.length)];
   const segColors = [
-    "#F1823B",
+    "#C82E29"
   ];
+
+  const setChoices = [];
+
   const onFinished = (winner) => {
     Swal.fire({
       title: winner,
@@ -27,6 +30,11 @@ const Wheel = () => {
         showConfirmButton: true
       })
     }
+    setChoices.push(winner);
+  }
+
+  const setWinner = () => {
+    var winner = setChoices.slice(-1).pop();
   }
 
   return (
@@ -38,9 +46,10 @@ const Wheel = () => {
         onFinished={(winner)=>onFinished(winner)}
         primaryColor='#BBBBBC'
         contrastColor='white'
-        buttonText='Spin'
+        buttonText='Draw'
         isOnlyOnce = {false}
         size={290}/>
+        <button className="RandomPicker__button" onClick={setWinner}>Winner</button>
     </div>
   );
 }

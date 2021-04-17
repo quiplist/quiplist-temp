@@ -68,7 +68,7 @@ $.fn.dataTable.ext.search.push(
 
 $(document).ready(function () {
     var eventDT = $('.event-data-table').DataTable({
-      dom: 'f<"event toolbar">rtlip',
+      dom: 'fl<"event toolbar">rtip',
       pagingType: "full_numbers",
       "columnDefs": [
             {
@@ -80,12 +80,18 @@ $(document).ready(function () {
 
     $("div.event.toolbar").html("\
       <div class=\"btn-group\" role=\"group\" aria-label=\"Basic checkbox toggle button group\">\
-        <input type=\"checkbox\" class=\"btn-check filterEvent\" id=\"btncheck1\" name=\"type\" value=\"Queued\" checked>\
-        <label class=\"btn btn-outline-primary\" for=\"btncheck1\">Queued</label>\
-        <input type=\"checkbox\" class=\"btn-check filterEvent\" id=\"btncheck2\" name=\"type\" value=\"On Going\" checked>\
-        <label class=\"btn btn-outline-primary\" for=\"btncheck2\">On Going</label>\
-        <input type=\"checkbox\" class=\"btn-check filterEvent\" id=\"btncheck3\" name=\"type\" value=\"Done\" checked>\
-        <label class=\"btn btn-outline-primary\" for=\"btncheck3\">Done</label>\
+        <div>\
+          <input type=\"checkbox\" class=\"btn-check filterEvent\" id=\"btncheck1\" name=\"type\" value=\"Queued\" checked>\
+          <label class=\"btn btn-outline-primary\" for=\"btncheck1\">Queued</label>\
+        </div>\
+        <div>\
+          <input type=\"checkbox\" class=\"btn-check filterEvent\" id=\"btncheck2\" name=\"type\" value=\"On Going\" checked>\
+          <label class=\"btn btn-outline-primary\" for=\"btncheck2\">On Going</label>\
+        </div>\
+        <div>\
+          <input type=\"checkbox\" class=\"btn-check filterEvent\" id=\"btncheck3\" name=\"type\" value=\"Done\" checked>\
+          <label class=\"btn btn-outline-primary\" for=\"btncheck3\">Done</label>\
+        </div>\
       </div>\
     ");
 
@@ -103,7 +109,7 @@ $(document).ready(function () {
     });
 
     var userDT = $('.user-data-table').DataTable({
-      dom: 'f<"user toolbar">rtlip',
+      dom: 'fl<"user toolbar">rtip',
       pagingType: "full_numbers",
       "columnDefs": [
             {
@@ -115,10 +121,14 @@ $(document).ready(function () {
 
     $("div.user.toolbar").html("\
       <div class=\"btn-group\" role=\"group\" aria-label=\"Basic checkbox toggle button group\">\
-        <input type=\"checkbox\" class=\"btn-check filterUser\" id=\"btncheck1\" name=\"resetPassword\" value=\"true\" checked>\
-        <label class=\"btn btn-outline-primary\" for=\"btncheck1\">Reset Password</label>\
-        <input type=\"checkbox\" class=\"btn-check filterUser\" id=\"btncheck2\" name=\"resetPassword\" value=\"false\" checked>\
-        <label class=\"btn btn-outline-primary\" for=\"btncheck2\">All</label>\
+        <div>\
+          <input type=\"checkbox\" class=\"btn-check filterUser\" id=\"btncheck1\" name=\"resetPassword\" value=\"true\" checked>\
+          <label class=\"btn btn-outline-primary\" for=\"btncheck1\">Reset Password</label>\
+        </div>\
+        <div>\
+          <input type=\"checkbox\" class=\"btn-check filterUser\" id=\"btncheck2\" name=\"resetPassword\" value=\"false\" checked>\
+          <label class=\"btn btn-outline-primary\" for=\"btncheck2\">All</label>\
+        </div>\
       </div>\
     ");
 
@@ -137,7 +147,7 @@ $(document).ready(function () {
 
 
     var guestDT = $('.guest-data-table').DataTable({
-      dom: 'f<"guest toolbar">rtlip',
+      dom: 'fl<"guest toolbar">rtip',
       pagingType: "full_numbers",
       "columnDefs": [
             {
@@ -149,12 +159,18 @@ $(document).ready(function () {
 
     $("div.guest.toolbar").html("\
       <div class=\"btn-group\" role=\"group\" aria-label=\"Basic checkbox toggle button group\">\
-        <input type=\"checkbox\" class=\"btn-check filterGuestList\" id=\"btncheck1\" name=\"type\" value=\"Pending\" checked>\
-        <label class=\"btn btn-outline-primary\" for=\"btncheck1\">Pending</label>\
-        <input type=\"checkbox\" class=\"btn-check filterGuestList\" id=\"btncheck2\" name=\"type\" value=\"Approved\" checked>\
-        <label class=\"btn btn-outline-primary\" for=\"btncheck2\">Approved</label>\
-        <input type=\"checkbox\" class=\"btn-check filterGuestList\" id=\"btncheck3\" name=\"type\" value=\"Denied\" checked>\
-        <label class=\"btn btn-outline-primary\" for=\"btncheck3\">Denied</label>\
+        <div>\
+          <input type=\"checkbox\" class=\"btn-check filterGuestList\" id=\"btncheck1\" name=\"type\" value=\"Pending\" checked>\
+          <label class=\"btn btn-outline-primary\" for=\"btncheck1\">Pending</label>\
+        </div>\
+        <div>\
+          <input type=\"checkbox\" class=\"btn-check filterGuestList\" id=\"btncheck2\" name=\"type\" value=\"Approved\" checked>\
+          <label class=\"btn btn-outline-primary\" for=\"btncheck2\">Approved</label>\
+        </div>\
+        <div>\
+          <input type=\"checkbox\" class=\"btn-check filterGuestList\" id=\"btncheck3\" name=\"type\" value=\"Denied\" checked>\
+          <label class=\"btn btn-outline-primary\" for=\"btncheck3\">Denied</label>\
+        </div>\
       </div>\
     ");
 
@@ -172,18 +188,24 @@ $(document).ready(function () {
     });
 
     var raffleDT = $('.raffle-data-table').DataTable({
-      dom: 'f<"raffle toolbar">rtlip',
+      dom: 'fl<"raffle toolbar">rtip',
       pagingType: "full_numbers",
     });
 
     $("div.raffle.toolbar").html("\
       <div class=\"btn-group\" role=\"group\" aria-label=\"Basic checkbox toggle button group\">\
-        <input type=\"checkbox\" class=\"btn-check filterRaffle\" id=\"btncheck4\" name=\"type\" value=\"Random Names\" checked>\
-        <label class=\"btn btn-outline-primary\" for=\"btncheck4\">Random Names</label>\
-        <input type=\"checkbox\" class=\"btn-check filterRaffle\" id=\"btncheck5\" name=\"type\" value=\"Spin a Wheel\" checked>\
-        <label class=\"btn btn-outline-primary\" for=\"btncheck5\">Spin a Wheel</label>\
-        <input type=\"checkbox\" class=\"btn-check filterRaffle\" id=\"btncheck6\" name=\"type\" value=\"Lotto\" checked>\
-        <label class=\"btn btn-outline-primary\" for=\"btncheck6\">Lotto</label>\
+        <div>\
+          <input type=\"checkbox\" class=\"btn-check filterRaffle\" id=\"btncheck4\" name=\"type\" value=\"Random Names\" checked>\
+          <label class=\"btn btn-outline-primary\" for=\"btncheck4\">Random Names</label>\
+        </div>\
+        <div>\
+          <input type=\"checkbox\" class=\"btn-check filterRaffle\" id=\"btncheck5\" name=\"type\" value=\"Spin a Wheel\" checked>\
+          <label class=\"btn btn-outline-primary\" for=\"btncheck5\">Spin a Wheel</label>\
+        </div>\
+        <div>\
+          <input type=\"checkbox\" class=\"btn-check filterRaffle\" id=\"btncheck6\" name=\"type\" value=\"Lotto\" checked>\
+          <label class=\"btn btn-outline-primary\" for=\"btncheck6\">Lotto</label>\
+        </div>\
       </div>\
     ");
 
@@ -201,24 +223,36 @@ $(document).ready(function () {
     });
 
     var questionnaireDT = $('.questionnaire-data-table').DataTable({
-      dom: 'f<"questionnaire toolbar">rtlip',
+      dom: 'fl<"questionnaire toolbar">rtip',
       pagingType: "full_numbers",
     });
 
     $("div.questionnaire.toolbar").html("\
       <div class=\"btn-group\" role=\"group\" aria-label=\"Basic checkbox toggle button group\">\
-        <input type=\"checkbox\" class=\"btn-check filterQuestionnaire\" id=\"btncheck7\" name=\"type\" value=\"Multiple Choice\" checked>\
-        <label class=\"btn btn-outline-primary\" for=\"btncheck7\">Multiple Choice</label>\
-        <input type=\"checkbox\" class=\"btn-check filterQuestionnaire\" id=\"btncheck8\" name=\"type\" value=\"Yes or No\" checked>\
-        <label class=\"btn btn-outline-primary\" for=\"btncheck8\">Yes or No</label>\
-        <input type=\"checkbox\" class=\"btn-check filterQuestionnaire\" id=\"btncheck9\" name=\"type\" value=\"Indentification\" checked>\
-        <label class=\"btn btn-outline-primary\" for=\"btncheck9\">Indentification</label>\
-        <input type=\"checkbox\" class=\"btn-check filterQuestionnaire\" id=\"btncheck10\" name=\"type\" value=\"Select Letters\" checked>\
-        <label class=\"btn btn-outline-primary\" for=\"btncheck10\">Select Letters</label>\
-        <input type=\"checkbox\" class=\"btn-check filterQuestionnaire\" id=\"btncheck11\" name=\"type\" value=\"Question and Answer\" checked>\
-        <label class=\"btn btn-outline-primary\" for=\"btncheck11\">Question and Answer</label>\
-        <input type=\"checkbox\" class=\"btn-check filterQuestionnaire\" id=\"btncheck12\" name=\"type\" value=\"Poll\" checked>\
-        <label class=\"btn btn-outline-primary\" for=\"btncheck12\">Poll</label>\
+        <div>\
+          <input type=\"checkbox\" class=\"btn-check filterQuestionnaire\" id=\"btncheck7\" name=\"type\" value=\"Multiple Choice\" checked>\
+          <label class=\"btn btn-outline-primary\" for=\"btncheck7\">Multiple Choice</label>\
+        </div>\
+        <div>\
+          <input type=\"checkbox\" class=\"btn-check filterQuestionnaire\" id=\"btncheck8\" name=\"type\" value=\"Yes or No\" checked>\
+          <label class=\"btn btn-outline-primary\" for=\"btncheck8\">Yes or No</label>\
+        </div>\
+        <div>\
+          <input type=\"checkbox\" class=\"btn-check filterQuestionnaire\" id=\"btncheck9\" name=\"type\" value=\"Indentification\" checked>\
+          <label class=\"btn btn-outline-primary\" for=\"btncheck9\">Indentification</label>\
+        </div>\
+        <div>\
+          <input type=\"checkbox\" class=\"btn-check filterQuestionnaire\" id=\"btncheck10\" name=\"type\" value=\"Select Letters\" checked>\
+          <label class=\"btn btn-outline-primary\" for=\"btncheck10\">Select Letters</label>\
+        </div>\
+        <div>\
+          <input type=\"checkbox\" class=\"btn-check filterQuestionnaire\" id=\"btncheck11\" name=\"type\" value=\"Question and Answer\" checked>\
+          <label class=\"btn btn-outline-primary\" for=\"btncheck11\">Question and Answer</label>\
+        </div>\
+        <div>\
+          <input type=\"checkbox\" class=\"btn-check filterQuestionnaire\" id=\"btncheck12\" name=\"type\" value=\"Poll\" checked>\
+          <label class=\"btn btn-outline-primary\" for=\"btncheck12\">Poll</label>\
+        </div>\
       </div>\
     ");
 
@@ -236,7 +270,7 @@ $(document).ready(function () {
     });
 
     var dT = $('.data-table').DataTable({
-      dom: 'frtlip',
+      dom: 'flrtip',
       pagingType: "full_numbers",
     });
 
@@ -384,6 +418,8 @@ $(document).ready(function () {
     if(eventForm.length > 0){
         for(var i = 0; i <= eventForm.length; i++){
             var eventValue = $('select#'+i);
+            console.log(eventForm.length)
+            console.log(eventValue.val())
             switch(eventValue.val()){
                 case '0':
                         eventValue.addClass('queued');
@@ -399,6 +435,8 @@ $(document).ready(function () {
                         eventValue.addClass('done');
                         eventValue.removeClass('queued');
                         eventValue.removeClass('going');
+                    break;
+                default :
                     break;
             }
         }

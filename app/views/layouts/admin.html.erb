@@ -21,7 +21,9 @@
             <div class="row">
                 <div class="col-2 px-0">
                     <div class="sidebar">
-                        <div class="sidebar--box"></div>
+                        <div class="sidebar--box">
+                          <%= image_tag "white-logo.png", class: "img-fluid" %>
+                        </div>
                         <ul class="px-3 sidebar-list">
                           <li>
                             <% if can? :index, Event %>
@@ -74,6 +76,7 @@
                                 <ul>
                                   <li><%= link_to "Profile", profile_admins_path %></li>
                                   <li><%= link_to "Change password", edit_admin_registration_path %></li>
+                                  <hr class="my-0"/>
                                   <li>
                                     <% if current_admin %>
                                       <%= link_to destroy_admin_session_path, id: "logout" do %>

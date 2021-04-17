@@ -3,134 +3,125 @@
   current_path: "#{@admin.id}"
 } %>
 <div class="container content-wrapper">
-  <%= render partial: "layouts/shared/success_messages", locals: { messages: flash[:notice] } %>
-  <%= render partial: "layouts/shared/alert_messages", locals: { messages: flash[:alert] } %>
-  <div class="row">
+   <%= render partial: "layouts/shared/success_messages", locals: { messages: flash[:notice] } %>
+   <%= render partial: "layouts/shared/alert_messages", locals: { messages: flash[:alert] } %>
+   <div class="row">
       <div class="col-12 text-start">
-          <h2 class="event_title"><%= @admin.full_name %></h2>
-          <span class="event_status"><%= @admin.role_name %></span>
+         <h2 class="admin_title"><%= @admin.full_name %></h2>
       </div>
-      <hr/>
-  </div>
-  <div class="row text-start mb-3">
+   </div>
+   <div class="row text-start mb-3 mx-3">
       <div class="col col-lg-4">
-          <div class="admin_wrapper">
-              <span class="mr-3"><strong>Email Address:</strong></span><br>
-              <span class="admin_detail"><%= @admin.email %></span>
-          </div>
+         <div class="admin_wrapper">
+            <span class="mr-3"><strong>Email Address:</strong></span><br>
+            <span class="admin_detail"><%= @admin.email %></span>
+         </div>
       </div>
       <div class="col col-lg-4">
-        <div class="admin_wrapper">
+         <div class="admin_wrapper">
             <span class="mr-3"><strong>Company:</strong></span><br>
             <span class="admin_detail"><%= @admin.company %></span>
-        </div>
+         </div>
       </div>
-  </div>
-  <div class="row text-start mb-3">
-    <div class="col col-lg-4">
-      <div class="admin_wrapper">
-        <span class="mr-3"><strong>Position:</strong></span><br>
-        <span class="admin_detail"><%= @admin.position %></span>
+   </div>
+   <div class="row text-start mb-3 mx-3">
+      <div class="col col-lg-4">
+         <div class="admin_wrapper">
+            <span class="mr-3"><strong>Position:</strong></span><br>
+            <span class="admin_detail"><%= @admin.position %></span>
+         </div>
       </div>
-    </div>
-    <div class="col col-lg-4">
-      <div class="admin_wrapper">
-          <span class="mr-3"><strong>Contact Number:</strong></span><br>
-          <span class="admin_detail"><%= @admin.contact_number %></span>
+      <div class="col col-lg-4">
+         <div class="admin_wrapper">
+            <span class="mr-3"><strong>Contact Number:</strong></span><br>
+            <span class="admin_detail"><%= @admin.contact_number %></span>
+         </div>
       </div>
-    </div>
-  </div>
-    <div class="row">
-      <div class="col col-lg-12">
-        <hr/>
-      </div>
-    </div>
+   </div>
    <div class="row">
       <div class="col col-lg-12">
-         <nav class="mb-4">
-            <div class="nav nav-tabs" id="admins_views" role="tablist">
-               <a class="nav-link active" id="nav-events-tab" data-bs-toggle="tab" href="#nav-events" role="tab" aria-controls="nav-events" aria-selected="true">EVENTS</a>
-            </div>
-         </nav>
-         <div class="tab-content" id="nav-tabContent">
-          <div class="tab-pane fade show active" id="nav-events" role="tabpanel" aria-labelledby="nav-events-tab">
+         <hr/>
+      </div>
+   </div>
+   <div class="row">
+      <div class="col col-lg-12">
+         <div class="tab-pane fade show active" id="nav-events" role="tabpanel" aria-labelledby="nav-events-tab">
             <% if can? :manage, Admin %>
             <div class="row text-end">
-              <div class="col-12">
+               <div class="col-12">
                   <button type="button" class="btn btn-blue my-3 " data-bs-toggle="modal" data-bs-target="#adminAddEvent">
-                      Add Event
+                  Add Event
                   </button>
-              </div>
+               </div>
             </div>
             <div class="modal fade" id="adminAddEvent" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="adminAddEvent" aria-hidden="true">
-              <div class="modal-dialog modal-md">
-                <div class="modal-content">
-                  <div class="modal-header">
-                      <h5 class="modal-title" id="adminAddEvent">Add Event to Manage</h5>
-                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                  </div>
-                  <div class="modal-body my-3">
-                    <div class="container">
-                      <div class="row">
-                        <div class="col col-lg-12">
-                          <%= form_for @admin_event, as: :admin_event, url: create_admin_events_admin_path(id: @admin.id), method: :post, html: { class: "" } do |f| %>
-                            <div class="mb-3">
-                              <div class="row">
-                                <div class="col col-lg-12">
-                                  <label for="event">Event</label>
-                                  <%= f.hidden_field :admin_id, value: @admin.id %>
-                                  <%= f.collection_select :event_id, @events, :id, :title, {}, { class: 'form-select' } %>
-                                </div>
+               <div class="modal-dialog modal-md">
+                  <div class="modal-content">
+                     <div class="modal-header">
+                        <h5 class="modal-title" id="adminAddEvent">Add Event to Manage</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                     </div>
+                     <div class="modal-body my-3">
+                        <div class="container">
+                           <div class="row">
+                              <div class="col col-lg-12">
+                                 <%= form_for @admin_event, as: :admin_event, url: create_admin_events_admin_path(id: @admin.id), method: :post, html: { class: "" } do |f| %>
+                                 <div class="mb-3">
+                                    <div class="row">
+                                       <div class="col col-lg-12">
+                                          <label for="event">Event</label>
+                                          <%= f.hidden_field :admin_id, value: @admin.id %>
+                                          <%= f.collection_select :event_id, @events, :id, :title, {}, { class: 'form-select' } %>
+                                       </div>
+                                    </div>
+                                 </div>
+                                 <div class="row">
+                                    <div class="col-12 text-end">
+                                       <%= submit_tag "Add Event", class: "btn btn-submit" %>
+                                    </div>
+                                 </div>
+                                 <% end %>
                               </div>
-                            </div>
-                            <div class="row">
-                              <div class="col-12 text-end">
-                                <%= submit_tag "Add Event", class: "btn btn-submit" %>
-                              </div>
-                            </div>
-                          <% end %>
+                           </div>
                         </div>
-                      </div>
-                    </div>
+                     </div>
                   </div>
-                </div>
-              </div>
+               </div>
             </div>
             <% end %>
-             <table id="event_list_table" class="table data-table">
-                <thead>
-                   <tr>
-                      <th>Event Title</th>
-                      <th>Event Code</th>
-                      <th>Event Type</th>
-                      <th>Event Date</th>
-                      <th></th>
-                   </tr>
-                </thead>
-                <tbody>
+            <table id="event_list_table" class="table data-table hover">
+               <thead>
+                  <tr>
+                     <th>Event Title</th>
+                     <th>Event Code</th>
+                     <th>Event Type</th>
+                     <th>Event Date</th>
+                     <th></th>
+                  </tr>
+               </thead>
+               <tbody>
                   <% @admin_events.each do |admin_event| %>
-                    <tr>
-                      <td><%= admin_event.event.title %></td>
-                      <td><%= admin_event.event.event_code %></td>
-                      <td><%= admin_event.event.event_type_name %></td>
-                      <td>
+                  <tr>
+                     <td><%= admin_event.event.title %></td>
+                     <td><%= admin_event.event.event_code %></td>
+                     <td><%= admin_event.event.event_type_name %></td>
+                     <td>
                         <%= date_formatter(admin_event.event.start_date) %>
                         <% unless (admin_event.event.start_date.nil? || admin_event.event.end_date.nil?) %>
-                          -
+                        -
                         <% end %>
                         <%= date_formatter(admin_event.event.end_date) %>
-                      </td>
-                      <td class="actions">
+                     </td>
+                     <td class="actions">
                         <% if can? :manage, Admin %>
-                          <a class="btn btn-remove" href="#" data-bs-toggle="modal" data-bs-target="#delete-modal-id-<%= admin_event.id %>">Delete</a>
-                          <%= render partial: "layouts/shared/delete_modal", locals: { index_id: "#{admin_event.id}", m_name: "Admin Event", name: admin_event.event.title, path: destroy_admin_events_admin_path(id: @admin.id, admin_event_id: admin_event.id) } %>
+                        <a class="btn btn-remove" href="#" data-bs-toggle="modal" data-bs-target="#delete-modal-id-<%= admin_event.id %>">Delete</a>
+                        <%= render partial: "layouts/shared/delete_modal", locals: { index_id: "#{admin_event.id}", m_name: "Admin Event", name: admin_event.event.title, path: destroy_admin_events_admin_path(id: @admin.id, admin_event_id: admin_event.id) } %>
                         <% end %>
-                      </td>
-                    </tr>
+                     </td>
+                  </tr>
                   <% end %>
-                </tbody>
-             </table>
-            </div>
+               </tbody>
+            </table>
          </div>
       </div>
    </div>

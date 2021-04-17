@@ -97,7 +97,7 @@
       <div class="card shadow-sm">
         <h3 class="card-text">Registration Fields</h3>
         <%= form_for @event, as: :event, url: event_path(@event), method: :put, html: { class: "" } do |f| %>
-          <table class="table">
+          <table class="table hover">
             <thead>
               <tr>
                 <th scope="col">Personal Information</th>
@@ -199,7 +199,7 @@
       <div class="card shadow-sm">
         <h3 class="card-text">Registration Fields - Drop down</h3>
         <%= form_for @event, as: :event, url: event_path(@event), method: :put, html: { class: "" } do |f| %>
-          <table class="table">
+          <table class="table hover">
             <thead>
               <tr>
                 <th scope="col">Personal Information</th>
