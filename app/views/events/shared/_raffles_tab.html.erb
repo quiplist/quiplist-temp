@@ -21,7 +21,7 @@
           <td><%= raffle.status_name %></td>
           <td class="actions text-center">
             <% if can? :show, Raffle %>
-              <%= link_to "Show", event_raffle_path(event_id: @event.id, id: raffle.id), class: 'btn btn-view' %>
+              <%= link_to "Show", event_raffle_path(event_id: @event.id, id: raffle.id), class: 'btn btn-view', target:"_blank" %>
             <% end %>
             <% if can? :update, Raffle %>
               <%= link_to "Edit", edit_event_raffle_path(event_id: @event.id, id: raffle.id), class: 'btn btn-edit' %>

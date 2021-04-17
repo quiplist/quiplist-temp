@@ -1582,14 +1582,37 @@ span#choice {
 	height: 100vh;
 }
 
-button.RandomPicker__button {
-	background: #f7931d;
-	font-family: 'Montserrat';
-	text-transform: uppercase;
-	border: none;
-	padding: 10px 35px;
-	margin-right: 10px;
-	border-radius: 50px;
+.RandomPicker__controls {
+    display: flex;
+    justify-content: center;
+}
+
+.RandomPicker__choice:before {
+	content: '';
+    background-image: url(winner_template_header.png);
+    background-repeat: no-repeat;
+    background-size: 95%;
+    height: 100%;
+    position: absolute;
+    top: -66px;
+    left: 17px;
+    width: 100%;
+}
+
+.RandomPicker__button, .RandomPicker input[type="submit"]{
+	color: #fff;
+    font-family: 'Montserrat';
+    text-transform: uppercase;
+    padding: 10px 35px;
+    border-radius: 50px;
+}
+
+.RandomPicker__button{
+    margin-right: 10px;
+}
+
+.RandomPicker input[type="submit"]{
+	margin: 0px;
 }
 
 .swal2-container.swal2-backdrop-show,
@@ -1601,12 +1624,23 @@ button.RandomPicker__button {
 }
 
 .swal2-popup.swal2-modal.swal2-show {
-	background: url(winner_template_body.png);
+	background: radial-gradient(circle, rgba(189,189,189,1) 0%, rgba(254,254,254,1) 0%, rgba(255,255,255,1) 0%, rgba(189,189,189,1) 100%);
 	background-size: cover;
+	border: 10px solid #F3933D;
 	height: 19%;
 	color: #000;
 	font-family: 'Montserrat';
 }
+
+/* .swal2-popup.swal2-modal.swal2-show::after {
+    content: '';
+	background-image: url(winner_template_body.png);
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+} */
 
 h2#swal2-title {
 	color: #000;
@@ -1622,11 +1656,11 @@ h2#swal2-title {
 	height: 100%;
 	background-repeat: no-repeat;
 	background-size: contain;
-	top: -55px;
+	top: -51px;
 	left: 0;
 }
 
-.RandomPicker {
+.raffle-wrapper{
 	background-image: url(blue-bg.png);
 	background-size: cover;
 	background-position: bottom;
@@ -1637,7 +1671,9 @@ h2#swal2-title {
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;
+	overflow: hidden;
 }
+
 
 .numberWrapper {
 	position: relative;
@@ -1689,22 +1725,25 @@ h2#swal2-title {
 	transform: translate(-50%, 0%);
 }
 
-.RandomNumber__controls {
-	position: absolute;
-	bottom: 20%;
+.RandomPicker{
+	position: relative;
 }
 
-#wheel{
-    position: absolute;
-    left: 60%;
-    top: 60%;
-    transform: translate(-50%, -50%);
+.RandomNumber__controls {
+	position: absolute;
+	width: 100%;
+    bottom: -150px;
+    display: flex;
+    justify-content: center;
+}
+
+
+#wheel canvas{
+	width: calc(70% - 20px);
 }
 
 .wheel-wrapper{
-    background-image: url(blue-bg.png);
-    background-size: cover;
-    background-position: bottom;
+	
     color: #fff;
     position: relative;
     height: 100vh;
@@ -1850,12 +1889,6 @@ table.dataTable {
 }
 
 
-@media screen and (min-width:1280px){
-    .swal2-popup.swal2-modal.swal2-show{
-        height: 21%;
-    }
-}
-
 @media screen and (min-width:1024px) {
 	div[data-react-class="FacebookLive"],
 	.fb-wrapper,
@@ -1877,29 +1910,17 @@ table.dataTable {
 	.feed {
 		height: 100px;
 	}
-	.RandomNumber__controls {
+	/* .RandomNumber__controls {
 		position: absolute;
 		bottom: 30%;
+	} */
+	#wheel canvas{
+		width: calc(100% - 20px);
 	}
-    #wheel{
-        left: 70%;
-    }
 	table.dataTable td.actions .btn {
 		width: 100%;
 		margin-bottom: 10px;
 	}
-}
-
-@media screen and (max-width:1024px) and (max-height:1366px){
-    .swal2-popup.swal2-modal.swal2-show{
-        height: 10%;
-    }
-}
-
-@media screen and (max-width:1024px) and (max-height:768px){
-    .swal2-popup.swal2-modal.swal2-show{
-        height: 19%;
-    }
 }
 
 @media (max-width: 768px) {
@@ -1921,12 +1942,9 @@ table.dataTable {
 	.name-wrapper:before {
 		top: -77px;
 	}
-	.swal2-popup.swal2-modal.swal2-show {
-		height: 14%;
-	}
-    #wheel {
+    /* #wheel {
         left: 75%;
-    }
+    } */
 	
 }
 
@@ -2073,15 +2091,6 @@ table.dataTable {
 	.name-wrapper:before {
 		top: -36px;
 	}
-	.swal2-popup.swal2-modal.swal2-show {
-		height: 14%;
-	}
-    .swal2-popup.swal2-modal.swal2-show:before{
-        top: -34px;
-    }
-    #wheel canvas{
-        width: 500px;
-    }
 	.sidebar--box {
 		padding: 10px 5px;
 	}
@@ -2106,12 +2115,20 @@ table.dataTable {
 	table .actions{
 		flex-wrap: wrap;
 	}
+	.RandomPicker__choice:before {
+		content: '';
+		background-image: url(winner_template_header.png);
+		background-repeat: no-repeat;
+		background-size: 90%;
+		height: 100%;
+		position: absolute;
+		top: -34px;
+		left: 17px;
+		width: 100%;
+	}
 }
 
 @media screen and (max-width:600px) {
-	.swal2-popup.swal2-modal.swal2-show {
-		background-position: center;
-	}
 	span#choice {
 		font-size: 25px;
 	}
@@ -2146,9 +2163,6 @@ table.dataTable {
 		position: absolute;
 		bottom: 25%;
 	}
-	.swal2-popup.swal2-modal.swal2-show {
-		height: 13%;
-	}
 }
 
 @media screen and (max-width:320px) {
@@ -2179,7 +2193,19 @@ table.dataTable {
 		left: 64%;
 		transform: translate(-50%, 0%);
 	}
-    #wheel canvas {
+    /* #wheel canvas {
         width: 400px;
-    }
+    } */
+
+	.RandomPicker__choice:before {
+		content: '';
+		background-image: url(winner_template_header.png);
+		background-repeat: no-repeat;
+		background-size: 90%;
+		height: 100%;
+		position: absolute;
+		top: -29px;
+		left: 17px;
+		width: 100%;
+	}
 }

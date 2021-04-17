@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import OuterWheel from "images/spin.png";
 
 const WheelComponent = ({
   segments,
@@ -37,10 +38,13 @@ const WheelComponent = ({
   const wheelInit = () => {
     initCanvas()
     wheelDraw()
+    //drawBgImg()
   }
 
   const initCanvas = () => {
-    let canvas = document.getElementById('canvas')
+    let canvas = document.getElementById('canvas');
+    let spinBtn = document.getElementById('spinWheel');
+
     if (navigator.appVersion.indexOf('MSIE') !== -1) {
       canvas = document.createElement('canvas')
       canvas.setAttribute('width', 1000)
@@ -48,9 +52,22 @@ const WheelComponent = ({
       canvas.setAttribute('id', 'canvas')
       document.getElementById('wheel').appendChild(canvas)
     }
-    canvas.addEventListener('click', spin, false)
+    spinBtn.addEventListener('click', spin, false)
+    //canvas.addEventListener('click', spin, false)
     canvasContext = canvas.getContext('2d')
+
+   // canvasContext.drawImage(OuterWheel,0,0);   
+
   }
+
+  const drawBgImg = () => {
+    let bgImg = new Image();
+    bgImg.src = OuterWheel;
+    bgImg.onload = () => {
+      canvasContext.drawImage(bgImg, 0, 0);
+    }
+  }
+
   const spin = () => {
     isStarted = true
     if (timerHandle === 0) {
@@ -122,6 +139,9 @@ const WheelComponent = ({
     ctx.lineTo(centerX, centerY)
     ctx.closePath()
     ctx.fillStyle = segColors[key]
+
+
+
     ctx.fill()
     ctx.stroke()
     ctx.save()
@@ -151,52 +171,49 @@ const WheelComponent = ({
 
     // Draw a center circle
     ctx.beginPath()
-    ctx.arc(centerX, centerY, 50, 0, PI2, false)
+    ctx.arc(centerX, centerY, 20, 0, PI2, false)
     ctx.closePath()
-    ctx.fillStyle = primaryColor || 'black'
-    ctx.lineWidth = 10
-    ctx.strokeStyle = contrastColor || 'white'
+    ctx.fillStyle = '#EF6537' || 'black'
+    ctx.lineWidth = 0
     ctx.fill()
-    ctx.font = 'bold 1em proxima-nova'
-    ctx.fillStyle = contrastColor || 'white'
     ctx.textAlign = 'center'
-    ctx.fillText(buttonText || 'Spin', centerX, centerY + 3)
     ctx.stroke()
 
     // Draw outer circle
-    ctx.beginPath()
-    ctx.arc(centerX, centerY, size, 0, PI2, false)
-    ctx.closePath()
+    // ctx.beginPath()
+    // ctx.arc(centerX, centerY, size, 0, PI2, false)
+    // ctx.closePath()
 
-    ctx.lineWidth = 10
-    ctx.strokeStyle = primaryColor || 'black'
-    ctx.stroke()
+    // ctx.lineWidth = 10
+    // ctx.strokeStyle = primaryColor || 'black'
+    // ctx.stroke()
   }
 
   const drawNeedle = () => {
-    const ctx = canvasContext
-    ctx.lineWidth = 1
-    ctx.strokeStyle = contrastColor || 'white'
-    ctx.fileStyle = contrastColor || 'white'
-    ctx.beginPath()
-    ctx.moveTo(centerX + 20, centerY - 50)
-    ctx.lineTo(centerX - 20, centerY - 50)
-    ctx.lineTo(centerX, centerY - 70)
-    ctx.closePath()
-    ctx.fill()
-    const change = angleCurrent + Math.PI / 2
-    let i =
-      segments.length -
-      Math.floor((change / (Math.PI * 2)) * segments.length) -
-      1
-    if (i < 0) i = i + segments.length
-    ctx.textAlign = 'center'
-    ctx.textBaseline = 'middle'
-    ctx.fillStyle = primaryColor || 'black'
-    ctx.font = 'bold 1.5em proxima-nova'
-    currentSegment = segments[i]
-    isStarted && ctx.fillText(currentSegment, centerX + 10, centerY + size + 50)
+    // const ctx = canvasContext
+    // ctx.lineWidth = 1
+    // ctx.strokeStyle = contrastColor || 'white'
+    // ctx.fileStyle = contrastColor || 'white'
+    // ctx.beginPath()
+    // ctx.moveTo(centerX + 0, centerY - 50)
+    // ctx.lineTo(centerX - 20, centerY - 50)
+    // ctx.lineTo(centerX, centerY - 70)
+    // ctx.closePath()
+    // ctx.fill()
+    // const change = angleCurrent + Math.PI / 2
+    // let i =
+    //   segments.length -
+    //   Math.floor((change / (Math.PI * 2)) * segments.length) -
+    //   1
+    // if (i < 0) i = i + segments.length
+    // ctx.textAlign = 'center'
+    // ctx.textBaseline = 'top'
+    // ctx.fillStyle = primaryColor || 'black'
+    // ctx.font = 'bold 1.5em proxima-nova'
+    // currentSegment = segments[i]
+    // isStarted && ctx.fillText(currentSegment, centerX + 10, centerY + size + 50)
   }
+
   const clear = () => {
     const ctx = canvasContext
     ctx.clearRect(0, 0, 1000, 800)
@@ -205,12 +222,16 @@ const WheelComponent = ({
     <div id='wheel'>
       <canvas
         id='canvas'
-        width='1000'
-        height='800'
+        width='600'
+        height='600'
         style={{
-          pointerEvents: isFinished && isOnlyOnce ? 'none' : 'auto'
+          pointerEvents: isFinished && isOnlyOnce ? 'none' : 'auto',
+          //backgroundImage: `url(${OuterWheel})`
         }}
       />
+      <div className="btn-actions">
+        <button id="spinWheel" className="RandomPicker__button mb-2">{buttonText}</button>
+      </div>
     </div>
   )
 }
