@@ -1,5 +1,6 @@
 class ApplicationController < ActionController::Base
   before_action :set_current_user
+  # DeviseController.respond_to :html, :json
   # rescue_from ActiveRecord::RecordNotFound do |exception|
   #   respond_to do |format|
   #     format.json { head :forbidden, content_type: 'text/html' }
