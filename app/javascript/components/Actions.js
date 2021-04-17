@@ -13,9 +13,22 @@ class Actions extends React.Component {
     this.state = {
       currentRaffle: [],
       currentRafflePage: null,
-      totalRafflePages: null
+      totalRafflePages: null,
+      currentQuestionnaire: [],
+      currentQuestionnairePage: null,
+      totalQuestionnairePages: null
     };
   }
+
+  onQuestionnairePageChanged = data => {
+    const questionnaires = this.props.questionnaires;
+    const currentQuestionnairePage = data.currentPage
+    const totalQuestionnairePages = data.totalPages;
+    const questionnairePageLimit = data.pageLimit;
+    const offset = (currentQuestionnairePage - 1) * questionnairePageLimit;
+    const currentQuestionnaire = questionnaires.slice(offset, offset + questionnairePageLimit);
+    this.setState({ currentQuestionnairePage, currentQuestionnaire, totalQuestionnairePages });
+  };
 
 
   onRafflePageChanged = data => {
@@ -30,9 +43,13 @@ class Actions extends React.Component {
 
 
 
+
   render () {
     const totalRaffles = this.props.raffles.length;
+    const totalQuestionnaires = this.props.questionnaires.length;
+
     if (totalRaffles === 0) return null;
+    if (totalQuestionnaires === 0) return null;
 
     return (
       <React.Fragment>
@@ -56,13 +73,24 @@ class Actions extends React.Component {
               </fieldset>
             </div>
           </div>
+
           <div className="col-12 col-md-6 col-lg-4">
             <div className="action-wrapper">
               <fieldset>
                 <legend>Questionnaire</legend>
                 <p className="my-0">Question:</p>
-                <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, </p>
-                <QuestionInput/>
+                {this.state.currentQuestionnaire.map((questionnaire, index) =>
+                  <p key={index}>{questionnaire.question}</p>
+                )}
+                <PlayPausePagination
+                  modelName={"questionnaires"}
+                  totalRecords={totalQuestionnaires}
+                  pageLimit={1}
+                  pageNeighbours={1}
+                  currentData={this.state.currentQuestionnaire}
+                  currentEvent={this.props.currentEvent}
+                  onPageChanged={this.onQuestionnairePageChanged}
+                />
               </fieldset>
             </div>
           </div>
