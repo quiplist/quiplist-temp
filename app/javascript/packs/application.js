@@ -274,10 +274,6 @@ $(document).ready(function () {
       pagingType: "full_numbers",
     });
 
-
-
-
-
     var btnEdit = $( ".btn-edit" );
     for(var i = 0; i < btnEdit.length; i++){
       $( ".btn-edit" ).click(function() {

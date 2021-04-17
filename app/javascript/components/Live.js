@@ -37,7 +37,8 @@ class Live extends React.Component {
       currentAnnouncement: {},
       currentUser: {},
       raffles: [],
-      guestLists: []
+      guestLists: [],
+      questionnaires: []
     };
 
 
@@ -56,6 +57,7 @@ class Live extends React.Component {
       this.setState({ announcements: result.announcements })
       this.setState({ raffles: result.raffles })
       this.setState({ guestLists: result.guest_lists })
+      this.setState({ questionnaires: result.questionnaires })
     });
 
     fetch('/api/v1/fetch_current_user')
@@ -128,6 +130,7 @@ class Live extends React.Component {
       {isAdmin ?
         (<Actions
           raffles = {this.state.raffles}
+          questionnaires = {this.state.questionnaires}
           guestLists = {this.state.guestLists}
           currentUser = {this.state.currentUser}
           currentEvent = {this.state.currentEvent}
@@ -149,7 +152,8 @@ class Live extends React.Component {
                 <EventDescription
                 currentEvent = {this.state.currentEvent}
                 raffleId = {this.state.raffleId}
-                hasBrochure = {this.props.hasBrochure} />
+                hasBrochure = {this.props.hasBrochure}
+                isAdmin = {isAdmin} />
               </div>
             </div>
             <div className="row">

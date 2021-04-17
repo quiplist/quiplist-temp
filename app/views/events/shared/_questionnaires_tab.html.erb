@@ -8,7 +8,7 @@
         <th>Questionnaire Type</th>
         <th>Question</th>
         <th>Choices</th>
-        <th>Answer/s</th>
+        <th>Correct Answer/s</th>
         <th>Status</th>
         <th></th>
       </tr>
@@ -19,7 +19,7 @@
           <td><%= questionnaire.questionnaire_type_name %></td>
           <td><%= questionnaire.question %></td>
           <td><%= questionnaire.choices %></td>
-          <td><%= questionnaire.answer %></td>
+          <td><%= questionnaire.correct_answer %></td>
           <td><%= questionnaire.status_name %></td>
           <td class="actions text-center">
             <% if can? :update, Questionnaire %>

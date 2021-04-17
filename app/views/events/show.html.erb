@@ -1,3 +1,7 @@
+<%= render partial: "layouts/shared/breadcrumbs", locals: {
+  links: [{ path: events_path, path_name: "Events" }],
+  current_path: "#{@event.id}"
+} %>
 <div class="container content-wrapper">
   <div class="row event-wrapper-admin">
     <%= render partial: "layouts/shared/success_messages", locals: { messages: flash[:notice] } %>

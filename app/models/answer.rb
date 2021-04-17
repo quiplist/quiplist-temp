@@ -15,6 +15,6 @@
 #  index_answers_on_questionnaire_id  (questionnaire_id)
 #
 class Answer < ApplicationRecord
-  belongs_to :questionnaire
+  belongs_to :questionnaire, optional: true
   belongs_to :guest_list
 end

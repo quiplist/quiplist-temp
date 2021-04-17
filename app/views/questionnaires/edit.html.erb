@@ -1,3 +1,11 @@
+<%= render partial: "layouts/shared/breadcrumbs", locals: {
+  links: [
+    { path: events_path, path_name: "Event" },
+    { path: event_path(@event), path_name: "#{@event.id}" },
+  ],
+  current_path: "Edit Questionnaire"
+} %>
+
 <div class="container content-wrapper">
   <div class="row mb-3">
     <div class="col-12 text-start">

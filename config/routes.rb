@@ -6,6 +6,8 @@ Rails.application.routes.draw do
   get '/events/:event_code/thank_you', to: 'home#thank_you', as: :thank_you
   get '/events/:event_code/denied', to: 'home#denied', as: :denied
   get '/find_event', to: 'home#find_event', as: :find_event
+  get '/profile', to: 'home#profile', as: :profile
+  put '/profile', to: 'home#update_profile', as: :update_profile
 
   scope 'admins' do
     resources :events, except: [:new, :edit] do
@@ -48,7 +50,7 @@ Rails.application.routes.draw do
       resources :announcements, only: [:index, :create]
       get '/fetch_current_user', to: 'users#fetch_current_user', as: :fetch_current_user
       resources :events, only: [:show]
-      resources :raffles, only: [:show, :update]
+      resources :raffles, only: [:index, :show, :update]
       resources :guest_lists, only: [:index]
       #get '/fetch_current_event/:event_code', to: 'events#fetch_current_event', as: :fetch_current_event
     end

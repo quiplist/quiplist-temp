@@ -16,10 +16,15 @@
 #
 #  index_questionnaires_on_event_id  (event_id)
 #
-require 'test_helper'
+class QuestionnaireSerializer < ActiveModel::Serializer
+  attributes :id, :correct_answer, :choices, :question, :questionnaire_type,
+             :questionnaire_type_name, :status, :status_name, :event_id, :answered_correctly
 
-class QuestionnaireTest < ActiveSupport::TestCase
-  # test "the truth" do
-  #   assert true
-  # end
+  def status_name
+    object.status_name
+  end
+
+  def answered_correctly
+    object.answered_correctly
+  end
 end

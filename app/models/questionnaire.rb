@@ -3,8 +3,8 @@
 # Table name: questionnaires
 #
 #  id                 :bigint           not null, primary key
-#  answer             :string           is an Array
 #  choices            :string           is an Array
+#  correct_answer     :string           is an Array
 #  question           :string
 #  questionnaire_type :integer          default(0)
 #  status             :integer          default(0)
@@ -17,7 +17,7 @@
 #  index_questionnaires_on_event_id  (event_id)
 #
 class Questionnaire < ApplicationRecord
-  has_many :answers
+  has_many :answered_correctly, class_name: "Answer"
   belongs_to :event
 
   MULTIPLE_CHOICE = 0

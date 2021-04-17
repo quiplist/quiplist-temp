@@ -26,6 +26,9 @@
               <!-- <li class="nav-item">
                 <a class="nav-link" aria-current="page" href="/">Home</a>
               </li> -->
+              <li class="nav-item"><%= link_to "Event", home_path(event_code: @event.event_code), class: "nav-link", style: "color: #{@event.main_mouse_out};", onmouseover:"this.style.color='#{@event.main_mouse_over}'", onmouseout:"this.style.color='#{@event.main_mouse_out}'" %></li>
+              <li class="nav-item"><%= link_to "Profile", profile_path(event_code: @event.event_code), class: "nav-link", style: "color: #{@event.main_mouse_out};", onmouseover:"this.style.color='#{@event.main_mouse_over}'", onmouseout:"this.style.color='#{@event.main_mouse_out}'" %></li>
+              <li class="nav-item"><%= link_to "Change password", edit_user_registration_path(event_code: @event.event_code), class: "nav-link", style: "color: #{@event.main_mouse_out};", onmouseover:"this.style.color='#{@event.main_mouse_over}'", onmouseout:"this.style.color='#{@event.main_mouse_out}'" %></li>
               <li class="nav-item">
                 <% if current_user %>
                   <%= link_to destroy_user_session_path, class: 'nav-link', id: "logout", style: "color: #{@event.main_mouse_out};", onmouseover:"this.style.color='#{@event.main_mouse_over}'", onmouseout:"this.style.color='#{@event.main_mouse_out}'" do %>

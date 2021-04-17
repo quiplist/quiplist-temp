@@ -1,7 +1,7 @@
 class HomeController < ApplicationController
   layout 'main'
   before_action :authenticate_user!, except: [:welcome, :find_event]
-  before_action :fetch_reaction, except: [:welcome, :find_event]
+  before_action :fetch_reaction, except: [:welcome, :find_event, :profile, :update_profile]
   before_action -> { check_event_code params[:event_code] }, except: [:welcome]
 
   def index
@@ -59,7 +59,28 @@ class HomeController < ApplicationController
     end
   end
 
+  def profile
+    @user = @current_user
+  end
+
+  def update_profile
+    @user = @current_user
+    if @user.update_attributes user_params
+      redirect_to profile_path(event_code: @event.event_code), notice: "Profile updated successfully!"
+    else
+      render :profile
+    end
+  end
+
   private
+
+  def user_params
+    added_attrs = [:email, :password, :password_confirmation, :contact_number,
+      :full_name, :member_id, :member_type, :affiliation, :abo_number, :aes_number,
+      :company, :id_number, :distributor_number, :employee_number, :mailing_address,
+      :member_company, :upline, :who_invited_you?]
+    params.require(:user).permit(added_attrs)
+  end
 
   def fetch_reaction
     @reaction = current_user.reactions.first || current_user.reactions.new
