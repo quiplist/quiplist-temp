@@ -152,7 +152,8 @@ class Live extends React.Component {
                 <EventDescription
                 currentEvent = {this.state.currentEvent}
                 raffleId = {this.state.raffleId}
-                hasBrochure = {this.props.hasBrochure} />
+                hasBrochure = {this.props.hasBrochure}
+                isAdmin = {isAdmin} />
               </div>
             </div>
             <div className="row">
