@@ -1835,6 +1835,19 @@ table.dataTable {
     color: #090567;
 }
 
+.password__label {
+    color: #BABABA;
+    background: #E6E6E6;
+	border: 2px solid #E6E6E6;
+    border-radius: 5px;
+    font-size: 12px;
+    padding: 5px 10px;
+}
+
+.password__label:hover {
+    color: #BABABA;
+    background: transparent;
+}
 
 
 @media screen and (min-width:1280px){
