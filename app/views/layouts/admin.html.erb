@@ -21,7 +21,9 @@
             <div class="row">
                 <div class="col-2 px-0">
                     <div class="sidebar">
-                        <div class="sidebar--box"></div>
+                        <div class="sidebar--box">
+                          <%= image_tag "white-logo.png", class: "img-fluid" %>
+                        </div>
                         <ul class="px-3 sidebar-list">
                           <li>
                             <% if can? :index, Event %>

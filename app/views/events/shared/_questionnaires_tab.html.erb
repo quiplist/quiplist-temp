@@ -2,7 +2,7 @@
   <% if (can? :create, Questionnaire) %>
     <%= link_to "Add Question", new_event_questionnaire_path(event_id: @event.id), class: 'btn btn-blue mt-2' %>
   <% end %>
-  <table id="event_id_guest_list" class="table questionnaire-data-table">
+  <table id="event_id_guest_list" class="table questionnaire-data-table hover">
     <thead>
       <tr>
         <th>Questionnaire Type</th>
@@ -10,7 +10,6 @@
         <th>Choices</th>
         <th>Answer/s</th>
         <th>Status</th>
-        <th></th>
         <th></th>
       </tr>
     </thead>
@@ -22,12 +21,10 @@
           <td><%= questionnaire.choices %></td>
           <td><%= questionnaire.answer %></td>
           <td><%= questionnaire.status_name %></td>
-          <td class="text-center">
+          <td class="actions text-center">
             <% if can? :update, Questionnaire %>
               <%= link_to "Edit", edit_event_questionnaire_path(event_id: @event.id, id: questionnaire.id), class: 'btn btn-view' %>
             <% end %>
-          </td>
-          <td class="text-center">
             <% if (can? :destroy, Questionnaire) %>
               <a class="btn btn-remove" href="#" data-bs-toggle="modal" data-bs-target="#delete-modal-id-<%= questionnaire.id %>">Delete</a>
               <%= render partial: "layouts/shared/delete_modal", locals: { index_id: "#{questionnaire.id}", m_name: "Questionnaire", name: questionnaire.questionnaire_type_name, path: event_questionnaire_path(event_id: @event.id, id: questionnaire.id) } %>

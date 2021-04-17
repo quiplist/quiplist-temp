@@ -12,7 +12,7 @@
   </div>
   <div class="row">
     <div class="col col-lg-12">
-      <table id="admin_list" class="table user-data-table">
+      <table id="admin_list" class="table user-data-table hover">
         <thead>
           <tr>
             <th>Full Name</th>
@@ -22,9 +22,6 @@
             <th>Temporary Password</th>
             <th></th>
             <th></th>
-            <th></th>
-            <th></th>
-
           </tr>
         </thead>
         <tbody>
@@ -35,28 +32,28 @@
               <td><%= admin.reset_password %></td>
               <td><%= admin.role_name %></td>
               <td><%= admin.temporary_password %></td>
-              <td class="actions">
+              <td>
                 <% if can? :edit, Admin %>
                   <%= form_for admin, as: :admin, url: reset_password_admin_path(admin), method: :put, html: { class: "", multipart: true } do |f| %>
                     <%= submit_tag "Reset Password", class: "btn btn-reset" %>
                   <% end %>
                 <% end %>
               </td>
-              <td>
+              <td class="actions">
+
                 <% if can? :show, Admin %>
-                <%= link_to "Show", admin_path(admin), class: 'btn btn-view' %>
+                  <%= link_to "Show", admin_path(admin), class: 'btn btn-view' %>
                 <% end %>
-              </td>
-              <td>
+
                 <% if can? :update, Admin %>
                 <%= link_to "Edit", edit_admin_path(admin), class: 'btn btn-edit' %>
                 <% end %>
-              </td>
-              <td>
+
                 <% if can? :destroy, Admin %>
-                  <a class="btn btn-remove" href="#" data-bs-toggle="modal" data-bs-target="#delete-modal-id-<%= admin.id %>">Delete</a>
-                  <%= render partial: "layouts/shared/delete_modal", locals: { index_id: "#{admin.id}", m_name: "Admin", name: admin.full_name, path: admin_path(admin) } %>
+                <a class="btn btn-remove" href="#" data-bs-toggle="modal" data-bs-target="#delete-modal-id-<%= admin.id %>">Delete</a>
+                <%= render partial: "layouts/shared/delete_modal", locals: { index_id: "#{admin.id}", m_name: "Admin", name: admin.full_name, path: admin_path(admin) } %>
                 <% end %>
+
               </td>
             </tr>
           <% end %>
