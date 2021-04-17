@@ -5,12 +5,55 @@
         <th>Status</th>
         <th>Full Name</th>
         <th>Email</th>
-        <th>Contact</th>
-        <th>Affiliation</th>
-        <th>Member Type</th>
-        <th>Member Id</th>
-        <th>Approved by:</th>
-        <th>Status</th>
+        <% if @event.include_company %>
+          <th>Company</th>
+        <% end %>
+        <% if @event.include_affiliation %>
+          <th>Affiliation</th>
+        <% end %>
+        <% if @event.include_member_company %>
+          <th>Member Company</th>
+        <% end %>
+        <% if @event.include_member_type %>
+          <th>Member Type</th>
+        <% end %>
+        <% if @event.include_abo_type %>
+          <th>ABO Type</th>
+        <% end %>
+        <% if @event.include_distributor_type %>
+          <th>Distributor Type</th>
+        <% end %>
+        <% if @event.include_member_id %>
+          <th>Member Id</th>
+        <% end %>
+        <% if @event.include_employee_number %>
+          <th>Employee Number</th>
+        <% end %>
+        <% if @event.include_id_number %>
+          <th>Id Number</th>
+        <% end %>
+        <% if @event.include_abo_number %>
+          <th>ABO Number</th>
+        <% end %>
+        <% if @event.include_aes_number %>
+          <th>AES Number</th>
+        <% end %>
+        <% if @event.include_distributor_number %>
+          <th>Distributor Number</th>
+        <% end %>
+        <% if @event.include_mailing_address %>
+          <th>Mailing Address</th>
+        <% end %>
+        <% if @event.include_contact_number %>
+          <th>Contact Number</th>
+        <% end %>
+        <% if @event.include_who_invited_you %>
+          <th>Who invited you?</th>
+        <% end %>
+        <% if @event.include_upline %>
+          <th>Upline</th>
+        <% end %>
+
         <th>
           Raffle status
           <% if can? :update, GuestList %>
@@ -22,6 +65,8 @@
             <% end %>
           <% end %>
         </th>
+        <th>Approved by:</th>
+        <th>Status</th>
       </tr>
     </thead>
     <tbody>
@@ -30,19 +75,63 @@
           <td><%= guest_list.status_name %></td>
           <td><%= guest_list.user.full_name %></td>
           <td><%= guest_list.user.email %></td>
-          <td><%= guest_list.user.contact_number %></td>
-          <td><%= guest_list.user.affiliation %></td>
-          <td><%= guest_list.user.member_name %></td>
-          <td><%= guest_list.user.member_id %></td>
+          <% if @event.include_company %>
+            <td><%= guest_list.user.company %></td>
+          <% end %>
+          <% if @event.include_affiliation %>
+            <td><%= guest_list.user.affiliation %></td>
+          <% end %>
+          <% if @event.include_member_company %>
+            <td><%= guest_list.user.member_company %></td>
+          <% end %>
+          <% if @event.include_member_type %>
+            <td><%= guest_list.user.member_name %></td>
+          <% end %>
+          <% if @event.include_abo_type %>
+            <td><%= guest_list.user.abo_type_name %></td>
+          <% end %>
+          <% if @event.include_distributor_type %>
+            <td><%= guest_list.user.distributor_type_name %></td>
+          <% end %>
+          <% if @event.include_member_id %>
+            <td><%= guest_list.user.member_id %></td>
+          <% end %>
+          <% if @event.include_employee_number %>
+            <td><%= guest_list.user.employee_number %></td>
+          <% end %>
+          <% if @event.include_id_number %>
+            <td><%= guest_list.user.id_number %></td>
+          <% end %>
+          <% if @event.include_abo_number %>
+            <td><%= guest_list.user.abo_number %></td>
+          <% end %>
+          <% if @event.include_aes_number %>
+            <td><%= guest_list.user.aes_number %></td>
+          <% end %>
+          <% if @event.include_distributor_number %>
+            <td><%= guest_list.user.distributor_number %></td>
+          <% end %>
+          <% if @event.include_mailing_address %>
+            <td><%= guest_list.user.mailing_address %></td>
+          <% end %>
+          <% if @event.include_contact_number %>
+            <td><%= guest_list.user.contact_number %></td>
+          <% end %>
+          <% if @event.include_who_invited_you %>
+            <td><%= guest_list.user.who_invited_you? %></td>
+          <% end %>
+          <% if @event.include_upline %>
+            <td><%= guest_list.user.upline %></td>
+          <% end %>
+          <td>
+            <%= form_for guest_list, as: :guest_list, url: set_raffle_status_event_guest_lists_path(@event, guest_list_id: guest_list.id), method: :post, html: { class: "" } do |f| %>
+              <%= f.select :raffle_status, GuestList::RAFFLE_STATUSES.invert, {}, { class: 'form-select', onchange: "form.submit()", disabled: (cannot? :update, GuestList) } %>
+            <% end %>
+          </td>
           <td><%= guest_list.approver&.full_name %></td>
           <td>
             <%= form_for guest_list, as: :guest_list, url: set_status_event_guest_lists_path(@event, guest_list_id: guest_list.id), method: :post, html: { class: "" } do |f| %>
               <%= f.select :status, GuestList::STATUSES.invert, {}, { class: 'form-select', onchange: "form.submit()", disabled: (cannot? :update, GuestList) } %>
-            <% end %>
-          </td>
-          <td>
-            <%= form_for guest_list, as: :guest_list, url: set_raffle_status_event_guest_lists_path(@event, guest_list_id: guest_list.id), method: :post, html: { class: "" } do |f| %>
-              <%= f.select :raffle_status, GuestList::RAFFLE_STATUSES.invert, {}, { class: 'form-select', onchange: "form.submit()", disabled: (cannot? :update, GuestList) } %>
             <% end %>
           </td>
         </tr>

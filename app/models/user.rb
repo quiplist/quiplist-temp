@@ -4,13 +4,13 @@
 #
 #  id                     :bigint           not null, primary key
 #  abo_number             :string
-#  abo_type               :integer          default(0)
+#  abo_type               :integer          default(4)
 #  aes_number             :string
 #  affiliation            :string
 #  company                :string
 #  contact_number         :string
 #  distributor_number     :string
-#  distributor_type       :integer          default(0)
+#  distributor_type       :integer          default(7)
 #  email                  :string           default(""), not null
 #  employee_number        :string
 #  encrypted_password     :string           default(""), not null
@@ -157,7 +157,15 @@ class User < ApplicationRecord
   end
 
   def member_name
-    MEMBER_TYPES[member_type]
+    MEMBER_TYPES_WITH_GUEST[member_type]
+  end
+
+  def abo_type_name
+    ABO_TYPES_WITH_GUEST[abo_type]
+  end
+
+  def distributor_type_name
+    DISTRIBUTOR_TYPES_WTIH_GUEST[distributor_type]
   end
 
   def member?
