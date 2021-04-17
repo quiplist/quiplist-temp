@@ -2,7 +2,7 @@
   <% if (can? :create, Questionnaire) %>
     <%= link_to "Add Question", new_event_questionnaire_path(event_id: @event.id), class: 'btn btn-blue mt-2' %>
   <% end %>
-  <table id="event_id_guest_list" class="table data-table">
+  <table id="event_id_guest_list" class="table questionnaire-data-table">
     <thead>
       <tr>
         <th>Questionnaire Type</th>

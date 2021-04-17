@@ -1,7 +1,8 @@
 <div class="tab-pane fade show active" id="nav-users" role="tabpanel" aria-labelledby="nav-users-tab">
-  <table id="event_id_guest_list" class="table data-table">
+  <table id="event_id_guest_list" class="table guest-data-table">
     <thead>
       <tr>
+        <th>Status</th>
         <th>Full Name</th>
         <th>Email</th>
         <th>Contact</th>
@@ -26,6 +27,7 @@
     <tbody>
       <% @guest_lists.each do |guest_list| %>
         <tr>
+          <td><%= guest_list.status_name %></td>
           <td><%= guest_list.user.full_name %></td>
           <td><%= guest_list.user.email %></td>
           <td><%= guest_list.user.contact_number %></td>

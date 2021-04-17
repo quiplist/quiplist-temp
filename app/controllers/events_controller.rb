@@ -26,12 +26,9 @@
     if @event.save
       redirect_to event_path(@event), notice: "Event #{@event.title} added successfully!"
     else
-      page = params[:page] || 1
-      per_page = params[:per_page] || 10
-      search = params[:search]
-      @events = Event.sorted
-      @events = @events.search(search) if search.present?
-      @events = @events.accessible_by(current_ability).sorted.page(page).per(per_page)
+      @events = Event.where(admin: current_admin) if current_admin.admin?
+      @events = @events.accessible_by(current_ability).sorted
+      @event = Event.new
       render :index
     end
   end
@@ -40,12 +37,9 @@
     if @event.update_attributes event_params
       redirect_to event_path(@event), notice: "Event #{@event.title} updated successfully!"
     else
-      page = params[:page] || 1
-      per_page = params[:per_page] || 10
-      search = params[:search]
-      @events = Event.sorted
-      @events = @events.search(search) if search.present?
-      @events = @events.accessible_by(current_ability).sorted.page(page).per(per_page)
+      @events = Event.where(admin: current_admin) if current_admin.admin?
+      @events = @events.accessible_by(current_ability).sorted
+      @event = Event.new
       render :index
     end
   end
@@ -59,55 +53,16 @@
     if @event.update_attributes upload_params
       redirect_to event_path(@event), notice: "brochure uploaded successfully!"
     else
-      page = params[:page] || 1
-      per_page = params[:per_page] || 10
-      search = params[:search]
-      @guest_lists = @event.guest_lists
-      @guest_lists = @guest_lists.sorted.page(page).per(per_page)
+      @guest_lists = GuestList.where(event: @event)
+      @guest_lists = @guest_lists.sorted
 
-      @raffles = @event.raffles
-      @raffles = @raffles.sorted.page(page).per(per_page)
+      @raffles = Raffle.where(event: @event)
+      @raffles = @raffles.sorted
 
-      @questionnaires = @event.questionnaires
-      @questionnaires = @questionnaires.sorted.page(page).per(per_page)
+      @questionnaires = Questionnaire.where(event: @event)
+      @questionnaires = @questionnaires.sorted
       render :show
     end
-  end
-
-  def draw_raffles
-    authorize! :manage, Raffle
-    guest_lists = @event.guest_lists.eligible
-    winner_id = GuestList.winner(guest_lists)
-    if winner_id.nil?
-      page = params[:page] || 1
-      per_page = params[:per_page] || 10
-      search = params[:search]
-      @guest_lists = @event.guest_lists
-      @guest_lists = @guest_lists.sorted.page(page).per(per_page)
-
-      @raffles = @event.raffles
-      @raffles = @raffles.sorted.page(page).per(per_page)
-
-      @questionnaires = @event.questionnaires
-      @questionnaires = @questionnaires.sorted.page(page).per(per_page)
-      flash.now[:alert] = 'No player available to draw!'
-      render :show
-    else
-      @guest_list = GuestList.find(winner_id)
-      @winner = @guest_list.user
-      render layout: "raffle"
-    end
-  end
-
-  def draw_winner
-    authorize! :manage, Raffle
-    @guest_list = GuestList.find(params[:guest_list_id])
-    if @guest_list.update_attributes winner_params
-      redirect_to event_path(@event), notice: "#{@guest_list.user.full_name} won the raffle!"
-    else
-      render :draw_raffles
-    end
-
   end
 
   # def set_raffle_status

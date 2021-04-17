@@ -47,6 +47,7 @@
             <th>Type</th>
             <th>Event Date</th>
             <th>Status</th>
+            <th>Status</th>
             <th></th>
             <th></th>
             <th></th>
@@ -65,11 +66,11 @@
                 <% end %>
                 <%= date_formatter(event.end_date) %>
               </td>
+              <td><%= Event::STATUSES[event.status] %></td>
               <td class="event-status">
                 <%= form_for event, as: :event, url: event_path(event), method: :put, html: { class: ""  } do |f| %>
                   <%= f.select :status, Event::STATUSES.invert, {}, { class: 'form-select', onchange: "form.submit()", disabled: (cannot? :update, Event), id: event.id  } %>
                 <% end %>
-                <%#= Event::STATUSES[event.status] %>
               </td>
               <td class="actions text-center">
                 <% if can? :show, Event %>
