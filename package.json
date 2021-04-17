@@ -17,9 +17,11 @@
     "popper.js": "^1.16.1",
     "prop-types": "^15.7.2",
     "react": "^17.0.1",
+    "react-data-table-component": "^6.11.7",
     "react-dom": "^17.0.1",
     "react-wheel-of-prizes": "^1.0.8",
     "react_ujs": "^2.6.1",
+    "styled-components": "^5.2.3",
     "sweetalert2": "^10.16.0",
     "turbolinks": "^5.2.0"
   },

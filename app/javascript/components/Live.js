@@ -50,7 +50,6 @@ class Live extends React.Component {
     fetch(fetchEventUrl)
     .then(resp => resp.json())
     .then(result => {
-      console.log(result)
       this.setState({ currentEvent: result })
       this.setState({ chats: result.chats })
       this.setState({ announcements: result.announcements })
