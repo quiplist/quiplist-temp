@@ -39,13 +39,14 @@
   </div>
   <div class="row">
     <div class="col col-lg-12">
-      <table id="events_list" class="table data-table">
+      <table id="events_list" class="table event-data-table">
         <thead>
           <tr>
             <th>Event Title</th>
             <th>Event Code</th>
             <th>Type</th>
             <th>Event Date</th>
+            <th>Status</th>
             <th>Status</th>
             <th></th>
             <th></th>
@@ -65,18 +66,18 @@
                 <% end %>
                 <%= date_formatter(event.end_date) %>
               </td>
+              <td><%= Event::STATUSES[event.status] %></td>
               <td class="event-status">
                 <%= form_for event, as: :event, url: event_path(event), method: :put, html: { class: ""  } do |f| %>
                   <%= f.select :status, Event::STATUSES.invert, {}, { class: 'form-select', onchange: "form.submit()", disabled: (cannot? :update, Event), id: event.id  } %>
                 <% end %>
-                <%#= Event::STATUSES[event.status] %>
               </td>
               <td class="actions text-center">
                 <% if can? :show, Event %>
                   <%= link_to "Show", event_path(event), class: 'btn btn-view' %>
                 <% end %>
               </td>
-              <td class="text-center"> 
+              <td class="text-center">
                 <% if can? :update, Event %>
                 <button class="btn btn-edit" id="<%= event.id %>" data-bs-toggle="modal" data-bs-target="#editEvent-<%= event.id %>">Edit</button>
                 <div class="modal fade" id="editEvent-<%= event.id %>" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="editSingleEvent" aria-hidden="true">

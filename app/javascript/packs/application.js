@@ -6,7 +6,7 @@
 //require("@rails/ujs").start()
 //require("turbolinks").start()
 require("@rails/activestorage").start()
-// require('datatables.net-dt');
+require('datatables.net');
 // require("chartkick/chart.js")
 // require("chartkick")
 // require("chart.js")
@@ -27,16 +27,222 @@ ReactRailsUJS.useContext(componentRequireContext);
 window.jQuery = $;
 window.$ = $;
 
+var filteredEvent = ["Queued", "On Going", "Done"];
+var filteredUser = ["true", "false"];
+var filteredGuestList = ["Pending", "Approved", "Denied"];
+var filteredRaffle = ["Random Names", "Spin a Wheel", "Lotto"];
+var filteredQuestionnaire = ["Multiple Choice", "Yes or No", "Indentification", "Select Letters", "Question and Answer", "Poll"];
+
+$.fn.dataTable.ext.search.push(
+  function( settings, searchData, index, rowData, counter ) {
+    // Don't display rows if nothing is checked
+    console.log(settings.nTable.id)
+    if (settings.nTable.id === "events_list") {
+      if (filteredEvent.length === 0 ) {
+        return false;
+      }
+      if (filteredEvent.includes(searchData[4])) {
+        return true;
+      }
+    } else if ((settings.nTable.id === "user_list") || settings.nTable.id === "admin_list") {
+      if (filteredUser.length === 0 ) {
+        return false;
+      }
+      if (filteredUser.includes(searchData[2])) {
+        return true;
+      }
+
+    } else if (settings.nTable.id === "event_id_guest_list") {
+      if ((filteredGuestList.length === 0) || (filteredRaffle.length === 0) || (filteredQuestionnaire.length === 0) ) {
+        return false;
+      }
+      if ((filteredGuestList.includes(searchData[0])) || (filteredRaffle.includes(searchData[0])) || (filteredQuestionnaire.includes(searchData[0]))) {
+        return true;
+      }
+    } else {
+      return true;
+    }
+    return false;
+  }
+);
+
 $(document).ready(function () {
-    //events table
-    //$('#events_list').DataTable();
+    var eventDT = $('.event-data-table').DataTable({
+      dom: 'f<"event toolbar">rtlip',
+      pagingType: "full_numbers",
+      "columnDefs": [
+            {
+                "targets": [ 4 ],
+                "visible": false
+            },
+        ]
+    });
 
-    //single events table
-    //$("#event_id_guest_list").DataTable();
+    $("div.event.toolbar").html("\
+      <div class=\"btn-group\" role=\"group\" aria-label=\"Basic checkbox toggle button group\">\
+        <input type=\"checkbox\" class=\"btn-check filterEvent\" id=\"btncheck1\" name=\"type\" value=\"Queued\" checked>\
+        <label class=\"btn btn-outline-primary\" for=\"btncheck1\">Queued</label>\
+        <input type=\"checkbox\" class=\"btn-check filterEvent\" id=\"btncheck2\" name=\"type\" value=\"On Going\" checked>\
+        <label class=\"btn btn-outline-primary\" for=\"btncheck2\">On Going</label>\
+        <input type=\"checkbox\" class=\"btn-check filterEvent\" id=\"btncheck3\" name=\"type\" value=\"Done\" checked>\
+        <label class=\"btn btn-outline-primary\" for=\"btncheck3\">Done</label>\
+      </div>\
+    ");
 
-    //stream key fields
-    // $('.data-table').DataTable({
-    // });
+    $('.filterEvent').on('change', function() {
+      var val = $(this).val();
+      var checked = $(this).prop('checked');
+      var index = filteredEvent.indexOf( val );
+
+      if (checked && index === -1) {
+        filteredEvent.push(val);
+      } else if (!checked && index > -1) {
+        filteredEvent.splice(index, 1);
+      }
+      eventDT.draw();
+    });
+
+    var userDT = $('.user-data-table').DataTable({
+      dom: 'f<"user toolbar">rtlip',
+      pagingType: "full_numbers",
+      "columnDefs": [
+            {
+                "targets": [ 2 ],
+                "visible": false
+            },
+        ]
+    });
+
+    $("div.user.toolbar").html("\
+      <div class=\"btn-group\" role=\"group\" aria-label=\"Basic checkbox toggle button group\">\
+        <input type=\"checkbox\" class=\"btn-check filterUser\" id=\"btncheck1\" name=\"resetPassword\" value=\"true\" checked>\
+        <label class=\"btn btn-outline-primary\" for=\"btncheck1\">Reset Password</label>\
+        <input type=\"checkbox\" class=\"btn-check filterUser\" id=\"btncheck2\" name=\"resetPassword\" value=\"false\" checked>\
+        <label class=\"btn btn-outline-primary\" for=\"btncheck2\">All</label>\
+      </div>\
+    ");
+
+    $('.filterUser').on('change', function() {
+      var val = $(this).val();
+      var checked = $(this).prop('checked');
+      var index = filteredUser.indexOf( val );
+
+      if (checked && index === -1) {
+        filteredUser.push(val);
+      } else if (!checked && index > -1) {
+        filteredUser.splice(index, 1);
+      }
+      userDT.draw();
+    });
+
+
+    var guestDT = $('.guest-data-table').DataTable({
+      dom: 'f<"guest toolbar">rtlip',
+      pagingType: "full_numbers",
+      "columnDefs": [
+            {
+                "targets": [ 0 ],
+                "visible": false
+            },
+        ]
+    });
+
+    $("div.guest.toolbar").html("\
+      <div class=\"btn-group\" role=\"group\" aria-label=\"Basic checkbox toggle button group\">\
+        <input type=\"checkbox\" class=\"btn-check filterGuestList\" id=\"btncheck1\" name=\"type\" value=\"Pending\" checked>\
+        <label class=\"btn btn-outline-primary\" for=\"btncheck1\">Pending</label>\
+        <input type=\"checkbox\" class=\"btn-check filterGuestList\" id=\"btncheck2\" name=\"type\" value=\"Approved\" checked>\
+        <label class=\"btn btn-outline-primary\" for=\"btncheck2\">Approved</label>\
+        <input type=\"checkbox\" class=\"btn-check filterGuestList\" id=\"btncheck3\" name=\"type\" value=\"Denied\" checked>\
+        <label class=\"btn btn-outline-primary\" for=\"btncheck3\">Denied</label>\
+      </div>\
+    ");
+
+    $('.filterGuestList').on('change', function() {
+      var val = $(this).val();
+      var checked = $(this).prop('checked');
+      var index = filteredGuestList.indexOf( val );
+
+      if (checked && index === -1) {
+        filteredGuestList.push(val);
+      } else if (!checked && index > -1) {
+        filteredGuestList.splice(index, 1);
+      }
+      guestDT.draw();
+    });
+
+    var raffleDT = $('.raffle-data-table').DataTable({
+      dom: 'f<"raffle toolbar">rtlip',
+      pagingType: "full_numbers",
+    });
+
+    $("div.raffle.toolbar").html("\
+      <div class=\"btn-group\" role=\"group\" aria-label=\"Basic checkbox toggle button group\">\
+        <input type=\"checkbox\" class=\"btn-check filterRaffle\" id=\"btncheck4\" name=\"type\" value=\"Random Names\" checked>\
+        <label class=\"btn btn-outline-primary\" for=\"btncheck4\">Random Names</label>\
+        <input type=\"checkbox\" class=\"btn-check filterRaffle\" id=\"btncheck5\" name=\"type\" value=\"Spin a Wheel\" checked>\
+        <label class=\"btn btn-outline-primary\" for=\"btncheck5\">Spin a Wheel</label>\
+        <input type=\"checkbox\" class=\"btn-check filterRaffle\" id=\"btncheck6\" name=\"type\" value=\"Lotto\" checked>\
+        <label class=\"btn btn-outline-primary\" for=\"btncheck6\">Lotto</label>\
+      </div>\
+    ");
+
+    $('.filterRaffle').on('change', function() {
+      var val = $(this).val();
+      var checked = $(this).prop('checked');
+      var index = filteredRaffle.indexOf( val );
+
+      if (checked && index === -1) {
+        filteredRaffle.push(val);
+      } else if (!checked && index > -1) {
+        filteredRaffle.splice(index, 1);
+      }
+      raffleDT.draw();
+    });
+
+    var questionnaireDT = $('.questionnaire-data-table').DataTable({
+      dom: 'f<"questionnaire toolbar">rtlip',
+      pagingType: "full_numbers",
+    });
+
+    $("div.questionnaire.toolbar").html("\
+      <div class=\"btn-group\" role=\"group\" aria-label=\"Basic checkbox toggle button group\">\
+        <input type=\"checkbox\" class=\"btn-check filterQuestionnaire\" id=\"btncheck7\" name=\"type\" value=\"Multiple Choice\" checked>\
+        <label class=\"btn btn-outline-primary\" for=\"btncheck7\">Multiple Choice</label>\
+        <input type=\"checkbox\" class=\"btn-check filterQuestionnaire\" id=\"btncheck8\" name=\"type\" value=\"Yes or No\" checked>\
+        <label class=\"btn btn-outline-primary\" for=\"btncheck8\">Yes or No</label>\
+        <input type=\"checkbox\" class=\"btn-check filterQuestionnaire\" id=\"btncheck9\" name=\"type\" value=\"Indentification\" checked>\
+        <label class=\"btn btn-outline-primary\" for=\"btncheck9\">Indentification</label>\
+        <input type=\"checkbox\" class=\"btn-check filterQuestionnaire\" id=\"btncheck10\" name=\"type\" value=\"Select Letters\" checked>\
+        <label class=\"btn btn-outline-primary\" for=\"btncheck10\">Select Letters</label>\
+        <input type=\"checkbox\" class=\"btn-check filterQuestionnaire\" id=\"btncheck11\" name=\"type\" value=\"Question and Answer\" checked>\
+        <label class=\"btn btn-outline-primary\" for=\"btncheck11\">Question and Answer</label>\
+        <input type=\"checkbox\" class=\"btn-check filterQuestionnaire\" id=\"btncheck12\" name=\"type\" value=\"Poll\" checked>\
+        <label class=\"btn btn-outline-primary\" for=\"btncheck12\">Poll</label>\
+      </div>\
+    ");
+
+    $('.filterQuestionnaire').on('change', function() {
+      var val = $(this).val();
+      var checked = $(this).prop('checked');
+      var index = filteredQuestionnaire.indexOf( val );
+
+      if (checked && index === -1) {
+        filteredQuestionnaire.push(val);
+      } else if (!checked && index > -1) {
+        filteredQuestionnaire.splice(index, 1);
+      }
+      questionnaireDT.draw();
+    });
+
+    var dT = $('.data-table').DataTable({
+      dom: 'frtlip',
+      pagingType: "full_numbers",
+    });
+
+
+
+
 
     var btnEdit = $( ".btn-edit" );
     for(var i = 0; i < btnEdit.length; i++){
@@ -203,8 +409,8 @@ $(document).ready(function () {
     }
 
     var wheel = $('#wheel canvas');
-    var ctx = wheel[0].getContext('2d');
     if(wheel.length > 0){
+      var ctx = wheel[0].getContext('2d');
         // ctx.canvas.height = 600;
         // ctx.canvas.width = 600;
     }

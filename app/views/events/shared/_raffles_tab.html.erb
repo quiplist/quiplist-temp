@@ -1,11 +1,16 @@
 <div class="tab-pane fade show" id="nav-raffles" role="tabpanel" aria-labelledby="nav-raffles-tab">
-  <table id="event_id_guest_list" class="table">
+  <% if (can? :create, Raffle) %>
+    <%= link_to "Add raffle", new_event_raffle_path(event_id: @event.id), class: 'btn btn-blue mt-2' %>
+  <% end %>
+  <table id="event_id_guest_list" class="table raffle-data-table">
     <thead>
       <tr>
         <th>Raffle Type</th>
         <th>Raffle Prize</th>
         <th>Winner</th>
         <th>Status</th>
+        <th></th>
+        <th></th>
         <th></th>
       </tr>
     </thead>
@@ -16,10 +21,17 @@
           <td><%= raffle.prize %></td>
           <td><%= raffle.winner&.user&.full_name %></td>
           <td><%= raffle.status_name %></td>
-          <td class="actions">
+          <td class="text-center">
+            <% if can? :show, Raffle %>
+              <%= link_to "Show", event_raffle_path(event_id: @event.id, id: raffle.id), class: 'btn btn-view' %>
+            <% end %>
+          </td>
+          <td class="text-center">
             <% if can? :update, Raffle %>
               <%= link_to "Edit", edit_event_raffle_path(event_id: @event.id, id: raffle.id), class: 'btn btn-view' %>
             <% end %>
+          </td>
+          <td class="text-center">
             <% if (can? :destroy, Raffle) %>
               <a class="btn btn-remove" href="#" data-bs-toggle="modal" data-bs-target="#delete-modal-id-<%= raffle.id %>">Delete</a>
               <%= render partial: "layouts/shared/delete_modal", locals: { index_id: "#{raffle.id}", m_name: "Raffle", name: raffle.raffle_type_name, path: event_raffle_path(event_id: @event.id, id: raffle.id) } %>
@@ -29,15 +41,4 @@
       <% end %>
     </tbody>
   </table>
-  <div>
-    <%= link_to "Export CSV", download_csv_event_guest_lists_path(@event, format: "csv"), class: "btn-dowload-csv" %>
-  </div>
-  <%= link_to_previous_page @raffles, '<< ', class: "text-primary" %>
-  <%= page_entries_info @raffles %>
-  <%= link_to_next_page @raffles, ' >>', class: "text-primary" %>
-
-  <% if (can? :create, Raffle) %>
-  </br>
-  <%= link_to "Add raffle", new_event_raffle_path(event_id: @event.id), class: 'btn btn-blue mt-2' %>
-  <% end %>
 </div>

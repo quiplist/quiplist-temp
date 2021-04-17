@@ -17,22 +17,22 @@
       </div>
       <div class="col col-lg-4">
         <div class="admin_wrapper">
-            <span class="mr-3"><strong>Affiliation:</strong></span><br>
-            <span class="admin_detail"><%= @admin.affiliation %></span>
+            <span class="mr-3"><strong>Company:</strong></span><br>
+            <span class="admin_detail"><%= @admin.company %></span>
         </div>
       </div>
   </div>
   <div class="row text-start mb-3">
     <div class="col col-lg-4">
       <div class="admin_wrapper">
-        <span class="mr-3"><strong>Member Type:</strong></span><br>
-        <span class="admin_detail"><%= @admin.member_name %></span>
+        <span class="mr-3"><strong>Position:</strong></span><br>
+        <span class="admin_detail"><%= @admin.position %></span>
       </div>
     </div>
     <div class="col col-lg-4">
       <div class="admin_wrapper">
-          <span class="mr-3"><strong>Member Id:</strong></span><br>
-          <span class="admin_detail"><%= @admin.member_id %></span>
+          <span class="mr-3"><strong>Contact Number:</strong></span><br>
+          <span class="admin_detail"><%= @admin.contact_number %></span>
       </div>
     </div>
   </div>
@@ -93,7 +93,7 @@
               </div>
             </div>
             <% end %>
-             <table id="event_list_table" class="table">
+             <table id="event_list_table" class="table data-table">
                 <thead>
                    <tr>
                       <th>Event Title</th>

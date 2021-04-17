@@ -4,13 +4,13 @@
 #
 #  id                     :bigint           not null, primary key
 #  abo_number             :string
-#  abo_type               :integer          default(0)
+#  abo_type               :integer          default(4)
 #  aes_number             :string
 #  affiliation            :string
 #  company                :string
 #  contact_number         :string
 #  distributor_number     :string
-#  distributor_type       :integer          default(0)
+#  distributor_type       :integer          default(7)
 #  email                  :string           default(""), not null
 #  employee_number        :string
 #  encrypted_password     :string           default(""), not null

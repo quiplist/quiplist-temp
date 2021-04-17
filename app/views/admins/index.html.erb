@@ -12,13 +12,13 @@
   </div>
   <div class="row">
     <div class="col col-lg-12">
-      <table id="admin_list" class="table">
+      <table id="admin_list" class="table user-data-table">
         <thead>
           <tr>
             <th>Full Name</th>
             <th>Email Address</th>
-            <th>Role</th>
             <th>Reset Password?</th>
+            <th>Role</th>
             <th>Temporary Password</th>
             <th></th>
             <th></th>
@@ -32,8 +32,8 @@
             <tr>
               <td><%= admin.full_name %></td>
               <td><%= admin.email %></td>
-              <td><%= admin.role_name %></td>
               <td><%= admin.reset_password %></td>
+              <td><%= admin.role_name %></td>
               <td><%= admin.temporary_password %></td>
               <td class="actions">
                 <% if can? :edit, Admin %>
@@ -65,7 +65,3 @@
     </div>
   </div>
 </div>
-
-<%= link_to_previous_page @admins, '<< previous ' %>
-<%= page_entries_info @admins %>
-<%= link_to_next_page @admins, ' next >>' %>

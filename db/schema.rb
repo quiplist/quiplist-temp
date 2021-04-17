@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_13_142140) do
+ActiveRecord::Schema.define(version: 2021_04_17_094244) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -38,15 +38,14 @@ ActiveRecord::Schema.define(version: 2021_04_13_142140) do
     t.string "encrypted_password", default: "", null: false
     t.string "full_name"
     t.string "contact_number"
-    t.string "affiliation"
     t.integer "role", default: 2
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.integer "member_type", default: 0
-    t.string "member_id"
     t.string "profile_image"
     t.boolean "reset_password", default: false
     t.string "temporary_password"
+    t.string "company"
+    t.string "position"
     t.index ["email"], name: "index_admins_on_email", unique: true
   end
 
@@ -235,10 +234,10 @@ ActiveRecord::Schema.define(version: 2021_04_13_142140) do
     t.string "id_number"
     t.string "employee_number"
     t.string "profile_image"
-    t.integer "abo_type", default: 0
-    t.integer "distributor_type", default: 0
     t.boolean "reset_password", default: false
     t.string "temporary_password"
+    t.integer "abo_type", default: 4
+    t.integer "distributor_type", default: 7
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
