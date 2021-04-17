@@ -1,3 +1,7 @@
+<%= render partial: "layouts/shared/breadcrumbs", locals: {
+  links: [{ path: admins_path, path_name: "Admins" }],
+  current_path: "#{@admin.id}"
+} %>
 <div class="container content-wrapper">
   <%= render partial: "layouts/shared/success_messages", locals: { messages: flash[:notice] } %>
   <%= render partial: "layouts/shared/alert_messages", locals: { messages: flash[:alert] } %>

@@ -1,3 +1,7 @@
+<%= render partial: "layouts/shared/breadcrumbs", locals: {
+  links: [{ path: users_path, path_name: "Clients" }],
+  current_path: "#{@user.id}"
+} %>
 <div class="container content-wrapper">
   <%= render partial: "layouts/shared/success_messages", locals: { messages: flash[:notice] } %>
   <%= render partial: "layouts/shared/alert_messages", locals: { messages: flash[:alert] } %>
@@ -44,7 +48,7 @@
 
     <%= @user.member_company %>
 
-  
+
     <%= @user.member_name %>
 
 

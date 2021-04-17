@@ -1,4 +1,7 @@
-
+<%= render partial: "layouts/shared/breadcrumbs", locals: {
+  links: [],
+  current_path: "Admins"
+} %>
 
 <div class="container content-wrapper">
   <%= render partial: "layouts/shared/success_messages", locals: { messages: flash[:notice] } %>
