@@ -52,7 +52,7 @@ class AnnouncementInput extends Component {
           this.submitAnnouncement(this.state.message)
           this.setState({ message: '' })
         }}>
-        <div className="announcement-input mt-3">
+        <div className="announcement-input chat-input mt-3">
               <input
                 type="text"
                 value={this.state.message}

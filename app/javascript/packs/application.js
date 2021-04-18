@@ -368,46 +368,164 @@ $(document).ready(function () {
             switch(raffle_val) {
                 // multiple choice
                 case '0':
-                    $(".multiple-choice-wrapper").addClass("show-question");
-                    $(".yes-no-wrapper").removeClass("show-question");
-                    $(".identification-wrapper").removeClass("show-question");
-                    $(".poll-wrapper").removeClass("show-question");
-                    $(".select-letters-wrapper").removeClass("show-question");
+                    $('.questionnaire-wrapper').html(
+                      "<div class=\"multiple-choice-wrapper\">" +
+                        "<div class=\"col-12 col-lg-2\">" +
+                            "<label for=\"choices\">Choices</label>" +
+                        "</div>" +
+                        "<div class=\"mb-3\">" +
+                          "<div class=\"row\">" +
+                            "<div class=\"col col-lg-6\">" +
+                              "<input multiple=\"multiple\" class=\"form-control\" placeholder=\"A\" type=\"text\" name=\"questionnaire[choices][]\" id=\"questionnaire_choices\">"+
+                            "</div>" +
+                            "<div class=\"col col-lg-6\">" +
+                              "<input multiple=\"multiple\" class=\"form-control\" placeholder=\"B\" type=\"text\" name=\"questionnaire[choices][]\" id=\"questionnaire_choices\">" +
+                            "</div>" +
+                          "</div>" +
+                        "</div>" +
+                        "<div class=\"mb-3\">" +
+                          "<div class=\"row\">" +
+                            "<div class=\"col col-lg-6\">" +
+                              "<input multiple=\"multiple\" class=\"form-control\" placeholder=\"C\" type=\"text\" name=\"questionnaire[choices][]\" id=\"questionnaire_choices\">" +
+                            "</div>" +
+                            "<div class=\"col col-lg-6\">" +
+                              "<input multiple=\"multiple\" class=\"form-control\" placeholder=\"D\" type=\"text\" name=\"questionnaire[choices][]\" id=\"questionnaire_choices\">" +
+                            "</div>" +
+                          "</div>" +
+                        "</div>" +
+                      "</div>" 
+                    );
                     break;
                 // yes or no
                 case '1':
-                    $(".yes-no-wrapper").addClass("show-question");
-                    $(".multiple-choice-wrapper").removeClass("show-question");
-                    $(".identification-wrapper").removeClass("show-question");
-                    $(".poll-wrapper").removeClass("show-question");
-                    $(".select-letters-wrapper").removeClass("show-question");
+                    $('.questionnaire-wrapper').html(
+                      "<div class=\"yes-no-wrapper\">" +
+                        "<div class=\"col-12 col-lg-2\">" +
+                            "<label for=\"choices\">Choices</label>" +
+                        "</div>" +
+                        "<div class=\"mb-3\">" +
+                          "<div class=\"row\">" +
+                            "<div class=\"col col-lg-6\">"+
+                              "<input multiple=\"multiple\" class=\"form-control\" placeholder=\"Yes\" type=\"text\" name=\"questionnaire[choices][]\" id=\"questionnaire_choices\"></input>" +
+                           " </div>" +
+                            "<div class=\"col col-lg-6\">" +
+                            "<input multiple=\"multiple\" class=\"form-control\" placeholder=\"No\" type=\"text\" name=\"questionnaire[choices][]\" id=\"questionnaire_choices\"></input>" +
+                            "</div>" +
+                          "</div>" +
+                        "</div>" +
+                        "</div>");
                     break;
                 //identification
                 case '2':
-                    $(".identification-wrapper").addClass("show-question");
-                    $(".multiple-choice-wrapper").removeClass("show-question");
-                    $(".yes-no-wrapper").removeClass("show-question");
-                    $(".poll-wrapper").removeClass("show-question");
-                    $(".select-letters-wrapper").removeClass("show-question");
+                    $('.questionnaire-wrapper').html(
+                    "<div class=\"identification-wrapper\">" +
+                      "<div class=\"mb-3\">" +
+                        "<div class=\"row\">" +
+                          "<label for=\"answer\">Correct Answer</label>" +
+                          "<div class=\"col col-lg-12\">" +
+                            "<input class=\"form-control\" placeholder=\"Answer\" type=\"text\" name=\"questionnaire[correct_answer]\" id=\"questionnaire_correct_answer\">" +
+                          "</div>" +
+                        "</div>" +
+                      "</div>" +
+                    "</div>"
+                    );
                     break;
                 //select letters
                 case '3':
-                  $(".select-letters-wrapper").addClass("show-question");
-                  $(".multiple-choice-wrapper").removeClass("show-question");
-                  $(".yes-no-wrapper").removeClass("show-question");
-                  $(".poll-wrapper").removeClass("show-question");
-                  $(".identification-wrapper").removeClass("show-question");
+                  $(".questionnaire-wrapper").html(
+                    "<div class=\"select-letters-wrapper\">" +
+                      "<div class=\"col-12 col-lg-2\">" +
+                          "<label for=\"choices\">Choices</label>" +
+                      "</div>" +
+                     "<div class=\"mb-3\">" +
+                      "<div class=\"row\">" +
+                          "<div class=\"col col-lg-1\">" +
+                            "<input multiple=\"multiple\" class=\"form-control\" placeholder=\"\" type=\"text\" name=\"questionnaire[choices][]\" id=\"questionnaire_choices\">" +
+                          "</div>" +
+                          "<div class=\"col col-lg-1\">" +
+                            "<input multiple=\"multiple\" class=\"form-control\" placeholder=\"\" type=\"text\" name=\"questionnaire[choices][]\" id=\"questionnaire_choices\">" +
+                          "</div>" +
+                          "<div class=\"col col-lg-1\">" +
+                            "<input multiple=\"multiple\" class=\"form-control\" placeholder=\"\" type=\"text\" name=\"questionnaire[choices][]\" id=\"questionnaire_choices\">" +
+                          "</div>" +
+                          "<div class=\"col col-lg-1\">" +
+                            "<input multiple=\"multiple\" class=\"form-control\" placeholder=\"\" type=\"text\" name=\"questionnaire[choices][]\" id=\"questionnaire_choices\">" +
+                          "</div>" +
+                          "<div class=\"col col-lg-1\">" +
+                            "<input multiple=\"multiple\" class=\"form-control\" placeholder=\"\" type=\"text\" name=\"questionnaire[choices][]\" id=\"questionnaire_choices\">" +
+                          "</div>" +
+                          "<div class=\"col col-lg-1\">" +
+                            "<input multiple=\"multiple\" class=\"form-control\" placeholder=\"\" type=\"text\" name=\"questionnaire[choices][]\" id=\"questionnaire_choices\">" +
+                          "</div>" +
+                          "<div class=\"col col-lg-1\">" +
+                            "<input multiple=\"multiple\" class=\"form-control\" placeholder=\"\" type=\"text\" name=\"questionnaire[choices][]\" id=\"questionnaire_choices\">" +
+                          "</div>" +
+                          "<div class=\"col col-lg-1\">" +
+                            "<input multiple=\"multiple\" class=\"form-control\" placeholder=\"\" type=\"text\" name=\"questionnaire[choices][]\" id=\"questionnaire_choices\">" +
+                          "</div>" +
+                          "<div class=\"col col-lg-1\">" +
+                            "<input multiple=\"multiple\" class=\"form-control\" placeholder=\"\" type=\"text\" name=\"questionnaire[choices][]\" id=\"questionnaire_choices\">" +
+                          "</div>" +
+                          "<div class=\"col col-lg-1\">" +
+                            "<input multiple=\"multiple\" class=\"form-control\" placeholder=\"\" type=\"text\" name=\"questionnaire[choices][]\" id=\"questionnaire_choices\">" +
+                          "</div>" +
+                          "<div class=\"col col-lg-1\">" +
+                            "<input multiple=\"multiple\" class=\"form-control\" placeholder=\"\" type=\"text\" name=\"questionnaire[choices][]\" id=\"questionnaire_choices\">" +
+                          "</div>" +
+                          "<div class=\"col col-lg-1\">" +
+                            "<input multiple=\"multiple\" class=\"form-control\" placeholder=\"\" type=\"text\" name=\"questionnaire[choices][]\" id=\"questionnaire_choices\">" +
+                          "</div>" +
+                        "</div>" +
+                      "</div>" +
+                    "</div>" 
+                  );
                   break;
                 //poll
+                case '4':
+                  $('.questionnaire-wrapper').html(
+                    "<div class=\"question-answer-wrapper\">" +
+                      "<div class=\"mb-3\">" +
+                        "<div class=\"row\">" +
+                          "<label for=\"answer\">Correct Answer</label>" +
+                          "<div class=\"col col-lg-12\">" +
+                            "<input class=\"form-control\" placeholder=\"Answer\" type=\"text\" name=\"questionnaire[correct_answer]\" id=\"questionnaire_correct_answer\">" +
+                          "</div>" +
+                        "</div>" +
+                      "</div>" +
+                    "</div>"
+                    );
+                  break;
                 case '5':
-                    $(".poll-wrapper").addClass("show-question");
-                    $(".multiple-choice-wrapper").removeClass("show-question");
-                    $(".yes-no-wrapper").removeClass("show-question");
-                    $(".identification-wrapper").removeClass("show-question");
-                    $(".select-letters-wrapper").removeClass("show-question");
+                    $('.questionnaire-wrapper').html(
+                    "<div class=\"poll-wrapper\">" +
+                      "<div class=\"col-12 col-lg-2\">" +
+                          "<label for=\"choices\">Choices</label>" +
+                      "</div>" +
+                      "<div class=\"mb-3\">" +
+                        "<div class=\"row\">" +
+                          "<div class=\"col col-lg-6\">" +
+                           "<input multiple=\"multiple\" class=\"form-control\" placeholder=\"Poll\" type=\"text\" name=\"questionnaire[choices][]\" id=\"questionnaire_choices\">" +
+                          "</div>" +
+                          "<div class=\"col col-lg-6\">" +
+                            "<input multiple=\"multiple\" class=\"form-control\" placeholder=\"Poll\" type=\"text\" name=\"questionnaire[choices][]\" id=\"questionnaire_choices\">" +
+                          "</div>" +
+                        "</div>" +
+                      "</div>" +
+                      "<div class=\"mb-3\">" +
+                        "<div class=\"row\">" +
+                          "<div class=\"col col-lg-6\">" +
+                            "<input multiple=\"multiple\" class=\"form-control\" placeholder=\"Poll\" type=\"text\" name=\"questionnaire[choices][]\" id=\"questionnaire_choices\">" +
+                          "</div>" +
+                            "<div class=\"col col-lg-6\">" +
+                              "<input multiple=\"multiple\" class=\"form-control\" placeholder=\"Poll\" type=\"text\" name=\"questionnaire[choices][]\" id=\"questionnaire_choices\">" +
+                          "</div>" +
+                        "</div>" +
+                      "</div>" +
+                    "</div>" 
+                    );
                     break;
                 default:
-                    console.log("mc");
+                  break;
             }
         })
     }
