@@ -125,12 +125,14 @@ button.navbar-toggler {
 	background: #fff;
 }
 
-.register-wrapper>.col:nth-child(1) {
+.register-wrapper .registration-wrapper {
 	background: #8199AF;
 	padding: 30px;
 	border-top-left-radius: 5px;
 	border-bottom-left-radius: 5px;
 	padding: 50px;
+	height: 500px;
+	overflow: auto;
 }
 
 .register-wrapper {
@@ -168,6 +170,26 @@ button.navbar-toggler {
 	position: absolute;
 	width: 100%;
 	top: 0;
+}
+
+.home-navbar .navbar-toggler {
+    background: #090567;
+}
+
+.home-navbar .navbar-toggler i{
+	color: #fff;
+}
+
+.home-navbar .navbar-collapse.show {
+    position: absolute;
+    left: 0;
+    padding: 20px 0px;
+}
+
+.home-navbar .navbar-collapse.show li.nav-item{
+	background: #090567 !important;
+    padding: 0px 10px;
+	text-align: center;
 }
 
 #home_section_2 .container {
@@ -556,16 +578,15 @@ div#admins_views {
 }
 
 .event-box {
-	/* background: #8199AF;
-     */
-	max-width: 500px;
-	margin: 0 auto;
-	-webkit-box-shadow: 0px 0px 30px 5px #CDCDCD;
-	box-shadow: 0px 0px 15px 5px #CDCDCD;
-	font-family: 'Montserrat', sans-serif;
-	color: #fff;
-	border-radius: 5px;
-	padding: 30px;
+    max-width: 500px;
+    margin: 0 auto;
+    /* -webkit-box-shadow: 0px 0px 30px 5px #cdcdcd; */
+    /* box-shadow: 0px 0px 15px 5px #cdcdcd; */
+    border: 1px solid #fff;
+    border-radius: 10px;
+    font-family: 'Montserrat', sans-serif;
+    color: #fff;
+    padding: 5px;
 }
 
 .btn-event-code {
@@ -1418,7 +1439,11 @@ ul.sidebar-list {
 .profile-form-wrapper {
 	max-width: 600px;
 	margin: 0 auto;
-	padding: 50px 0px;
+	background: #fff;
+    padding: 30px;
+    height: 500px;
+    overflow: auto;
+    border-radius: 15px;
 }
 
 .event-description {
@@ -1454,7 +1479,7 @@ ul.sidebar-list {
 
 .event-description--number h3 {
 	color: #0D1152;
-	font-size: 50px;
+	font-size: 30px;
 	width: 100%;
 }
 
@@ -1888,6 +1913,100 @@ table.dataTable {
     background: transparent;
 }
 
+li.breadcrumb-item a {
+    color: #212529;
+    font-weight: 400;
+}
+
+.blue-bg_home{
+	background:#0F1764;
+	color: #fff;
+	position: relative;
+	height: 50vh;
+	display: flex;
+    align-items: center;
+}
+
+.overlap_top-bg{
+	position: absolute;
+	top: 0;
+	right: 0;
+	width: 100%;
+	height: 100%;
+	z-index: 1;
+}
+
+.overlap_bottom-bg{
+	position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+	z-index: 1;
+}
+
+.overlap_top-bg img{
+	width: 100%;
+}
+
+.overlap_bottom-bg img{
+	position: absolute;
+	bottom: 0;
+	left: 0;
+}
+
+.home .container{
+	position: relative;
+	z-index: 2;
+}
+
+.home .carousel-inner{
+	height: 70vh;
+}
+
+.home .carousel-item,
+.home .carousel-item img{
+	height: 100%;
+	object-fit: cover;
+	object-position: center;
+}
+
+.events-code__wrapper{
+	z-index: 2;
+}
+
+.home h1 {
+    text-transform: uppercase;
+    font-weight: 700;
+}
+
+footer h6 {
+	color: #1a1a1a;
+	font-family: "Arial";
+	font-size: 10px;
+	margin: 0px;
+}
+
+.login-user input {
+    background: #EDEDED;
+}
+
+.forgot-password a {
+    color: #CCCCCC;
+}
+
+.inner-page__nav{
+	background: #0F1867;
+    border: 0;
+	box-shadow: 0px 10px 18px -8px rgba(131,131,131,0.75);
+	-webkit-box-shadow: 0px 10px 18px -8px rgba(131,131,131,0.75);
+	-moz-box-shadow: 0px 10px 18px -8px rgba(131,131,131,0.75);
+}
+
+.inner-page__nav .collapse.show li.nav-item {
+    background: transparent;
+}
+
 
 @media screen and (min-width:1024px) {
 	div[data-react-class="FacebookLive"],
@@ -1953,19 +2072,15 @@ table.dataTable {
 		width: 100%;
 		flex: 0 0 100%;
 	}
-	.overlap_top-bg,
-	.overlap_bottom-bg {
-		display: none;
-	}
 	.login-wrapper .col:nth-child(1),
 	.login-wrapper .col:nth-child(2) {
 		border-radius: 0px;
 	}
-	li.nav-item {
+	/* li.nav-item {
 		border-bottom: 1px solid #000;
-	}
+	} */
 	.row.register-wrapper {
-		margin: 20px 30px;
+		margin: 50px 20px 0px;
 	}
 	.register-wrapper>.col:nth-child(1) {
 		padding: 20px;
@@ -2014,10 +2129,10 @@ table.dataTable {
 		height: 100px;
 		bottom: 0;
 	}
-	.register-wrapper .img-wrapper,
+	/* .register-wrapper .img-wrapper,
 	.login-wrapper .img-wrapper {
 		display: none;
-	}
+	} */
 	.chat-live-wrapper .container {
 		padding: 10px !important;
 	}
@@ -2125,6 +2240,10 @@ table.dataTable {
 		top: -34px;
 		left: 17px;
 		width: 100%;
+	}
+
+	.register-wrapper .registration-wrapper{
+		height: 300px;
 	}
 }
 

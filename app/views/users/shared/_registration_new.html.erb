@@ -1,250 +1,212 @@
-<div class="col col-lg-6" style="background: <%= @event.session_background_color %>;">
+<div class="col-12 col-md-6 col-lg-6 registration-wrapper" style="background: <%= @event.session_background_color %>;">
     <h2>Create Account</h2>
-    <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { class: 'row text-center justify-content-center'}) do |f| %>
+    <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { class: 'row text-center justify-content-start'}) do |f| %>
       <%= render "users/shared/error_messages", resource: resource %>
       <%= f.hidden_field :event_code, value: @event.event_code %>
-      <div class="row">
-          <div class="col col-lg-12">
-              <label for="full_name">Full Name <span class="required">*</span></label>
-              <%= f.text_field :full_name, autofocus: true, autocomplete: "email", class:"form-control"%>
-          </div>
+      <div class="col col-lg-12">
+          <label for="full_name">Full Name <span class="required">*</span></label>
+          <%= f.text_field :full_name, autofocus: true, autocomplete: "email", class:"form-control"%>
       </div>
-      <div class="row">
-          <div class="col col-md-12">
-              <label for="email">Email <span class="required">*</span></label>
-              <%= f.email_field :email, class: "form-control" %>
-          </div>
+      <div class="col col-md-12">
+          <label for="email">Email <span class="required">*</span></label>
+          <%= f.email_field :email, class: "form-control" %>
       </div>
-      <div class="row">
-          <div class="col col-md-12 col-lg-6">
-              <label for="passowrd">Password <span class="required">*</span></label>
-              <%= f.password_field :password, autocomplete: "new-password", class:"form-control" %>
-          </div>
-          <div class="col col-md-12 col-lg-6">
-              <label for="password_confirmation">Password Confirmation <span class="required">*</span></label>
-              <%= f.password_field :password_confirmation, autocomplete: "new-password", class:"form-control" %>
-          </div>
+      <div class="col col-md-12 col-lg-6">
+        <label for="passowrd">Password <span class="required">*</span></label>
+        <%= f.password_field :password, autocomplete: "new-password", class:"form-control" %>
+      </div>
+      <div class="col col-md-12 col-lg-6">
+          <label for="password_confirmation">Password Confirmation <span class="required">*</span></label>
+          <%= f.password_field :password_confirmation, autocomplete: "new-password", class:"form-control" %>
       </div>
       <% if @event.include_affiliation? %>
-        <div class="row">
-            <div class="col col-md-12">
-                <label for="email">
-                  Affiliation
-                  <% if @event.required_affiliation? %>
-                    <span class="required">*</span>
-                  <% end %>
-                </label>
-                <%= f.text_field :affiliation, class: "form-control" %>
-            </div>
+        <div class="col col-md-6">
+            <label for="email">
+              Affiliation
+              <% if @event.required_affiliation? %>
+                <span class="required">*</span>
+              <% end %>
+            </label>
+            <%= f.text_field :affiliation, class: "form-control" %>
         </div>
       <% end %>
       <% if @event.include_company? %>
-        <div class="row">
-            <div class="col col-md-12">
-                <label for="email">
-                  Company
-                  <% if @event.required_company? %>
-                    <span class="required">*</span>
-                  <% end %>
-                </label>
-                <%= f.text_field :company, class: "form-control" %>
-            </div>
+        <div class="col col-md-6">
+            <label for="email">
+              Company
+              <% if @event.required_company? %>
+                <span class="required">*</span>
+              <% end %>
+            </label>
+            <%= f.text_field :company, class: "form-control" %>
         </div>
       <% end %>
       <% if @event.include_member_company? %>
-        <div class="row">
-            <div class="col col-md-12">
-                <label for="email">
-                  Member Company
-                  <% if @event.required_member_company? %>
-                    <span class="required">*</span>
-                  <% end %>
-                </label>
-                <%= f.text_field :member_company, class: "form-control" %>
-            </div>
-        </div>
+      <div class="col col-md-6">
+          <label for="email">
+            Member Company
+            <% if @event.required_member_company? %>
+              <span class="required">*</span>
+            <% end %>
+          </label>
+          <%= f.text_field :member_company, class: "form-control" %>
+      </div>
       <% end %>
 
       <% if @event.include_contact_number? %>
-        <div class="row">
-            <div class="col col-md-12">
-                <label for="email">
-                  Contact Number
-                  <% if @event.required_contact_number? %>
-                    <span class="required">*</span>
-                  <% end %>
-                </label>
-                <%= f.text_field :contact_number, class: "form-control" %>
-            </div>
-        </div>
+      <div class="col col-md-6">
+          <label for="email">
+            Contact Number
+            <% if @event.required_contact_number? %>
+              <span class="required">*</span>
+            <% end %>
+          </label>
+          <%= f.text_field :contact_number, class: "form-control" %>
+      </div>
       <% end %>
       <% if @event.include_mailing_address? %>
-        <div class="row">
-            <div class="col col-md-12">
-                <label for="email">
-                  Mailing Address
-                  <% if @event.required_mailing_address? %>
-                    <span class="required">*</span>
-                  <% end %>
-                </label>
-                <%= f.text_field :mailing_address, class: "form-control" %>
-            </div>
+        <div class="col col-md-6">
+            <label for="email">
+              Mailing Address
+              <% if @event.required_mailing_address? %>
+                <span class="required">*</span>
+              <% end %>
+            </label>
+            <%= f.text_field :mailing_address, class: "form-control" %>
         </div>
       <% end %>
       <% if @event.include_who_invited_you? %>
-        <div class="row">
-            <div class="col col-md-12">
-                <label for="email">
-                  Who Invited You?
-                  <% if @event.required_who_invited_you? %>
-                    <span class="required">*</span>
-                  <% end %>
-                </label>
-                <%= f.text_field :who_invited_you?, class: "form-control" %>
-            </div>
+        <div class="col col-md-6">
+            <label for="email">
+              Who Invited You?
+              <% if @event.required_who_invited_you? %>
+                <span class="required">*</span>
+              <% end %>
+            </label>
+            <%= f.text_field :who_invited_you?, class: "form-control" %>
         </div>
       <% end %>
       <% if @event.include_upline? %>
-        <div class="row">
-            <div class="col col-md-12">
-                <label for="email">
-                  Upline
-                  <% if @event.required_upline? %>
-                    <span class="required">*</span>
-                  <% end %>
-                </label>
-                <%= f.text_field :upline, class: "form-control" %>
-            </div>
+        <div class="col col-md-6">
+            <label for="email">
+              Upline
+              <% if @event.required_upline? %>
+                <span class="required">*</span>
+              <% end %>
+            </label>
+            <%= f.text_field :upline, class: "form-control" %>
         </div>
       <% end %>
 
       <% if @event.include_member_type? %>
-        <div class="row">
-            <div class="col col-md-12">
-                <label for="email">
-                  Member Type
-                  <% if @event.required_member_type? %>
-                    <span class="required">*</span>
-                  <% end %>
-                </label>
-                <% if @event.with_guest_member_type %>
-                  <%= f.select :member_type, User::MEMBER_TYPES_WITH_GUEST.invert, {}, { class: 'form-select' } %>
-                <% else %>
-                  <%= f.select :member_type, User::MEMBER_TYPES.invert, {}, { class: 'form-select' } %>
-                <% end %>
-            </div>
+        <div class="col col-md-6">
+            <label for="email">
+              Member Type
+              <% if @event.required_member_type? %>
+                <span class="required">*</span>
+              <% end %>
+            </label>
+            <% if @event.with_guest_member_type %>
+              <%= f.select :member_type, User::MEMBER_TYPES_WITH_GUEST.invert, {}, { class: 'form-select' } %>
+            <% else %>
+              <%= f.select :member_type, User::MEMBER_TYPES.invert, {}, { class: 'form-select' } %>
+            <% end %>
         </div>
       <% end %>
       <% if @event.include_member_id? %>
-        <div class="row">
-            <div class="col col-md-12">
-                <label for="email">
-                  Member Id
-                  <% if @event.required_member_id? %>
-                    <span class="required">*</span>
-                  <% end %>
-                </label>
-                <%= f.text_field :member_id, class: "form-control" %>
-            </div>
+        <div class="col col-md-6">
+            <label for="email">
+              Member Id
+              <% if @event.required_member_id? %>
+                <span class="required">*</span>
+              <% end %>
+            </label>
+            <%= f.text_field :member_id, class: "form-control" %>
         </div>
       <% end %>
       <% if @event.include_abo_type? %>
-        <div class="row">
-            <div class="col col-md-12">
-                <label for="email">
-                  ABO Type
-                  <% if @event.required_abo_type? %>
-                    <span class="required">*</span>
-                  <% end %>
-                </label>
-                <% if @event.with_guest_abo_type %>
-                  <%= f.select :abo_type, User::ABO_TYPES_WITH_GUEST.invert, {}, { class: 'form-select' } %>
-                <% else %>
-                  <%= f.select :abo_type, User::ABO_TYPES.invert, {}, { class: 'form-select' } %>
-                <% end %>
-            </div>
+        <div class="col col-md-6">
+            <label for="email">
+              ABO Type
+              <% if @event.required_abo_type? %>
+                <span class="required">*</span>
+              <% end %>
+            </label>
+            <% if @event.with_guest_abo_type %>
+              <%= f.select :abo_type, User::ABO_TYPES_WITH_GUEST.invert, {}, { class: 'form-select' } %>
+            <% else %>
+              <%= f.select :abo_type, User::ABO_TYPES.invert, {}, { class: 'form-select' } %>
+            <% end %>
         </div>
       <% end %>
       <% if @event.include_abo_number? %>
-        <div class="row">
-            <div class="col col-md-12">
-                <label for="email">
-                  ABO Number
-                  <% if @event.required_abo_number? %>
-                    <span class="required">*</span>
-                  <% end %>
-                </label>
-                <%= f.text_field :abo_number, class: "form-control" %>
-            </div>
+        <div class="col col-md-6">
+            <label for="email">
+              ABO Number
+              <% if @event.required_abo_number? %>
+                <span class="required">*</span>
+              <% end %>
+            </label>
+            <%= f.text_field :abo_number, class: "form-control" %>
         </div>
       <% end %>
       <% if @event.include_aes_number? %>
-        <div class="row">
-            <div class="col col-md-12">
-                <label for="email">
-                  AES Number
-                  <% if @event.required_aes_number? %>
-                    <span class="required">*</span>
-                  <% end %>
-                </label>
-                <%= f.text_field :aes_number, class: "form-control" %>
-            </div>
+        <div class="col col-md-6">
+            <label for="email">
+              AES Number
+              <% if @event.required_aes_number? %>
+                <span class="required">*</span>
+              <% end %>
+            </label>
+            <%= f.text_field :aes_number, class: "form-control" %>
         </div>
       <% end %>
       <% if @event.include_distributor_type? %>
-        <div class="row">
-            <div class="col col-md-12">
-                <label for="email">
-                  Distributor Type
-                  <% if @event.required_distributor_type? %>
-                    <span class="required">*</span>
-                  <% end %>
-                </label>
-                <% if @event.with_guest_distributor_type %>
-                  <%= f.select :distributor_type, User::DISTRIBUTOR_TYPES_WTIH_GUEST.invert, {}, { class: 'form-select' } %>
-                <% else %>
-                  <%= f.select :distributor_type, User::DISTRIBUTOR_TYPES.invert, {}, { class: 'form-select' } %>
-                <% end %>
-            </div>
+        <div class="col col-md-6">
+            <label for="email">
+              Distributor Type
+              <% if @event.required_distributor_type? %>
+                <span class="required">*</span>
+              <% end %>
+            </label>
+            <% if @event.with_guest_distributor_type %>
+              <%= f.select :distributor_type, User::DISTRIBUTOR_TYPES_WTIH_GUEST.invert, {}, { class: 'form-select' } %>
+            <% else %>
+              <%= f.select :distributor_type, User::DISTRIBUTOR_TYPES.invert, {}, { class: 'form-select' } %>
+            <% end %>
         </div>
       <% end %>
       <% if @event.include_distributor_number? %>
-        <div class="row">
-            <div class="col col-md-12">
-                <label for="email">
-                  Distributor Number
-                  <% if @event.required_distributor_number? %>
-                    <span class="required">*</span>
-                  <% end %>
-                </label>
-                <%= f.text_field :distributor_number, class: "form-control" %>
-            </div>
+        <div class="col col-md-6">
+            <label for="email">
+              Distributor Number
+              <% if @event.required_distributor_number? %>
+                <span class="required">*</span>
+              <% end %>
+            </label>
+            <%= f.text_field :distributor_number, class: "form-control" %>
         </div>
       <% end %>
       <% if @event.include_employee_number? %>
-        <div class="row">
-            <div class="col col-md-12">
-                <label for="email">
-                  Employee Number
-                  <% if @event.required_employee_number? %>
-                    <span class="required">*</span>
-                  <% end %>
-                </label>
-                <%= f.text_field :employee_number, class: "form-control" %>
-            </div>
+        <div class="col col-md-6">
+            <label for="email">
+              Employee Number
+              <% if @event.required_employee_number? %>
+                <span class="required">*</span>
+              <% end %>
+            </label>
+            <%= f.text_field :employee_number, class: "form-control" %>
         </div>
       <% end %>
       <% if @event.include_id_number? %>
-        <div class="row">
-            <div class="col col-md-12">
-                <label for="email">
-                  Id Number
-                  <% if @event.required_id_number? %>
-                    <span class="required">*</span>
-                  <% end %>
-                </label>
-                <%= f.text_field :id_number, class: "form-control" %>
-            </div>
+        <div class="col col-md-6">
+            <label for="email">
+              Id Number
+              <% if @event.required_id_number? %>
+                <span class="required">*</span>
+              <% end %>
+            </label>
+            <%= f.text_field :id_number, class: "form-control" %>
         </div>
       <% end %>
 
