@@ -139,6 +139,7 @@ const WheelComponent = ({
     ctx.lineTo(centerX, centerY)
     ctx.closePath()
     ctx.fillStyle = segColors[key]
+    
 
 
 
@@ -173,7 +174,7 @@ const WheelComponent = ({
     ctx.beginPath()
     ctx.arc(centerX, centerY, 20, 0, PI2, false)
     ctx.closePath()
-    ctx.fillStyle = '#EF6537' || 'black'
+    ctx.fillStyle = '#F7B944' || 'black'
     ctx.lineWidth = 0
     ctx.fill()
     ctx.textAlign = 'center'
@@ -220,17 +221,20 @@ const WheelComponent = ({
   }
   return (
     <div id='wheel'>
-      <canvas
-        id='canvas'
-        width='600'
-        height='600'
-        style={{
-          pointerEvents: isFinished && isOnlyOnce ? 'none' : 'auto',
-          //backgroundImage: `url(${OuterWheel})`
-        }}
-      />
+      <div className="canvas-wrapper">
+        <canvas
+          id='canvas'
+          width='600'
+          height='600'
+          style={{
+            pointerEvents: isFinished && isOnlyOnce ? 'none' : 'auto',
+            //backgroundImage: `url(${OuterWheel})`
+          }}
+        />
+      </div>
       <div className="btn-actions">
         <button id="spinWheel" className="RandomPicker__button mb-2">{buttonText}</button>
+        {/* apply dynamic color for button */}
       </div>
     </div>
   )

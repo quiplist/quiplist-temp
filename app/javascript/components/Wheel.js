@@ -6,10 +6,12 @@ import 'react-wheel-of-prizes/dist/index.css';
 
 const Wheel = () => {
   const segments =
-  ['better luck next time1', 'won 70', 'won 10','better luck next time2', 'won 2', 'won uber pass', 'better luck next time3', 'won a voucher3'];
+  ['better luck next time1', 'won 70', 'won 10','better luck next time2', 'won 2', 
+  'won uber pass', 'better luck next time3', 'won a voucher3',
+  ];
   const choice = segments[Math.floor(Math.random() * segments.length)];
   const segColors = [
-    "#C82E29"
+    "#EE5C36"
   ];
 
   const setChoices = [];

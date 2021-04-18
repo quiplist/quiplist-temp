@@ -1764,11 +1764,22 @@ h2#swal2-title {
 
 
 #wheel canvas{
-	width: calc(70% - 20px);
+	width: calc(75% - 20px);
+	position: relative;
+    top: 75px;
+    left: 5px;
+}
+
+.canvas-wrapper{
+	background-image: url(spin.png);
+    background-size: 90%;
+    background-repeat: no-repeat;
+    background-position: center;
+    height: 550px;
+    width: 550px;
 }
 
 .wheel-wrapper{
-	
     color: #fff;
     position: relative;
     height: 100vh;
@@ -2033,9 +2044,6 @@ footer h6 {
 		position: absolute;
 		bottom: 30%;
 	} */
-	#wheel canvas{
-		width: calc(100% - 20px);
-	}
 	table.dataTable td.actions .btn {
 		width: 100%;
 		margin-bottom: 10px;
@@ -2241,9 +2249,17 @@ footer h6 {
 		left: 17px;
 		width: 100%;
 	}
-
 	.register-wrapper .registration-wrapper{
 		height: 300px;
+	}
+	#wheel canvas{
+		width: calc(80% - 20px);
+		top: 40px;
+    	left: 0;
+	}
+	.canvas-wrapper{
+		width: 310px;
+		height: 310px;
 	}
 }
 

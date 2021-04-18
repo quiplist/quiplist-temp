@@ -442,12 +442,8 @@ $(document).ready(function () {
         }
     }
 
-    var wheel = $('#wheel canvas');
-    if(wheel.length > 0){
-      var ctx = wheel[0].getContext('2d');
-        // ctx.canvas.height = 600;
-        // ctx.canvas.width = 600;
-    }
+
+
 });
 
 window.streamValueTypeChange = function(id) {
