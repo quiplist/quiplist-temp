@@ -38,7 +38,8 @@ class Live extends React.Component {
       currentUser: {},
       raffles: [],
       guestLists: [],
-      questionnaires: []
+      questionnaires: [],
+      currentQuestionnaire: {}
     };
 
 
@@ -58,6 +59,9 @@ class Live extends React.Component {
       this.setState({ raffles: result.raffles })
       this.setState({ guestLists: result.guest_lists })
       this.setState({ questionnaires: result.questionnaires })
+      if(this.state.questionnaires.length > 0) {
+        this.setState({ currentQuestionnaire: result.questionnaires[0] })
+      }
     });
 
     fetch('/api/v1/fetch_current_user')
@@ -100,6 +104,20 @@ class Live extends React.Component {
           this.updateAnnouncement(data.result)
         }
       });
+
+    this.questionnairesChannel = this.cable.subscriptions.create(
+      {
+        channel: `QuestionnairesChannel`,
+        id: this.props.eventId
+      },{
+        connected: () => {
+          console.log("connected!")
+        },
+        disconnected: () => {},
+        received: data => {
+          this.updateAnnouncement(data.result)
+        }
+      });
   }
 
   addChat = chat => {
@@ -110,6 +128,10 @@ class Live extends React.Component {
     this.setState(state => ({ currentAnnouncement: announcement }))
   }
 
+  setQuestionnaire = questionnaire => {
+    this.setState(state => ({ currentQuestionnaire: questionnaire }))
+  }
+
   render() {
     const isFB = this.state.isFB;
     const isYT = this.state.isYT;
@@ -118,16 +140,27 @@ class Live extends React.Component {
     let video;
 
     if(isFB){
-      video =  <FacebookLive url={this.state.url}/>;
+      video = <FacebookLive
+                url={this.state.url}
+                questionnaires = {this.state.questionnaires}
+                currentQuestionnaire = {this.state.currentQuestionnaire}
+              />;
     }else if(isYT) {
-      video =  <YoutubeLive url={this.state.url}/>;
-    }else{
-      video = <None/>;
+      video = <YoutubeLive
+                url={this.state.url}
+                questionnaires = {this.state.questionnaires}
+                currentQuestionnaire = {this.state.currentQuestionnaire}
+              />;
+    }else {
+      video = <None
+                questionnaires = {this.state.questionnaires}
+                currentQuestionnaire = {this.state.currentQuestionnaire}
+              />;
     }
 
     return (
       <div>
-      {isAdmin ?
+      { isAdmin ?
         (<Actions
           raffles = {this.state.raffles}
           questionnaires = {this.state.questionnaires}
@@ -135,7 +168,9 @@ class Live extends React.Component {
           currentUser = {this.state.currentUser}
           currentEvent = {this.state.currentEvent}
           announcementCable = {this.announcementsChannel}
-          updateAnnouncement = {announcement => this.updateAnnouncement(announcement)} />)
+          updateAnnouncement = {announcement => this.updateAnnouncement(announcement)}
+          questionnaireCable = {this.questionnairesChannel}
+          setQuestionnaire = {questionnaire => this.setQuestionnaire(questionnaire)} />)
         : ""
       }
 

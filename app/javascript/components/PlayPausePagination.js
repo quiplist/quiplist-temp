@@ -55,7 +55,7 @@ class PlayPausePagination extends Component {
 
   render() {
     let playUrl = "";
-    let isUrl = true;
+    let isQuestionnaire = (this.props.modelName === "questionnaires");
     if (!this.totalRecords) return null;
 
     if (this.totalPages === 1) return null;
@@ -64,8 +64,6 @@ class PlayPausePagination extends Component {
 
     if ((this.props.modelName === "raffles") && (this.props.currentData.length !== 0)) {
       playUrl = `/admins/events/${this.props.currentEvent.id}/raffles/${this.props.currentData[0].id}`
-    } else if (this.props.modelName === "questionnaire") {
-
     }
 
     return (
@@ -79,13 +77,15 @@ class PlayPausePagination extends Component {
           >
             <i className="fas fa-backward mx-1"></i>
           </a>
-          <a
-            target="_blank"
-            className=""
-            href={playUrl}
-          >
-          <i className="fas fa-play mx-1"></i>
-          </a>
+          {isQuestionnaire ? ("") :
+            (<a
+              target="_blank"
+              className=""
+              href={playUrl}
+            >
+            <i className="fas fa-play mx-1"></i>
+            </a>)
+          }
           <a
             className=""
             href="#"

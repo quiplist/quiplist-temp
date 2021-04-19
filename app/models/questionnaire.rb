@@ -71,7 +71,7 @@ class Questionnaire < ApplicationRecord
     questionnaire_type == YES_OR_NO
   end
 
-  def indentification?
+  def identification?
     questionnaire_type == IDENTIFICATION
   end
 

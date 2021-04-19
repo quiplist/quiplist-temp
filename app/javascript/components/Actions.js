@@ -28,6 +28,7 @@ class Actions extends React.Component {
     const offset = (currentQuestionnairePage - 1) * questionnairePageLimit;
     const currentQuestionnaire = questionnaires.slice(offset, offset + questionnairePageLimit);
     this.setState({ currentQuestionnairePage, currentQuestionnaire, totalQuestionnairePages });
+    this.props.setQuestionnaire(currentQuestionnaire[0])
   };
 
 
@@ -55,7 +56,7 @@ class Actions extends React.Component {
       <React.Fragment>
         <div className="row my-3">
           <div className="col-12 col-md-6 col-lg-4">
-            <div className="raffle-wrapper">
+            <div className="action-wrapper">
               <fieldset>
               <legend>Raffle</legend>
                 {this.state.currentRaffle.map((raffle, index) =>
