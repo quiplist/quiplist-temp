@@ -51,6 +51,7 @@ Rails.application.routes.draw do
       get '/fetch_current_user', to: 'users#fetch_current_user', as: :fetch_current_user
       resources :events, only: [:show]
       resources :raffles, only: [:index, :show, :update]
+      resources :questionnaires, only: [:update]
       resources :guest_lists, only: [:index]
       #get '/fetch_current_event/:event_code', to: 'events#fetch_current_event', as: :fetch_current_event
     end
