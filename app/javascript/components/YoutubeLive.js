@@ -16,7 +16,10 @@ class YoutubeLive extends React.Component {
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
           allowFullScreen>
         </iframe>
-        <Questions />
+        <Questions
+          questionnaires = {this.props.questionnaires}
+          currentQuestionnaire = {this.props.currentQuestionnaire}
+        />
       </div>
     )
   }

@@ -23,7 +23,10 @@ class FacebookLive extends React.Component {
           data-width="500"
           data-allowfullscreen="true">
         </div>
-        <Questions />
+        <Questions
+          questionnaires = {this.props.questionnaires}
+          currentQuestionnaire = {this.props.currentQuestionnaire}
+        />
       </div>
     )
   }
