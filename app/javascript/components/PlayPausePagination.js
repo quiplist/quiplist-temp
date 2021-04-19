@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
+import PlayQuestionnaire from "./PlayQuestionnaire";
+import PlayRaffle from "./PlayRaffle";
 
 class PlayPausePagination extends Component {
   constructor(props) {
@@ -54,16 +56,22 @@ class PlayPausePagination extends Component {
   };
 
   render() {
-    let playUrl = "";
-    let isQuestionnaire = (this.props.modelName === "questionnaires");
+    const { currentPage } = this.state;
+    let playButton;
     if (!this.totalRecords) return null;
 
     if (this.totalPages === 1) return null;
 
-    const { currentPage } = this.state;
-
-    if ((this.props.modelName === "raffles") && (this.props.currentData.length !== 0)) {
-      playUrl = `/admins/events/${this.props.currentEvent.id}/raffles/${this.props.currentData[0].id}`
+    if (this.props.modelName === "questionnaires" && (this.props.currentData.length !== 0)) {
+      playButton = <PlayQuestionnaire
+                    currentData = {this.props.currentData}
+                    playQuestionnaire = {questionnaire => this.props.playQuestionnaire(questionnaire)}
+                  />
+    } else if ((this.props.modelName === "raffles") && (this.props.currentData.length !== 0)) {
+      let playUrl = `/admins/events/${this.props.currentEvent.id}/raffles/${this.props.currentData[0].id}`
+      playButton = <PlayRaffle
+                    playUrl = {playUrl}
+                  />
     }
 
     return (
@@ -77,15 +85,7 @@ class PlayPausePagination extends Component {
           >
             <i className="fas fa-backward mx-1"></i>
           </a>
-          {isQuestionnaire ? ("") :
-            (<a
-              target="_blank"
-              className=""
-              href={playUrl}
-            >
-            <i className="fas fa-play mx-1"></i>
-            </a>)
-          }
+          {playButton}
           <a
             className=""
             href="#"

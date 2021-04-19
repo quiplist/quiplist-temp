@@ -42,8 +42,41 @@ class Actions extends React.Component {
     this.setState({ currentRafflePage, currentRaffle, totalRafflePages });
   };
 
+  playQuestionnaire = questionnaire => {
+    let status = 0;
+    // on submitting the ChatInput form, send the message, add it to the list and reset the input
+    console.log(questionnaire)
+    const url = `/api/v1/questionnaires/${questionnaire.id}`;
+    switch(questionnaire.status) {
+      case 0:
+        status = 1;
+        break;
+      case 1:
+        status = 2;
+        break;
+      default:
+        status = 0;
+    }
 
+    const body = {
+      questionnaire: {
+        status: status
+      }
+    }
 
+    fetch(url, {
+        method: "PUT",
+        headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json"
+        },
+        body: JSON.stringify(body)
+    })
+    .then(resp => resp.json())
+    .then(result => {
+      this.props.questionnaireCable.send({result})
+    })
+  }
 
   render () {
     const totalRaffles = this.props.raffles.length;
@@ -91,6 +124,7 @@ class Actions extends React.Component {
                   currentData={this.state.currentQuestionnaire}
                   currentEvent={this.props.currentEvent}
                   onPageChanged={this.onQuestionnairePageChanged}
+                  playQuestionnaire = {questionnaire => this.playQuestionnaire(questionnaire)}
                 />
               </fieldset>
             </div>

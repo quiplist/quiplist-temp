@@ -52,7 +52,6 @@ class Live extends React.Component {
     fetch(fetchEventUrl)
     .then(resp => resp.json())
     .then(result => {
-      console.log(result)
       this.setState({ currentEvent: result })
       this.setState({ chats: result.chats })
       this.setState({ announcements: result.announcements })
@@ -60,7 +59,7 @@ class Live extends React.Component {
       this.setState({ guestLists: result.guest_lists })
       this.setState({ questionnaires: result.questionnaires })
       if(this.state.questionnaires.length > 0) {
-        this.setState({ currentQuestionnaire: result.questionnaires[0] })
+        this.setQuestionnaire(result.questionnaires[0])
       }
     });
 
@@ -115,7 +114,10 @@ class Live extends React.Component {
         },
         disconnected: () => {},
         received: data => {
-          this.updateAnnouncement(data.result)
+          console.log("channel")
+          console.log(data.result)
+          console.log("channel")
+          this.setQuestionnaire(data.result)
         }
       });
   }

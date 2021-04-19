@@ -11,11 +11,17 @@ class Questions extends React.Component {
   render() {
     const { currentQuestionnaire, questionnaires } = this.props;
     const totalQuestionnaires = questionnaires.length;
+    const totalCurrentQuestionnaire = currentQuestionnaire.length;
+    if (totalQuestionnaires === 0) return null;
+    if (currentQuestionnaire === 0) return null;
+    console.log("questions")
+    console.log(currentQuestionnaire)
+    console.log("questions")
+
     const isQueued = currentQuestionnaire.is_queued;
     const isOngoing = currentQuestionnaire.is_ongoing;
     const isDone = currentQuestionnaire.is_done;
-
-    if (totalQuestionnaires === 0) return null;
+    if (isQueued || isDone) return null;
     let choices;
 
     if (currentQuestionnaire.is_multiple_choice) {
