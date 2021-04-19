@@ -20,6 +20,8 @@ class Raffle < ApplicationRecord
   belongs_to :event
   belongs_to :winner, class_name: 'GuestList', foreign_key: 'guest_list_id', optional: true
 
+  default_scope { order("created_at ASC") }
+
   RANDOM_NAMES = 0
   SPIN_WHEEL = 1
   LOTTO = 2

@@ -20,6 +20,8 @@ class Questionnaire < ApplicationRecord
   has_many :answered_correctly, class_name: "Answer"
   belongs_to :event
 
+  default_scope { order("created_at ASC") }
+
   MULTIPLE_CHOICE = 0
   YES_OR_NO = 1
   IDENTIFICATION = 2
