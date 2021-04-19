@@ -114,9 +114,6 @@ class Live extends React.Component {
         },
         disconnected: () => {},
         received: data => {
-          console.log("channel")
-          console.log(data.result)
-          console.log("channel")
           this.setQuestionnaire(data.result)
         }
       });
@@ -169,6 +166,7 @@ class Live extends React.Component {
           guestLists = {this.state.guestLists}
           currentUser = {this.state.currentUser}
           currentEvent = {this.state.currentEvent}
+          currentQuestionnaire = {this.state.currentQuestionnaire}
           announcementCable = {this.announcementsChannel}
           updateAnnouncement = {announcement => this.updateAnnouncement(announcement)}
           questionnaireCable = {this.questionnairesChannel}

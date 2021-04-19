@@ -14,7 +14,7 @@ class Actions extends React.Component {
       currentRaffle: [],
       currentRafflePage: null,
       totalRafflePages: null,
-      currentQuestionnaire: [],
+      currentQuestionnaire: this.props.currentQuestionnaire,
       currentQuestionnairePage: null,
       totalQuestionnairePages: null
     };
@@ -26,9 +26,9 @@ class Actions extends React.Component {
     const totalQuestionnairePages = data.totalPages;
     const questionnairePageLimit = data.pageLimit;
     const offset = (currentQuestionnairePage - 1) * questionnairePageLimit;
-    const currentQuestionnaire = questionnaires.slice(offset, offset + questionnairePageLimit);
+    const currentQuestionnaire = questionnaires[currentQuestionnairePage - 1]
     this.setState({ currentQuestionnairePage, currentQuestionnaire, totalQuestionnairePages });
-    this.props.setQuestionnaire(currentQuestionnaire[0])
+    this.props.setQuestionnaire(currentQuestionnaire)
   };
 
 
@@ -45,7 +45,6 @@ class Actions extends React.Component {
   playQuestionnaire = questionnaire => {
     let status = 0;
     // on submitting the ChatInput form, send the message, add it to the list and reset the input
-    console.log(questionnaire)
     const url = `/api/v1/questionnaires/${questionnaire.id}`;
     switch(questionnaire.status) {
       case 0:
@@ -54,6 +53,9 @@ class Actions extends React.Component {
       case 1:
         status = 2;
         break;
+      case 2:
+        status = 2;
+        break
       default:
         status = 0;
     }
@@ -75,6 +77,7 @@ class Actions extends React.Component {
     .then(resp => resp.json())
     .then(result => {
       this.props.questionnaireCable.send({result})
+      this.setState( {currentQuestionnaire: result })
     })
   }
 
@@ -113,9 +116,7 @@ class Actions extends React.Component {
               <fieldset>
                 <legend>Questionnaire</legend>
                 <p className="my-0">Question:</p>
-                {this.state.currentQuestionnaire.map((questionnaire, index) =>
-                  <p key={index}>{questionnaire.question}</p>
-                )}
+                <p>{this.state.currentQuestionnaire.question}</p>
                 <PlayPausePagination
                   modelName={"questionnaires"}
                   totalRecords={totalQuestionnaires}

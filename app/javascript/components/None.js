@@ -5,9 +5,6 @@ import Questions from "./Questions";
 class None extends React.Component {
 
   render() {
-    console.log("none")
-    console.log(this.props.currentQuestionnaire)
-    console.log("none")
     return (
       <div className="no-video-wrapper">
         <p>This event will start soon.</p>

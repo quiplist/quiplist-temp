@@ -4,22 +4,22 @@ import PropTypes from "prop-types";
 class PlayQuestionnaire extends React.Component {
 
   render() {
-    if (this.props.currentData.length === 0) return null;
-
     let icon;
-    if (this.props.currentData[0].status === 1) {
+    let disabledPlay = (this.props.currentData.status === 2);
+    if (this.props.currentData.status === 1) {
       icon = <i className="fas fa-pause mx-1"></i>
     } else {
       icon = <i className="fas fa-play mx-1"></i>
     }
+
     return (
       <form
         action="."
         onSubmit={e => {
           e.preventDefault()
-          this.props.playQuestionnaire(this.props.currentData[0])
+          this.props.playQuestionnaire(this.props.currentData)
         }}>
-        <input type="submit" />
+        <input type="submit" disabled={disabledPlay}/>
         {icon}
       </form>
     )

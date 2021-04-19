@@ -4,7 +4,7 @@ class Api::V1::QuestionnairesController < Api::ApplicationController
   def update
     @event = @questionnaire.event
     if @questionnaire.update_attributes questionnaire_params
-        puts "successfully saved a chat!"
+        puts "successfully saved a questionnaire!"
         QuestionnairesChannel.broadcast_to(@event, ActiveModelSerializers::SerializableResource.new(@questionnaire).as_json)
     end
     render json: @questionnaire
