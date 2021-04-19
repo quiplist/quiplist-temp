@@ -13,7 +13,7 @@
 <% elsif @raffle.spin_wheel? %>
   <div class="container-fluid raffle-wrapper px-0" style="<%= @event.spin_a_wheel_background? ? "background-image: url(\'#{@event.spin_a_wheel_background.url}\')" : "" %>">
     <div class="row mb-3 text-center w-100">
-      <div class="col col-lg-12">
+      <div class="col col-lg-12 px-0">
         <%= react_component("Wheel", {
           eventId: @event.id,
           raffleId: @raffle.id

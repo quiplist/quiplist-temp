@@ -14,9 +14,9 @@ class EventDescription extends React.Component {
             <p>{this.props.currentEvent.description}</p>
             {this.props.hasBrochure ? (
               <a className="" href={this.props.currentEvent.brochure_url} target="_blank">
-                <label className="event_brochure_btn">
-                  Click here to download<i className="fas fa-download"></i>
-                </label>
+                <p className="event_brochure">
+                  Click here to download
+                </p>
               </a>)
               : "" }
 
