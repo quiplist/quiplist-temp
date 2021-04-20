@@ -12,7 +12,17 @@ const WheelComponent = ({
   isOnlyOnce = true,
   size = 290,
   upDuration = 100,
-  downDuration = 1000
+  downDuration = 1000,
+  isRunning,
+  isDone,
+  isDisabled,
+  onDrawMouseOver,
+  onDrawMouseOut,
+  currentEvent,
+  onWinnerMouseOver,
+  onWinnerMouseOut,
+  setWinner,
+  currentChoice
 }) => {
   let currentSegment = ''
   let isStarted = false
@@ -56,7 +66,7 @@ const WheelComponent = ({
     //canvas.addEventListener('click', spin, false)
     canvasContext = canvas.getContext('2d')
 
-   // canvasContext.drawImage(OuterWheel,0,0);   
+   // canvasContext.drawImage(OuterWheel,0,0);
 
   }
 
@@ -70,9 +80,10 @@ const WheelComponent = ({
 
   const spin = () => {
     isStarted = true
+    isRunning = true
     if (timerHandle === 0) {
       spinStart = new Date().getTime()
-      // maxSpeed = Math.PI / ((segments.length*2) + Math.random())
+      //maxSpeed = Math.PI / ((segments.length*2) + Math.random())
       maxSpeed = Math.PI / segments.length
       frames = 0
       timerHandle = setInterval(onTimerTick, timerDelay)
@@ -132,6 +143,7 @@ const WheelComponent = ({
   const drawSegment = (key, lastAngle, angle) => {
     const ctx = canvasContext
     const value = segments[key]
+
     ctx.save()
     ctx.beginPath()
     ctx.moveTo(centerX, centerY)
@@ -139,7 +151,7 @@ const WheelComponent = ({
     ctx.lineTo(centerX, centerY)
     ctx.closePath()
     ctx.fillStyle = segColors[key]
-    
+
 
 
 
@@ -150,7 +162,7 @@ const WheelComponent = ({
     ctx.rotate((lastAngle + angle) / 2)
     ctx.fillStyle = contrastColor || 'white'
     ctx.font = 'bold 1em proxima-nova'
-    ctx.fillText(value.substr(0, 21), size / 2 + 20, 0)
+    ctx.fillText(value.user.full_name.substr(0, 21), size / 2 + 20, 0)
     ctx.restore()
   }
 
@@ -191,28 +203,28 @@ const WheelComponent = ({
   }
 
   const drawNeedle = () => {
-    // const ctx = canvasContext
-    // ctx.lineWidth = 1
-    // ctx.strokeStyle = contrastColor || 'white'
-    // ctx.fileStyle = contrastColor || 'white'
-    // ctx.beginPath()
-    // ctx.moveTo(centerX + 0, centerY - 50)
-    // ctx.lineTo(centerX - 20, centerY - 50)
-    // ctx.lineTo(centerX, centerY - 70)
-    // ctx.closePath()
-    // ctx.fill()
-    // const change = angleCurrent + Math.PI / 2
-    // let i =
-    //   segments.length -
-    //   Math.floor((change / (Math.PI * 2)) * segments.length) -
-    //   1
-    // if (i < 0) i = i + segments.length
-    // ctx.textAlign = 'center'
-    // ctx.textBaseline = 'top'
-    // ctx.fillStyle = primaryColor || 'black'
-    // ctx.font = 'bold 1.5em proxima-nova'
-    // currentSegment = segments[i]
-    // isStarted && ctx.fillText(currentSegment, centerX + 10, centerY + size + 50)
+    const ctx = canvasContext
+    ctx.lineWidth = 1
+    ctx.strokeStyle = contrastColor || 'white'
+    ctx.fileStyle = contrastColor || 'white'
+    ctx.beginPath()
+    ctx.moveTo(centerX + 0, centerY - 50)
+    ctx.lineTo(centerX - 20, centerY - 50)
+    ctx.lineTo(centerX, centerY - 70)
+    ctx.closePath()
+    //ctx.fill() //display arrow
+    const change = angleCurrent + Math.PI / 2
+    let i =
+      segments.length -
+      Math.floor((change / (Math.PI * 2)) * segments.length) -
+      1
+    if (i < 0) i = i + segments.length
+    ctx.textAlign = 'center'
+    ctx.textBaseline = 'top'
+    ctx.fillStyle = primaryColor || 'black'
+    ctx.font = 'bold 1.5em proxima-nova'
+    currentSegment = segments[i]
+    isStarted && ctx.fillText(currentSegment, centerX + 10, centerY + size + 50)
   }
 
   const clear = () => {
@@ -232,9 +244,26 @@ const WheelComponent = ({
           }}
         />
       </div>
-      <div className="btn-actions">
-        <button id="spinWheel" className="RandomPicker__button mb-2">{buttonText}</button>
-        {/* apply dynamic color for button */}
+      <div className="RandomPicker__controls">
+        <button id="spinWheel"
+          style={{ background : currentEvent.random_number_winner_mouse_out, border : '1px solid' + currentEvent.random_number_winner_mouse_out }}
+          onMouseEnter={event => onWinnerMouseOver(event)}
+          onMouseOut={event => onWinnerMouseOut(event)}
+          className="RandomPicker__button mb-2" disabled={isDone}>{buttonText}</button>
+        <form
+          action="."
+          onSubmit={e => {
+            e.preventDefault()
+            setWinner(currentChoice)
+          }}>
+          <input
+            type="submit" value={'Winner'}
+            className="RandomPicker__button"
+            style={{ background : currentEvent.random_number_winner_mouse_out, border : '1px solid' + currentEvent.random_number_winner_mouse_out }}
+            onMouseEnter={event => onWinnerMouseOver(event)}
+            onMouseOut={event => onWinnerMouseOut(event)}
+            disabled={isDone || isDisabled} />
+        </form>
       </div>
     </div>
   )

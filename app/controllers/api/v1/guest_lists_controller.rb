@@ -5,7 +5,7 @@ class Api::V1::GuestListsController < Api::ApplicationController
   before_action :set_event
 
   def index
-    @guest_lists = @event.guest_lists.eligible
+    @guest_lists = @event.guest_lists.approved.eligible
     render json: @guest_lists
   end
 
