@@ -32,7 +32,7 @@ var filteredEvent = ["Queued", "On Going", "Done"];
 var filteredUser = ["true", "false"];
 var filteredGuestList = ["Pending", "Approved", "Denied"];
 var filteredRaffle = ["Random Names", "Spin a Wheel", "Lotto"];
-var filteredQuestionnaire = ["Multiple Choice", "Yes or No", "Indentification", "Select Letters", "Question and Answer", "Poll"];
+var filteredQuestionnaire = ["Multiple Choice", "Yes or No", "Identification", "Select Letters", "Question and Answer", "Poll"];
 
 $.fn.dataTable.ext.search.push(
   function( settings, searchData, index, rowData, counter ) {
@@ -239,8 +239,8 @@ $(document).ready(function () {
           <label class=\"btn btn-outline-primary\" for=\"btncheck8\">Yes or No</label>\
         </div>\
         <div>\
-          <input type=\"checkbox\" class=\"btn-check filterQuestionnaire\" id=\"btncheck9\" name=\"type\" value=\"Indentification\" checked>\
-          <label class=\"btn btn-outline-primary\" for=\"btncheck9\">Indentification</label>\
+          <input type=\"checkbox\" class=\"btn-check filterQuestionnaire\" id=\"btncheck9\" name=\"type\" value=\"Identification\" checked>\
+          <label class=\"btn btn-outline-primary\" for=\"btncheck9\">Identification</label>\
         </div>\
         <div>\
           <input type=\"checkbox\" class=\"btn-check filterQuestionnaire\" id=\"btncheck10\" name=\"type\" value=\"Select Letters\" checked>\
@@ -360,174 +360,355 @@ $(document).ready(function () {
     }
 
     //admin dashboard questionnaire
+    // var raffle_slct = $("#raffle_choices");
+    // if(raffle_slct.length > 0){
+    //     $(".multiple-choice-wrapper").addClass("show-question");
+    //
+    //     $("#raffle_choices").on("change", function(){
+    //         var raffle_val = $(this).val()
+    //         switch(raffle_val) {
+    //             // multiple choice
+    //             case '0':
+    //                 $('.questionnaire-wrapper').html(
+    //                   "<div class=\"multiple-choice-wrapper\">" +
+    //                     "<div class=\"col-12 col-lg-2\">" +
+    //                         "<label for=\"choices\">Choices</label>" +
+    //                     "</div>" +
+    //                     "<div class=\"mb-3\">" +
+    //                       "<div class=\"row\">" +
+    //                         "<div class=\"col col-lg-6\">" +
+    //                           "<input multiple=\"multiple\" class=\"form-control\" placeholder=\"A\" type=\"text\" name=\"questionnaire[choices][]\" id=\"questionnaire_choices\">"+
+    //                         "</div>" +
+    //                         "<div class=\"col col-lg-6\">" +
+    //                           "<input multiple=\"multiple\" class=\"form-control\" placeholder=\"B\" type=\"text\" name=\"questionnaire[choices][]\" id=\"questionnaire_choices\">" +
+    //                         "</div>" +
+    //                       "</div>" +
+    //                     "</div>" +
+    //                     "<div class=\"mb-3\">" +
+    //                       "<div class=\"row\">" +
+    //                         "<div class=\"col col-lg-6\">" +
+    //                           "<input multiple=\"multiple\" class=\"form-control\" placeholder=\"C\" type=\"text\" name=\"questionnaire[choices][]\" id=\"questionnaire_choices\">" +
+    //                         "</div>" +
+    //                         "<div class=\"col col-lg-6\">" +
+    //                           "<input multiple=\"multiple\" class=\"form-control\" placeholder=\"D\" type=\"text\" name=\"questionnaire[choices][]\" id=\"questionnaire_choices\">" +
+    //                         "</div>" +
+    //                       "</div>" +
+    //                     "</div>" +
+    //                   "</div>"
+    //                 );
+    //                 break;
+    //             // yes or no
+    //             case '1':
+    //                 $('.questionnaire-wrapper').html(
+    //                   "<div class=\"yes-no-wrapper\">" +
+    //                     "<div class=\"col-12 col-lg-2\">" +
+    //                         "<label for=\"choices\">Choices</label>" +
+    //                     "</div>" +
+    //                     "<div class=\"mb-3\">" +
+    //                       "<div class=\"row\">" +
+    //                         "<div class=\"col col-lg-6\">"+
+    //                           "<input multiple=\"multiple\" class=\"form-control\" placeholder=\"Yes\" type=\"text\" name=\"questionnaire[choices][]\" id=\"questionnaire_choices\"></input>" +
+    //                        " </div>" +
+    //                         "<div class=\"col col-lg-6\">" +
+    //                         "<input multiple=\"multiple\" class=\"form-control\" placeholder=\"No\" type=\"text\" name=\"questionnaire[choices][]\" id=\"questionnaire_choices\"></input>" +
+    //                         "</div>" +
+    //                       "</div>" +
+    //                     "</div>" +
+    //                     "</div>");
+    //                 break;
+    //             //identification
+    //             case '2':
+    //                 $('.questionnaire-wrapper').html(
+    //                 "<div class=\"identification-wrapper\">" +
+    //                   "<div class=\"mb-3\">" +
+    //                     "<div class=\"row\">" +
+    //                       "<label for=\"answer\">Correct Answer</label>" +
+    //                       "<div class=\"col col-lg-12\">" +
+    //                         "<input class=\"form-control\" placeholder=\"Answer\" type=\"text\" name=\"questionnaire[correct_answer]\" id=\"questionnaire_correct_answer\">" +
+    //                       "</div>" +
+    //                     "</div>" +
+    //                   "</div>" +
+    //                 "</div>"
+    //                 );
+    //                 break;
+    //             //select letters
+    //             case '3':
+    //               $(".questionnaire-wrapper").html(
+    //                 "<div class=\"select-letters-wrapper\">" +
+    //                   "<div class=\"col-12 col-lg-2\">" +
+    //                       "<label for=\"choices\">Choices</label>" +
+    //                   "</div>" +
+    //                  "<div class=\"mb-3\">" +
+    //                   "<div class=\"row\">" +
+    //                       "<div class=\"col col-lg-1\">" +
+    //                         "<input multiple=\"multiple\" class=\"form-control\" placeholder=\"\" type=\"text\" name=\"questionnaire[choices][]\" id=\"questionnaire_choices\">" +
+    //                       "</div>" +
+    //                       "<div class=\"col col-lg-1\">" +
+    //                         "<input multiple=\"multiple\" class=\"form-control\" placeholder=\"\" type=\"text\" name=\"questionnaire[choices][]\" id=\"questionnaire_choices\">" +
+    //                       "</div>" +
+    //                       "<div class=\"col col-lg-1\">" +
+    //                         "<input multiple=\"multiple\" class=\"form-control\" placeholder=\"\" type=\"text\" name=\"questionnaire[choices][]\" id=\"questionnaire_choices\">" +
+    //                       "</div>" +
+    //                       "<div class=\"col col-lg-1\">" +
+    //                         "<input multiple=\"multiple\" class=\"form-control\" placeholder=\"\" type=\"text\" name=\"questionnaire[choices][]\" id=\"questionnaire_choices\">" +
+    //                       "</div>" +
+    //                       "<div class=\"col col-lg-1\">" +
+    //                         "<input multiple=\"multiple\" class=\"form-control\" placeholder=\"\" type=\"text\" name=\"questionnaire[choices][]\" id=\"questionnaire_choices\">" +
+    //                       "</div>" +
+    //                       "<div class=\"col col-lg-1\">" +
+    //                         "<input multiple=\"multiple\" class=\"form-control\" placeholder=\"\" type=\"text\" name=\"questionnaire[choices][]\" id=\"questionnaire_choices\">" +
+    //                       "</div>" +
+    //                       "<div class=\"col col-lg-1\">" +
+    //                         "<input multiple=\"multiple\" class=\"form-control\" placeholder=\"\" type=\"text\" name=\"questionnaire[choices][]\" id=\"questionnaire_choices\">" +
+    //                       "</div>" +
+    //                       "<div class=\"col col-lg-1\">" +
+    //                         "<input multiple=\"multiple\" class=\"form-control\" placeholder=\"\" type=\"text\" name=\"questionnaire[choices][]\" id=\"questionnaire_choices\">" +
+    //                       "</div>" +
+    //                       "<div class=\"col col-lg-1\">" +
+    //                         "<input multiple=\"multiple\" class=\"form-control\" placeholder=\"\" type=\"text\" name=\"questionnaire[choices][]\" id=\"questionnaire_choices\">" +
+    //                       "</div>" +
+    //                       "<div class=\"col col-lg-1\">" +
+    //                         "<input multiple=\"multiple\" class=\"form-control\" placeholder=\"\" type=\"text\" name=\"questionnaire[choices][]\" id=\"questionnaire_choices\">" +
+    //                       "</div>" +
+    //                       "<div class=\"col col-lg-1\">" +
+    //                         "<input multiple=\"multiple\" class=\"form-control\" placeholder=\"\" type=\"text\" name=\"questionnaire[choices][]\" id=\"questionnaire_choices\">" +
+    //                       "</div>" +
+    //                       "<div class=\"col col-lg-1\">" +
+    //                         "<input multiple=\"multiple\" class=\"form-control\" placeholder=\"\" type=\"text\" name=\"questionnaire[choices][]\" id=\"questionnaire_choices\">" +
+    //                       "</div>" +
+    //                     "</div>" +
+    //                   "</div>" +
+    //                 "</div>"
+    //               );
+    //               break;
+    //             //poll
+    //             case '4':
+    //               $('.questionnaire-wrapper').html(
+    //                 "<div class=\"question-answer-wrapper\">" +
+    //                   "<div class=\"mb-3\">" +
+    //                     "<div class=\"row\">" +
+    //                       "<label for=\"answer\">Correct Answer</label>" +
+    //                       "<div class=\"col col-lg-12\">" +
+    //                         "<input class=\"form-control\" placeholder=\"Answer\" type=\"text\" name=\"questionnaire[correct_answer]\" id=\"questionnaire_correct_answer\">" +
+    //                       "</div>" +
+    //                     "</div>" +
+    //                   "</div>" +
+    //                 "</div>"
+    //                 );
+    //               break;
+    //             case '5':
+    //                 $('.questionnaire-wrapper').html(
+    //                 "<div class=\"poll-wrapper\">" +
+    //                   "<div class=\"col-12 col-lg-2\">" +
+    //                       "<label for=\"choices\">Choices</label>" +
+    //                   "</div>" +
+    //                   "<div class=\"mb-3\">" +
+    //                     "<div class=\"row\">" +
+    //                       "<div class=\"col col-lg-6\">" +
+    //                        "<input multiple=\"multiple\" class=\"form-control\" placeholder=\"Poll\" type=\"text\" name=\"questionnaire[choices][]\" id=\"questionnaire_choices\">" +
+    //                       "</div>" +
+    //                       "<div class=\"col col-lg-6\">" +
+    //                         "<input multiple=\"multiple\" class=\"form-control\" placeholder=\"Poll\" type=\"text\" name=\"questionnaire[choices][]\" id=\"questionnaire_choices\">" +
+    //                       "</div>" +
+    //                     "</div>" +
+    //                   "</div>" +
+    //                   "<div class=\"mb-3\">" +
+    //                     "<div class=\"row\">" +
+    //                       "<div class=\"col col-lg-6\">" +
+    //                         "<input multiple=\"multiple\" class=\"form-control\" placeholder=\"Poll\" type=\"text\" name=\"questionnaire[choices][]\" id=\"questionnaire_choices\">" +
+    //                       "</div>" +
+    //                         "<div class=\"col col-lg-6\">" +
+    //                           "<input multiple=\"multiple\" class=\"form-control\" placeholder=\"Poll\" type=\"text\" name=\"questionnaire[choices][]\" id=\"questionnaire_choices\">" +
+    //                       "</div>" +
+    //                     "</div>" +
+    //                   "</div>" +
+    //                 "</div>"
+    //                 );
+    //                 break;
+    //             default:
+    //               break;
+    //         }
+    //     })
+    // }
+
     var raffle_slct = $("#raffle_choices");
     if(raffle_slct.length > 0){
-        $(".multiple-choice-wrapper").addClass("show-question");
+        //$(".multiple-choice-wrapper").addClass("show-question");
+        if (raffle_slct.val() === "0") {
+          document.getElementById('multiple-choice-or-poll').style.display = 'block';
+          document.getElementById('yes-or-no').style.display = 'none';
+          document.getElementById('select-letters').style.display = 'none';
 
+          document.querySelectorAll('input[id="multiple-choice-or-poll-field"]').forEach(element => {
+            element.removeAttribute("disabled");
+          });
+          document.querySelectorAll('input[id="yes-or-no-field"]').forEach(element => {
+            element.setAttribute("disabled", "disabled");
+          });
+          document.querySelectorAll('input[id="select-letters-field"]').forEach(element => {
+            element.setAttribute("disabled", "disabled");
+          });
+        } else if(raffle_slct.val() === "1") {
+          document.getElementById('multiple-choice-or-poll').style.display = 'none';
+          document.getElementById('yes-or-no').style.display = 'block';
+          document.getElementById('select-letters').style.display = 'none';
+
+          document.querySelectorAll('input[id="multiple-choice-or-poll-field"]').forEach(element => {
+            element.setAttribute("disabled", "disabled");
+          });
+          document.querySelectorAll('input[id="yes-or-no-field"]').forEach(element => {
+            element.removeAttribute("disabled");
+          });
+          document.querySelectorAll('input[id="select-letters-field"]').forEach(element => {
+            element.setAttribute("disabled", "disabled");
+          });
+
+        } else if(raffle_slct.val() === "2") {
+          document.getElementById('multiple-choice-or-poll').style.display = 'none';
+          document.getElementById('yes-or-no').style.display = 'none';
+          document.getElementById('select-letters').style.display = 'none';
+
+          document.querySelectorAll('input[id="multiple-choice-or-poll-field"]').forEach(element => {
+            element.setAttribute("disabled", "disabled");
+          });
+          document.querySelectorAll('input[id="yes-or-no-field"]').forEach(element => {
+            element.setAttribute("disabled", "disabled");
+          });
+          document.querySelectorAll('input[id="select-letters-field"]').forEach(element => {
+            element.setAttribute("disabled", "disabled");
+          });
+        } else if(raffle_slct.val() === "3") {
+          document.getElementById('multiple-choice-or-poll').style.display = 'none';
+          document.getElementById('yes-or-no').style.display = 'none';
+          document.getElementById('select-letters').style.display = 'block';
+
+          document.querySelectorAll('input[id="multiple-choice-or-poll-field"]').forEach(element => {
+            element.setAttribute("disabled", "disabled");
+          });
+          document.querySelectorAll('input[id="yes-or-no-field"]').forEach(element => {
+            element.setAttribute("disabled", "disabled");
+          });
+          document.querySelectorAll('input[id="select-letters-field"]').forEach(element => {
+            element.removeAttribute("disabled");
+          });
+        } else if(raffle_slct.val() === "4") {
+          document.getElementById('multiple-choice-or-poll').style.display = 'none';
+          document.getElementById('yes-or-no').style.display = 'none';
+          document.getElementById('select-letters').style.display = 'none';
+
+          document.querySelectorAll('input[id="multiple-choice-or-poll-field"]').forEach(element => {
+            element.setAttribute("disabled", "disabled");
+          });
+          document.querySelectorAll('input[id="yes-or-no-field"]').forEach(element => {
+            element.setAttribute("disabled", "disabled");
+          });
+          document.querySelectorAll('input[id="select-letters-field"]').forEach(element => {
+            element.setAttribute("disabled", "disabled");
+          });
+        } else if(raffle_slct.val() === "5") {
+          document.getElementById('multiple-choice-or-poll').style.display = 'block';
+          document.getElementById('yes-or-no').style.display = 'none';
+          document.getElementById('select-letters').style.display = 'none';
+
+          document.querySelectorAll('input[id="multiple-choice-or-poll-field"]').forEach(element => {
+            element.removeAttribute("disabled");
+          });
+          document.querySelectorAll('input[id="yes-or-no-field"]').forEach(element => {
+            element.setAttribute("disabled", "disabled");
+          });
+          document.querySelectorAll('input[id="select-letters-field"]').forEach(element => {
+            element.setAttribute("disabled", "disabled");
+          });
+        }
         $("#raffle_choices").on("change", function(){
-            var raffle_val = $(this).val()
-            switch(raffle_val) {
-                // multiple choice
-                case '0':
-                    $('.questionnaire-wrapper').html(
-                      "<div class=\"multiple-choice-wrapper\">" +
-                        "<div class=\"col-12 col-lg-2\">" +
-                            "<label for=\"choices\">Choices</label>" +
-                        "</div>" +
-                        "<div class=\"mb-3\">" +
-                          "<div class=\"row\">" +
-                            "<div class=\"col col-lg-6\">" +
-                              "<input multiple=\"multiple\" class=\"form-control\" placeholder=\"A\" type=\"text\" name=\"questionnaire[choices][]\" id=\"questionnaire_choices\">"+
-                            "</div>" +
-                            "<div class=\"col col-lg-6\">" +
-                              "<input multiple=\"multiple\" class=\"form-control\" placeholder=\"B\" type=\"text\" name=\"questionnaire[choices][]\" id=\"questionnaire_choices\">" +
-                            "</div>" +
-                          "</div>" +
-                        "</div>" +
-                        "<div class=\"mb-3\">" +
-                          "<div class=\"row\">" +
-                            "<div class=\"col col-lg-6\">" +
-                              "<input multiple=\"multiple\" class=\"form-control\" placeholder=\"C\" type=\"text\" name=\"questionnaire[choices][]\" id=\"questionnaire_choices\">" +
-                            "</div>" +
-                            "<div class=\"col col-lg-6\">" +
-                              "<input multiple=\"multiple\" class=\"form-control\" placeholder=\"D\" type=\"text\" name=\"questionnaire[choices][]\" id=\"questionnaire_choices\">" +
-                            "</div>" +
-                          "</div>" +
-                        "</div>" +
-                      "</div>"
-                    );
-                    break;
-                // yes or no
-                case '1':
-                    $('.questionnaire-wrapper').html(
-                      "<div class=\"yes-no-wrapper\">" +
-                        "<div class=\"col-12 col-lg-2\">" +
-                            "<label for=\"choices\">Choices</label>" +
-                        "</div>" +
-                        "<div class=\"mb-3\">" +
-                          "<div class=\"row\">" +
-                            "<div class=\"col col-lg-6\">"+
-                              "<input multiple=\"multiple\" class=\"form-control\" placeholder=\"Yes\" type=\"text\" name=\"questionnaire[choices][]\" id=\"questionnaire_choices\"></input>" +
-                           " </div>" +
-                            "<div class=\"col col-lg-6\">" +
-                            "<input multiple=\"multiple\" class=\"form-control\" placeholder=\"No\" type=\"text\" name=\"questionnaire[choices][]\" id=\"questionnaire_choices\"></input>" +
-                            "</div>" +
-                          "</div>" +
-                        "</div>" +
-                        "</div>");
-                    break;
-                //identification
-                case '2':
-                    $('.questionnaire-wrapper').html(
-                    "<div class=\"identification-wrapper\">" +
-                      "<div class=\"mb-3\">" +
-                        "<div class=\"row\">" +
-                          "<label for=\"answer\">Correct Answer</label>" +
-                          "<div class=\"col col-lg-12\">" +
-                            "<input class=\"form-control\" placeholder=\"Answer\" type=\"text\" name=\"questionnaire[correct_answer]\" id=\"questionnaire_correct_answer\">" +
-                          "</div>" +
-                        "</div>" +
-                      "</div>" +
-                    "</div>"
-                    );
-                    break;
-                //select letters
-                case '3':
-                  $(".questionnaire-wrapper").html(
-                    "<div class=\"select-letters-wrapper\">" +
-                      "<div class=\"col-12 col-lg-2\">" +
-                          "<label for=\"choices\">Choices</label>" +
-                      "</div>" +
-                     "<div class=\"mb-3\">" +
-                      "<div class=\"row\">" +
-                          "<div class=\"col col-lg-1\">" +
-                            "<input multiple=\"multiple\" class=\"form-control\" placeholder=\"\" type=\"text\" name=\"questionnaire[choices][]\" id=\"questionnaire_choices\">" +
-                          "</div>" +
-                          "<div class=\"col col-lg-1\">" +
-                            "<input multiple=\"multiple\" class=\"form-control\" placeholder=\"\" type=\"text\" name=\"questionnaire[choices][]\" id=\"questionnaire_choices\">" +
-                          "</div>" +
-                          "<div class=\"col col-lg-1\">" +
-                            "<input multiple=\"multiple\" class=\"form-control\" placeholder=\"\" type=\"text\" name=\"questionnaire[choices][]\" id=\"questionnaire_choices\">" +
-                          "</div>" +
-                          "<div class=\"col col-lg-1\">" +
-                            "<input multiple=\"multiple\" class=\"form-control\" placeholder=\"\" type=\"text\" name=\"questionnaire[choices][]\" id=\"questionnaire_choices\">" +
-                          "</div>" +
-                          "<div class=\"col col-lg-1\">" +
-                            "<input multiple=\"multiple\" class=\"form-control\" placeholder=\"\" type=\"text\" name=\"questionnaire[choices][]\" id=\"questionnaire_choices\">" +
-                          "</div>" +
-                          "<div class=\"col col-lg-1\">" +
-                            "<input multiple=\"multiple\" class=\"form-control\" placeholder=\"\" type=\"text\" name=\"questionnaire[choices][]\" id=\"questionnaire_choices\">" +
-                          "</div>" +
-                          "<div class=\"col col-lg-1\">" +
-                            "<input multiple=\"multiple\" class=\"form-control\" placeholder=\"\" type=\"text\" name=\"questionnaire[choices][]\" id=\"questionnaire_choices\">" +
-                          "</div>" +
-                          "<div class=\"col col-lg-1\">" +
-                            "<input multiple=\"multiple\" class=\"form-control\" placeholder=\"\" type=\"text\" name=\"questionnaire[choices][]\" id=\"questionnaire_choices\">" +
-                          "</div>" +
-                          "<div class=\"col col-lg-1\">" +
-                            "<input multiple=\"multiple\" class=\"form-control\" placeholder=\"\" type=\"text\" name=\"questionnaire[choices][]\" id=\"questionnaire_choices\">" +
-                          "</div>" +
-                          "<div class=\"col col-lg-1\">" +
-                            "<input multiple=\"multiple\" class=\"form-control\" placeholder=\"\" type=\"text\" name=\"questionnaire[choices][]\" id=\"questionnaire_choices\">" +
-                          "</div>" +
-                          "<div class=\"col col-lg-1\">" +
-                            "<input multiple=\"multiple\" class=\"form-control\" placeholder=\"\" type=\"text\" name=\"questionnaire[choices][]\" id=\"questionnaire_choices\">" +
-                          "</div>" +
-                          "<div class=\"col col-lg-1\">" +
-                            "<input multiple=\"multiple\" class=\"form-control\" placeholder=\"\" type=\"text\" name=\"questionnaire[choices][]\" id=\"questionnaire_choices\">" +
-                          "</div>" +
-                        "</div>" +
-                      "</div>" +
-                    "</div>"
-                  );
-                  break;
-                //poll
-                case '4':
-                  $('.questionnaire-wrapper').html(
-                    "<div class=\"question-answer-wrapper\">" +
-                      "<div class=\"mb-3\">" +
-                        "<div class=\"row\">" +
-                          "<label for=\"answer\">Correct Answer</label>" +
-                          "<div class=\"col col-lg-12\">" +
-                            "<input class=\"form-control\" placeholder=\"Answer\" type=\"text\" name=\"questionnaire[correct_answer]\" id=\"questionnaire_correct_answer\">" +
-                          "</div>" +
-                        "</div>" +
-                      "</div>" +
-                    "</div>"
-                    );
-                  break;
-                case '5':
-                    $('.questionnaire-wrapper').html(
-                    "<div class=\"poll-wrapper\">" +
-                      "<div class=\"col-12 col-lg-2\">" +
-                          "<label for=\"choices\">Choices</label>" +
-                      "</div>" +
-                      "<div class=\"mb-3\">" +
-                        "<div class=\"row\">" +
-                          "<div class=\"col col-lg-6\">" +
-                           "<input multiple=\"multiple\" class=\"form-control\" placeholder=\"Poll\" type=\"text\" name=\"questionnaire[choices][]\" id=\"questionnaire_choices\">" +
-                          "</div>" +
-                          "<div class=\"col col-lg-6\">" +
-                            "<input multiple=\"multiple\" class=\"form-control\" placeholder=\"Poll\" type=\"text\" name=\"questionnaire[choices][]\" id=\"questionnaire_choices\">" +
-                          "</div>" +
-                        "</div>" +
-                      "</div>" +
-                      "<div class=\"mb-3\">" +
-                        "<div class=\"row\">" +
-                          "<div class=\"col col-lg-6\">" +
-                            "<input multiple=\"multiple\" class=\"form-control\" placeholder=\"Poll\" type=\"text\" name=\"questionnaire[choices][]\" id=\"questionnaire_choices\">" +
-                          "</div>" +
-                            "<div class=\"col col-lg-6\">" +
-                              "<input multiple=\"multiple\" class=\"form-control\" placeholder=\"Poll\" type=\"text\" name=\"questionnaire[choices][]\" id=\"questionnaire_choices\">" +
-                          "</div>" +
-                        "</div>" +
-                      "</div>" +
-                    "</div>"
-                    );
-                    break;
-                default:
-                  break;
-            }
+          var raffle_val = $(this).val()
+          console.log(raffle_val)
+          if (raffle_val === "0") {
+            document.getElementById('multiple-choice-or-poll').style.display = 'block';
+            document.getElementById('yes-or-no').style.display = 'none';
+            document.getElementById('select-letters').style.display = 'none';
+
+            document.querySelectorAll('input[id="multiple-choice-or-poll-field"]').forEach(element => {
+              element.removeAttribute("disabled");
+            });
+            document.querySelectorAll('input[id="yes-or-no-field"]').forEach(element => {
+              element.setAttribute("disabled", "disabled");
+            });
+            document.querySelectorAll('input[id="select-letters-field"]').forEach(element => {
+              element.setAttribute("disabled", "disabled");
+            });
+          } else if(raffle_val === "1") {
+            document.getElementById('multiple-choice-or-poll').style.display = 'none';
+            document.getElementById('yes-or-no').style.display = 'block';
+            document.getElementById('select-letters').style.display = 'none';
+
+            document.querySelectorAll('input[id="multiple-choice-or-poll-field"]').forEach(element => {
+              element.setAttribute("disabled", "disabled");
+            });
+            document.querySelectorAll('input[id="yes-or-no-field"]').forEach(element => {
+              element.removeAttribute("disabled");
+            });
+            document.querySelectorAll('input[id="select-letters-field"]').forEach(element => {
+              element.setAttribute("disabled", "disabled");
+            });
+
+          } else if(raffle_val === "2") {
+            document.getElementById('multiple-choice-or-poll').style.display = 'none';
+            document.getElementById('yes-or-no').style.display = 'none';
+            document.getElementById('select-letters').style.display = 'none';
+
+            document.querySelectorAll('input[id="multiple-choice-or-poll-field"]').forEach(element => {
+              element.setAttribute("disabled", "disabled");
+            });
+            document.querySelectorAll('input[id="yes-or-no-field"]').forEach(element => {
+              element.setAttribute("disabled", "disabled");
+            });
+            document.querySelectorAll('input[id="select-letters-field"]').forEach(element => {
+              element.setAttribute("disabled", "disabled");
+            });
+          } else if(raffle_val === "3") {
+            document.getElementById('multiple-choice-or-poll').style.display = 'none';
+            document.getElementById('yes-or-no').style.display = 'none';
+            document.getElementById('select-letters').style.display = 'block';
+
+            document.querySelectorAll('input[id="multiple-choice-or-poll-field"]').forEach(element => {
+              element.setAttribute("disabled", "disabled");
+            });
+            document.querySelectorAll('input[id="yes-or-no-field"]').forEach(element => {
+              element.setAttribute("disabled", "disabled");
+            });
+            document.querySelectorAll('input[id="select-letters-field"]').forEach(element => {
+              element.removeAttribute("disabled");
+            });
+          } else if(raffle_val === "4") {
+            document.getElementById('multiple-choice-or-poll').style.display = 'none';
+            document.getElementById('yes-or-no').style.display = 'none';
+            document.getElementById('select-letters').style.display = 'none';
+
+            document.querySelectorAll('input[id="multiple-choice-or-poll-field"]').forEach(element => {
+              element.setAttribute("disabled", "disabled");
+            });
+            document.querySelectorAll('input[id="yes-or-no-field"]').forEach(element => {
+              element.setAttribute("disabled", "disabled");
+            });
+            document.querySelectorAll('input[id="select-letters-field"]').forEach(element => {
+              element.setAttribute("disabled", "disabled");
+            });
+          } else if(raffle_val === "5") {
+            document.getElementById('multiple-choice-or-poll').style.display = 'block';
+            document.getElementById('yes-or-no').style.display = 'none';
+            document.getElementById('select-letters').style.display = 'none';
+
+            document.querySelectorAll('input[id="multiple-choice-or-poll-field"]').forEach(element => {
+              element.removeAttribute("disabled");
+            });
+            document.querySelectorAll('input[id="yes-or-no-field"]').forEach(element => {
+              element.setAttribute("disabled", "disabled");
+            });
+            document.querySelectorAll('input[id="select-letters-field"]').forEach(element => {
+              element.setAttribute("disabled", "disabled");
+            });
+          }
         })
     }
 

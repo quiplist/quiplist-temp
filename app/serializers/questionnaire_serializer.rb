@@ -3,8 +3,7 @@
 # Table name: questionnaires
 #
 #  id                 :bigint           not null, primary key
-#  choices            :string           is an Array
-#  correct_answer     :string           is an Array
+#  correct_answer     :string
 #  question           :string
 #  questionnaire_type :integer          default(0)
 #  status             :integer          default(0)
@@ -21,6 +20,10 @@ class QuestionnaireSerializer < ActiveModel::Serializer
              :questionnaire_type_name, :status, :status_name, :event_id, :answered_correctly,
              :is_done, :is_ongoing, :is_queued, :is_multiple_choice, :is_yes_or_no, :is_identification,
              :is_select_letters, :is_q_and_a, :is_poll
+
+  def choices
+    object.choices
+  end
 
   def status_name
     object.status_name

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_21_131707) do
+ActiveRecord::Schema.define(version: 2021_04_21_152632) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -80,6 +80,14 @@ ActiveRecord::Schema.define(version: 2021_04_21_131707) do
     t.integer "chat_type", default: 0
     t.index ["event_id"], name: "index_chats_on_event_id"
     t.index ["sender_type", "sender_id"], name: "index_chats_on_sender_type_and_sender_id"
+  end
+
+  create_table "choices", force: :cascade do |t|
+    t.bigint "questionnaire_id"
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["questionnaire_id"], name: "index_choices_on_questionnaire_id"
   end
 
   create_table "events", force: :cascade do |t|
@@ -179,11 +187,10 @@ ActiveRecord::Schema.define(version: 2021_04_21_131707) do
     t.bigint "event_id"
     t.integer "questionnaire_type", default: 0
     t.string "question"
-    t.string "correct_answer", array: true
-    t.string "choices", array: true
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "status", default: 0
+    t.string "correct_answer"
     t.index ["event_id"], name: "index_questionnaires_on_event_id"
   end
 
