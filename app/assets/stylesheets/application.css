@@ -1446,6 +1446,16 @@ ul.sidebar-list {
     border-radius: 15px;
 }
 
+.password-form-wrapper{
+	max-width: 600px;
+	margin: 0 auto;
+	background: #fff;
+    padding: 30px;
+    height: 300px;
+    overflow: auto;
+    border-radius: 15px;
+}
+
 .event-description {
 	background: #fff;
 	padding: 20px;
@@ -2050,6 +2060,16 @@ footer h6 {
     background: transparent;
 }
 
+.single-page-layout h1,
+.single-page-layout p{
+	color: #fff;
+	font-family: "Montserrat", sans-serif;
+}
+
+.single-page-layout h1{
+	text-transform: uppercase;
+	font-size: 40px;
+}
 
 @media screen and (min-width:1024px) {
 	div[data-react-class="FacebookLive"],
