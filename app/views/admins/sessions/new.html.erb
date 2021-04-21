@@ -27,6 +27,10 @@
                 <%= f.password_field :password, class: "form-control", autocomplete: "current-password", placeholder: "Password" %>
               </div>
 
+              <div class="mb-3 forgot-password">
+                <%= link_to "Forgot your password?", admin_forgot_password_path %>
+              </div>
+
               <div class="actions text-end">
                 <%= f.submit "Login", class: "btn btn-blue" %>
               </div>

@@ -1,9 +1,9 @@
 class AdminsController < ApplicationController
-  layout 'admin'
+  layout 'admin', except: [:forgot_password, :reset_forgot_password]
   #layout 'raffle', only: [:draw_raffles]
 
-  before_action :authenticate_admin!
-  load_and_authorize_resource :admin
+  before_action :authenticate_admin!, except: [:forgot_password, :reset_forgot_password]
+  load_and_authorize_resource :admin, except: [:forgot_password, :reset_forgot_password]
 
   def index
     @admins = @admins.accessible_by(current_ability).sorted
@@ -75,6 +75,28 @@ class AdminsController < ApplicationController
     @admin_event = AdminEvent.find(params[:admin_event_id])
     @admin_event.destroy
     redirect_to admin_path(@admin), notice: "Admin Event deleted successfully!"
+  end
+
+  def forgot_password
+    @admin = Admin.new
+    render layout: "no_layout"
+  end
+
+  def reset_forgot_password
+    @admin = Admin.find_by(email: params[:admin][:email])
+    if @admin.nil?
+      @admin = Admin.new
+      flash.now[:alert] = 'Invalid email'
+      render :forgot_password, layout: "no_layout"
+    else
+      @admin = @admin.generate_temporary_password
+      if @admin.save
+        redirect_to new_admin_session_path, notice: "Admin #{@admin.full_name} reset password successfully!"
+      else
+        @admin = Admin.new
+        render :forgot_password, layout: "no_layout"
+      end
+    end
   end
 
   def reset_password

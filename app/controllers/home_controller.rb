@@ -1,8 +1,8 @@
 class HomeController < ApplicationController
   layout 'main'
-  before_action :authenticate_user!, except: [:welcome, :find_event]
-  before_action :fetch_reaction, except: [:welcome, :find_event, :profile, :update_profile]
-  before_action -> { check_event_code params[:event_code] }, except: [:welcome]
+  before_action :authenticate_user!, except: [:welcome, :find_event, :forgot_password, :reset_password]
+  before_action :fetch_reaction, except: [:welcome, :find_event, :profile, :update_profile, :forgot_password, :reset_password]
+  before_action -> { check_event_code params[:event_code] }, except: [:welcome, :forgot_password, :reset_password]
 
   def index
     render_404 if @event.nil?
@@ -69,6 +69,28 @@ class HomeController < ApplicationController
       redirect_to profile_path(event_code: @event.event_code), notice: "Profile updated successfully!"
     else
       render :profile
+    end
+  end
+
+  def forgot_password
+    @user = User.new
+    render layout: "application"
+  end
+
+  def reset_password
+    @user = User.find_by(email: params[:user][:email])
+    if @user.nil?
+      @user = User.new
+      flash.now[:alert] = 'Invalid email'
+      render :forgot_password, layout: "application"
+    else
+      @user = @user.generate_temporary_password
+      if @user.save
+        redirect_to root_path, notice: "#{@user.full_name} reset password successfully!"
+      else
+        @user = User.new
+        render :forgot_password, layout: "application"
+      end
     end
   end
 

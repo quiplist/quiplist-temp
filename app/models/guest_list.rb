@@ -110,8 +110,57 @@ class GuestList < ApplicationRecord
     winner
   end
 
-  def self.to_csv
-    attributes = %w{id full_name email contact_number affiliation member_name member_id}
+  def self.to_csv(event)
+    #attributes = %w{id full_name email contact_number affiliation member_name member_id}
+    attributes = ["full_name", "email"]
+    if event.include_company
+      attributes << "company"
+    end
+    if event.include_affiliation
+      attributes << "affiliation"
+    end
+    if event.include_member_company
+      attributes << "member_company"
+    end
+    if event.include_member_type
+      attributes << "member_name"
+    end
+    if event.include_abo_type
+      attributes << "abo_type_name"
+    end
+    if event.include_distributor_type
+      attributes << "distributor_type_name"
+    end
+    if event.include_member_id
+      attributes << "member_id"
+    end
+    if event.include_employee_number
+      attributes << "employee_number"
+    end
+    if event.include_id_number
+      attributes << "id_number"
+    end
+    if event.include_abo_number
+      attributes << "abo_number"
+    end
+    if event.include_aes_number
+      attributes << "aes_number"
+    end
+    if event.include_distributor_number
+      attributes << "distributor_number"
+    end
+    if event.include_mailing_address
+      attributes << "mailing_address"
+    end
+    if event.include_contact_number
+      attributes << "contact_number"
+    end
+    if event.include_who_invited_you
+      attributes << "who_invited_you?"
+    end
+    if event.include_upline
+      attributes << "upline"
+    end
 
     CSV.generate(headers: true) do |csv|
       csv << attributes

@@ -8,19 +8,19 @@ Rails.application.routes.draw do
   get '/find_event', to: 'home#find_event', as: :find_event
   get '/profile', to: 'home#profile', as: :profile
   put '/profile', to: 'home#update_profile', as: :update_profile
+  get '/forgot_password', to: 'home#forgot_password', as: :forgot_password
+  post '/reset_password', to: 'home#reset_password', as: :reset_password
 
   scope 'admins' do
+    get '/forgot_password', to: 'admins#forgot_password', as: :admin_forgot_password
+    post '/forgot_password', to: 'admins#reset_forgot_password', as: :admin_reset_password
     resources :events, except: [:new, :edit] do
       put :upload_brochure, to: 'events#upload_brochure', on: :member
       get :launch, to: 'events#launch', on: :member
 
       resources :guest_lists do
         post :set_status, on: :collection
-        post :batch_approved, on: :collection
-        post :batch_denied, on: :collection
         post :set_raffle_status, on: :collection
-        post :batch_eligible, on: :collection
-        post :batch_not_eligible, on: :collection
         get :reset_raffle_statuses, on: :collection
         get :download_csv, on: :collection
       end
@@ -64,7 +64,7 @@ Rails.application.routes.draw do
   #   get 'sign_out', to: 'devise/sessions#destroy'
   #   #root to: 'devise/sessions#new', as: 'authenticated_user_root'
   # end
-  devise_for :admins, :skip => [:registrations]
+  devise_for :admins, controllers: { sessions: 'admins/sessions' }, :skip => [:registrations]
     as :admin do
     get 'admins/edit' => 'admins/registrations#edit', :as => 'edit_admin_registration'
     put 'admins' => 'admins/registrations#update', :as => 'admin_registration'
