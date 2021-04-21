@@ -101,6 +101,7 @@ class Live extends React.Component {
         disconnected: () => {},
         received: data => {
           this.updateAnnouncement(data.result)
+          this.addAnnoucement(data.result)
         }
       });
 
@@ -125,6 +126,10 @@ class Live extends React.Component {
 
   updateAnnouncement = announcement => {
     this.setState(state => ({ currentAnnouncement: announcement }))
+  }
+
+  addAnnoucement = announcement => {
+    this.setState(state => ({ announcements: [...state.announcements, announcement] }))
   }
 
   setQuestionnaire = questionnaire => {

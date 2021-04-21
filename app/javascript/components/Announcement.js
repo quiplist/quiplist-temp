@@ -18,7 +18,6 @@ class Announcement extends React.Component {
     if (totalAnnoucements === 0) return null;
     let announcement = this.announcement();
     let display;
-    console.log(announcement)
     if (announcement.display_annoucement) {
       display = <marquee>{announcement.message}</marquee>;
     }
