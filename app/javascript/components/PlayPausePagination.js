@@ -60,7 +60,7 @@ class PlayPausePagination extends Component {
     let playButton;
     if (!this.totalRecords) return null;
 
-    if (this.totalPages === 1) return null;
+    if (this.totalPages === 0) return null;
 
     if (this.props.modelName === "questionnaires") {
       playButton = <PlayQuestionnaire

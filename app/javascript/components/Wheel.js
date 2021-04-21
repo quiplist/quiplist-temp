@@ -43,6 +43,11 @@ class Wheel extends React.Component {
       this.setState({ currentRaffle: result })
       if(this.state.currentRaffle.status === 2) {
         this.setState({ currentChoice: result.winner})
+        Swal.fire({
+          title: result.won,
+          showCancelButton: false,
+          showConfirmButton: false
+        })
       }
     });
   }

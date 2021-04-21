@@ -8,6 +8,8 @@
 <div class="container content-wrapper">
   <div class="row event-wrapper-admin">
     <div class="" style="<%= @event.main_background? ? "background-image: url(\'#{@event.main_background.url}\')" : "" %>">
+      <%= render partial: "layouts/shared/success_messages", locals: { messages: flash[:notice] } %>
+      <%= render partial: "layouts/shared/alert_messages", locals: { messages: flash[:alert] } %>
       <div class="container-fluid px-3">
           <%= react_component("Live", {
             fbVideo: @event.fb_video?,
