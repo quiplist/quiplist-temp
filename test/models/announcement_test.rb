@@ -2,12 +2,13 @@
 #
 # Table name: announcements
 #
-#  id         :bigint           not null, primary key
-#  message    :string
-#  created_at :datetime         not null
-#  updated_at :datetime         not null
-#  admin_id   :bigint
-#  event_id   :bigint
+#  id                  :bigint           not null, primary key
+#  display_annoucement :boolean          default(TRUE)
+#  message             :string
+#  created_at          :datetime         not null
+#  updated_at          :datetime         not null
+#  admin_id            :bigint
+#  event_id            :bigint
 #
 # Indexes
 #

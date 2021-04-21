@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_17_164109) do
+ActiveRecord::Schema.define(version: 2021_04_21_131707) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -55,6 +55,7 @@ ActiveRecord::Schema.define(version: 2021_04_17_164109) do
     t.string "message"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.boolean "display_annoucement", default: true
     t.index ["admin_id"], name: "index_announcements_on_admin_id"
     t.index ["event_id"], name: "index_announcements_on_event_id"
   end

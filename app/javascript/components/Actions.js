@@ -139,6 +139,7 @@ class Actions extends React.Component {
                 currentEvent = {this.props.currentEvent}
                 currentUser = {this.props.currentUser}
                 announcementCable = {this.props.announcementCable}
+                currentAnnouncement = {this.props.currentAnnouncement}
                 updateAnnouncement = {announcement => this.props.updateAnnouncement(announcement)} />
               </fieldset>
             </div>

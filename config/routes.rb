@@ -50,7 +50,7 @@ Rails.application.routes.draw do
         delete :destroy, on: :collection
       end
       resources :chats, only: [:index, :create]
-      resources :announcements, only: [:index, :create]
+      resources :announcements, only: [:index, :create, :update]
       get '/fetch_current_user', to: 'users#fetch_current_user', as: :fetch_current_user
       resources :events, only: [:show]
       resources :raffles, only: [:index, :show, :update]

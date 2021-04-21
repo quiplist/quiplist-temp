@@ -3,30 +3,31 @@ import PropTypes from "prop-types";
 
 class Announcement extends React.Component {
 
-  displayAnnouncement = () => {
-    let display = false;
-    if (this.props.announcements.length > 0) {
-      display = true
-    }
-    return display;
-  }
   announcement = () => {
-    let message = "";
-    
+    let announcement = {};
+
     if(this.props.currentAnnouncement !== undefined) {
-      message = this.props.currentAnnouncement.message;
+      announcement = this.props.currentAnnouncement;
     }
 
-    return message;
+    return announcement;
   }
 
   render() {
-    return (
+    const totalAnnoucements = this.props.announcements.length;
+    if (totalAnnoucements === 0) return null;
+    let announcement = this.announcement();
+    let display;
+    console.log(announcement)
+    if (announcement.display_annoucement) {
+      display = <marquee>{announcement.message}</marquee>;
+    }
 
+    return (
       <div className="announcement">
         <div className="row">
           <div className="col-12">
-          {this.displayAnnouncement() ? (<marquee>{this.announcement()}</marquee>) : "" }
+            {display}
           </div>
         </div>
       </div>

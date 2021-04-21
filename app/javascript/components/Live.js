@@ -168,6 +168,7 @@ class Live extends React.Component {
           currentEvent = {this.state.currentEvent}
           currentQuestionnaire = {this.state.currentQuestionnaire}
           announcementCable = {this.announcementsChannel}
+          currentAnnouncement = {this.state.currentAnnouncement}
           updateAnnouncement = {announcement => this.updateAnnouncement(announcement)}
           questionnaireCable = {this.questionnairesChannel}
           setQuestionnaire = {questionnaire => this.setQuestionnaire(questionnaire)} />)
