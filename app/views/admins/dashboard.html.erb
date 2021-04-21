@@ -1,3 +1,8 @@
+<%= render partial: "layouts/shared/breadcrumbs", locals: {
+  links: [],
+  current_path: "Dashboard"
+} %>
+
 <div class="container content-wrapper">
   <%= render partial: "layouts/shared/success_messages", locals: { messages: flash[:notice] } %>
   <%= render partial: "layouts/shared/alert_messages", locals: { messages: flash[:alert] } %>
@@ -11,5 +16,5 @@
       <%= column_chart Event.group(:start_date).count, title: "Number of Events" %>
     </div>
   </div>
-  
+
 </div>

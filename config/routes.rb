@@ -16,6 +16,7 @@ Rails.application.routes.draw do
   scope 'admins' do
     get '/forgot_password', to: 'admins#forgot_password', as: :admin_forgot_password
     post '/forgot_password', to: 'admins#reset_forgot_password', as: :admin_reset_password
+    get '/dashboard', to: 'admins#dashboard', as: :admin_dashboard
     resources :events, except: [:new, :edit] do
       put :upload_brochure, to: 'events#upload_brochure', on: :member
       get :launch, to: 'events#launch', on: :member

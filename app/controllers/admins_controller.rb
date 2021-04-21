@@ -122,6 +122,12 @@ class AdminsController < ApplicationController
     end
   end
 
+  def dashboard
+    @events = Event.all
+    @events = Event.where(admin: current_admin) if current_admin.admin?
+    @events = @events.accessible_by(current_ability).sorted
+  end
+
   # def change_password
   #   @admin = @current_admin
   # end

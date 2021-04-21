@@ -1,6 +1,5 @@
 <nav aria-label="breadcrumb">
   <ol class="breadcrumb">
-    <li class="breadcrumb-item"><a href="">Dashboard</a></li>
     <% links.each do |link| %>
       <li class="breadcrumb-item"><%= link_to link[:path_name], link[:path] %></li>
     <% end %>

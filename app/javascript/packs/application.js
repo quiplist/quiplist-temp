@@ -7,6 +7,7 @@
 //require("turbolinks").start()
 require("@rails/activestorage").start()
 require('datatables.net');
+require("chartkick/chart.js")
 // require("chartkick/chart.js")
 // require("chartkick")
 // require("chart.js")
@@ -393,7 +394,7 @@ $(document).ready(function () {
                             "</div>" +
                           "</div>" +
                         "</div>" +
-                      "</div>" 
+                      "</div>"
                     );
                     break;
                 // yes or no
@@ -477,7 +478,7 @@ $(document).ready(function () {
                           "</div>" +
                         "</div>" +
                       "</div>" +
-                    "</div>" 
+                    "</div>"
                   );
                   break;
                 //poll
@@ -521,7 +522,7 @@ $(document).ready(function () {
                           "</div>" +
                         "</div>" +
                       "</div>" +
-                    "</div>" 
+                    "</div>"
                     );
                     break;
                 default:
