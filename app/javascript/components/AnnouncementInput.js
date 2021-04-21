@@ -44,6 +44,7 @@ class AnnouncementInput extends Component {
 
   displayAnnouncement = () => {
     // on submitting the ChatInput form, send the message, add it to the list and reset the input
+    if (this.props.currentAnnouncement === null) return false;
     const url = `/api/v1/announcements/${this.props.currentAnnouncement.id}?event_id=${this.props.currentEvent.id}`;
     const body = {
       announcement: {

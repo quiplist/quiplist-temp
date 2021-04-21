@@ -5,6 +5,8 @@ import Announcement from './Announcement'
 import QuestionInput from './QuestionInput'
 import Raffle from './Raffle'
 import PlayPausePagination from './PlayPausePagination'
+import RaffleAction from './RaffleAction'
+import QuestionnaireAction from './QuestionnaireAction'
 import React from 'react'
 import ReactDOM from 'react-dom'
 class Actions extends React.Component {
@@ -84,52 +86,32 @@ class Actions extends React.Component {
   render () {
     const totalRaffles = this.props.raffles.length;
     const totalQuestionnaires = this.props.questionnaires.length;
+    let raffleAction;
+    let questionnaireAction;
 
-    if (totalRaffles === 0) return null;
-    if (totalQuestionnaires === 0) return null;
+    if (totalRaffles > 0) {
+      raffleAction = <RaffleAction
+                      currentRaffle = {this.state.currentRaffle}
+                      totalRaffles = {totalRaffles}
+                      currentEvent = {this.props.currentEvent}
+                      onRafflePageChanged = {this.onRafflePageChanged}
+                    />
+    }
+    if (totalQuestionnaires > 0) {
+      questionnaireAction = <QuestionnaireAction
+                      currentQuestionnaire = {this.state.currentQuestionnaire}
+                      totalQuestionnaires = {totalQuestionnaires}
+                      currentEvent = {this.props.currentEvent}
+                      onQuestionnairePageChanged = {this.onQuestionnairePageChanged}
+                      playQuestionnaire = {questionnaire => this.playQuestionnaire(questionnaire)}
+                    />
+    }
 
     return (
       <React.Fragment>
         <div className="row my-3">
-          <div className="col-12 col-md-6 col-lg-4">
-            <div className="action-wrapper">
-              <fieldset>
-              <legend>Raffle</legend>
-                {this.state.currentRaffle.map((raffle, index) =>
-                  <p key={index}>{raffle.raffle_type_name}: {raffle.prize}</p>
-                )}
-                <PlayPausePagination
-                  modelName={"raffles"}
-                  totalRecords={totalRaffles}
-                  pageLimit={1}
-                  pageNeighbours={1}
-                  currentData={this.state.currentRaffle}
-                  currentEvent={this.props.currentEvent}
-                  onPageChanged={this.onRafflePageChanged}
-                />
-              </fieldset>
-            </div>
-          </div>
-
-          <div className="col-12 col-md-6 col-lg-4">
-            <div className="action-wrapper">
-              <fieldset>
-                <legend>Questionnaire</legend>
-                <p className="my-0">Question:</p>
-                <p>{this.state.currentQuestionnaire.question}</p>
-                <PlayPausePagination
-                  modelName={"questionnaires"}
-                  totalRecords={totalQuestionnaires}
-                  pageLimit={1}
-                  pageNeighbours={1}
-                  currentData={this.state.currentQuestionnaire}
-                  currentEvent={this.props.currentEvent}
-                  onPageChanged={this.onQuestionnairePageChanged}
-                  playQuestionnaire = {questionnaire => this.playQuestionnaire(questionnaire)}
-                />
-              </fieldset>
-            </div>
-          </div>
+          {raffleAction}
+          {questionnaireAction}
           <div className="col-12 col-md-6 col-lg-4">
             <div className="action-wrapper">
               <fieldset>
