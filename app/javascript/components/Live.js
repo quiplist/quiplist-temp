@@ -82,7 +82,7 @@ class Live extends React.Component {
         id: this.props.eventId
       },{
         connected: () => {
-          console.log("connected!")
+          console.log("Events Channel connected!")
         },
         disconnected: () => {},
         received: data => {
@@ -96,7 +96,7 @@ class Live extends React.Component {
         id: this.props.eventId
       },{
         connected: () => {
-          console.log("connected!")
+          console.log("Accouncement Channel connected!")
         },
         disconnected: () => {},
         received: data => {
@@ -111,7 +111,7 @@ class Live extends React.Component {
         id: this.props.eventId
       },{
         connected: () => {
-          console.log("connected!")
+          console.log("Questionnaire Channel connected!")
         },
         disconnected: () => {},
         received: data => {
