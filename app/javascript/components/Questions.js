@@ -14,33 +14,33 @@ class Questions extends React.Component {
   }
 
   submitAnswer = answer => {
-    this.props.setIsAnsweredQuestionnaire(true)
+
     // on submitting the ChatInput form, send the message, add it to the list and reset the input
-    // const url = "/api/v1/chats";
-    // const body = {
-    //   chat: {
-    //     sender_id: this.props.currentUser.id,
-    //     sender_type: this.props.currentUser.user_type,
-    //     message: messageString,
-    //     event_id: this.props.currentEvent.id
-    //   }
-    // }
-    //
-    //
-    //
-    // fetch(url, {
-    //     method: "POST",
-    //     headers: {
-    //         "Content-Type": "application/json",
-    //         Accept: "application/json"
-    //     },
-    //     body: JSON.stringify(body)
-    // })
-    // .then(resp => resp.json())
-    // .then(result => {
-    //   //this.addChat(result)
-    //   this.props.chatCable.send({result})
-    // })
+    this.props.setIsAnsweredQuestionnaire(true)
+    const url = "/api/v1/answers";
+    const body = {
+      answer: {
+        user_id: this.props.currentUser.id,
+        answer: answer,
+        questionnaire_id: this.props.currentQuestionnaire.id
+      }
+    }
+
+
+
+    fetch(url, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json"
+        },
+        body: JSON.stringify(body)
+    })
+    .then(resp => resp.json())
+    .then(result => {
+      //this.addChat(result)
+      //this.props.chatCable.send({result})
+    })
 
   }
 
@@ -67,35 +67,41 @@ class Questions extends React.Component {
                           currentQuestionnaire = {this.props.currentQuestionnaire}
                         />
       } else if (isOngoing) {
+
+        let isAnsweredOrIsAdmin = (this.props.isAnsweredQuestionnaire || this.props.isAdmin)
+        console.log("isAnsweredOrIsAdmin")
+        console.log(isAnsweredOrIsAdmin)
+        console.log(this.props.isAdmin)
+        console.log("isAnsweredOrIsAdmin")
         if (currentQuestionnaire.is_multiple_choice) {
           choices = <MultipleChoice
                       currentQuestionnaire = {this.props.currentQuestionnaire}
                       submitAnswer={answer => this.submitAnswer(answer)}
-                      isAnswered={this.props.isAnsweredQuestionnaire}
+                      isAnswered={isAnsweredOrIsAdmin}
                     />;
         } else if (currentQuestionnaire.is_yes_or_no) {
           choices = <TrueFalse
                       currentQuestionnaire = {this.props.currentQuestionnaire}
                       submitAnswer={answer => this.submitAnswer(answer)}
-                      isAnswered={this.props.isAnsweredQuestionnaire}
+                      isAnswered={isAnsweredOrIsAdmin}
                     />;
         } else if (currentQuestionnaire.is_identification || currentQuestionnaire.is_q_and_a) {
           choices = <Identification
                       currentQuestionnaire = {this.props.currentQuestionnaire}
                       submitAnswer={answer => this.submitAnswer(answer)}
-                      isAnswered={this.props.isAnsweredQuestionnaire}
+                      isAnswered={isAnsweredOrIsAdmin}
                     />;
         } else if (currentQuestionnaire.is_select_letters) {
           choices = <SelectLetters
                       currentQuestionnaire = {this.props.currentQuestionnaire}
                       submitAnswer={answer => this.submitAnswer(answer)}
-                      isAnswered={this.props.isAnsweredQuestionnaire}
+                      isAnswered={isAnsweredOrIsAdmin}
                     />;
         } else if (currentQuestionnaire.is_poll) {
           choices = <Poll
                       currentQuestionnaire = {this.props.currentQuestionnaire}
                       submitAnswer={answer => this.submitAnswer(answer)}
-                      isAnswered={this.props.isAnsweredQuestionnaire}
+                      isAnswered={isAnsweredOrIsAdmin}
                     />;
         }
       }

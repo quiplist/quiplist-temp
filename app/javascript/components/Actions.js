@@ -95,7 +95,7 @@ class Actions extends React.Component {
     })
     .then(resp => resp.json())
     .then(result => {
-      // this.props.questionnaireCable.send({result})
+      this.props.questionnaireCable.send({result})
       // this.setState( {currentQuestionnaire: result })
     })
   }
@@ -163,6 +163,7 @@ class Actions extends React.Component {
                       doneQuestionnaire = {questionnaire => this.doneQuestionnaire(questionnaire)}
                       setIsAnsweredQuestionnaire = {isAnswered => this.props.setIsAnsweredQuestionnaire(isAnswered)}
                       resetDisplayQuestionnaire = {questionnaire => this.resetDisplayQuestionnaire(questionnaire)}
+                      currentUser = {this.props.currentUser}
                     />
     }
 

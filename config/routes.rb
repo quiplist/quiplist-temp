@@ -56,6 +56,7 @@ Rails.application.routes.draw do
       resources :raffles, only: [:index, :show, :update]
       resources :questionnaires, only: [:update]
       resources :guest_lists, only: [:index]
+      resources :answers, only: [:create]
       #get '/fetch_current_event/:event_code', to: 'events#fetch_current_event', as: :fetch_current_event
     end
   end

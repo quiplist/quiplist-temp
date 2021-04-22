@@ -48,6 +48,7 @@ class User < ApplicationRecord
   has_many :events, through: :guest_lists
   has_many :reactions, as: :responder
   has_many :chats, as: :sender
+  has_many :answers
 
   mount_uploader :profile_image, ProfileImageUploader
 

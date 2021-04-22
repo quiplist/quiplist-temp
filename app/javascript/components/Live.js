@@ -48,6 +48,11 @@ class Live extends React.Component {
 
   componentDidMount() {
     this.cable = ActionCable.createConsumer('/cable');
+    fetch('/api/v1/fetch_current_user')
+    .then(response => response.json())
+    .then(result => {
+      this.setState({ currentUser: result })
+    });
 
     const fetchEventUrl = `/api/v1/events/${this.props.eventId}`;
     fetch(fetchEventUrl)
@@ -61,14 +66,14 @@ class Live extends React.Component {
       this.setState({ questionnaires: result.questionnaires })
       if(this.state.questionnaires.length > 0) {
         this.setQuestionnaire(result.questionnaires[0])
+        console.log(this.state.currentQuestionnaire)
+        if (this.state.currentQuestionnaire.answered_correctly.length > 0) {
+          let isAnswered = this.state.currentQuestionnaire.answered_correctly.some(answer => answer.user_id === this.state.currentUser.id)
+          this.setIsAnsweredQuestionnaire(isAnswered)
+        }
       }
     });
 
-    fetch('/api/v1/fetch_current_user')
-    .then(response => response.json())
-    .then(result => {
-      this.setState({ currentUser: result })
-    });
 
     const fetchAnnouncementUrl = `/api/v1/announcements?event_id=${this.props.eventId}`;
     fetch(fetchAnnouncementUrl)
@@ -117,6 +122,17 @@ class Live extends React.Component {
         disconnected: () => {},
         received: data => {
           this.setQuestionnaire(data.result)
+          console.log("cable1")
+          console.log(data.result)
+          console.log("cable1")
+          if (data.result !== undefined) {
+            if (data.result.answered_correctly.length > 0) {
+              let isAnswered = data.result.answered_correctly.some(answer => answer.user_id === this.state.currentUser.id)
+              this.setIsAnsweredQuestionnaire(isAnswered)
+            } else {
+              this.setIsAnsweredQuestionnaire(false)
+            }
+          }
         }
       });
   }
@@ -148,7 +164,6 @@ class Live extends React.Component {
     const isAdmin = (this.state.currentUser.user_type === 'Admin')
     let video;
     let actions;
-
     if(isFB){
       video = <FacebookLive
                 url={this.state.url}
@@ -156,6 +171,8 @@ class Live extends React.Component {
                 currentQuestionnaire = {this.state.currentQuestionnaire}
                 isAnsweredQuestionnaire = {this.state.isAnsweredQuestionnaire}
                 setIsAnsweredQuestionnaire = {isAnswered => this.setIsAnsweredQuestionnaire(isAnswered)}
+                currentUser = {this.state.currentUser}
+                isAdmin = {isAdmin}
               />;
     }else if(isYT) {
       video = <YoutubeLive
@@ -164,6 +181,8 @@ class Live extends React.Component {
                 currentQuestionnaire = {this.state.currentQuestionnaire}
                 isAnsweredQuestionnaire = {this.state.isAnsweredQuestionnaire}
                 setIsAnsweredQuestionnaire = {isAnswered => this.setIsAnsweredQuestionnaire(isAnswered)}
+                currentUser = {this.state.currentUser}
+                isAdmin = {isAdmin}
               />;
     }else {
       video = <None
@@ -171,6 +190,8 @@ class Live extends React.Component {
                 currentQuestionnaire = {this.state.currentQuestionnaire}
                 isAnsweredQuestionnaire = {this.state.isAnsweredQuestionnaire}
                 setIsAnsweredQuestionnaire = {isAnswered => this.setIsAnsweredQuestionnaire(isAnswered)}
+                currentUser = {this.state.currentUser}
+                isAdmin = {isAdmin}
               />;
     }
     if (isAdmin) {
