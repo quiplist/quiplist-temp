@@ -49,6 +49,7 @@ class PlayPausePagination extends Component {
   handleMoveLeft = evt => {
     if (this.props.modelName === "questionnaires") {
       this.props.setIsAnsweredQuestionnaire(false)
+      this.props.resetDisplayQuestionnaire(this.props.currentData)
     }
     evt.preventDefault();
     this.gotoPage(this.state.currentPage - 1);
@@ -57,6 +58,7 @@ class PlayPausePagination extends Component {
   handleMoveRight = evt => {
     if (this.props.modelName === "questionnaires") {
       this.props.setIsAnsweredQuestionnaire(false)
+      this.props.resetDisplayQuestionnaire(this.props.currentData)
     }
     evt.preventDefault();
     this.gotoPage(this.state.currentPage + 1);

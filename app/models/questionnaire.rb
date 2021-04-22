@@ -21,7 +21,7 @@ class Questionnaire < ApplicationRecord
   has_many :choices, dependent: :destroy
   belongs_to :event
 
-  default_scope { order("created_at ASC") }
+  default_scope { order("is_display DESC, created_at ASC") }
 
   accepts_nested_attributes_for :choices
 

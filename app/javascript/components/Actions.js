@@ -44,7 +44,7 @@ class Actions extends React.Component {
     this.setState({ currentRafflePage, currentRaffle, totalRafflePages });
   };
 
-  playQuestionnaire = questionnaire => {
+  playQuestionnaire = (questionnaire) => {
     // on submitting the ChatInput form, send the message, add it to the list and reset the input
     const url = `/api/v1/questionnaires/${questionnaire.id}`;
     let isDisplay = (!questionnaire.is_display)
@@ -71,6 +71,32 @@ class Actions extends React.Component {
     .then(result => {
       this.props.questionnaireCable.send({result})
       this.setState( {currentQuestionnaire: result })
+    })
+  }
+
+  resetDisplayQuestionnaire = (questionnaire) => {
+    // on submitting the ChatInput form, send the message, add it to the list and reset the input
+    const url = `/api/v1/questionnaires/${questionnaire.id}`;
+    let isDisplay = false;
+
+    const body = {
+      questionnaire: {
+        is_display: isDisplay
+      }
+    }
+
+    fetch(url, {
+        method: "PUT",
+        headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json"
+        },
+        body: JSON.stringify(body)
+    })
+    .then(resp => resp.json())
+    .then(result => {
+      // this.props.questionnaireCable.send({result})
+      // this.setState( {currentQuestionnaire: result })
     })
   }
 
@@ -136,6 +162,7 @@ class Actions extends React.Component {
                       playQuestionnaire = {questionnaire => this.playQuestionnaire(questionnaire)}
                       doneQuestionnaire = {questionnaire => this.doneQuestionnaire(questionnaire)}
                       setIsAnsweredQuestionnaire = {isAnswered => this.props.setIsAnsweredQuestionnaire(isAnswered)}
+                      resetDisplayQuestionnaire = {questionnaire => this.resetDisplayQuestionnaire(questionnaire)}
                     />
     }
 

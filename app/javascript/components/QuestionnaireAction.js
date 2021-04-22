@@ -23,6 +23,7 @@ class QuestionnaireAction extends React.Component {
               playQuestionnaire = {questionnaire => this.props.playQuestionnaire(questionnaire)}
               doneQuestionnaire = {questionnaire => this.props.doneQuestionnaire(questionnaire)}
               setIsAnsweredQuestionnaire = {isAnswered => this.props.setIsAnsweredQuestionnaire(isAnswered)}
+              resetDisplayQuestionnaire = {questionnaire => this.props.resetDisplayQuestionnaire(questionnaire)}
             />
           </fieldset>
         </div>
