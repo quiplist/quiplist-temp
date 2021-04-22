@@ -100,7 +100,7 @@ class AnnouncementInput extends Component {
           }}>
           <div className="announcement-input chat-input mt-3">
             <input
-              type="submit" value={'Done'}
+              type="submit" value={'Remove'}
               style={{ background : this.props.currentEvent.main_mouse_out, border : '1px solid' + this.props.currentEvent.main_mouse_out }}
               onMouseEnter={event => this.onMouseOver(event)}
               onMouseOut={event => this.onMouseOut(event)} />

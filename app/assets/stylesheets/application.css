@@ -1540,9 +1540,15 @@ ul.sidebar-list {
 	z-index: 1;
 	background: rgb(13, 17, 82, 0.6);
 	border-radius: 10px;
-	top: 50%;
-	margin: 0px 10px;
-	padding: 10px;
+	bottom: 10%;
+    margin-left: 0;
+    padding: 10px;
+    width: 100%;
+    left: 0;
+}
+
+.question{
+	text-transform: capitalize;
 }
 
 .choices input[type="radio"] {
@@ -1560,9 +1566,10 @@ ul.sidebar-list {
 	border: 2px solid #444;
 	border-radius: 4px;
 	color: #000;
+	text-transform: capitalize;
 }
 
-.choices input[type="radio"]:checked+label {
+.choices input[type="checkbox"]:checked+label {
 	background-color: #3943ca;
 	border-color: #3943ca;
 }
@@ -1571,11 +1578,26 @@ ul.sidebar-list {
 	background-color: #dfd;
 }
 
+.choices--letters input[type="checkbox"] {
+    appearance: none;
+   -webkit-appearance: none;
+   -moz-appearance: none;
+}
+
+.choices--letters input[type="checkbox"]:checked+label {
+	background-color: #3943ca;
+	border-color: #3943ca;
+}
+
+.announcement-input input{
+	border-radius: 5px;
+}
+
 .answer--show {
 	background-color: #6A3BBD;
 	border-color: #6A3BBD;
 	border-radius: 7px;
-	padding: 10px 30px;
+	padding: 5px 30px;
 	margin: 10px 0px;
 }
 
@@ -1698,6 +1720,7 @@ h2#swal2-title {
 	color: #000;
 	font-family: 'Montserrat';
 	margin: 0px;
+	font-size: 22px;
 }
 
 .swal2-popup.swal2-modal.swal2-show:before {
@@ -1927,7 +1950,7 @@ table.dataTable {
 
 .modal .modal-footer form input[type="submit"], form .btn {
     margin-right: 10px !important;
-	width: auto !important;
+	width: auto;
 }
 
 .tab-content .tab-pane > a{
@@ -2078,13 +2101,18 @@ footer h6 {
 	font-size: 40px;
 }
 
+.action-wrapper i.fas {
+    color: #3943ca;
+    font-size: 22px;
+}
+
 @media screen and (min-width:1024px) {
 	div[data-react-class="FacebookLive"],
 	.fb-wrapper,
 	.fb-video,
 	.fb-video iframe,
 	.fb-video span {
-		height: 100% !important;
+		/* height: 100% !important; */
 	}
 	fieldset {
 		height: 180px;
@@ -2251,10 +2279,9 @@ footer h6 {
 	.fb-video,
 	.fb-video iframe,
 	.fb-video span {
-		height: 100% !important;
+		/* height: 100% !important; */
 	}
 	.question-wrapper>.row {
-		background: rgb(255, 255, 255, 0.3);
 		position: unset;
 		margin: 0px;
 		border-radius: 0px;

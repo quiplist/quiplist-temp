@@ -113,7 +113,7 @@ class Questions extends React.Component {
       <div className="question-wrapper">
         <div className="row">
           <div className="col-12">
-            <span className="question">{this.props.currentQuestionnaire.question}</span>
+            <div className="question w-100 text-center">{this.props.currentQuestionnaire.question}</div>
             <div className="choices">
               {choices}
             </div>

@@ -101,7 +101,7 @@ class PlayPausePagination extends Component {
 
     return (
       <div className="row text-end">
-        <div className="col">
+        <div className="col d-flex flex-wrap">
           <a
             className=""
             href="#"

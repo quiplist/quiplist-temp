@@ -24,13 +24,13 @@ class Identification extends React.Component {
             e.preventDefault()
             this.props.submitAnswer(this.state.answer)
           }}>
-          <div className="col-12 col-md-4 col-lg-8">
+          <div className="col-12 col-md-10 mb-2">
             <div className="mb-0">
                 <input type="text" id="answer" name="answer" className="form-control" placeholder="Answer..." onChange={this.onChange} disabled={disabled}/>
             </div>
           </div>
 
-          <div className="col-12 col-md-8 col-lg-4">
+          <div className="col-12 col-md-2">
             <button type="submit" className="btn btn-blue w-100" disabled={disabled}>Submit</button>
           </div>
         </form>
