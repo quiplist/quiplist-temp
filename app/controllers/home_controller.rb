@@ -45,13 +45,13 @@ class HomeController < ApplicationController
   def find_event
     if @event.nil?
       flash.now[:alert] = 'Invalid Event Code!'
-      render :welcome
+      render :welcome, layout: "application"
     elsif @event.queued?
       flash.now[:alert] = 'Event not yet started!'
-      render :welcome
+      render :welcome, layout: "application"
     elsif @event.done?
       flash.now[:alert] = 'Event already done!'
-      render :welcome
+      render :welcome, layout: "application"
     elsif current_user.nil?
       redirect_to new_user_registration_path(event_code: @event.event_code)
     else
