@@ -17,4 +17,6 @@
 class Answer < ApplicationRecord
   belongs_to :questionnaire, optional: true
   belongs_to :user
+
+  default_scope { order("created_at ASC") }
 end
