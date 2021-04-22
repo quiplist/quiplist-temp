@@ -2044,9 +2044,16 @@ footer h6 {
     background: #EDEDED;
 }
 
-.forgot-password a {
+.forgot-password a,
+.forgot-password {
     color: #CCCCCC;
 }
+
+.forgot-password a:hover,
+.forgot-password:hover{
+	color: #0F1867;
+}
+
 
 .inner-page__nav{
 	background: #0F1867;
