@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import PlayQuestionnaire from "./PlayQuestionnaire";
+import DoneQuestionnaire from "./DoneQuestionnaire";
 import PlayRaffle from "./PlayRaffle";
 
 class PlayPausePagination extends Component {
@@ -46,11 +47,17 @@ class PlayPausePagination extends Component {
   };
 
   handleMoveLeft = evt => {
+    if (this.props.modelName === "questionnaires") {
+      this.props.setIsAnsweredQuestionnaire(false)
+    }
     evt.preventDefault();
     this.gotoPage(this.state.currentPage - 1);
   };
 
   handleMoveRight = evt => {
+    if (this.props.modelName === "questionnaires") {
+      this.props.setIsAnsweredQuestionnaire(false)
+    }
     evt.preventDefault();
     this.gotoPage(this.state.currentPage + 1);
   };
@@ -58,6 +65,7 @@ class PlayPausePagination extends Component {
   render() {
     const { currentPage } = this.state;
     let playButton;
+    let doneButton;
     if (!this.totalRecords) return null;
 
     if (this.totalPages === 0) return null;
@@ -66,6 +74,10 @@ class PlayPausePagination extends Component {
       playButton = <PlayQuestionnaire
                     currentData = {this.props.currentData}
                     playQuestionnaire = {questionnaire => this.props.playQuestionnaire(questionnaire)}
+                  />
+      doneButton = <DoneQuestionnaire
+                    currentData = {this.props.currentData}
+                    doneQuestionnaire = {questionnaire => this.props.doneQuestionnaire(questionnaire)}
                   />
     } else if ((this.props.modelName === "raffles") && (this.props.currentData.length !== 0)) {
       let playUrl = `/admins/events/${this.props.currentEvent.id}/raffles/${this.props.currentData[0].id}`
@@ -94,7 +106,7 @@ class PlayPausePagination extends Component {
           >
             <i className="fas fa-forward mx-1"></i>
           </a>
-          <i className="fas fa-sync-alt mx-1"></i>
+          {doneButton}
         </div>
       </div>
     );

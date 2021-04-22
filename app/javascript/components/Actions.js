@@ -29,8 +29,8 @@ class Actions extends React.Component {
     const questionnairePageLimit = data.pageLimit;
     const offset = (currentQuestionnairePage - 1) * questionnairePageLimit;
     const currentQuestionnaire = questionnaires[currentQuestionnairePage - 1]
-    this.setState({ currentQuestionnairePage, currentQuestionnaire, totalQuestionnairePages });
     this.props.setQuestionnaire(currentQuestionnaire)
+    this.setState({ currentQuestionnairePage, currentQuestionnaire, totalQuestionnairePages });
   };
 
 
@@ -134,6 +134,8 @@ class Actions extends React.Component {
                       currentEvent = {this.props.currentEvent}
                       onQuestionnairePageChanged = {this.onQuestionnairePageChanged}
                       playQuestionnaire = {questionnaire => this.playQuestionnaire(questionnaire)}
+                      doneQuestionnaire = {questionnaire => this.doneQuestionnaire(questionnaire)}
+                      setIsAnsweredQuestionnaire = {isAnswered => this.props.setIsAnsweredQuestionnaire(isAnswered)}
                     />
     }
 

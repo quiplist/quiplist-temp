@@ -11,6 +11,8 @@ class None extends React.Component {
         <Questions
           questionnaires = {this.props.questionnaires}
           currentQuestionnaire = {this.props.currentQuestionnaire}
+          isAnsweredQuestionnaire = {this.props.isAnsweredQuestionnaire}
+          setIsAnsweredQuestionnaire = {isAnswered => this.props.setIsAnsweredQuestionnaire(isAnswered)}
         />
       </div>
     )

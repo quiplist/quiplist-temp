@@ -5,7 +5,7 @@ class PlayQuestionnaire extends React.Component {
 
   render() {
     let icon;
-    let disabledPlay = (this.props.currentData.status === 2);
+
     if (this.props.currentData.is_display) {
       icon = <i className="fas fa-pause mx-1"></i>
     } else {

@@ -39,7 +39,8 @@ class Live extends React.Component {
       raffles: [],
       guestLists: [],
       questionnaires: [],
-      currentQuestionnaire: {}
+      currentQuestionnaire: {},
+      isAnsweredQuestionnaire: false
     };
 
 
@@ -136,50 +137,61 @@ class Live extends React.Component {
     this.setState(state => ({ currentQuestionnaire: questionnaire }))
   }
 
+  setIsAnsweredQuestionnaire = (isAnswered) => {
+    this.setState(state => ({ isAnsweredQuestionnaire: isAnswered}))
+  }
+
   render() {
     const isFB = this.state.isFB;
     const isYT = this.state.isYT;
     const isNone = this.state.isNoVideo;
     const isAdmin = (this.state.currentUser.user_type === 'Admin')
     let video;
+    let actions;
 
     if(isFB){
       video = <FacebookLive
                 url={this.state.url}
                 questionnaires = {this.state.questionnaires}
                 currentQuestionnaire = {this.state.currentQuestionnaire}
+                isAnsweredQuestionnaire = {this.state.isAnsweredQuestionnaire}
+                setIsAnsweredQuestionnaire = {isAnswered => this.setIsAnsweredQuestionnaire(isAnswered)}
               />;
     }else if(isYT) {
       video = <YoutubeLive
                 url={this.state.url}
                 questionnaires = {this.state.questionnaires}
                 currentQuestionnaire = {this.state.currentQuestionnaire}
+                isAnsweredQuestionnaire = {this.state.isAnsweredQuestionnaire}
+                setIsAnsweredQuestionnaire = {isAnswered => this.setIsAnsweredQuestionnaire(isAnswered)}
               />;
     }else {
       video = <None
                 questionnaires = {this.state.questionnaires}
                 currentQuestionnaire = {this.state.currentQuestionnaire}
+                isAnsweredQuestionnaire = {this.state.isAnsweredQuestionnaire}
+                setIsAnsweredQuestionnaire = {isAnswered => this.setIsAnsweredQuestionnaire(isAnswered)}
               />;
+    }
+    if (isAdmin) {
+      actions = <Actions
+        raffles = {this.state.raffles}
+        questionnaires = {this.state.questionnaires}
+        guestLists = {this.state.guestLists}
+        currentUser = {this.state.currentUser}
+        currentEvent = {this.state.currentEvent}
+        currentQuestionnaire = {this.state.currentQuestionnaire}
+        announcementCable = {this.announcementsChannel}
+        currentAnnouncement = {this.state.currentAnnouncement}
+        updateAnnouncement = {announcement => this.updateAnnouncement(announcement)}
+        questionnaireCable = {this.questionnairesChannel}
+        setQuestionnaire = {questionnaire => this.setQuestionnaire(questionnaire)}
+        setIsAnsweredQuestionnaire = {isAnswered => this.setIsAnsweredQuestionnaire(isAnswered)} />
     }
 
     return (
       <div>
-      { isAdmin ?
-        (<Actions
-          raffles = {this.state.raffles}
-          questionnaires = {this.state.questionnaires}
-          guestLists = {this.state.guestLists}
-          currentUser = {this.state.currentUser}
-          currentEvent = {this.state.currentEvent}
-          currentQuestionnaire = {this.state.currentQuestionnaire}
-          announcementCable = {this.announcementsChannel}
-          currentAnnouncement = {this.state.currentAnnouncement}
-          updateAnnouncement = {announcement => this.updateAnnouncement(announcement)}
-          questionnaireCable = {this.questionnairesChannel}
-          setQuestionnaire = {questionnaire => this.setQuestionnaire(questionnaire)} />)
-        : ""
-      }
-
+        {actions}
         <div className="row">
           <div className="col-12 col-md-12 col-lg-8">
               <Announcement

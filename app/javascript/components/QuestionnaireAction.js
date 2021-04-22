@@ -5,7 +5,6 @@ import PlayPausePagination from "./PlayPausePagination";
 class QuestionnaireAction extends React.Component {
 
   render() {
-    
     return (
       <div className="col-12 col-md-6 col-lg-4">
         <div className="action-wrapper">
@@ -22,6 +21,8 @@ class QuestionnaireAction extends React.Component {
               currentEvent={this.props.currentEvent}
               onPageChanged={this.props.onQuestionnairePageChanged}
               playQuestionnaire = {questionnaire => this.props.playQuestionnaire(questionnaire)}
+              doneQuestionnaire = {questionnaire => this.props.doneQuestionnaire(questionnaire)}
+              setIsAnsweredQuestionnaire = {isAnswered => this.props.setIsAnsweredQuestionnaire(isAnswered)}
             />
           </fieldset>
         </div>

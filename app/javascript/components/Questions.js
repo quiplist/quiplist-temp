@@ -11,16 +11,10 @@ class Questions extends React.Component {
 
   constructor() {
     super();
-    this.state={
-      isAnswered: false
-    }
   }
 
   submitAnswer = answer => {
-    console.log("answer")
-    console.log(answer)
-    console.log("answer")
-    this.setState(state => ({ isAnswered: true }))
+    this.props.setIsAnsweredQuestionnaire(true)
     // on submitting the ChatInput form, send the message, add it to the list and reset the input
     // const url = "/api/v1/chats";
     // const body = {
@@ -54,7 +48,7 @@ class Questions extends React.Component {
     const { currentQuestionnaire, questionnaires } = this.props;
     let choices;
     let correctAnswer;
-    
+
     if (currentQuestionnaire === undefined || questionnaires === undefined) return null;
     const totalQuestionnaires = questionnaires.length;
 
@@ -68,8 +62,6 @@ class Questions extends React.Component {
     if (isQueued) return null;
 
     if (isDisplay) {
-
-
       if (isDone) {
         correctAnswer = <CorrectAnswer
                           currentQuestionnaire = {this.props.currentQuestionnaire}
@@ -79,31 +71,31 @@ class Questions extends React.Component {
           choices = <MultipleChoice
                       currentQuestionnaire = {this.props.currentQuestionnaire}
                       submitAnswer={answer => this.submitAnswer(answer)}
-                      isAnswered={this.state.isAnswered}
+                      isAnswered={this.props.isAnsweredQuestionnaire}
                     />;
         } else if (currentQuestionnaire.is_yes_or_no) {
           choices = <TrueFalse
                       currentQuestionnaire = {this.props.currentQuestionnaire}
                       submitAnswer={answer => this.submitAnswer(answer)}
-                      isAnswered={this.state.isAnswered}
+                      isAnswered={this.props.isAnsweredQuestionnaire}
                     />;
         } else if (currentQuestionnaire.is_identification || currentQuestionnaire.is_q_and_a) {
           choices = <Identification
                       currentQuestionnaire = {this.props.currentQuestionnaire}
                       submitAnswer={answer => this.submitAnswer(answer)}
-                      isAnswered={this.state.isAnswered}
+                      isAnswered={this.props.isAnsweredQuestionnaire}
                     />;
         } else if (currentQuestionnaire.is_select_letters) {
           choices = <SelectLetters
                       currentQuestionnaire = {this.props.currentQuestionnaire}
                       submitAnswer={answer => this.submitAnswer(answer)}
-                      isAnswered={this.state.isAnswered}
+                      isAnswered={this.props.isAnsweredQuestionnaire}
                     />;
         } else if (currentQuestionnaire.is_poll) {
           choices = <Poll
                       currentQuestionnaire = {this.props.currentQuestionnaire}
                       submitAnswer={answer => this.submitAnswer(answer)}
-                      isAnswered={this.state.isAnswered}
+                      isAnswered={this.props.isAnsweredQuestionnaire}
                     />;
         }
       }
