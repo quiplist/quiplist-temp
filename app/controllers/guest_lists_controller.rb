@@ -21,7 +21,7 @@ class GuestListsController < ApplicationController
   end
 
   def reset_raffle_statuses
-    winners = @guest_lists.won
+    winners = GuestList.where(event: @event).won
     raffle_statuses = { raffle_status: GuestList::ELIGIBLE }
     response = update_raffle_statuses(winners, raffle_statuses)
 

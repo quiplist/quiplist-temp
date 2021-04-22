@@ -6,12 +6,14 @@ class QuestionnairesController < ApplicationController
   load_and_authorize_resource :questionnaire, through: :event
 
   def new
+    filler_choices
   end
 
   def create
     if @questionnaire.save
       redirect_to event_path(@event), notice: "Questionnaire #{@questionnaire.questionnaire_type_name} added successfully!"
     else
+      filler_choices
       render :new
     end
   end
@@ -34,7 +36,13 @@ class QuestionnairesController < ApplicationController
 
   private
 
+  def filler_choices
+    (0..11).each do
+      @questionnaire.choices.new
+    end
+  end
+
   def questionnaire_params
-    params.require(:questionnaire).permit(:questionnaire_type, :question, choices: [], answer: [])
+    params.require(:questionnaire).permit(:questionnaire_type, :question, :correct_answer, choices_attributes: [:id, :name])
   end
 end

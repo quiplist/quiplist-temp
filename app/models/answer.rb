@@ -6,15 +6,15 @@
 #  answer           :string
 #  created_at       :datetime         not null
 #  updated_at       :datetime         not null
-#  guest_list_id    :bigint
 #  questionnaire_id :bigint
+#  user_id          :bigint
 #
 # Indexes
 #
-#  index_answers_on_guest_list_id     (guest_list_id)
 #  index_answers_on_questionnaire_id  (questionnaire_id)
+#  index_answers_on_user_id           (user_id)
 #
 class Answer < ApplicationRecord
   belongs_to :questionnaire, optional: true
-  belongs_to :guest_list
+  belongs_to :user
 end

@@ -20,6 +20,12 @@ class RafflesController < ApplicationController
   end
 
   def show
+    @guest_lists = @event.guest_lists.approved.eligible
+    if @guest_lists.empty?
+      redirect_to launch_event_path(@event), alert: 'No player available to draw!'
+    else
+      render layout: "no_layout"
+    end
   end
 
   def update

@@ -3,8 +3,8 @@
 # Table name: questionnaires
 #
 #  id                 :bigint           not null, primary key
-#  choices            :string           is an Array
-#  correct_answer     :string           is an Array
+#  correct_answer     :string
+#  is_display         :boolean          default(FALSE)
 #  question           :string
 #  questionnaire_type :integer          default(0)
 #  status             :integer          default(0)
@@ -17,10 +17,16 @@
 #  index_questionnaires_on_event_id  (event_id)
 #
 class Questionnaire < ApplicationRecord
-  has_many :answered_correctly, class_name: "Answer"
+  has_many :answered_correctly, class_name: "Answer", dependent: :destroy
+  has_many :choices, dependent: :destroy
   belongs_to :event
 
-  default_scope { order("created_at ASC") }
+  default_scope { order("is_display DESC, created_at ASC") }
+
+  accepts_nested_attributes_for :choices
+
+  validates :question, presence: true
+
 
   MULTIPLE_CHOICE = 0
   YES_OR_NO = 1
@@ -32,7 +38,7 @@ class Questionnaire < ApplicationRecord
   QUESTIONNAIRE_TYPES = {
     MULTIPLE_CHOICE => "Multiple Choice",
     YES_OR_NO => "Yes or No",
-    IDENTIFICATION => "Indentification",
+    IDENTIFICATION => "Identification",
     SELECT_LETTERS => "Select Letters",
     Q_AND_A => "Question and Answer",
     POLL => "Poll"

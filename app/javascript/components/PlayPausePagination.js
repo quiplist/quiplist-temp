@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import PlayQuestionnaire from "./PlayQuestionnaire";
+import DoneQuestionnaire from "./DoneQuestionnaire";
 import PlayRaffle from "./PlayRaffle";
 
 class PlayPausePagination extends Component {
@@ -46,11 +47,30 @@ class PlayPausePagination extends Component {
   };
 
   handleMoveLeft = evt => {
+    if (this.props.modelName === "questionnaires") {
+      if (this.props.currentData.answered_correctly.length > 0) {
+        let isAnswered = this.props.currentData.answered_correctly.some(answer => answer.user_id === this.props.currentUser.id)
+        this.props.setIsAnsweredQuestionnaire(isAnswered)
+      }
+      this.props.resetDisplayQuestionnaire(this.props.currentData)
+    }
     evt.preventDefault();
     this.gotoPage(this.state.currentPage - 1);
   };
 
   handleMoveRight = evt => {
+    if (this.props.modelName === "questionnaires") {
+      //this.props.setIsAnsweredQuestionnaire(false)
+      if (this.props.currentData.answered_correctly.length > 0) {
+        let isAnswered = this.props.currentData.answered_correctly.some(answer => answer.user_id === this.props.currentUser.id)
+        console.log("pagination")
+        console.log(this.props.currentData)
+        console.log(isAnswered)
+        console.log("pagination")
+        this.props.setIsAnsweredQuestionnaire(isAnswered)
+      }
+      this.props.resetDisplayQuestionnaire(this.props.currentData)
+    }
     evt.preventDefault();
     this.gotoPage(this.state.currentPage + 1);
   };
@@ -58,14 +78,19 @@ class PlayPausePagination extends Component {
   render() {
     const { currentPage } = this.state;
     let playButton;
+    let doneButton;
     if (!this.totalRecords) return null;
 
-    if (this.totalPages === 1) return null;
+    if (this.totalPages === 0) return null;
 
     if (this.props.modelName === "questionnaires") {
       playButton = <PlayQuestionnaire
                     currentData = {this.props.currentData}
                     playQuestionnaire = {questionnaire => this.props.playQuestionnaire(questionnaire)}
+                  />
+      doneButton = <DoneQuestionnaire
+                    currentData = {this.props.currentData}
+                    doneQuestionnaire = {questionnaire => this.props.doneQuestionnaire(questionnaire)}
                   />
     } else if ((this.props.modelName === "raffles") && (this.props.currentData.length !== 0)) {
       let playUrl = `/admins/events/${this.props.currentEvent.id}/raffles/${this.props.currentData[0].id}`
@@ -94,7 +119,7 @@ class PlayPausePagination extends Component {
           >
             <i className="fas fa-forward mx-1"></i>
           </a>
-          <i className="fas fa-sync-alt mx-1"></i>
+          {doneButton}
         </div>
       </div>
     );

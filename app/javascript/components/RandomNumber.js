@@ -44,6 +44,11 @@ class RandomNumber extends React.PureComponent {
       this.setState({ currentRaffle: result })
       if(this.state.currentRaffle.status === 2) {
         this.setState({ currentChoice: result.winner})
+        Swal.fire({
+          title: result.won,
+          showCancelButton: false,
+          showConfirmButton: false
+        })
       }
     });
 
@@ -122,7 +127,7 @@ class RandomNumber extends React.PureComponent {
 
   render() {
     const { isRunning, currentChoice, currentEvent, currentRaffle } = this.state;
-
+    if (this.state.guestLists.length === 0) return null;
     return (
       <div className="RandomPicker">
         <RandomNumberChoice choice={currentChoice} />

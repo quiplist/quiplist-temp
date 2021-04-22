@@ -1,22 +1,20 @@
 # == Schema Information
 #
-# Table name: answers
+# Table name: choices
 #
 #  id               :bigint           not null, primary key
-#  answer           :string
+#  name             :string
 #  created_at       :datetime         not null
 #  updated_at       :datetime         not null
 #  questionnaire_id :bigint
-#  user_id          :bigint
 #
 # Indexes
 #
-#  index_answers_on_questionnaire_id  (questionnaire_id)
-#  index_answers_on_user_id           (user_id)
+#  index_choices_on_questionnaire_id  (questionnaire_id)
 #
 require 'test_helper'
 
-class AnswerTest < ActiveSupport::TestCase
+class ChoiceTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end

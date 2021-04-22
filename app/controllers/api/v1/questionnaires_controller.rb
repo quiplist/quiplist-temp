@@ -17,6 +17,6 @@ class Api::V1::QuestionnairesController < Api::ApplicationController
   end
 
   def questionnaire_params
-    params.require(:questionnaire).permit(:status)
+    params.require(:questionnaire).permit(:status, :is_display)
   end
 end

@@ -39,7 +39,8 @@ class Live extends React.Component {
       raffles: [],
       guestLists: [],
       questionnaires: [],
-      currentQuestionnaire: {}
+      currentQuestionnaire: {},
+      isAnsweredQuestionnaire: false
     };
 
 
@@ -47,6 +48,11 @@ class Live extends React.Component {
 
   componentDidMount() {
     this.cable = ActionCable.createConsumer('/cable');
+    fetch('/api/v1/fetch_current_user')
+    .then(response => response.json())
+    .then(result => {
+      this.setState({ currentUser: result })
+    });
 
     const fetchEventUrl = `/api/v1/events/${this.props.eventId}`;
     fetch(fetchEventUrl)
@@ -60,14 +66,14 @@ class Live extends React.Component {
       this.setState({ questionnaires: result.questionnaires })
       if(this.state.questionnaires.length > 0) {
         this.setQuestionnaire(result.questionnaires[0])
+        console.log(this.state.currentQuestionnaire)
+        if (this.state.currentQuestionnaire.answered_correctly.length > 0) {
+          let isAnswered = this.state.currentQuestionnaire.answered_correctly.some(answer => answer.user_id === this.state.currentUser.id)
+          this.setIsAnsweredQuestionnaire(isAnswered)
+        }
       }
     });
 
-    fetch('/api/v1/fetch_current_user')
-    .then(response => response.json())
-    .then(result => {
-      this.setState({ currentUser: result })
-    });
 
     const fetchAnnouncementUrl = `/api/v1/announcements?event_id=${this.props.eventId}`;
     fetch(fetchAnnouncementUrl)
@@ -82,7 +88,7 @@ class Live extends React.Component {
         id: this.props.eventId
       },{
         connected: () => {
-          console.log("connected!")
+          console.log("Events Channel connected!")
         },
         disconnected: () => {},
         received: data => {
@@ -96,11 +102,12 @@ class Live extends React.Component {
         id: this.props.eventId
       },{
         connected: () => {
-          console.log("connected!")
+          console.log("Accouncement Channel connected!")
         },
         disconnected: () => {},
         received: data => {
           this.updateAnnouncement(data.result)
+          this.addAnnoucement(data.result)
         }
       });
 
@@ -110,11 +117,22 @@ class Live extends React.Component {
         id: this.props.eventId
       },{
         connected: () => {
-          console.log("connected!")
+          console.log("Questionnaire Channel connected!")
         },
         disconnected: () => {},
         received: data => {
           this.setQuestionnaire(data.result)
+          console.log("cable1")
+          console.log(data.result)
+          console.log("cable1")
+          if (data.result !== undefined) {
+            if (data.result.answered_correctly.length > 0) {
+              let isAnswered = data.result.answered_correctly.some(answer => answer.user_id === this.state.currentUser.id)
+              this.setIsAnsweredQuestionnaire(isAnswered)
+            } else {
+              this.setIsAnsweredQuestionnaire(false)
+            }
+          }
         }
       });
   }
@@ -127,8 +145,16 @@ class Live extends React.Component {
     this.setState(state => ({ currentAnnouncement: announcement }))
   }
 
+  addAnnoucement = announcement => {
+    this.setState(state => ({ announcements: [...state.announcements, announcement] }))
+  }
+
   setQuestionnaire = questionnaire => {
     this.setState(state => ({ currentQuestionnaire: questionnaire }))
+  }
+
+  setIsAnsweredQuestionnaire = (isAnswered) => {
+    this.setState(state => ({ isAnsweredQuestionnaire: isAnswered}))
   }
 
   render() {
@@ -137,43 +163,56 @@ class Live extends React.Component {
     const isNone = this.state.isNoVideo;
     const isAdmin = (this.state.currentUser.user_type === 'Admin')
     let video;
-
+    let actions;
     if(isFB){
       video = <FacebookLive
                 url={this.state.url}
                 questionnaires = {this.state.questionnaires}
                 currentQuestionnaire = {this.state.currentQuestionnaire}
+                isAnsweredQuestionnaire = {this.state.isAnsweredQuestionnaire}
+                setIsAnsweredQuestionnaire = {isAnswered => this.setIsAnsweredQuestionnaire(isAnswered)}
+                currentUser = {this.state.currentUser}
+                isAdmin = {isAdmin}
               />;
     }else if(isYT) {
       video = <YoutubeLive
                 url={this.state.url}
                 questionnaires = {this.state.questionnaires}
                 currentQuestionnaire = {this.state.currentQuestionnaire}
+                isAnsweredQuestionnaire = {this.state.isAnsweredQuestionnaire}
+                setIsAnsweredQuestionnaire = {isAnswered => this.setIsAnsweredQuestionnaire(isAnswered)}
+                currentUser = {this.state.currentUser}
+                isAdmin = {isAdmin}
               />;
     }else {
       video = <None
                 questionnaires = {this.state.questionnaires}
                 currentQuestionnaire = {this.state.currentQuestionnaire}
+                isAnsweredQuestionnaire = {this.state.isAnsweredQuestionnaire}
+                setIsAnsweredQuestionnaire = {isAnswered => this.setIsAnsweredQuestionnaire(isAnswered)}
+                currentUser = {this.state.currentUser}
+                isAdmin = {isAdmin}
               />;
+    }
+    if (isAdmin) {
+      actions = <Actions
+        raffles = {this.state.raffles}
+        questionnaires = {this.state.questionnaires}
+        guestLists = {this.state.guestLists}
+        currentUser = {this.state.currentUser}
+        currentEvent = {this.state.currentEvent}
+        currentQuestionnaire = {this.state.currentQuestionnaire}
+        announcementCable = {this.announcementsChannel}
+        currentAnnouncement = {this.state.currentAnnouncement}
+        updateAnnouncement = {announcement => this.updateAnnouncement(announcement)}
+        questionnaireCable = {this.questionnairesChannel}
+        setQuestionnaire = {questionnaire => this.setQuestionnaire(questionnaire)}
+        setIsAnsweredQuestionnaire = {isAnswered => this.setIsAnsweredQuestionnaire(isAnswered)} />
     }
 
     return (
       <div>
-      { isAdmin ?
-        (<Actions
-          raffles = {this.state.raffles}
-          questionnaires = {this.state.questionnaires}
-          guestLists = {this.state.guestLists}
-          currentUser = {this.state.currentUser}
-          currentEvent = {this.state.currentEvent}
-          currentQuestionnaire = {this.state.currentQuestionnaire}
-          announcementCable = {this.announcementsChannel}
-          updateAnnouncement = {announcement => this.updateAnnouncement(announcement)}
-          questionnaireCable = {this.questionnairesChannel}
-          setQuestionnaire = {questionnaire => this.setQuestionnaire(questionnaire)} />)
-        : ""
-      }
-
+        {actions}
         <div className="row">
           <div className="col-12 col-md-12 col-lg-8">
               <Announcement

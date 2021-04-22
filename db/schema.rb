@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_17_164109) do
+ActiveRecord::Schema.define(version: 2021_04_22_110915) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -55,18 +55,19 @@ ActiveRecord::Schema.define(version: 2021_04_17_164109) do
     t.string "message"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.boolean "display_annoucement", default: true
     t.index ["admin_id"], name: "index_announcements_on_admin_id"
     t.index ["event_id"], name: "index_announcements_on_event_id"
   end
 
   create_table "answers", force: :cascade do |t|
     t.bigint "questionnaire_id"
-    t.bigint "guest_list_id"
     t.string "answer"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["guest_list_id"], name: "index_answers_on_guest_list_id"
+    t.bigint "user_id"
     t.index ["questionnaire_id"], name: "index_answers_on_questionnaire_id"
+    t.index ["user_id"], name: "index_answers_on_user_id"
   end
 
   create_table "chats", force: :cascade do |t|
@@ -79,6 +80,14 @@ ActiveRecord::Schema.define(version: 2021_04_17_164109) do
     t.integer "chat_type", default: 0
     t.index ["event_id"], name: "index_chats_on_event_id"
     t.index ["sender_type", "sender_id"], name: "index_chats_on_sender_type_and_sender_id"
+  end
+
+  create_table "choices", force: :cascade do |t|
+    t.bigint "questionnaire_id"
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["questionnaire_id"], name: "index_choices_on_questionnaire_id"
   end
 
   create_table "events", force: :cascade do |t|
@@ -178,11 +187,11 @@ ActiveRecord::Schema.define(version: 2021_04_17_164109) do
     t.bigint "event_id"
     t.integer "questionnaire_type", default: 0
     t.string "question"
-    t.string "correct_answer", array: true
-    t.string "choices", array: true
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "status", default: 0
+    t.string "correct_answer"
+    t.boolean "is_display", default: false
     t.index ["event_id"], name: "index_questionnaires_on_event_id"
   end
 

@@ -14,10 +14,11 @@
 #  index_answers_on_questionnaire_id  (questionnaire_id)
 #  index_answers_on_user_id           (user_id)
 #
-require 'test_helper'
+class AnswerSerializer < ActiveModel::Serializer
+  attributes :id, :answer, :questionnaire_id, :user_id, :user
 
-class AnswerTest < ActiveSupport::TestCase
-  # test "the truth" do
-  #   assert true
-  # end
+  def user
+    object.user
+  end
+
 end

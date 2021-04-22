@@ -18,7 +18,11 @@
         <tr>
           <td><%= questionnaire.questionnaire_type_name %></td>
           <td><%= questionnaire.question %></td>
-          <td><%= questionnaire.choices %></td>
+          <td>
+            <% questionnaire.choices.each do |choice| %>
+              <%= choice.name %> 
+            <% end %>
+          </td>
           <td><%= questionnaire.correct_answer %></td>
           <td><%= questionnaire.status_name %></td>
           <td class="actions text-center">
