@@ -45,25 +45,16 @@ class Actions extends React.Component {
   };
 
   playQuestionnaire = questionnaire => {
-    let status = 0;
     // on submitting the ChatInput form, send the message, add it to the list and reset the input
     const url = `/api/v1/questionnaires/${questionnaire.id}`;
-    switch(questionnaire.status) {
-      case 0:
-        status = 1;
-        break;
-      case 1:
-        status = 2;
-        break;
-      case 2:
-        status = 2;
-        break
-      default:
-        status = 0;
+    let isDisplay = (!questionnaire.is_display)
+    let status = questionnaire.status;
+    if (questionnaire.is_queued && isDisplay) {
+      status = 1
     }
-
     const body = {
       questionnaire: {
+        is_display: isDisplay,
         status: status
       }
     }
@@ -81,6 +72,45 @@ class Actions extends React.Component {
       this.props.questionnaireCable.send({result})
       this.setState( {currentQuestionnaire: result })
     })
+  }
+
+  doneQuestionnaire = questionnaire => {
+      let status = 0;
+      // on submitting the ChatInput form, send the message, add it to the list and reset the input
+      const url = `/api/v1/questionnaires/${questionnaire.id}`;
+      switch(questionnaire.status) {
+        case 0:
+          status = 1;
+          break;
+        case 1:
+          status = 2;
+          break;
+        case 2:
+          status = 2;
+          break
+        default:
+          status = 0;
+      }
+
+      const body = {
+        questionnaire: {
+          status: status
+        }
+      }
+
+      fetch(url, {
+          method: "PUT",
+          headers: {
+              "Content-Type": "application/json",
+              Accept: "application/json"
+          },
+          body: JSON.stringify(body)
+      })
+      .then(resp => resp.json())
+      .then(result => {
+        this.props.questionnaireCable.send({result})
+        this.setState( {currentQuestionnaire: result })
+      })
   }
 
   render () {

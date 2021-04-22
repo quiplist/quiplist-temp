@@ -52,6 +52,9 @@ class Questions extends React.Component {
 
   render() {
     const { currentQuestionnaire, questionnaires } = this.props;
+    let choices;
+    let correctAnswer;
+    
     if (currentQuestionnaire === undefined || questionnaires === undefined) return null;
     const totalQuestionnaires = questionnaires.length;
 
@@ -61,47 +64,53 @@ class Questions extends React.Component {
     const isQueued = currentQuestionnaire.is_queued;
     const isOngoing = currentQuestionnaire.is_ongoing;
     const isDone = currentQuestionnaire.is_done;
+    const isDisplay = currentQuestionnaire.is_display;
     if (isQueued) return null;
-    let choices;
-    let correctAnswer;
 
-    if (isDone) {
-      correctAnswer = <CorrectAnswer
-                        currentQuestionnaire = {this.props.currentQuestionnaire}
-                      />
-    } else if (isOngoing) {
-      if (currentQuestionnaire.is_multiple_choice) {
-        choices = <MultipleChoice
-                    currentQuestionnaire = {this.props.currentQuestionnaire}
-                    submitAnswer={answer => this.submitAnswer(answer)}
-                    isAnswered={this.state.isAnswered}
-                  />;
-      } else if (currentQuestionnaire.is_yes_or_no) {
-        choices = <TrueFalse
-                    currentQuestionnaire = {this.props.currentQuestionnaire}
-                    submitAnswer={answer => this.submitAnswer(answer)}
-                    isAnswered={this.state.isAnswered}
-                  />;
-      } else if (currentQuestionnaire.is_identification || currentQuestionnaire.is_q_and_a) {
-        choices = <Identification
-                    currentQuestionnaire = {this.props.currentQuestionnaire}
-                    submitAnswer={answer => this.submitAnswer(answer)}
-                    isAnswered={this.state.isAnswered}
-                  />;
-      } else if (currentQuestionnaire.is_select_letters) {
-        choices = <SelectLetters
-                    currentQuestionnaire = {this.props.currentQuestionnaire}
-                    submitAnswer={answer => this.submitAnswer(answer)}
-                    isAnswered={this.state.isAnswered}
-                  />;
-      } else if (currentQuestionnaire.is_poll) {
-        choices = <Poll
-                    currentQuestionnaire = {this.props.currentQuestionnaire}
-                    submitAnswer={answer => this.submitAnswer(answer)}
-                    isAnswered={this.state.isAnswered}
-                  />;
+    if (isDisplay) {
+
+
+      if (isDone) {
+        correctAnswer = <CorrectAnswer
+                          currentQuestionnaire = {this.props.currentQuestionnaire}
+                        />
+      } else if (isOngoing) {
+        if (currentQuestionnaire.is_multiple_choice) {
+          choices = <MultipleChoice
+                      currentQuestionnaire = {this.props.currentQuestionnaire}
+                      submitAnswer={answer => this.submitAnswer(answer)}
+                      isAnswered={this.state.isAnswered}
+                    />;
+        } else if (currentQuestionnaire.is_yes_or_no) {
+          choices = <TrueFalse
+                      currentQuestionnaire = {this.props.currentQuestionnaire}
+                      submitAnswer={answer => this.submitAnswer(answer)}
+                      isAnswered={this.state.isAnswered}
+                    />;
+        } else if (currentQuestionnaire.is_identification || currentQuestionnaire.is_q_and_a) {
+          choices = <Identification
+                      currentQuestionnaire = {this.props.currentQuestionnaire}
+                      submitAnswer={answer => this.submitAnswer(answer)}
+                      isAnswered={this.state.isAnswered}
+                    />;
+        } else if (currentQuestionnaire.is_select_letters) {
+          choices = <SelectLetters
+                      currentQuestionnaire = {this.props.currentQuestionnaire}
+                      submitAnswer={answer => this.submitAnswer(answer)}
+                      isAnswered={this.state.isAnswered}
+                    />;
+        } else if (currentQuestionnaire.is_poll) {
+          choices = <Poll
+                      currentQuestionnaire = {this.props.currentQuestionnaire}
+                      submitAnswer={answer => this.submitAnswer(answer)}
+                      isAnswered={this.state.isAnswered}
+                    />;
+        }
       }
+    } else {
+      return null;
     }
+
     return (
       <div className="question-wrapper">
         <div className="row">

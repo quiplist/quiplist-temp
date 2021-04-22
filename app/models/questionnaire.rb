@@ -4,6 +4,7 @@
 #
 #  id                 :bigint           not null, primary key
 #  correct_answer     :string
+#  is_display         :boolean          default(FALSE)
 #  question           :string
 #  questionnaire_type :integer          default(0)
 #  status             :integer          default(0)
