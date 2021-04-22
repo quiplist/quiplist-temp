@@ -12,7 +12,7 @@ class UsersController < ApplicationController
       @users
     end
 
-    @users = @users.accessible_by(current_ability).sorted
+    @users = @users.sorted
   end
 
   def show
@@ -29,7 +29,7 @@ class UsersController < ApplicationController
       else
         @users
       end
-      @users = @users.accessible_by(current_ability).sorted
+      @users = @users.sorted
       render :index
     end
   end

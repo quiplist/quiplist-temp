@@ -6,7 +6,7 @@ class AdminsController < ApplicationController
   load_and_authorize_resource :admin, except: [:forgot_password, :reset_forgot_password]
 
   def index
-    @admins = @admins.accessible_by(current_ability).sorted
+    @admins = @admins.sorted
   end
 
   def show
@@ -104,7 +104,7 @@ class AdminsController < ApplicationController
     if @admin.save
       redirect_to admin_path(@admin), notice: "Admin #{@admin.full_name} reset password successfully!"
     else
-      @admins = @admins.accessible_by(current_ability).sorted
+      @admins = @admins.sorted
       render :index
     end
   end
@@ -125,7 +125,7 @@ class AdminsController < ApplicationController
   def dashboard
     @events = Event.all
     @events = Event.where(admin: current_admin) if current_admin.admin?
-    @events = @events.accessible_by(current_ability).sorted
+    @events = @events.sorted
   end
 
   # def change_password
