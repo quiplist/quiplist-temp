@@ -11,7 +11,7 @@ class QuestionnaireAction extends React.Component {
           <fieldset>
             <legend>Questionnaire</legend>
             <div className="menti-wrapper">
-              <p className="my-0">Question: {this.props.currentQuestionnaire.question} </p>
+              <p className="my-0 question--fh">Question: {this.props.currentQuestionnaire.question} </p>
               <PlayPausePagination
                 modelName={"questionnaires"}
                 totalRecords={this.props.totalQuestionnaires}

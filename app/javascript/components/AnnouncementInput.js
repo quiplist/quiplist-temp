@@ -99,7 +99,7 @@ class AnnouncementInput extends Component {
             e.preventDefault()
             this.displayAnnouncement()
           }}>
-          <div className="announcement-input chat-input justify-content-end">
+          <div className="announcement-input chat-input justify-content-end py-0">
             <input
               type="submit" value={'Remove'}
               style={{ background : '#eb1e23', border : '1px solid' + '#eb1e23' }}

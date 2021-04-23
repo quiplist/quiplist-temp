@@ -11,7 +11,7 @@ class RaffleAction extends React.Component {
           <fieldset>
           <legend>Raffle</legend>
             <div className="row h-100">
-              <div className="col-sm-12 col-md-6 has-border">
+              <div className="col-sm-12 col-md-6 has-border-fh">
                 <div className="menti-wrapper">
                   {this.props.currentRaffle.map((raffle, index) =>
                     <p key={index}>{raffle.raffle_type_name}: {raffle.prize}</p>
