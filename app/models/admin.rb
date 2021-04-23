@@ -15,16 +15,18 @@
 #  temporary_password :string
 #  created_at         :datetime         not null
 #  updated_at         :datetime         not null
+#  unique_session_id  :string
 #
 # Indexes
 #
-#  index_admins_on_email  (email) UNIQUE
+#  index_admins_on_email              (email) UNIQUE
+#  index_admins_on_unique_session_id  (unique_session_id) UNIQUE
 #
 class Admin < ApplicationRecord
   include ResetPassword
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
-  devise :database_authenticatable, :validatables, :registerable
+  devise :database_authenticatable, :validatables, :registerable, :session_limitable
 
   has_many :approved, foreign_key: "approver_id", class_name: "GuestList"
   has_many :reactions, as: :responder

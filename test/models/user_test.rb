@@ -31,11 +31,13 @@
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
 #  member_id              :string
+#  unique_session_id      :string
 #
 # Indexes
 #
 #  index_users_on_email                 (email) UNIQUE
 #  index_users_on_reset_password_token  (reset_password_token) UNIQUE
+#  index_users_on_unique_session_id     (unique_session_id) UNIQUE
 #
 require 'test_helper'
 

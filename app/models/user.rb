@@ -31,18 +31,20 @@
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
 #  member_id              :string
+#  unique_session_id      :string
 #
 # Indexes
 #
 #  index_users_on_email                 (email) UNIQUE
 #  index_users_on_reset_password_token  (reset_password_token) UNIQUE
+#  index_users_on_unique_session_id     (unique_session_id) UNIQUE
 #
 class User < ApplicationRecord
   include ResetPassword
   # Include default devise modules. Others available are:
   # :recoverable, :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
-         :rememberable, :validatable
+         :rememberable, :validatable, :session_limitable
 
   has_many :guest_lists, dependent: :destroy
   has_many :events, through: :guest_lists
