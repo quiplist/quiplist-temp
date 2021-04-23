@@ -15,11 +15,12 @@ class PlayQuestionnaire extends React.Component {
     return (
       <form
         action="."
+        className="questionnaire--actions"
         onSubmit={e => {
           e.preventDefault()
           this.props.playQuestionnaire(this.props.currentData)
         }}>
-        <input type="submit" />
+        <input type="submit" value=""/>
         {icon}
       </form>
     )

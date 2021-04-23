@@ -10,18 +10,30 @@ class RaffleAction extends React.Component {
         <div className="action-wrapper">
           <fieldset>
           <legend>Raffle</legend>
-            {this.props.currentRaffle.map((raffle, index) =>
-              <p key={index}>{raffle.raffle_type_name}: {raffle.prize}</p>
-            )}
-            <PlayPausePagination
-              modelName={"raffles"}
-              totalRecords={this.props.totalRaffles}
-              pageLimit={1}
-              pageNeighbours={1}
-              currentData={this.props.currentRaffle}
-              currentEvent={this.props.currentEvent}
-              onPageChanged={this.props.onRafflePageChanged}
-            />
+            <div className="row h-100">
+              <div className="col-sm-12 col-md-6 has-border">
+                <div className="menti-wrapper">
+                  {this.props.currentRaffle.map((raffle, index) =>
+                    <p key={index}>{raffle.raffle_type_name}: {raffle.prize}</p>
+                  )}
+                  <PlayPausePagination
+                    modelName={"raffles"}
+                    totalRecords={this.props.totalRaffles}
+                    pageLimit={1}
+                    pageNeighbours={1}
+                    currentData={this.props.currentRaffle}
+                    currentEvent={this.props.currentEvent}
+                    onPageChanged={this.props.onRafflePageChanged}
+                  />
+                </div>
+              </div>
+              <div className="col-sm-12 col-md-6">
+                <p className="mb-3"><b>Winner/s:</b></p>
+                {this.props.currentRaffle.map((raffle, index) =>
+                  <p key={index}>{raffle.raffle_type_name}: </p>
+                )}
+              </div>
+            </div>
           </fieldset>
         </div>
       </div>

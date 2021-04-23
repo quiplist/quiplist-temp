@@ -1535,6 +1535,10 @@ ul.sidebar-list {
 	color: #fff;
 }
 
+.has-border{
+	border-right: 1px solid #000;
+}
+
 .question-wrapper>.row {
 	position: absolute;
 	z-index: 1;
@@ -1627,6 +1631,19 @@ fieldset legend {
 	font-size: 14px;
 	float: none;
 	color: #000;
+}
+
+.questionnaire--actions{
+	position: relative;
+    margin: 0px 10px;
+}
+
+.questionnaire--actions input[type="submit"]{
+	z-index: 2;
+    background: transparent;
+    border: none;
+    position: absolute;
+    width: 100%;
 }
 
 
@@ -2101,9 +2118,22 @@ footer h6 {
 	font-size: 40px;
 }
 
-.action-wrapper i.fas {
+.action-wrapper i.fas,
+.action-wrapper i.far {
     color: #3943ca;
     font-size: 22px;
+}
+
+.action-wrapper i.fas.fa-check-circle,
+.action-wrapper i.far.fa-check-circle{
+	color: #28a745;
+}
+
+.menti-wrapper{
+	display: flex;
+    flex-direction: column;
+    height: 100%;
+    justify-content: space-between;
 }
 
 @media screen and (min-width:1024px) {

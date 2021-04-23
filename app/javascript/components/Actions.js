@@ -176,7 +176,6 @@ class Actions extends React.Component {
             <div className="action-wrapper">
               <fieldset>
                 <legend>Announcement</legend>
-                <p>Input message here: </p>
                 <AnnouncementInput
                 currentEvent = {this.props.currentEvent}
                 currentUser = {this.props.currentUser}

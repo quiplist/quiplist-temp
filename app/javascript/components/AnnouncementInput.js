@@ -71,7 +71,7 @@ class AnnouncementInput extends Component {
 
   render() {
     return (
-      <div>
+      <div className="menti-wrapper">
         <form
           action="."
           onSubmit={e => {
@@ -79,10 +79,11 @@ class AnnouncementInput extends Component {
             this.submitAnnouncement(this.state.message)
             this.setState({ message: '' })
           }}>
-          <div className="announcement-input chat-input mt-3">
+          <div className="announcement-input chat-input">
             <input
               type="text"
               value={this.state.message}
+              placeholder="Enter announcement..."
               onChange={e => this.setState({ message: e.target.value })}
                />
             <input
@@ -98,12 +99,11 @@ class AnnouncementInput extends Component {
             e.preventDefault()
             this.displayAnnouncement()
           }}>
-          <div className="announcement-input chat-input mt-3">
+          <div className="announcement-input chat-input justify-content-end">
             <input
               type="submit" value={'Remove'}
-              style={{ background : this.props.currentEvent.main_mouse_out, border : '1px solid' + this.props.currentEvent.main_mouse_out }}
-              onMouseEnter={event => this.onMouseOver(event)}
-              onMouseOut={event => this.onMouseOut(event)} />
+              style={{ background : '#eb1e23', border : '1px solid' + '#eb1e23' }}
+              />
           </div>
         </form>
       </div>

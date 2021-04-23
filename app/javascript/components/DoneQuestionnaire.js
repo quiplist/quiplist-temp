@@ -9,18 +9,19 @@ class DoneQuestionnaire extends React.Component {
     if (isDone) {
       icon = <i className="fas fa-check-circle mx-1"></i>
     } else {
-      icon = <i className="fas fa-check-circle-o mx-1"></i>
+      icon = <i className="far fa-check-circle mx-1"></i>
     }
 
     return (
       <form
         action="."
+        className="questionnaire--actions"
         onSubmit={e => {
           e.preventDefault()
           this.props.doneQuestionnaire(this.props.currentData)
         }}>
+        <input type="submit" disabled={isDone} value="" /> 
         {icon}
-        <input type="submit" disabled={isDone} /> 
       </form>
     )
   }
