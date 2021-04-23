@@ -3,7 +3,7 @@ class AdminsController < ApplicationController
   #layout 'raffle', only: [:draw_raffles]
 
   before_action :authenticate_admin!, except: [:forgot_password, :reset_forgot_password]
-  load_and_authorize_resource :admin, except: [:forgot_password, :reset_forgot_password]
+  load_and_authorize_resource :admin, except: [:forgot_password, :reset_forgot_password, :profile, :update_profile, :dashboard]
 
   def index
     @admins = @admins.sorted
