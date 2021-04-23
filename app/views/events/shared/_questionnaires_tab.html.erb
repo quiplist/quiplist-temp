@@ -20,14 +20,17 @@
           <td><%= questionnaire.question %></td>
           <td>
             <% questionnaire.choices.each do |choice| %>
-              <%= choice.name %> 
+              <%= choice.name %>
             <% end %>
           </td>
           <td><%= questionnaire.correct_answer %></td>
           <td><%= questionnaire.status_name %></td>
           <td class="actions text-center">
+            <% if can? :show, Questionnaire %>
+              <%= link_to "Show", event_questionnaire_path(event_id: @event.id, id: questionnaire.id), class: 'btn btn-view' %>
+            <% end %>
             <% if can? :update, Questionnaire %>
-              <%= link_to "Edit", edit_event_questionnaire_path(event_id: @event.id, id: questionnaire.id), class: 'btn btn-view' %>
+              <%= link_to "Edit", edit_event_questionnaire_path(event_id: @event.id, id: questionnaire.id), class: 'btn btn-edit' %>
             <% end %>
             <% if (can? :destroy, Questionnaire) %>
               <a class="btn btn-remove" href="#" data-bs-toggle="modal" data-bs-target="#delete-modal-id-<%= questionnaire.id %>">Delete</a>

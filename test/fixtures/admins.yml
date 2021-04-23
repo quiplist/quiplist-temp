@@ -15,10 +15,12 @@
 #  temporary_password :string
 #  created_at         :datetime         not null
 #  updated_at         :datetime         not null
+#  unique_session_id  :string
 #
 # Indexes
 #
-#  index_admins_on_email  (email) UNIQUE
+#  index_admins_on_email              (email) UNIQUE
+#  index_admins_on_unique_session_id  (unique_session_id) UNIQUE
 #
 
 # This model initially had no columns defined. If you add columns to the

@@ -3,10 +3,10 @@ class AdminsController < ApplicationController
   #layout 'raffle', only: [:draw_raffles]
 
   before_action :authenticate_admin!, except: [:forgot_password, :reset_forgot_password]
-  load_and_authorize_resource :admin, except: [:forgot_password, :reset_forgot_password]
+  load_and_authorize_resource :admin, except: [:forgot_password, :reset_forgot_password, :profile, :update_profile, :dashboard]
 
   def index
-    @admins = @admins.accessible_by(current_ability).sorted
+    @admins = @admins.sorted
   end
 
   def show
@@ -104,7 +104,7 @@ class AdminsController < ApplicationController
     if @admin.save
       redirect_to admin_path(@admin), notice: "Admin #{@admin.full_name} reset password successfully!"
     else
-      @admins = @admins.accessible_by(current_ability).sorted
+      @admins = @admins.sorted
       render :index
     end
   end
@@ -124,8 +124,8 @@ class AdminsController < ApplicationController
 
   def dashboard
     @events = Event.all
-    @events = Event.where(admin: current_admin) if current_admin.admin?
-    @events = @events.accessible_by(current_ability).sorted
+    @events = Event.joins(:admin_events).where(admin_events: { admin: @current_user } ) if @current_user.admin?
+    @events = @events.sorted
   end
 
   # def change_password

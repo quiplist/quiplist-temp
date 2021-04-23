@@ -5,6 +5,9 @@ class QuestionnairesController < ApplicationController
   load_and_authorize_resource :event
   load_and_authorize_resource :questionnaire, through: :event
 
+  def show
+  end
+  
   def new
     filler_choices
   end

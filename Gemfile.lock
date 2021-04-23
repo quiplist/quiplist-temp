@@ -105,6 +105,8 @@ GEM
       railties (>= 4.1.0)
       responders
       warden (~> 1.2.3)
+    devise-security (0.15.0)
+      devise (>= 4.3.0, < 5.0)
     dotenv (2.7.6)
     dotenv-rails (2.7.6)
       dotenv (= 2.7.6)
@@ -280,6 +282,7 @@ DEPENDENCIES
   carrierwave (~> 2.0)
   chartkick
   devise
+  devise-security
   dotenv-rails
   faker
   groupdate

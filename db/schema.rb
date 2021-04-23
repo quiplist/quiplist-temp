@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_22_110915) do
+ActiveRecord::Schema.define(version: 2021_04_23_131529) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -46,7 +46,9 @@ ActiveRecord::Schema.define(version: 2021_04_22_110915) do
     t.string "temporary_password"
     t.string "company"
     t.string "position"
+    t.string "unique_session_id"
     t.index ["email"], name: "index_admins_on_email", unique: true
+    t.index ["unique_session_id"], name: "index_admins_on_unique_session_id", unique: true
   end
 
   create_table "announcements", force: :cascade do |t|
@@ -247,8 +249,10 @@ ActiveRecord::Schema.define(version: 2021_04_22_110915) do
     t.string "temporary_password"
     t.integer "abo_type", default: 4
     t.integer "distributor_type", default: 7
+    t.string "unique_session_id"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+    t.index ["unique_session_id"], name: "index_users_on_unique_session_id", unique: true
   end
 
 end
