@@ -124,7 +124,7 @@ class AdminsController < ApplicationController
 
   def dashboard
     @events = Event.all
-    @events = Event.where(admin: current_admin) if current_admin.admin?
+    @events = Event.joins(:admin_events).where(admin_events: { admin: @current_user } ) if @current_user.admin?
     @events = @events.sorted
   end
 

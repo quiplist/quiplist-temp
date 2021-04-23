@@ -5,8 +5,8 @@ class UsersController < ApplicationController
   load_and_authorize_resource :user
 
   def index
-    @users = if current_admin.admin?
-      event_ids = current_admin.events.ids
+    @users = if @current_user.admin?
+      event_ids = @current_user.events.ids
       User.admin_users(event_ids)
     else
       @users
@@ -23,8 +23,8 @@ class UsersController < ApplicationController
     if @user.save
       redirect_to user_path(@user), notice: "User #{@user.full_name} reset password successfully!"
     else
-      @users = if current_admin.admin?
-        event_ids = current_admin.events.ids
+      @users = if @current_user.admin?
+        event_ids = @current_user.events.ids
         User.admin_users(event_ids)
       else
         @users

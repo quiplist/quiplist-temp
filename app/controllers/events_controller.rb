@@ -6,7 +6,7 @@
   load_and_authorize_resource :event
 
   def index
-    @events = Event.where(admin: current_admin) if current_admin.admin?
+    @events = Event.joins(:admin_events).where(admin_events: { admin: @current_user } ) if @current_user.admin?
     @events = @events.sorted
     @event = Event.new
   end
@@ -27,7 +27,7 @@
       redirect_to event_path(@event), notice: "Event #{@event.title} added successfully!"
     else
       @events = Event.all
-      @events = Event.where(admin: current_admin) if current_admin.admin?
+      @events = Event.joins(:admin_events).where(admin_events: { admin: @current_user } ) if @current_user.admin?
       @events = @events.sorted
       @isCreate = true
       render :index
@@ -39,7 +39,7 @@
       redirect_to event_path(@event), notice: "Event #{@event.title} updated successfully!"
     else
       @events = Event.all
-      @events = Event.where(admin: current_admin) if current_admin.admin?
+      @events = Event.joins(:admin_events).where(admin_events: { admin: @current_user } ) if @current_user.admin?
       @events = @events.sorted
       @isUpdate = true
       render :index
