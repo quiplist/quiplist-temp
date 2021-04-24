@@ -726,6 +726,7 @@ div#admins_views {
 	color: #fff;
 	justify-content: center;
 	font-size: 50px;
+	position: relative;
 }
 
 .chat-live-wrapper {
@@ -1520,7 +1521,7 @@ ul.sidebar-list {
 }
 
 .event-wrapper-admin .announcement>.row {
-	left: 11px;
+	left: 12px;
 }
 
 .announcement-input{
@@ -1559,6 +1560,7 @@ ul.sidebar-list {
 
 .question{
 	text-transform: capitalize;
+	font-size: 22px;
 }
 
 .choices input[type="radio"] {
@@ -1570,7 +1572,7 @@ ul.sidebar-list {
 .choices label {
 	display: inline-block;
 	background-color: #ddd;
-	padding: 10px 20px;
+	padding: 5px;
 	font-family: sans-serif, Arial;
 	font-size: 16px;
 	border: 2px solid #444;
@@ -1579,7 +1581,8 @@ ul.sidebar-list {
 	text-transform: capitalize;
 }
 
-.choices input[type="checkbox"]:checked+label {
+.choices input[type="checkbox"]:checked+label,
+.choices input[type="radio"]:checked+label  {
 	background-color: #3943ca;
 	border-color: #3943ca;
 }
@@ -1604,11 +1607,16 @@ ul.sidebar-list {
 }
 
 .answer--show {
-	background-color: #6A3BBD;
-	border-color: #6A3BBD;
-	border-radius: 7px;
-	padding: 5px 30px;
-	margin: 10px 0px;
+    background-color: #6A3BBD;
+    border-color: #6A3BBD;
+    border-radius: 7px;
+    padding: 5px 30px;
+    margin: 0 auto;
+    display: flex;
+    width: fit-content;
+    justify-content: center;
+    text-align: center;
+    font-size: 22px;
 }
 
 .answer h3 {
@@ -2172,6 +2180,10 @@ footer h6 {
 		width: 100%;
 		margin-bottom: 10px;
 	}
+	.no-video-wrapper {
+		font-size: 30px;
+		height: 500px;
+	}
 }
 
 @media (max-width: 768px) {
@@ -2287,7 +2299,7 @@ footer h6 {
 		height: 30px;
 	}
 	.feed .reaction-box {
-		width: max-content;
+		/* width: max-content; */
 		left: 0;
 	}
 	.chat-live-wrapper {
@@ -2301,16 +2313,15 @@ footer h6 {
 	ul.sidebar-list li {
 		text-align: center;
 	}
-	.no-video-wrapper {
-		font-size: 30px;
-		height: 500px;
-	}
 	.no-video-wrapper p {
 		margin: 0px;
 	}
-	.feed {
-		height: 70px;
+	.no-video-wrapper {
+		flex-wrap: wrap;
 	}
+	/* .feed {
+		height: 70px;
+	} */
 	div[data-react-class="FacebookLive"],
 	.fb-wrapper,
 	.fb-video,
@@ -2322,6 +2333,7 @@ footer h6 {
 		position: unset;
 		margin: 0px;
 		border-radius: 0px;
+		padding: 10px 0px;
 	}
 	.answer h3 {
 		margin: 20px 0px;
@@ -2387,6 +2399,19 @@ footer h6 {
 
 	.has-border-fh{
 		border-right: 0;
+	}
+
+	.choices--identification button{
+		width: 100%;
+		margin: 10px 0px !important;
+	}
+
+	.question{
+		font-size: 22px;
+	}
+
+	.no-video-wrapper{
+		height: 100%;
 	}
 }
 
