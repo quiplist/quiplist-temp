@@ -28,9 +28,9 @@ class RaffleAction extends React.Component {
                 </div>
               </div>
               <div className="col-sm-12 col-md-6">
-                <p className="mb-3"><b>Winner/s:</b></p>
+                <p className="mb-3"><b>Winner:</b></p>
                 {this.props.currentRaffle.map((raffle, index) =>
-                  <p key={index}>{raffle.raffle_type_name}: </p>
+                  <p key={index}>{raffle.won} </p>
                 )}
               </div>
             </div>
