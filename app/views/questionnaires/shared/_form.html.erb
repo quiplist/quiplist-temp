@@ -1,0 +1,80 @@
+<div class="row">
+  <div class="col-12 col-lg-2">
+      <h4>Details</h4>
+  </div>
+  <div class="col-12 col-lg-10">
+    <div class="mb-3">
+      <div class="row align-items-end">
+        <div class="col col-lg-6">
+          <label for="questionnaireType">Questionnaire Type</label>
+          <%= f.select :questionnaire_type, Questionnaire::QUESTIONNAIRE_TYPES.invert, {}, { class: 'form-select', id: 'raffle_choices', disabled: disabled } %>
+        </div>
+        <div class="col col-lg-6">
+          <label for="question">Question</label>
+          <%= f.text_field :question, class: 'form-control', placeholder: "Question" %>
+        </div>
+      </div>
+    </div>
+
+    <div class="questionnaire-wrapper">
+      <div class="multiple-choice-wrapper">
+
+        <div id="multiple-choice-or-poll" style="display: none">
+          <div class="col-12 col-lg-2">
+              <label for="choices">Choices</label>
+          </div>
+          <div class="row">
+            <% @questionnaire.choices.take(4).each_with_index do |c, index| %>
+              <div class="col-sm-12 col-md-6 mb-2">
+                  <%= f.fields_for :choices, c do |ff| %>
+                    <%= ff.text_field :name, class: 'form-control', placeholder: "", id: "multiple-choice-or-poll-field"  %>
+                  <% end %>
+              </div>
+            <% end %>
+          </div>
+        </div>
+
+        <div id="yes-or-no" style="display: none">
+          <div class="col-12 col-lg-2">
+              <label for="choices">Choices</label>
+          </div>
+          <div class="row">
+            <% @questionnaire.choices.take(2).each_with_index do |c, index| %>
+              <div class="col-12 col-md-6 mb-2">
+                    <%= f.fields_for :choices, c do |ff| %>
+                      <%= ff.text_field :name, class: 'form-control', placeholder: "", id: "yes-or-no-field"  %>
+                    <% end %>
+              </div>
+            <% end %>
+          </div>
+        </div>
+
+        <div id="select-letters" style="display: none">
+          <div class="col-12 col-lg-2">
+              <label for="choices">Choices</label>
+          </div>
+          <div class="row">
+            <% @questionnaire.choices.each_with_index do |c, index| %>
+              <div class="col-4 col-md-2 mb-2">
+                    <%= f.fields_for :choices, c do |ff| %>
+                      <%= ff.text_field :name, class: 'form-control', placeholder: "", id: "select-letters-field" %>
+                    <% end %>
+              </div>
+            <% end %>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="mb-3">
+      <div class="row">
+        <div class="col col-lg-6">
+          <label for="question">Correct Answer (leave blank if no correct answer)</label>
+          <%= f.text_field :correct_answer, class: 'form-control', placeholder: "Answer" %>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>

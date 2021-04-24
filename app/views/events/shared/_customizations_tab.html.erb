@@ -42,16 +42,10 @@
               </div>
             </div>
           <% end %>
-          <!-- <div class="d-flex justify-content-between align-items-center">
-            <div class="btn-group">
-              <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-              <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-            </div>
-            <small class="text-muted">9 mins</small>
-          </div> -->
         </div>
       </div>
     </div>
+
     <div class="col">
       <div class="card shadow-sm">
         <%= image_tag @event.main_background.url, class: "image-card" %>
@@ -94,16 +88,147 @@
               </div>
             </div>
           <% end %>
-          <!-- <div class="d-flex justify-content-between align-items-center">
-            <div class="btn-group">
-              <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-              <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-            </div>
-            <small class="text-muted">9 mins</small>
-          </div> -->
         </div>
       </div>
     </div>
   </div>
+  <div class="row row-cols-1 row-cols-sm-2 row-cols-md-2 g-2">
+    <div class="col">
+      <div class="card shadow-sm">
+        <h3 class="card-text">Registration Fields</h3>
+        <%= form_for @event, as: :event, url: event_path(@event), method: :put, html: { class: "" } do |f| %>
+          <table class="table hover">
+            <thead>
+              <tr>
+                <th scope="col">Personal Information</th>
+                <th scope="col">Included?</th>
+                <th scope="col">Required?</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>ABO Number</td>
+                <td><%= f.check_box :include_abo_number %></td>
+                <td><%= f.check_box :required_abo_number %></td>
+              </tr>
+              <tr>
+                <td>ABO Type</td>
+                <td><%= f.check_box :include_abo_type %></td>
+                <td><%= f.check_box :required_abo_type %></td>
+              </tr>
+              <tr>
+                <td>AES Number</td>
+                <td><%= f.check_box :include_aes_number %></td>
+                <td><%= f.check_box :required_aes_number %></td>
+              </tr>
+              <tr>
+                <td>Affiliation</td>
+                <td><%= f.check_box :include_affiliation %></td>
+                <td><%= f.check_box :required_affiliation %></td>
+              </tr>
+              <tr>
+                <td>Company</td>
+                <td><%= f.check_box :include_company %></td>
+                <td><%= f.check_box :required_company %></td>
+              </tr>
+              <tr>
+                <td>Contact Number</td>
+                <td><%= f.check_box :include_contact_number %></td>
+                <td><%= f.check_box :required_contact_number %></td>
+              </tr>
+              <tr>
+                <td>Distributor Number</td>
+                <td><%= f.check_box :include_distributor_number %></td>
+                <td><%= f.check_box :required_distributor_number %></td>
+              </tr>
+              <tr>
+                <td>Distributor Type</td>
+                <td><%= f.check_box :include_distributor_type %></td>
+                <td><%= f.check_box :required_distributor_type %></td>
+              </tr>
+              <tr>
+                <td>Employee Number</td>
+                <td><%= f.check_box :include_employee_number %></td>
+                <td><%= f.check_box :required_employee_number %></td>
+              </tr>
+              <tr>
+                <td>Id Number</td>
+                <td><%= f.check_box :include_id_number %></td>
+                <td><%= f.check_box :required_id_number %></td>
+              </tr>
+              <tr>
+                <td>Mailing Address</td>
+                <td><%= f.check_box :include_mailing_address %></td>
+                <td><%= f.check_box :required_mailing_address %></td>
+              </tr>
+              <tr>
+                <td>Member Company</td>
+                <td><%= f.check_box :include_member_company %></td>
+                <td><%= f.check_box :required_member_company %></td>
+              </tr>
+              <tr>
+                <td>Member Id</td>
+                <td><%= f.check_box :include_member_id %></td>
+                <td><%= f.check_box :required_member_id %></td>
+              </tr>
+              <tr>
+                <td>Member Type</td>
+                <td><%= f.check_box :include_member_type %></td>
+                <td><%= f.check_box :required_member_type %></td>
+              </tr>
+              <tr>
+                <td>Upline</td>
+                <td><%= f.check_box :include_upline %></td>
+                <td><%= f.check_box :required_upline %></td>
+              </tr>
+              <tr>
+                <td>Who Invited You?</td>
+                <td><%= f.check_box :include_who_invited_you %></td>
+                <td><%= f.check_box :required_who_invited_you %></td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="col-sm-2">
+            <%= submit_tag "Save", class: "btn btn-submit" %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+
+    <div class="col">
+      <div class="card shadow-sm">
+        <h3 class="card-text">Registration Fields - Drop down</h3>
+        <%= form_for @event, as: :event, url: event_path(@event), method: :put, html: { class: "" } do |f| %>
+          <table class="table hover">
+            <thead>
+              <tr>
+                <th scope="col">Personal Information</th>
+                <th scope="col">With Guest?</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Member Type</td>
+                <td><%= f.check_box :with_guest_member_type %></td>
+              </tr>
+              <tr>
+                <td>ABO Type</td>
+                <td><%= f.check_box :with_guest_abo_type %></td>
+              </tr>
+              <tr>
+                <td>Distributor Type</td>
+                <td><%= f.check_box :with_guest_distributor_type %></td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="col-sm-2">
+            <%= submit_tag "Save", class: "btn btn-submit" %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+
+
 
 </div>

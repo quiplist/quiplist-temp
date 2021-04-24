@@ -14,22 +14,44 @@
   </head>
 
   <body>
-    <nav class="navbar navbar-expand-lg navbar-light home-navbar  ">
-        <div class="container-fluid">
-          <a class="navbar-brand" href="/">
-            <!-- <img src="assets/img/logo.png" class="img-fluid"> -->
-          </a>
+    <nav class="navbar navbar-expand-lg home-navbar">
+      <div class="container-fluid">
+        <div class="row w-100 align-items-center">
+          <div class="col-3 col-md-4 col-lg-1">
+            <a class="navbar-brand" href="/">
+              <%= image_tag "white-logo.png", class: "img-fluid" %>
+            </a>
+          </div>
+          <div class="col-9 col-md-8 col-lg-11 text-end">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+              <i class="fas fa-bars"></i>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+              <ul class="navbar-nav w-100 justify-content-end">
+                <li class="nav-item">
+                  <%= link_to "About Us", about_us_path, class:"nav-link" %>
+                </li>
+                <li class="nav-item">
+                  <%= link_to "Contact Us", contact_us_path, class:"nav-link" %>
+                </li>
+              </ul>
+            </div>
+          </div>
         </div>
+      </div>
     </nav>
-    <!-- <div class="overlap_top-bg">
-      <%#= image_tag "SITE BG.jpg", class: "img-fluid" %>
-      <img src="assets/img/top.png" alt="top" class="img-fluid"></img>
-    </div> -->
+
     <%= yield %>
-    <!--<div class="overlap_bottom-bg">
-      <%#= image_tag "bottom.png", class: "img-fluid" %>
-      <img src="assets/img/bottom.png" alt="bottom" class="img-fluid"></img>
-    </div> -->
+
+    <footer class="footer">
+        <div class="container">
+            <div class="row justify-content-center text-center py-2">
+                <div class="col">
+                    <h6>©2020 Quiplist Events Production Inc. All rights reserved</h6>
+                </div>
+            </div>
+        </div>
+    </footer>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <!-- Popper.JS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>

@@ -20,6 +20,8 @@ class Raffle < ApplicationRecord
   belongs_to :event
   belongs_to :winner, class_name: 'GuestList', foreign_key: 'guest_list_id', optional: true
 
+  default_scope { order("created_at ASC") }
+
   RANDOM_NAMES = 0
   SPIN_WHEEL = 1
   LOTTO = 2
@@ -39,6 +41,9 @@ class Raffle < ApplicationRecord
     ONGOING => "On going",
     DONE => "Done"
   }
+
+  validates :raffle_type, presence: true
+  validates :prize, presence: true
 
   scope :queued, -> { where(status: QUEUED) }
   scope :ongoing, -> { where(status: ONGOING) }

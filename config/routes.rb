@@ -6,29 +6,41 @@ Rails.application.routes.draw do
   get '/events/:event_code/thank_you', to: 'home#thank_you', as: :thank_you
   get '/events/:event_code/denied', to: 'home#denied', as: :denied
   get '/find_event', to: 'home#find_event', as: :find_event
+  get '/profile', to: 'home#profile', as: :profile
+  put '/profile', to: 'home#update_profile', as: :update_profile
+  get '/forgot_password', to: 'home#forgot_password', as: :forgot_password
+  post '/reset_password', to: 'home#reset_password', as: :reset_password
+  get '/contact_us', to: 'home#contact_us', as: :contact_us
+  get '/about_us', to: 'home#about_us', as: :about_us
 
   scope 'admins' do
+    get '/forgot_password', to: 'admins#forgot_password', as: :admin_forgot_password
+    post '/forgot_password', to: 'admins#reset_forgot_password', as: :admin_reset_password
+    get '/dashboard', to: 'admins#dashboard', as: :admin_dashboard
     resources :events, except: [:new, :edit] do
       put :upload_brochure, to: 'events#upload_brochure', on: :member
-      get :draw_raffles, to: 'events#draw_raffles', on: :member
-      put :draw_winner, to: 'events#draw_winner', on: :member
+      get :launch, to: 'events#launch', on: :member
 
       resources :guest_lists do
         post :set_status, on: :collection
-        post :batch_approved, on: :collection
-        post :batch_denied, on: :collection
         post :set_raffle_status, on: :collection
-        post :batch_eligible, on: :collection
-        post :batch_not_eligible, on: :collection
         get :reset_raffle_statuses, on: :collection
         get :download_csv, on: :collection
       end
-      # resources :raffles
-      # resources :questionnaires
+      resources :raffles, except: [:index]
+      resources :questionnaires, except: [:index]
     end
     resources :admins do
       post :create_admin_events, on: :member
       delete :destroy_admin_events, on: :member
+      put :reset_password, on: :member
+      get :profile, on: :collection
+      put :profile, to: 'admins#update_profile', on: :collection
+      get :change_password, on: :collection
+      put :change_password, to: 'admins#update_password', on: :collection
+    end
+    resources :users, except: [:new, :edit, :create, :update, :destroy] do
+      put :reset_password, on: :member
     end
   end
 
@@ -38,8 +50,13 @@ Rails.application.routes.draw do
         delete :destroy, on: :collection
       end
       resources :chats, only: [:index, :create]
+      resources :announcements, only: [:index, :create, :update]
       get '/fetch_current_user', to: 'users#fetch_current_user', as: :fetch_current_user
       resources :events, only: [:show]
+      resources :raffles, only: [:index, :show, :update]
+      resources :questionnaires, only: [:update]
+      resources :guest_lists, only: [:index]
+      resources :answers, only: [:create]
       #get '/fetch_current_event/:event_code', to: 'events#fetch_current_event', as: :fetch_current_event
     end
   end
@@ -51,7 +68,11 @@ Rails.application.routes.draw do
   #   get 'sign_out', to: 'devise/sessions#destroy'
   #   #root to: 'devise/sessions#new', as: 'authenticated_user_root'
   # end
-  devise_for :admins
+  devise_for :admins, controllers: { sessions: 'admins/sessions' }, :skip => [:registrations]
+    as :admin do
+    get 'admins/edit' => 'admins/registrations#edit', :as => 'edit_admin_registration'
+    put 'admins' => 'admins/registrations#update', :as => 'admin_registration'
+  end
   # devise_for :employees, path: 'dashboard/employees', skip: [:sessions]
   # as :employee do
   #   get 'login', to: 'devise/sessions#new', as: :new_app_account_session

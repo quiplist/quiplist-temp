@@ -10,52 +10,96 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.css">
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.23/css/jquery.dataTables.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.css"/>
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/searchpanes/1.2.2/css/searchPanes.dataTables.css"/>
+
   </head>
 
   <body>
-    <div class="wrapper">
-      <nav id="sidebar">
-        <div class="sidebar-header">
-          <%= image_tag "white-logo.png", class: "img-fluid" %>
+    <div class="sidebar_wrapper">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-2 px-0">
+                    <div class="sidebar">
+                        <div class="sidebar--box">
+                          <%= image_tag "white-logo.png", class: "img-fluid" %>
+                        </div>
+                        <ul class="px-3 sidebar-list">
+                          <li>
+                            <% if can? :index, Event %>
+                              <%= link_to admin_dashboard_path do %>
+                                <i class="fas fa-desktop"></i>
+                                <span>Dashboard</span>
+                              <% end %>
+                            <% end %>
+                          </li>
+                            <li>
+                              <% if can? :index, Event %>
+                                <%= link_to events_path do %>
+                                  <i class="fas fa-calendar-alt"></i>
+                                  <span>Events</span>
+                                <% end %>
+                              <% end %>
+                            </li>
+                            <li>
+                              <% if can? :index, Admin %>
+                                <%= link_to admins_path do %>
+                                  <i class="fas fa-users"></i>
+                                  <span>Admins</span>
+                                <% end %>
+                              <% end %>
+                            </li>
+                            <li>
+                              <% if can? :index, User %>
+                                <%= link_to users_path do %>
+                                  <i class="fas fa-user-plus"></i>
+                                  <span>Client</span>
+                                <% end %>
+                              <% end %>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-10 px-0">
+                    <div class="topbar">
+                        <div class="profile-wrapper text-end">
+                            <%= image_tag "user.png", class: "img-fluid" %>
+                            <div class="name_wrapper text-start">
+                                <% if current_admin %>
+                                <h2 class="user_name"><%= current_admin.full_name %></h2>
+                                <h3 class="user_title"><%= current_admin.role_name %></h3>
+                                <% end %>
+                            </div>
+                            <div class="user_dropdown_wrapper">
+                              <i class="fas fa-chevron-down"></i>
+                              <div class="user_dropdown">
+                                <ul>
+                                  <li><%= link_to "Profile", profile_admins_path %></li>
+                                  <li><%= link_to "Change password", edit_admin_registration_path %></li>
+                                  <hr class="my-0"/>
+                                  <li>
+                                    <% if current_admin %>
+                                      <%= link_to destroy_admin_session_path, id: "logout" do %>
+                                        Logout
+                                      <% end %>
+                                    <% end %>
+                                  </li>
+                                </ul>
+                              </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="content pb-0">
+                        <%= yield %>
+                        <div class="footer">
+                          <p>©2020 Quiplist Events Production Inc. All rights reserved.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="logged-in_wrapper">
-          <% if current_admin %>
-          <h2 class="user_name"><%= current_admin.full_name %></h2>
-          <h6 class="user_role"><%= current_admin.role_name %></h6>
-          <% end %>
-        </div>
-        <ul class="list-unstyled components">
-          <li>
-            <% if can? :index, Event %>
-              <%= link_to "Events", events_path %>
-            <% end %>
-          </li>
-          <li>
-            <% if can? :index, Admin %>
-              <%= link_to "Admins", admins_path %>
-            <% end %>
-          </li>
-          <li>
-            <% if current_admin %>
-              <%= link_to destroy_admin_session_path, class: 'nav-link', id: "logout" do %>
-                Logout
-              <% end %>
-            <% end %>
-          </li>
-        </ul>
-      </nav>
-      <div id="content">
-        <!-- <nav class="navbar navbar-expand-lg navbar-light bg-light">
-          <div class="container-fluid">
-            <button type="button" id="sidebarCollapse" class="btn btn-collapse">
-            <i class="fas fa-align-left"></i>
-            </button>
-          </div>
-        </nav> -->
-        <%= yield %>
-      </div>
     </div>
+
 
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <!-- Popper.JS -->
@@ -65,7 +109,10 @@
     <!-- FontAwesome -->
     <script src="https://kit.fontawesome.com/3a36b194f0.js" crossorigin="anonymous"></script><!-- jQuery Custom Scroller CDN -->
     <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.concat.min.js"></script> -->
-    <!-- <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.23/js/jquery.dataTables.js"></script> -->
+
+    <script type="text/javascript" src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/searchpanes/1.2.2/js/dataTables.searchPanes.js"></script>
+
     <!-- Swal JS -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
@@ -81,6 +128,13 @@
               $('a[aria-expanded=true]').attr('aria-expanded', 'false');
           });
       });
+    </script> -->
+    <!-- <script type='text/javascript'>
+
+      $(document).ready(function() {
+          $('.data-table').DataTable();
+      } );
+
     </script> -->
   </body>
 </html>

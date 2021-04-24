@@ -1,0 +1,44 @@
+<%= render partial: "layouts/shared/breadcrumbs", locals: {
+  links: [],
+  current_path: "Clients"
+} %>
+<div class="container content-wrapper">
+  <%= render partial: "layouts/shared/success_messages", locals: { messages: flash[:notice] } %>
+  <%= render partial: "layouts/shared/alert_messages", locals: { messages: flash[:alert] } %>
+  <div class="row">
+    <div class="col col-lg-12">
+      <table id="user_list" class="table user-data-table hover">
+        <thead>
+          <tr>
+            <th>Full Name</th>
+            <th>Email Address</th>
+            <th>Reset Password</th>
+            <th>Temporary Password</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @users.each do |user| %>
+            <tr>
+              <td><%= user.full_name %></td>
+              <td><%= user.email %></td>
+              <td><%= user.reset_password %></td>
+              <td><%= user.temporary_password %></td>
+              <td class="actions">
+                <% if can? :edit, User %>
+                  <%= form_for user, as: :user, url: reset_password_user_path(user), method: :put, html: { class: "", multipart: true } do |f| %>
+                    <%= submit_tag "Reset Password", class: "btn btn-reset" %>
+                  <% end %>
+                <% end %>
+
+                <% if can? :show, User %>
+                <%= link_to "Show", user_path(user), class: 'btn btn-view' %>
+                <% end %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

@@ -1,8 +1,12 @@
+<%= render partial: "layouts/shared/breadcrumbs", locals: {
+  links: [{ path: events_path, path_name: "Events" }],
+  current_path: "#{@event.id}"
+} %>
 <div class="container content-wrapper">
   <div class="row event-wrapper-admin">
     <%= render partial: "layouts/shared/success_messages", locals: { messages: flash[:notice] } %>
     <%= render partial: "layouts/shared/alert_messages", locals: { messages: flash[:alert] } %>
-    <div class="col col-md-3 col-lg-2">
+    <div class="col col-sm-12 col-md-3 col-lg-2">
       <%= form_for @event, as: :event, url: upload_brochure_event_path(@event), method: :put, html: { class: "upload_wrapper mb-3", multipart: true } do |f| %>
         <label for="event_brochure" class="event_brochure_btn">
           <i class="fas fa-upload"></i>Upload<br/>Event Cover Here
@@ -10,12 +14,9 @@
         </label>
       <% end %>
     </div>
-    <div class="col col-md-9 col-lg-10 text-start">
+    <div class="col col-sm-12 col-md-9 col-lg-10 text-start">
       <h2 class="event_title"><%= @event.title %></h2>
       <span class="event_status"><%= @event.status_name %></span>
-      <% if can? :manage, Raffle %>
-        <%= link_to "Raffle Draw", draw_raffles_event_path(@event), class: "btn btn-edit btn-lg event_raffle", target: :_blank %>
-      <% end %>
       <h5 class="event_code"><%= @event.event_code %></h5>
 
       <p class="event_description">
@@ -48,6 +49,13 @@
       </div>
     </div>
   </div>
+  <div class="row text-start mt-3">
+    <div class="col">
+        <% if can? :manage, Event %>
+          <%= link_to "Go to Event", launch_event_path(@event), class: "btn btn-edit btn-lg event_raffle event--live", target: :_blank %>
+        <% end %>
+    </div>
+  </div>
   <div class="row">
     <div class="col col-lg-12">
       <hr/>
@@ -60,6 +68,12 @@
           <% if can? :index, GuestList %>
             <a class="nav-link active" id="nav-users-tab" data-bs-toggle="tab" href="#nav-users" role="tab" aria-controls="nav-users" aria-selected="true">GUEST LIST</a>
           <% end %>
+          <% if (can? :index, Raffle) %>
+            <a class="nav-link" id="nav-raffles-tab" data-bs-toggle="tab" href="#nav-raffles" role="tab" aria-controls="nav-raffles" aria-selected="true">RAFFLES</a>
+          <% end %>
+          <% if (can? :index, Questionnaire) %>
+            <a class="nav-link" id="nav-questionnaires-tab" data-bs-toggle="tab" href="#nav-questionnaires" role="tab" aria-controls="nav-questionnaires" aria-selected="true">QUESTIONNAIRES</a>
+          <% end %>
           <% if (can? :update, Event) && current_admin.super_admin? %>
             <a class="nav-link" id="nav-customizations-tab" data-bs-toggle="tab" href="#nav-customizations" role="tab" aria-controls="nav-customizations" aria-selected="true">CUSTOMIZE EVENT</a>
           <% end %>
@@ -68,6 +82,12 @@
       <div class="tab-content" id="nav-tabContent">
         <% if can? :index, GuestList %>
           <%= render partial: "events/shared/guest_lists_tab" %>
+        <% end %>
+        <% if can? :index, Raffle %>
+          <%= render partial: "events/shared/raffles_tab" %>
+        <% end %>
+        <% if can? :index, Questionnaire %>
+          <%= render partial: "events/shared/questionnaires_tab" %>
         <% end %>
         <% if (can? :update, Event) && current_admin.super_admin? %>
           <%= render partial: "events/shared/customizations_tab" %>

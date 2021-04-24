@@ -1,24 +1,16 @@
 class AdminsController < ApplicationController
-  layout 'admin'
+  layout 'admin', except: [:forgot_password, :reset_forgot_password]
   #layout 'raffle', only: [:draw_raffles]
 
-  before_action :authenticate_admin!
-  load_and_authorize_resource :admin
+  before_action :authenticate_admin!, except: [:forgot_password, :reset_forgot_password]
+  load_and_authorize_resource :admin, except: [:forgot_password, :reset_forgot_password, :profile, :update_profile, :dashboard]
 
   def index
-    page = params[:page] || 1
-    per_page = params[:per_page] || 10
-    search = params[:search]
-    @admins = @admins.search(search) if search.present?
-    @admins = @admins.accessible_by(current_ability).sorted.page(page).per(per_page)
+    @admins = @admins.sorted
   end
 
   def show
-    page = params[:page] || 1
-    per_page = params[:per_page] || 10
-    search = params[:search]
-    @admin_events = @admin.admin_events
-    @admin_events = @admin_events.page(page).per(per_page)
+    @admin_events = AdminEvent.where(admin: @admin)
     @admin_event = @admin.admin_events.new
     ids = @admin.events.ids
     @events = Event.where.not(id: ids)
@@ -34,12 +26,6 @@ class AdminsController < ApplicationController
     if @admin.save
       redirect_to admin_path(@admin), notice: "admin #{@admin.full_name} added successfully!"
     else
-      # page = params[:page] || 1
-      # per_page = params[:per_page] || 10
-      # search = params[:search]
-      # @admins = Admin.sorted
-      # @admins = @admins.search(search) if search.present?
-      # @admins = @admins.accessible_by(current_ability).sorted.page(page).per(per_page)
       render :new
     end
   end
@@ -51,11 +37,7 @@ class AdminsController < ApplicationController
     if @admin.update_attributes admin_params
       redirect_to admin_path(@admin), notice: "Admin #{@admin.full_name} updated successfully!"
     else
-      page = params[:page] || 1
-      per_page = params[:per_page] || 10
-      search = params[:search]
       @admin_events = @admin.admin_events
-      @admin_events = @admin_events.page(page).per(per_page)
       @admin_event = @admin.admin_events.new
       @events = Event.all
       render :edit
@@ -81,11 +63,7 @@ class AdminsController < ApplicationController
     if @admin_event.save
       redirect_to admin_path(@admin), notice: "Event #{@admin_event.event.title} added successfully to #{@admin.full_name}!"
     else
-      page = params[:page] || 1
-      per_page = params[:per_page] || 10
-      search = params[:search]
       @admin_events = @admin.admin_events
-      @admin_events = @admin_events.page(page).per(per_page)
       @admin_event = @admin.admin_events.new
       ids = @admin.events.ids
       @events = Event.where.not(id: ids)
@@ -99,12 +77,80 @@ class AdminsController < ApplicationController
     redirect_to admin_path(@admin), notice: "Admin Event deleted successfully!"
   end
 
+  def forgot_password
+    @admin = Admin.new
+    render layout: "no_layout"
+  end
+
+  def reset_forgot_password
+    @admin = Admin.find_by(email: params[:admin][:email])
+    if @admin.nil?
+      @admin = Admin.new
+      flash.now[:alert] = 'Invalid email'
+      render :forgot_password, layout: "no_layout"
+    else
+      @admin = @admin.generate_temporary_password
+      if @admin.save
+        redirect_to new_admin_session_path, notice: "Admin #{@admin.full_name} reset password successfully!"
+      else
+        @admin = Admin.new
+        render :forgot_password, layout: "no_layout"
+      end
+    end
+  end
+
+  def reset_password
+    @admin = @admin.generate_temporary_password
+    if @admin.save
+      redirect_to admin_path(@admin), notice: "Admin #{@admin.full_name} reset password successfully!"
+    else
+      @admins = @admins.sorted
+      render :index
+    end
+  end
+
+  def profile
+    @admin = @current_admin
+  end
+
+  def update_profile
+    @admin = @current_admin
+    if @admin.update_attributes admin_params
+      redirect_to profile_admins_path, notice: "Profile updated successfully!"
+    else
+      render :profile
+    end
+  end
+
+  def dashboard
+    @events = Event.all
+    @events = Event.joins(:admin_events).where(admin_events: { admin: @current_user } ) if @current_user.admin?
+    @events = @events.sorted
+  end
+
+  # def change_password
+  #   @admin = @current_admin
+  # end
+  #
+  # def update_password
+  #   @admin = @current_admin
+  #   if @admin.update_attributes admin_params
+  #     redirect_to profile_admins_path, notice: "Profile updated successfully!"
+  #   else
+  #     render :profile
+  #   end
+  # end
+
   private
 
   def admin_params
     params.require(:admin).permit(:email, :password, :password_confirmation, :contact_number,
-      :full_name, :member_id, :member_type, :affiliation, :role, access_rights_attributes: [:id, :name, :privilege])
+      :full_name, :position, :company, :role, access_rights_attributes: [:id, :name, :privilege])
   end
+
+  # def change_password_params
+  #   params.require(:admin).permit(:current_password, :password, :password_confirmation)
+  # end
 
   def admin_events_params
     params.require(:admin_event).permit(:event_id, :admin_id)

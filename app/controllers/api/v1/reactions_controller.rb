@@ -1,10 +1,17 @@
 class Api::V1::ReactionsController < Api::ApplicationController
 
   def create
-    @reaction = Reaction.find_or_initialize_by(responder_id: reaction_params[:responder_id], responder_type: reaction_params[:responder_type], event_id: reaction_params[:event_id])
-    @reaction.emotion = reaction_params[:emotion]
-    @reaction.save
-    render json: @reaction, adapter: :json
+    @reaction = Reaction.new(reaction_params)
+    if @reaction.save
+      @chat = Chat.new(sender_id: @reaction.responder_id, sender_type: @reaction.responder_type,
+        event_id: @reaction.event_id, message: @reaction.message, chat_type: Chat::REACTION)
+      if @chat.save
+          puts "successfully saved a chat!"
+          EventsChannel.broadcast_to(@event, ActiveModelSerializers::SerializableResource.new(@chat).as_json)
+      end
+    end
+
+    render json: @chat
   end
 
   def destroy

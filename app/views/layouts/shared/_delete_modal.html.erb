@@ -9,9 +9,9 @@
         Are you sure want to delete <%= name %>?
       </div>
       <div class="modal-footer">
-        <%= form_tag path, method: :delete do %>
+        <%= form_tag path, method: :delete do%>
           <%= submit_tag "Delete", class: "btn btn-remove" %>
-          <button type="button" class="btn btn-default" data-bs-dismiss="modal">Cancel</button>
+          <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Cancel</button>
         <% end %>
       </div>
     </div>

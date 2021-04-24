@@ -34,7 +34,7 @@ class ChatInput extends Component {
                 placeholder={'Enter message...'}
                 value={this.state.message}
                 onChange={e => this.setState({ message: e.target.value })}
-                style={{ borderBottom: '2px solid' + this.props.mouseOut }} />
+                 />
               <input
                 type="submit" value={'Send'}
                 style={{ background : this.props.mouseOut, border : '1px solid' + this.props.mouseOut }}

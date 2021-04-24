@@ -3,25 +3,30 @@
 # Table name: admins
 #
 #  id                 :bigint           not null, primary key
-#  affiliation        :string
+#  company            :string
 #  contact_number     :string
 #  email              :string           default(""), not null
 #  encrypted_password :string           default(""), not null
 #  full_name          :string
-#  member_type        :integer          default(0)
+#  position           :string
+#  profile_image      :string
+#  reset_password     :boolean          default(FALSE)
 #  role               :integer          default(2)
+#  temporary_password :string
 #  created_at         :datetime         not null
 #  updated_at         :datetime         not null
-#  member_id          :string
+#  unique_session_id  :string
 #
 # Indexes
 #
-#  index_admins_on_email  (email) UNIQUE
+#  index_admins_on_email              (email) UNIQUE
+#  index_admins_on_unique_session_id  (unique_session_id) UNIQUE
 #
 class Admin < ApplicationRecord
+  include ResetPassword
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
-  devise :database_authenticatable, :validatables
+  devise :database_authenticatable, :validatables, :registerable, :session_limitable
 
   has_many :approved, foreign_key: "approver_id", class_name: "GuestList"
   has_many :reactions, as: :responder
@@ -29,6 +34,9 @@ class Admin < ApplicationRecord
   has_many :admin_events, dependent: :destroy
   has_many :events, through: :admin_events
   has_many :access_rights, dependent: :destroy
+  has_many :announcements, dependent: :destroy
+
+  mount_uploader :profile_image, ProfileImageUploader
 
   accepts_nested_attributes_for :access_rights
 
@@ -40,21 +48,8 @@ class Admin < ApplicationRecord
     ADMIN => "Admin"
   }
 
-  NON_MEMBER = 0
-  MEMBER = 1
-
-  MEMBER_TYPES = {
-    NON_MEMBER => "Non Member",
-    MEMBER => "Member"
-  }
-
-
   validates :email, presence: true, uniqueness: true
   validates :full_name, presence: true
-  validates :contact_number, presence: true
-  validates :member_type, presence: true
-  validates :member_id, presence: { message: "Id can't be blank" }, if: :member?
-  validates :affiliation, presence: true
 
   scope :super_admin, -> { where(role: SUPER_ADMIN) }
   scope :admin, -> { where(role: ADMIN) }
@@ -74,18 +69,6 @@ class Admin < ApplicationRecord
 
   def admin?
     role == ADMIN
-  end
-
-  def member_name
-    MEMBER_TYPES[member_type]
-  end
-
-  def member?
-    member_type == MEMBER
-  end
-
-  def non_member?
-    member_type == NON_MEMBER
   end
 
   def self.last_super_admin?

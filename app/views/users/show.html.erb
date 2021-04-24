@@ -1,0 +1,128 @@
+<%= render partial: "layouts/shared/breadcrumbs", locals: {
+  links: [{ path: users_path, path_name: "Clients" }],
+  current_path: "#{@user.id}"
+} %>
+<div class="container content-wrapper">
+   <%= render partial: "layouts/shared/success_messages", locals: { messages: flash[:notice] } %>
+   <%= render partial: "layouts/shared/alert_messages", locals: { messages: flash[:alert] } %>
+   <div class="row">
+      <div class="col-12 text-start">
+         <h2 class="event_title mb-0"><%= @user.full_name %></h2>
+         <hr/>
+      </div>
+   </div>
+   <div class="row text-start mb-3 mx-3">
+      <div class="col-sm-12 col-lg-4">
+         <div class="user_wrapper">
+            <span class="mr-3"><i class="far fa-id-card"><strong>ID Number:</strong></i></span><br>
+            <span class="user_detail"><%= @user.id_number %></span>
+         </div>
+      </div>
+      <div class="col-sm-12 col-lg-4">
+         <div class="user_wrapper">
+            <span class="mr-3"><i class="far fa-id-card"><strong>Employee Number:</strong></i></span><br>
+            <span class="user_detail"><%= @user.employee_number %></span>
+         </div>
+      </div>
+      <div class="col-sm-12 col-lg-4">
+         <div class="user_wrapper">
+            <span class="mr-3"><i class="fas fa-mobile"><strong>Contact Number:</strong></i></span><br>
+            <span class="user_detail"><%= @user.contact_number %></span>
+         </div>
+      </div>
+   </div>
+   <div class="row text-start mb-3 mx-3">
+      <div class="col-sm-12 col-lg-4">
+         <div class="user_wrapper">
+            <span class="mr-3"><i class="fas fa-building"><strong>Company:</strong></i></span><br>
+            <span class="user_detail"><%= @user.company %></span>
+         </div>
+      </div>
+      <div class="col-sm-12 col-lg-4">
+         <div class="user_wrapper">
+            <span class="mr-3"><i class="fas fa-envelope"><strong>Email Address:</strong></i></span><br>
+            <span class="user_detail"><%= @user.email %></span>
+         </div>
+      </div>
+      <div class="col-sm-12 col-lg-4">
+         <div class="user_wrapper">
+            <span class="mr-3"><i class="fas fa-map-pin"><strong>Mailing Address:</strong></i></span><br>
+            <span class="user_detail"><%= @user.mailing_address %></span>
+         </div>
+      </div>
+   </div>
+   <div class="row text-start mb-3 mx-3">
+      <div class="col-sm-12 col-lg-4">
+         <div class="user_wrapper">
+            <span class="mr-3"><i class="fas fa-users"><strong>Affiliation:</strong></i></span><br>
+            <span class="user_detail"><%= @user.affiliation %></span>
+         </div>
+      </div>
+      <div class="col-sm-12 col-lg-4">
+         <div class="user_wrapper">
+            <span class="mr-3"><i class="fas fa-user-friends"><strong>Upline:</strong></i></span><br>
+            <span class="user_detail"><%= @user.upline %></span>
+         </div>
+      </div>
+   </div>
+   <div class="row text-start mb-3 mx-3">
+        <div class="col-sm-12 col-lg-4">
+            <div class="user_wrapper">
+                <span class="mr-3"><i class="far fa-id-card"><strong>Member Id:</strong></i></span><br>
+                <span class="user_detail"><%= @user.member_id %></span>
+            </div>
+        </div>
+      <div class="col-sm-12 col-lg-4">
+         <div class="user_wrapper">
+            <span class="mr-3"><i class="fas fa-users"><strong>Member Type:</strong></i></span><br>
+            <span class="user_detail"><%= @user.member_name %></span>
+         </div>
+      </div>
+      <div class="col-sm-12 col-lg-4">
+         <div class="user_wrapper">
+            <span class="mr-3"><i class="fas fa-building"><strong>Member Company:</strong></i></span><br>
+            <span class="user_detail"><%= @user.member_company %></span>
+         </div>
+      </div>
+   </div>
+   <div class="row text-start mb-3 mx-3">
+      <div class="col-sm-12 col-lg-4">
+         <div class="user_wrapper">
+            <span class="mr-3"><i class="far fa-id-card"><strong>ABO Number:</strong></i></span><br>
+            <span class="user_detail"><%= @user.abo_number %></span>
+         </div>
+      </div>
+      <div class="col-sm-12 col-lg-4">
+         <div class="user_wrapper">
+            <span class="mr-3"><i class="far fa-id-card"><strong>ABO Type:</strong></i></span><br>
+            <span class="user_detail"><%= @user.abo_type_name %></span>
+         </div>
+      </div>
+      <div class="col-sm-12 col-lg-4">
+         <div class="user_wrapper">
+            <span class="mr-3"><i class="far fa-id-card"><strong>AES Number:</strong></i></span><br>
+            <span class="user_detail"><%= @user.aes_number %></span>
+         </div>
+      </div>
+   </div>
+   <div class="row text-start mb-3 mx-3">
+      <div class="col-sm-12 col-lg-4">
+         <div class="user_wrapper">
+            <span class="mr-3"><i class="far fa-id-card"><strong>Distributor Number:</strong></i></span><br>
+            <span class="user_detail"><%= @user.distributor_number %></span>
+         </div>
+      </div>
+      <div class="col-sm-12 col-lg-4">
+         <div class="user_wrapper">
+            <span class="mr-3"><i class="far fa-user-friends"><strong>Distributor Type:</strong></i></span><br>
+            <span class="user_detail"><%= @user.distributor_type_name %></span>
+         </div>
+      </div>
+      <div class="col-sm-12 col-lg-4">
+         <div class="user_wrapper">
+            <span class="mr-3"><i class="fas fa-user"><strong>Who invited you?</strong></i></span><br>
+            <span class="user_detail"><%= @user.who_invited_you? %></span>
+         </div>
+      </div>
+   </div>
+</div>

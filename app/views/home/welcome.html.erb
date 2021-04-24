@@ -1,33 +1,60 @@
-<div class="container-fluid event-wrapper">
-    <div class="row event-box text-center">
-        <div class="col col-lg-12">
-            <h1>Welcome!</h1>
-            <% if alert %>
-              <p class="alert alert-danger"><%= alert %></p>
-            <% end %>
-            <%= form_tag(find_event_path, { method: :get, class: "text-center"}) do %>
-                <div class="mb-3">
-                    <%= text_field_tag :event_code, nil, class: 'form-control mt-3 mb-2', id: "eventCode", placeholder: "Event Code" %>
-                    <label for="eventCode">Please enter your unique code here. This code is exclusive and
-                        can only be used once and during the event phase only.
-                        Sharing this code may cost you to lose your event access.
-                    </label>
-                </div>
-                <div class="row justify-content-end align-items-center mt-3">
-                    <div class="col-9 text-start">
-                        <div class="form-check px-0">
-                            <input type="checkbox" id="terms">
-                            <label class="form-check-label px-1" for="terms">
-                                I agree to the Terms of Service
-                                and Privacy Policy.
-                            </label>
-                        </div>
-                    </div>
-                    <div class="col-3 text-end">
-                        <button type="submit" class="btn btn-event-code" disabled>Join</button>
-                    </div>
-                </div>
-            <% end %>
+<div class="home">
+   <section id="section1">
+      <div id="sliderIndicators" class="carousel slide" data-bs-ride="carousel">
+         <div class="carousel-inner">
+            <div class="carousel-item active">
+               <%= image_tag "placeholder1.jpg", class: "d-block w-100", alt:"placeholder1" %>
+            </div>
+            <div class="carousel-item">
+               <%= image_tag "placeholder2.jpg", class: "d-block w-100", alt:"placeholder2" %>
+            </div>
+            <div class="carousel-item">
+               <%= image_tag "placeholder3.jpg", class: "d-block w-100", alt:"placeholder3" %>
+            </div>
+         </div>
+      </div>
+   </section>
+   <section id="section2" class="blue-bg_home py-5">
+      <div class="overlap_top-bg">
+         <%= image_tag "top.png", class: "img-fluid", alt:"top" %>
+      </div>
+      <div class="container-fluid events-code__wrapper">
+        <div class="row">
+            <div class="col-12 text-center">
+                <h1>Welcome!</h1>
+            </div>
         </div>
-    </div>
+         <div class="row event-box text-center">
+            <div class="col col-lg-12">
+               <% if alert %>
+               <p class="alert alert-danger"><%= alert %></p>
+               <% end %>
+               <%= form_tag(find_event_path, { method: :get, class: "text-center"}) do %>
+               <div class="mb-3">
+                  <%= text_field_tag :event_code, nil, class: 'form-control mt-3 mb-2', id: "eventCode", placeholder: "Event Code" %>
+                  <label for="eventCode">Please enter your unique code here. This code is exclusive and
+                  can only be used once and during the event phase only.
+                  Sharing this code may cost you to lose your event access.
+                  </label>
+               </div>
+               <div class="row justify-content-end align-items-center mb-3">
+                  <div class="col-9 text-start">
+                     <div class="form-check px-0 align-items-center">
+                        <input type="checkbox" id="terms">
+                        <label class="form-check-label px-1" for="terms">
+                        I agree to the Terms of Service
+                        and Privacy Policy.
+                        </label>
+                     </div>
+                  </div>
+                  <div class="col-3 text-end">
+                     <button type="submit" class="btn btn-event-code" disabled>Join</button>
+                  </div>
+               </div>
+               <% end %>
+            </div>
+         </div>
+      </div>
+      <div class="overlap_bottom-bg"><%= image_tag "bottom.png", class: "img-fluid", alt:"bottom" %></div>
+    </section>
 </div>

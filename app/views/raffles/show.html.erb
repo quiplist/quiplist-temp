@@ -1,0 +1,35 @@
+<% if @raffle.random_name? %>
+  <div class="container-fluid raffle-wrapper px-0" style="<%= @event.random_name_background? ? "background-image: url(\'#{@event.random_name_background.url}\')" : "" %>">
+    <div class="row mb-3 text-center">
+      <div class="col col-lg-12">
+        <%= react_component("RandomPicker", {
+          eventId: @event.id,
+          raffleId: @raffle.id
+        }) %>
+      </div>
+    </div>
+  </div>
+
+<% elsif @raffle.spin_wheel? %>
+  <div class="container-fluid raffle-wrapper px-0" style="<%= @event.spin_a_wheel_background? ? "background-image: url(\'#{@event.spin_a_wheel_background.url}\')" : "" %>">
+    <div class="row mb-3 text-center w-100">
+      <div class="col col-lg-12 px-0">
+        <%= react_component("Wheel", {
+          eventId: @event.id,
+          raffleId: @raffle.id
+        }) %>
+      </div>
+    </div>
+  </div>
+<% elsif @raffle.lotto? %>
+  <div class="container-fluid raffle-wrapper px-0" style="<%= @event.random_number_background? ? "background-image: url(\'#{@event.random_number_background.url}\')" : "" %>">
+    <div class="row mb-3 text-center">
+      <div class="col col-lg-12">
+        <%= react_component("RandomNumber", {
+          eventId: @event.id,
+          raffleId: @raffle.id
+        }) %>
+      </div>
+    </div>
+  </div>
+<% end %>

@@ -1,6 +1,13 @@
+<%= render partial: "layouts/shared/breadcrumbs", locals: {
+  links: [],
+  current_path: "Events"
+} %>
 <div class="container content-wrapper">
   <%= render partial: "layouts/shared/success_messages", locals: { messages: flash[:notice] } %>
   <%= render partial: "layouts/shared/alert_messages", locals: { messages: flash[:alert] } %>
+  <% if (@isUpdate || @isCreate) && !@event.nil? %>
+    <%= render partial: "layouts/shared/error_messages", locals: { messages: @event.errors.full_messages } %>
+  <% end %>
   <div class="row text-end mb-3">
     <div class="col col-lg-12">
       <% if (can? :create, Event) && current_admin.super_admin? %>
@@ -19,7 +26,6 @@
                   <div class="row">
                     <div class="col col-lg-12">
                       <%= form_for @event, as: :event, url: events_path(@event), method: :post, html: { class: "create-event_form text-start", multipart: true } do |f| %>
-                        <%= render partial: "layouts/shared/error_messages", locals: { messages: @event.errors.full_messages } %>
                         <%= render partial: "events/shared/form", locals: {f: f, id: "0", e: @event} %>
                         <div class="row justify-content-end mr-0">
                           <div class="col text-right">
@@ -39,7 +45,7 @@
   </div>
   <div class="row">
     <div class="col col-lg-12">
-      <table id="events_list" class="table">
+      <table id="events_list" class="table event-data-table hover">
         <thead>
           <tr>
             <th>Event Title</th>
@@ -47,8 +53,7 @@
             <th>Type</th>
             <th>Event Date</th>
             <th>Status</th>
-            <th></th>
-            <th></th>
+            <th>Status</th>
             <th></th>
           </tr>
         </thead>
@@ -65,51 +70,61 @@
                 <% end %>
                 <%= date_formatter(event.end_date) %>
               </td>
-              <td>
-                <%= form_for event, as: :event, url: event_path(event), method: :put, html: { class: "" } do |f| %>
-                  <%= f.select :status, Event::STATUSES.invert, {}, { class: 'form-select', onchange: "form.submit()", disabled: (cannot? :update, Event) } %>
+              <td><%= Event::STATUSES[event.status] %></td>
+              <td class="event-status">
+                <%= form_for event, as: :event, url: event_path(event), method: :put, html: { class: ""  } do |f| %>
+                  <%= f.select :status, Event::STATUSES.invert, {}, { class: 'form-select', onchange: "form.submit()", disabled: (cannot? :update, Event), id: event.id  } %>
                 <% end %>
-                <%#= Event::STATUSES[event.status] %>
               </td>
-              <td class="actions">
+              <td class="actions text-center">
                 <% if can? :show, Event %>
                   <%= link_to "Show", event_path(event), class: 'btn btn-view' %>
                 <% end %>
+
                 <% if can? :update, Event %>
-                  <button class="btn btn-edit" id="<%= event.id %>" data-bs-toggle="modal" data-bs-target="#editEvent-<%= event.id %>">Edit</button>
-                  <div class="modal fade" id="editEvent-<%= event.id %>" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="editSingleEvent" aria-hidden="true">
-                    <div class="modal-dialog modal-lg">
-                      <div class="modal-content">
-                        <div class="modal-header">
-                          <h5 class="modal-title" id="editSingleEvent">Edit <%= event.title %></h5>
-                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <button class="btn btn-edit" id="<%= event.id %>" data-bs-toggle="modal" data-bs-target="#editEvent-<%= event.id %>">Edit</button>
+                <div class="modal fade" id="editEvent-<%= event.id %>" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="editSingleEvent" aria-hidden="true">
+                  <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <div class="container">
+                          <div class="row">
+                            <div class="col-10 text-start">
+                              <h5 class="modal-title" id="editSingleEvent">Edit <%= event.title %></h5>
+                            </div>
+                            <div class="col-2">
+                              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                          </div>
                         </div>
-                        <div class="modal-body">
-                          <div class="container">
-                            <div class="row">
-                              <div class="col col-lg-12">
-                                <%= form_for event, as: :event, url: event_path(event), method: :put, html: { class: "create-event_form text-start", multipart: true } do |f| %>
-                                  <%= render partial: "layouts/shared/error_messages", locals: { messages: event.errors.full_messages } %>
-                                  <%= render partial: "events/shared/form", locals: {f: f, id: event.id, e: event} %>
-                                  <div class="row justify-content-end mr-0">
-                                    <div class="col text-right">
-                                      <%= submit_tag "Edit Event", class: "btn btn-blue btn-edit-submit w-100" %>
-                                    </div>
+                      </div>
+                      <div class="modal-body">
+                        <div class="container">
+                          <div class="row">
+                            <div class="col col-lg-12">
+                              <%= form_for event, as: :event, url: event_path(event), method: :put, html: { class: "create-event_form text-start", multipart: true } do |f| %>
+                                <%= render partial: "events/shared/form", locals: {f: f, id: event.id, e: event} %>
+                                <div class="row text-end mr-0">
+                                  <div class="col">
+                                    <%= submit_tag "Edit Event", class: "btn btn-blue btn-edit-submit w-100" %>
                                   </div>
-                                <% end %>
-                              </div>
+                                </div>
+                              <% end %>
                             </div>
                           </div>
                         </div>
                       </div>
                     </div>
                   </div>
+                </div>
                 <% end %>
+
                 <% if (can? :destroy, Event) && current_admin.super_admin? %>
-                  <a class="btn btn-remove" href="#" data-bs-toggle="modal" data-bs-target="#delete-modal-id-<%= event.id %>">Delete</a>
-                  <%= render partial: "layouts/shared/delete_modal", locals: { index_id: "#{event.id}", m_name: "Event", name: event.title, path: event_path(event) } %>
+                <a class="btn btn-remove" href="#" data-bs-toggle="modal" data-bs-target="#delete-modal-id-<%= event.id %>">Delete</a>
+                <%= render partial: "layouts/shared/delete_modal", locals: { index_id: "#{event.id}", m_name: "Event", name: event.title, path: event_path(event) } %>
                 <% end %>
               </td>
+
             </tr>
           <% end %>
         </tbody>
@@ -120,7 +135,3 @@
     </div>
   </div>
 </div>
-
-<%= link_to_previous_page @events, '<< previous ' %>
-<%= page_entries_info @events %>
-<%= link_to_next_page @events, ' next >>' %>

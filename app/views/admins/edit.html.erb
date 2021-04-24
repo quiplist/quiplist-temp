@@ -1,3 +1,10 @@
+<%= render partial: "layouts/shared/breadcrumbs", locals: {
+  links: [
+    { path: admins_path, path_name: "Admins" },
+    { path: admin_path(@admin), path_name: "#{@admin.id}" }
+  ],
+  current_path: "Edit"
+} %>
 <div class="container content-wrapper">
   <div class="row mb-3">
     <div class="col-12 text-start">

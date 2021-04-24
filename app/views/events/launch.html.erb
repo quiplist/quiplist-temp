@@ -1,0 +1,47 @@
+<%= render partial: "layouts/shared/breadcrumbs", locals: {
+  links: [
+    { path: events_path, path_name: "Events" },
+    { path: event_path(@event), path_name: "#{@event.id}" }
+  ],
+  current_path: "Launch"
+} %>
+<div class="container content-wrapper">
+  <div class="row event-wrapper-admin">
+    <div class="" style="<%= @event.main_background? ? "background-image: url(\'#{@event.main_background.url}\')" : "" %>">
+      <%= render partial: "layouts/shared/success_messages", locals: { messages: flash[:notice] } %>
+      <%= render partial: "layouts/shared/alert_messages", locals: { messages: flash[:alert] } %>
+      <div class="container-fluid px-3">
+          <%= react_component("Live", {
+            fbVideo: @event.fb_video?,
+            ytVideo: @event.youtube_video?,
+            noVideo: @event.no_video?,
+            url: @event.stream_key,
+            eventId: @event.id,
+            currentUserId: @current_user.id,
+            eventId: @event.id,
+            like: @reaction.like?,
+            heart: @reaction.heart?,
+            happy: @reaction.happy?,
+            sad: @reaction.sad?,
+            wow: @reaction.wow?,
+            angry: @reaction.angry?,
+            dislike: @reaction.dislike?,
+            clap: @reaction.clap?,
+            eventDescription: @event.description,
+            raffleId: 0,
+            countLike: Reaction.count_reactions(Reaction::LIKE, "Admin", @current_user.id, @event.id),
+            countDislike: Reaction.count_reactions(Reaction::DISLIKE, "Admin", @current_user.id, @event.id),
+            countClap: Reaction.count_reactions(Reaction::CLAP, "Admin", @current_user.id, @event.id),
+            countLove: Reaction.count_reactions(Reaction::HEART, "Admin", @current_user.id, @event.id),
+            countHaha: Reaction.count_reactions(Reaction::HAPPY, "Admin", @current_user.id, @event.id),
+            countWow: Reaction.count_reactions(Reaction::WOW, "Admin", @current_user.id, @event.id),
+            countSad: Reaction.count_reactions(Reaction::SAD, "Admin", @current_user.id, @event.id),
+            countAngry: Reaction.count_reactions(Reaction::ANGRY, "Admin", @current_user.id, @event.id),
+            hasBrochure: @event.has_brochure?
+          })%>
+
+      </div>
+    </div>
+
+  </div>
+</div>

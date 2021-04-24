@@ -1,5 +1,5 @@
 import PropTypes from "prop-types"
-import ActionCable from 'actioncable';
+// import ActionCable from 'actioncable';
 import ChatInput from './ChatInput'
 import ChatMessage from './ChatMessage'
 import React from 'react'
@@ -8,9 +8,11 @@ class Chat extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      currentUser: {},
-      currentEvent: {},
-      chats: [],
+      //currentUser: {},
+      // currentEvent: {},
+      //currentEvent: this.props.currentEvent,
+      //chats: []
+      //chats: this.props.chats,
     }
     this.scrollToBottom = this.scrollToBottom.bind(this);
   }
@@ -27,40 +29,40 @@ class Chat extends React.Component {
   componentDidMount() {
 
     this.scrollToBottom();
-    this.cable = ActionCable.createConsumer('/cable');
+    // this.cable = ActionCable.createConsumer('/cable');
 
-    fetch('/api/v1/fetch_current_user')
-    .then(response => response.json())
-    .then(result => {
-      this.setState({ currentUser: result })
-    });
+    // fetch('/api/v1/fetch_current_user')
+    // .then(response => response.json())
+    // .then(result => {
+    //   this.setState({ currentUser: result })
+    // });
 
-    const fetchEventUrl = `/api/v1/events/${this.props.eventId}`;
-    fetch(fetchEventUrl)
-    .then(resp => resp.json())
-    .then(result => {
-      this.setState({ currentEvent: result })
-      this.setState({ chats: result.chats })
-    });
-
-    this.eventsChannel = this.cable.subscriptions.create(
-      {
-        channel: `EventsChannel`,
-        id: this.props.eventId
-      },{
-        connected: () => {
-          console.log("connected!")
-        },
-        disconnected: () => {},
-        received: data => {
-          this.addChat(data.result)
-        }
-      });
+    // const fetchEventUrl = `/api/v1/events/${this.props.eventId}`;
+    // fetch(fetchEventUrl)
+    // .then(resp => resp.json())
+    // .then(result => {
+    //   this.setState({ currentEvent: result })
+    //   this.setState({ chats: result.chats })
+    // });
+    //
+    // this.eventsChannel = this.cable.subscriptions.create(
+    //   {
+    //     channel: `EventsChannel`,
+    //     id: this.props.eventId
+    //   },{
+    //     connected: () => {
+    //       console.log("connected!")
+    //     },
+    //     disconnected: () => {},
+    //     received: data => {
+    //       this.props.addChat(data.result)
+    //     }
+    //   });
   }
 
-  addChat = chat => {
-    this.setState(state => ({ chats: [...state.chats, chat] }))
-  }
+  // addChat = chat => {
+  //   this.setState(state => ({ chats: [...state.chats, chat] }))
+  // }
 
 
   submitMessage = messageString => {
@@ -68,10 +70,10 @@ class Chat extends React.Component {
     const url = "/api/v1/chats";
     const body = {
       chat: {
-        sender_id: this.state.currentUser.id,
-        sender_type: this.state.currentUser.user_type,
+        sender_id: this.props.currentUser.id,
+        sender_type: this.props.currentUser.user_type,
         message: messageString,
-        event_id: this.state.currentEvent.id
+        event_id: this.props.currentEvent.id
       }
     }
 
@@ -88,7 +90,7 @@ class Chat extends React.Component {
     .then(resp => resp.json())
     .then(result => {
       //this.addChat(result)
-      this.eventsChannel.send({result})
+      this.props.chatCable.send({result})
     })
   }
 
@@ -98,18 +100,18 @@ class Chat extends React.Component {
       <React.Fragment>
         <div className="chat-container">
           <div className="chat-wrapper" ref={(el) => { this.messagesContainer = el; }} >
-            {this.state.chats.map((chat, index) =>
+            {this.props.chats.map((chat, index) =>
               <ChatMessage
                 key={index}
                 chat={chat}
-                currentUser={this.state.currentUser}
+                currentUser={this.props.currentUser}
               />,
             )}
           </div>
           <ChatInput
             onSubmitMessage={messageString => this.submitMessage(messageString)}
-            mouseOut={this.state.currentEvent.main_mouse_out}
-            mouseOver={this.state.currentEvent.main_mouse_over}
+            mouseOut={this.props.currentEvent.main_mouse_out}
+            mouseOver={this.props.currentEvent.main_mouse_over}
           />
         </div>
       </React.Fragment>
@@ -117,8 +119,10 @@ class Chat extends React.Component {
   }
 }
 
-Chat.propTypes = {
-  eventId: PropTypes.number.isRequired
-};
+// Chat.propTypes = {
+//   eventId: PropTypes.number.isRequired,
+//   addChat: PropTypes.func.isRequired,
+//   chats: PropTypes.array.isRequired
+// };
 
 export default Chat
