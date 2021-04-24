@@ -132,6 +132,8 @@ class Event < ApplicationRecord
 
   validates :event_code, presence: true, uniqueness: true
   validates :title, presence: true
+  validates :stream_key, presence: true, if: :lived_stream?
+
 
   scope :queued, -> { where(status: QUEUED) }
   scope :ongoing, -> { where(status: ONGOING) }

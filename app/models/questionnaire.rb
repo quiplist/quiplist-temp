@@ -26,7 +26,7 @@ class Questionnaire < ApplicationRecord
   accepts_nested_attributes_for :choices
 
   validates :question, presence: true
-
+  validates :correct_answer, presence: true, if: :has_answers?
 
   MULTIPLE_CHOICE = 0
   YES_OR_NO = 1
@@ -43,6 +43,8 @@ class Questionnaire < ApplicationRecord
     Q_AND_A => "Question and Answer",
     POLL => "Poll"
   }
+
+  HAS_ANSWERS = [MULTIPLE_CHOICE, YES_OR_NO, IDENTIFICATION, SELECT_LETTERS]
 
   QUEUED = 0
   ONGOING = 1
@@ -101,5 +103,9 @@ class Questionnaire < ApplicationRecord
 
   def status_name
     STATUSES[status]
+  end
+
+  def has_answers?
+    HAS_ANSWERS.include? questionnaire_type
   end
 end
