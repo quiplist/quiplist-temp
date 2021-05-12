@@ -247,6 +247,194 @@
    <div class="row row-cols-12 mb-5">
       <div class="col">
         <h2>Raffle</h2>
+        <div class="row">
+          <div class="col">
+             <div class="card shadow-sm">
+                <%= image_tag @event.random_name_background.url, class: "image-card" %>
+                <div class="card-body">
+                   <p class="card-text">This is where you will customize your Randon Name raffle. These are the default background and mouse colors</p>
+                   <%= form_for @event, as: :event, url: event_path(@event), method: :put, html: { class: "" } do |f| %>
+                   <label for="backgroundColor">Background Color</label>
+                   <div class="mb-3 row">
+                      <label class="col-sm-3 col-form-label">
+                      <span class="badge" style="background-color: <%= @event.random_name_background_color %>"><%= @event.random_name_background_color %></span>
+                      </label>
+                      <div class="col-sm-9">
+                         <%= f.text_field :random_name_background_color, class: 'form-control', id: "random_name_background_color", placeholder: "#3F48CC" %>
+                      </div>
+                   </div>
+                   <label for="mouseColor">Draw Button Color</label>
+                   <div class="mb-3 row">
+                      <label class="col-sm-3 col-form-label">
+                      <span class="badge" style="background-color: <%= @event.random_name_draw_mouse_out %>"><%= @event.random_name_draw_mouse_out %></span>
+                      </label>
+                      <div class="col-sm-9">
+                         <%= f.text_field :random_name_draw_mouse_out, class: 'form-control', id: "random_name_draw_mouse_out", placeholder: "#6C63FF" %>
+                      </div>
+                   </div>
+                   <div class="mb-3 row">
+                      <label class="col-sm-3 col-form-label">
+                      <span class="badge" style="background-color: <%= @event.random_name_draw_mouse_over %>"><%= @event.random_name_draw_mouse_over %></span>
+                      </label>
+                      <div class="col-sm-9">
+                         <%= f.text_field :random_name_draw_mouse_over, class: 'form-control', id: "random_name_draw_mouse_over", placeholder: "#861CCE" %>
+                      </div>
+                   </div>
+                   <label for="mouseColor">Winner Button Color</label>
+                   <div class="mb-3 row">
+                      <label class="col-sm-3 col-form-label">
+                      <span class="badge" style="background-color: <%= @event.random_name_winner_mouse_out %>"><%= @event.random_name_winner_mouse_out %></span>
+                      </label>
+                      <div class="col-sm-9">
+                         <%= f.text_field :random_name_winner_mouse_out, class: 'form-control', id: "random_name_winner_mouse_out", placeholder: "#6C63FF" %>
+                      </div>
+                   </div>
+                   <div class="mb-3 row">
+                      <label class="col-sm-3 col-form-label">
+                      <span class="badge" style="background-color: <%= @event.random_name_winner_mouse_over %>"><%= @event.random_name_winner_mouse_over %></span>
+                      </label>
+                      <div class="col-sm-9">
+                         <%= f.text_field :random_name_winner_mouse_over, class: 'form-control', id: "random_name_winner_mouse_over", placeholder: "#861CCE" %>
+                      </div>
+                   </div>
+                   <label for="backgroundImage">Background Image</label>
+                   <div class="row">
+                      <label class="col-sm-12 col-lg-9 col-form-label">
+                      <%= f.file_field :session_background, accept: 'image/png,image/jpg,image/jpeg', class: 'w-100' %>
+                      </label>
+                      <div class="col-sm-12 col-lg-3 text-end">
+                         <%= submit_tag "Save", class: "btn btn-submit" %>
+                      </div>
+                   </div>
+                   <% end %>
+                </div>
+             </div>
+          </div>
+          <div class="col">
+             <div class="card shadow-sm">
+                <%= image_tag @event.random_number_background.url, class: "image-card" %>
+                <div class="card-body">
+                   <p class="card-text">This is where you will customize your Lotto raffle. These are the default background and mouse colors</p>
+                   <%= form_for @event, as: :event, url: event_path(@event), method: :put, html: { class: "" } do |f| %>
+                   <label for="backgroundColor">Background Color</label>
+                   <div class="mb-3 row">
+                      <label class="col-sm-3 col-form-label">
+                      <span class="badge" style="background-color: <%= @event.random_number_background_color %>"><%= @event.random_number_background_color %></span>
+                      </label>
+                      <div class="col-sm-9">
+                         <%= f.text_field :random_number_background_color, class: 'form-control', id: "random_number_background_color", placeholder: "#3F48CC" %>
+                      </div>
+                   </div>
+                   <label for="mouseColor">Draw Button Color</label>
+                   <div class="mb-3 row">
+                      <label class="col-sm-3 col-form-label">
+                      <span class="badge" style="background-color: <%= @event.random_number_draw_mouse_out %>"><%= @event.random_number_draw_mouse_out %></span>
+                      </label>
+                      <div class="col-sm-9">
+                         <%= f.text_field :random_number_draw_mouse_out, class: 'form-control', id: "random_number_draw_mouse_out", placeholder: "#6C63FF" %>
+                      </div>
+                   </div>
+                   <div class="mb-3 row">
+                      <label class="col-sm-3 col-form-label">
+                      <span class="badge" style="background-color: <%= @event.random_number_draw_mouse_over %>"><%= @event.random_number_draw_mouse_over %></span>
+                      </label>
+                      <div class="col-sm-9">
+                         <%= f.text_field :random_number_draw_mouse_over, class: 'form-control', id: "random_number_draw_mouse_over", placeholder: "#861CCE" %>
+                      </div>
+                   </div>
+                   <label for="mouseColor">Winner Button Color</label>
+                   <div class="mb-3 row">
+                      <label class="col-sm-3 col-form-label">
+                      <span class="badge" style="background-color: <%= @event.random_number_winner_mouse_out %>"><%= @event.random_number_winner_mouse_out %></span>
+                      </label>
+                      <div class="col-sm-9">
+                         <%= f.text_field :random_number_winner_mouse_out, class: 'form-control', id: "random_number_winner_mouse_out", placeholder: "#6C63FF" %>
+                      </div>
+                   </div>
+                   <div class="mb-3 row">
+                      <label class="col-sm-3 col-form-label">
+                      <span class="badge" style="background-color: <%= @event.random_number_winner_mouse_over %>"><%= @event.random_number_winner_mouse_over %></span>
+                      </label>
+                      <div class="col-sm-9">
+                         <%= f.text_field :random_number_winner_mouse_over, class: 'form-control', id: "random_number_winner_mouse_over", placeholder: "#861CCE" %>
+                      </div>
+                   </div>
+                   <label for="backgroundImage">Background Image</label>
+                   <div class="row">
+                      <label class="col-sm-12 col-lg-9 col-form-label">
+                      <%= f.file_field :session_background, accept: 'image/png,image/jpg,image/jpeg', class: 'w-100' %>
+                      </label>
+                      <div class="col-sm-12 col-lg-3 text-end">
+                         <%= submit_tag "Save", class: "btn btn-submit" %>
+                      </div>
+                   </div>
+                   <% end %>
+                </div>
+             </div>
+          </div>
+          <div class="col">
+             <div class="card shadow-sm">
+                <%= image_tag @event.spin_a_wheel_background.url, class: "image-card" %>
+                <div class="card-body">
+                   <p class="card-text">This is where you will customize your Spin a Wheel raffle. These are the default background and mouse colors</p>
+                   <%= form_for @event, as: :event, url: event_path(@event), method: :put, html: { class: "" } do |f| %>
+                   <label for="backgroundColor">Background Color</label>
+                   <div class="mb-3 row">
+                      <label class="col-sm-3 col-form-label">
+                      <span class="badge" style="background-color: <%= @event.spin_a_wheel_background_color %>"><%= @event.spin_a_wheel_background_color %></span>
+                      </label>
+                      <div class="col-sm-9">
+                         <%= f.text_field :spin_a_wheel_background_color, class: 'form-control', id: "spin_a_wheel_background_color", placeholder: "#3F48CC" %>
+                      </div>
+                   </div>
+                   <label for="mouseColor">Draw Button Color</label>
+                   <div class="mb-3 row">
+                      <label class="col-sm-3 col-form-label">
+                      <span class="badge" style="background-color: <%= @event.spin_a_wheel_draw_mouse_out %>"><%= @event.spin_a_wheel_draw_mouse_out %></span>
+                      </label>
+                      <div class="col-sm-9">
+                         <%= f.text_field :spin_a_wheel_draw_mouse_out, class: 'form-control', id: "spin_a_wheel_draw_mouse_out", placeholder: "#6C63FF" %>
+                      </div>
+                   </div>
+                   <div class="mb-3 row">
+                      <label class="col-sm-3 col-form-label">
+                      <span class="badge" style="background-color: <%= @event.spin_a_wheel_draw_mouse_over %>"><%= @event.spin_a_wheel_draw_mouse_over %></span>
+                      </label>
+                      <div class="col-sm-9">
+                         <%= f.text_field :spin_a_wheel_draw_mouse_over, class: 'form-control', id: "spin_a_wheel_draw_mouse_over", placeholder: "#861CCE" %>
+                      </div>
+                   </div>
+                   <label for="mouseColor">Winner Button Color</label>
+                   <div class="mb-3 row">
+                      <label class="col-sm-3 col-form-label">
+                      <span class="badge" style="background-color: <%= @event.spin_a_wheel_winner_mouse_out %>"><%= @event.spin_a_wheel_winner_mouse_out %></span>
+                      </label>
+                      <div class="col-sm-9">
+                         <%= f.text_field :spin_a_wheel_winner_mouse_out, class: 'form-control', id: "spin_a_wheel_winner_mouse_out", placeholder: "#6C63FF" %>
+                      </div>
+                   </div>
+                   <div class="mb-3 row">
+                      <label class="col-sm-3 col-form-label">
+                      <span class="badge" style="background-color: <%= @event.spin_a_wheel_winner_mouse_over %>"><%= @event.spin_a_wheel_winner_mouse_over %></span>
+                      </label>
+                      <div class="col-sm-9">
+                         <%= f.text_field :spin_a_wheel_winner_mouse_over, class: 'form-control', id: "spin_a_wheel_winner_mouse_over", placeholder: "#861CCE" %>
+                      </div>
+                   </div>
+                   <label for="backgroundImage">Background Image</label>
+                   <div class="row">
+                      <label class="col-sm-12 col-lg-9 col-form-label">
+                      <%= f.file_field :session_background, accept: 'image/png,image/jpg,image/jpeg', class: 'w-100' %>
+                      </label>
+                      <div class="col-sm-12 col-lg-3 text-end">
+                         <%= submit_tag "Save", class: "btn btn-submit" %>
+                      </div>
+                   </div>
+                   <% end %>
+                </div>
+             </div>
+          </div>
+        </div>
       </div>
    </div>
 </div>
