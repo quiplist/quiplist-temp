@@ -58,6 +58,9 @@ Rails.application.routes.draw do
       resources :guest_lists, only: [:index]
       resources :answers, only: [:create]
       #get '/fetch_current_event/:event_code', to: 'events#fetch_current_event', as: :fetch_current_event
+
+      resources :game_scores, only: [:create, :index, :show, :update]
+      resources :users, only: [:show]
     end
   end
 
