@@ -24,6 +24,7 @@ class GuestList < ApplicationRecord
   belongs_to :approver, class_name: 'Admin', foreign_key: 'approver_id', optional: true
   belongs_to :event
   has_many :raffles
+  has_many :game_scores
 
   PENDING = 0
   APPROVED = 1

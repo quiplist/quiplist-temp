@@ -57,6 +57,15 @@
                                 <% end %>
                               <% end %>
                             </li>
+
+                            <li>
+                              <% if can? :index, User %>
+                                <%= link_to oauth_applications_path do %>
+                                  <i class="fas fa-cog"></i>
+                                  <span>Game Applications</span>
+                                <% end %>
+                              <% end %>
+                            </li>
                         </ul>
                     </div>
                 </div>

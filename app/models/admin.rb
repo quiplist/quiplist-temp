@@ -28,6 +28,18 @@ class Admin < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :validatables, :registerable, :session_limitable
 
+  has_many :access_grants,
+           class_name: 'Doorkeeper::AccessGrant',
+           foreign_key: :resource_owner_id,
+           dependent: :delete_all # or :destroy if you need callbacks
+
+  has_many :access_tokens,
+           class_name: 'Doorkeeper::AccessToken',
+           foreign_key: :resource_owner_id,
+           dependent: :delete_all # or :destroy if you need callbacks
+
+  has_many :oauth_applications, class_name: 'Doorkeeper::Application', as: :owner
+
   has_many :approved, foreign_key: "approver_id", class_name: "GuestList"
   has_many :reactions, as: :responder
   has_many :chats, as: :sender
