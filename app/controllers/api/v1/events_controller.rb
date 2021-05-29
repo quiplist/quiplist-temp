@@ -8,6 +8,14 @@ class Api::V1::EventsController < Api::ApplicationController
   end
 
   def fetch_current_event
-    render json: @event
+    render json: @event, serializer: EventMinimalSerializer
+  end
+
+  private
+
+  def set_event
+    @event = Event.find(params[:id])
+    rescue ActiveRecord::RecordNotFound => e
+      render json: { errors: e.to_s }, status: :not_found
   end
 end
