@@ -23,6 +23,7 @@ class AccessRight < ApplicationRecord
   QUESTIONNAIRE = 3
   ADMIN = 4
   CLIENT = 5
+  SETTING = 6
 
 
   NAMES = {
@@ -31,7 +32,8 @@ class AccessRight < ApplicationRecord
     RAFFLE => "Raffles",
     QUESTIONNAIRE => "Questionnaires",
     ADMIN => "Admins",
-    CLIENT => "Clients"
+    CLIENT => "Clients",
+    SETTING => "Settings"
   }
 
   VIEW_ONLY = 0
@@ -50,6 +52,7 @@ class AccessRight < ApplicationRecord
   scope :questionnaire, -> { find_by(name: QUESTIONNAIRE) }
   scope :admin, -> { find_by(name: ADMIN) }
   scope :client, -> { find_by(name: CLIENT) }
+  scope :setting, -> { find_by(name: SETTING) }
 
 
 

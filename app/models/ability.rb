@@ -12,6 +12,7 @@ class Ability
       can_manage_questionnaires?(user)
       can_manage_admins?(user)
       can_manage_clients?(user)
+      can_manage_settings?(user)
       return
     elsif user.client?
       can :manage, :all
@@ -91,4 +92,13 @@ class Ability
       can :manage, User
     end
   end
+
+  def can_manage_settings?(user)
+    if user.access_rights.setting.view_only?
+      can :read, Setting
+    elsif user.access_rights.setting.full_access?
+      can :manage, Setting
+    end
+  end
+
 end
