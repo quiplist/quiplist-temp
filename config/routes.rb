@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  use_doorkeeper
   get 'errors/show'
   get 'errors/unauthorized'
   root to: 'home#welcome'
@@ -55,9 +56,12 @@ Rails.application.routes.draw do
       resources :events, only: [:show]
       resources :raffles, only: [:index, :show, :update]
       resources :questionnaires, only: [:update]
-      resources :guest_lists, only: [:index]
+      resources :guest_lists, only: [:index, :show]
       resources :answers, only: [:create]
-      #get '/fetch_current_event/:event_code', to: 'events#fetch_current_event', as: :fetch_current_event
+      get '/fetch_current_event/:id', to: 'events#fetch_current_event', as: :fetch_current_event
+
+      resources :game_scores, only: [:create, :index, :show, :update]
+      resources :users, only: [:show]
     end
   end
 

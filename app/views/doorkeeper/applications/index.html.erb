@@ -1,0 +1,52 @@
+<%= render partial: "layouts/shared/breadcrumbs", locals: {
+  links: [],
+  current_path: "Game Applications"
+} %>
+<div class="container content-wrapper">
+  <div class="row text-end mb-3">
+    <div class="col col-lg-12">
+      <p><%= link_to t('.new'), new_oauth_application_path, class: 'btn btn-edit btn-blue' %></p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col col-lg-12">
+      <table class="table data-table hover">
+        <thead>
+        <tr>
+          <th>Name</th>
+          <th>App Id</th>
+          <th>Secret</th>
+          <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        <% @applications.each do |application| %>
+          <tr>
+            <td>
+              <%= application.name %>
+            </td>
+            <td>
+              <%= application.uid %>
+            </td>
+            <td>
+              <%= application.plaintext_secret %>
+            </td>
+            <td class="actions text-center">
+              <% if can? :show, User %>
+                <%= link_to "Show", oauth_application_path(application), class: 'btn btn-view' %>
+              <% end %>
+              <% if can? :update, User %>
+              <%= link_to t('doorkeeper.applications.buttons.edit'), edit_oauth_application_path(application), class: 'btn btn-edit' %>
+              <% end %>
+              <% if (can? :destroy, User) %>
+                <a class="btn btn-remove" href="#" data-bs-toggle="modal" data-bs-target="#delete-modal-id-<%= application.id %>">Delete</a>
+                <%= render partial: "layouts/shared/delete_modal", locals: { index_id: "#{application.id}", m_name: "Game Application", name: application.name, path: oauth_application_path(application) } %>
+              <% end %>
+            </td>
+          </tr>
+        <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

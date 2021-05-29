@@ -12,6 +12,7 @@ class Ability
       can_manage_questionnaires?(user)
       can_manage_admins?(user)
       can_manage_clients?(user)
+      can_manage_game_applications?(user)
       return
     elsif user.client?
       can :manage, :all
@@ -88,6 +89,14 @@ class Ability
     if user.access_rights.client.view_only?
       can :read, User
     elsif user.access_rights.client.full_access?
+      can :manage, User
+    end
+  end
+
+  def can_manage_game_applications?(user)
+    if user.access_rights.game_application.view_only?
+      can :read, User
+    elsif user.access_rights.game_application.full_access?
       can :manage, User
     end
   end

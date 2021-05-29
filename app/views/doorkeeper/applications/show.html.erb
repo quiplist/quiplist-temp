@@ -1,0 +1,29 @@
+<%= render partial: "layouts/shared/breadcrumbs", locals: {
+  links: [{ path: oauth_applications_path, path_name: "Game Applications" }],
+  current_path: "#{@application.id}"
+} %>
+<div class="container content-wrapper">
+   <%= render partial: "layouts/shared/success_messages", locals: { messages: flash[:notice] } %>
+   <%= render partial: "layouts/shared/alert_messages", locals: { messages: flash[:alert] } %>
+   <div class="row">
+      <div class="col-12 text-start">
+         <h2 class="admin_title"><%= @application.name %></h2>
+      </div>
+   </div>
+   <div class="row text-start mb-3 mx-3">
+      <div class="col col-lg-4">
+         <div class="admin_wrapper">
+            <span class="mr-3"><strong>App Id:</strong></span><br>
+            <span class="admin_detail"><%= @application.uid %></span>
+         </div>
+      </div>
+   </div>
+   <div class="row text-start mb-3 mx-3">
+      <div class="col col-lg-4">
+         <div class="admin_wrapper">
+            <span class="mr-3"><strong>Secret:</strong></span><br>
+            <span class="admin_detail"><%= @application.plaintext_secret %></span>
+         </div>
+      </div>
+   </div>
+</div>
