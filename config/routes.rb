@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  use_doorkeeper
   get 'errors/show'
   get 'errors/unauthorized'
   root to: 'home#welcome'

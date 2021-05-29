@@ -1,5 +1,6 @@
 class Api::V1::UsersController < Api::ApplicationController
 
+  before_action :doorkeeper_authorize!, only: [:show]
   before_action :set_user, only: [:show]
 
   def fetch_current_user

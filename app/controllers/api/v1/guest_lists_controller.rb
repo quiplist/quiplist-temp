@@ -1,7 +1,7 @@
 class Api::V1::GuestListsController < Api::ApplicationController
 
   #load_and_authorize_resource :event
-
+  before_action :doorkeeper_authorize!, only: [:show]
   before_action :set_event, only: [:index]
   before_action :set_guest_list, only: [:show]
 

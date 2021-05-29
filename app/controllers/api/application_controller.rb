@@ -8,4 +8,8 @@ class Api::ApplicationController < ApplicationController
   def missing_param_error(exception)
     render status: :unprocessable_entity, json: { error: exception.message }
   end
+
+  def doorkeeper_unauthorized_render_options(error: nil)
+    { json: { error: "unauthorized" } }
+  end
 end

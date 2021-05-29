@@ -1,4 +1,6 @@
 class Api::V1::GameScoresController < Api::ApplicationController
+
+  before_action :doorkeeper_authorize!
   before_action :set_game_score, except: [:index, :create]
 
   def index

@@ -1934,7 +1934,7 @@ h2#swal2-title {
     background: transparent;
 }
 
-.toolbar .btn-check:focus+.btn-outline-primary, 
+.toolbar .btn-check:focus+.btn-outline-primary,
 .toolbar .btn-outline-primary:focus {
     box-shadow: none !important;
 }
@@ -2208,7 +2208,7 @@ footer h6 {
     /* #wheel {
         left: 75%;
     } */
-	
+
 }
 
 @media screen and (max-width:767px) {

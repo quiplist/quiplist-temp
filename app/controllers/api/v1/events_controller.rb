@@ -1,5 +1,6 @@
 class Api::V1::EventsController < Api::ApplicationController
 
+  before_action :doorkeeper_authorize!, only: [:fetch_current_event]
   load_and_authorize_resource :event, only: [:show]
   before_action :set_event, only: [:fetch_current_event]
 
