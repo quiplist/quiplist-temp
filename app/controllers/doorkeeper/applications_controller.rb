@@ -1,9 +1,12 @@
-  module Doorkeeper
+require 'doorkeeper/orm/active_record/application'
+
+module Doorkeeper
   class ApplicationsController < Doorkeeper::ApplicationController
     layout "admin" unless Doorkeeper.configuration.api_only
 
     before_action :authenticate_admin!
     before_action :set_current_user
+    authorize_resource
     before_action :set_application, only: %i[show edit update destroy]
 
     def index

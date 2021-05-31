@@ -95,9 +95,9 @@ class Ability
 
   def can_manage_game_applications?(user)
     if user.access_rights.game_application.view_only?
-      can :read, User
+      can :read, Doorkeeper::Application
     elsif user.access_rights.game_application.full_access?
-      can :manage, User
+      can :manage, Doorkeeper::Application
     end
   end
 end

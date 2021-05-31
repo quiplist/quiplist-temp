@@ -59,7 +59,7 @@
                             </li>
 
                             <li>
-                              <% if can? :index, User %>
+                              <% if can? :index, Doorkeeper::Application %>
                                 <%= link_to oauth_applications_path do %>
                                   <i class="fas fa-cog"></i>
                                   <span>Game Applications</span>
