@@ -2087,6 +2087,10 @@ li.breadcrumb-item a {
     font-weight: 700;
 }
 
+.home #section1{
+	height: 50vh;
+}
+
 footer h6 {
 	color: #1a1a1a;
 	font-family: "Arial";
