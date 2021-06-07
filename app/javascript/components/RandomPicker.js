@@ -45,7 +45,8 @@ class RandomPicker extends React.PureComponent {
       if(this.state.currentRaffle.status === 2) {
         this.setState({ currentChoice: result.winner})
         Swal.fire({
-          title: result.won,
+          title: 'Congratulations',
+          text: result.won,
           showCancelButton: false,
           showConfirmButton: false
         })
@@ -151,7 +152,6 @@ class RandomPickerChoice extends React.PureComponent {
     const content = (Object.keys(choice).length == 0) ? '' : choice.user.full_name;
     return (
       <div className="RandomPicker__choice px-2">
-        <img id="randomTemplate" className="img-fluid" src={Random} alt="template"></img>
         <span id="choice" className="RandomPicker__choiceItem">{content}</span>
       </div>
     );

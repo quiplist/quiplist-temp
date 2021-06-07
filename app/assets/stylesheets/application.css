@@ -140,11 +140,15 @@ button.navbar-toggler {
 	margin: 0 auto;
 	/* -webkit-box-shadow: 0px 0px 15px 5px #CDCDCD;
      box-shadow: 0px 0px 15px 5px #CDCDCD; */
-	background: #fff;
+	/* background: #fff; */
 	font-family: 'Montserrat', sans-serif;
 	color: #fff;
 	border-radius: 10px;
 	/* margin-top: 150px; */
+}
+
+.register-wrapper > div:nth-child(2){
+	background-color: #fff;
 }
 
 .register-wrapper h2 {
@@ -562,7 +566,7 @@ div#admins_views {
 .single-page-layout {
 	background: url("welcome_page_bg.png");
 	background-size: cover;
-	height: 100vh;
+	height: 100%;
 	display: flex;
 	align-items: center;
 	justify-content: center;
@@ -1672,15 +1676,15 @@ fieldset legend {
 }
 
 span#choice {
-	position: absolute;
-	left: 50%;
-	top: 50%;
-	transform: translate(-50%, -50%);
-	color: #000;
+	background: #020202;
+    width: 100%;
+    padding: 36px;
+    border-radius: 10px;
+	color: #fff;
 	font-family: 'Montserrat';
 	font-size: 35px;
-	width: 100%;
 	text-align: center;
+	font-weight: 700;
 }
 
 #raffle {
@@ -1692,24 +1696,13 @@ span#choice {
     justify-content: center;
 }
 
-.RandomPicker__choice:before {
-	content: '';
-    background-image: url(winner_template_header.png);
-    background-repeat: no-repeat;
-    background-size: 95%;
-    height: 100%;
-    position: absolute;
-    top: -66px;
-    left: 17px;
-    width: 100%;
-}
 
 .RandomPicker__button, .RandomPicker input[type="submit"]{
 	color: #fff;
     font-family: 'Montserrat';
     text-transform: uppercase;
     padding: 10px 35px;
-    border-radius: 50px;
+    border-radius: 10px;
 }
 
 .RandomPicker__button{
@@ -1722,19 +1715,18 @@ span#choice {
 
 .swal2-container.swal2-backdrop-show,
 .swal2-container.swal2-noanimation {
-	background: url(winner.gif) !important;
+	/* background: url(winner.gif) !important; */
 	background-color: rgb(0, 0, 0, 0.8) !important;
 	background-repeat: repeat;
 	width: 100%;
+
 }
 
 .swal2-popup.swal2-modal.swal2-show {
-	background: radial-gradient(circle, rgba(189,189,189,1) 0%, rgba(254,254,254,1) 0%, rgba(255,255,255,1) 0%, rgba(189,189,189,1) 100%);
-	background-size: cover;
-	border: 10px solid #F3933D;
-	height: 19%;
-	color: #000;
+	background: #fff;
+	color: #020202;
 	font-family: 'Montserrat';
+	height: auto;
 }
 
 /* .swal2-popup.swal2-modal.swal2-show::after {
@@ -1748,13 +1740,19 @@ span#choice {
 } */
 
 h2#swal2-title {
-	color: #000;
+	color: #020202;
 	font-family: 'Montserrat';
 	margin: 0px;
 	font-size: 22px;
+	font-weight: 700;
 }
 
-.swal2-popup.swal2-modal.swal2-show:before {
+#swal2-content{
+	color: #020202;
+	
+}
+
+/* .swal2-popup.swal2-modal.swal2-show:before {
 	content: '';
 	background: url(winner_template_header.png);
 	position: absolute;
@@ -1764,7 +1762,7 @@ h2#swal2-title {
 	background-size: contain;
 	top: -51px;
 	left: 0;
-}
+} */
 
 .raffle-wrapper{
 	background-image: url(blue-bg.png);
@@ -1833,6 +1831,7 @@ h2#swal2-title {
 
 .RandomPicker{
 	position: relative;
+	width: 700px;
 }
 
 .RandomNumber__controls {
@@ -2154,6 +2153,85 @@ footer h6 {
     justify-content: space-between;
 }
 
+.game-winners{
+	text-align: center;
+}
+
+.game-winners h1{
+	font-weight: 700;
+    font-size: 56px;
+    text-transform: uppercase;
+}
+
+.game-winners--cards .row:not(:first-child) .game-winner--wrapper{
+	background: #5D5B5C;
+	transform: scale(0.9);
+}
+
+.game-winner--wrapper{
+	display: flex;
+    align-items: center;
+    width: 700px;
+    margin: 0 auto;
+    background: #000;
+    color: #fff;
+    border-radius: 10px;
+    padding: 16px;
+    margin-bottom: 16px;
+}
+
+.game-winner--wrapper .rank{
+	font-weight: 900;
+    font-size: 38px;
+    background: #Fff;
+    color: #000;
+    border-radius: 50px;
+    width: 60px;
+    height: 60px;
+    display: table;
+    font-style: italic;
+}
+
+.game-winner--wrapper h2{
+	width: 100%;
+}
+
+.poll-results .row:not(:first-child){
+	width: 500px;
+    margin-bottom: 16px;
+}
+
+.poll-results .poll-results--percent{
+	background: #000;
+    height: 100%;
+    border-radius: 5px;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    font-size: 24px;
+    font-weight: 700;
+    font-style: italic;
+}
+
+.poll-results .poll-results--choice{
+	background: #000;
+    height: 100%;
+    border-radius: 5px;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    font-size: 24px;
+    font-weight: 700;
+    font-style: italic;
+    padding: 12px;
+}
+
+.poll-results h1{
+	font-weight: 700;
+    font-size: 56px;
+    text-transform: uppercase;
+}
+
 @media screen and (min-width:1024px) {
 	div[data-react-class="FacebookLive"],
 	.fb-wrapper,
@@ -2215,6 +2293,16 @@ footer h6 {
 
 }
 
+@media screen and (min-width: 768px){
+	.register-wrapper{
+		background-color: #fff;
+	}
+
+	.single-page-layout{
+		height: 100vh;
+	}
+}
+
 @media screen and (max-width:767px) {
 	.login-wrapper .col:nth-child(1) {
 		width: 100%;
@@ -2228,10 +2316,13 @@ footer h6 {
 		border-bottom: 1px solid #000;
 	} */
 	.row.register-wrapper {
-		margin: 50px 20px 0px;
+		margin: 100px 20px 50px;
 	}
 	.register-wrapper>.col:nth-child(1) {
 		padding: 20px;
+	}
+	.register-wrapper>div{
+		border-radius: 10px;
 	}
 	.register-wrapper .row .col {
 		width: 100%;
@@ -2377,7 +2468,10 @@ footer h6 {
 	table .actions{
 		flex-wrap: wrap;
 	}
-	.RandomPicker__choice:before {
+	.RandomPicker{
+		width: 100%;
+	}
+	/* .RandomPicker__choice:before {
 		content: '';
 		background-image: url(winner_template_header.png);
 		background-repeat: no-repeat;
@@ -2387,9 +2481,10 @@ footer h6 {
 		top: -34px;
 		left: 17px;
 		width: 100%;
-	}
+	} */
 	.register-wrapper .registration-wrapper{
 		height: 300px;
+		margin-bottom: 24px;
 	}
 	#wheel canvas{
 		width: calc(80% - 20px);
@@ -2422,6 +2517,22 @@ footer h6 {
 		width: 100%;
 		margin-top: 20px;
 	}
+
+	.game-winner--wrapper{
+		width: auto;
+	}
+
+	.game-winners h1{
+		font-size: 36px;
+	}
+
+	.poll-results .row:not(:first-child){
+		width: 375px;
+	}
+
+	.poll-results h1{
+		font-size: 36px;
+	}
 }
 
 @media screen and (max-width:600px) {
@@ -2452,12 +2563,32 @@ footer h6 {
 		left: 64%;
 		transform: translate(-50%, 0%);
 	}
+
+	.game-winners h1{
+		font-size: 24px;
+	}
+
+	.poll-results h1{
+		font-size: 24px;
+	}
 }
 
 @media screen and (max-width:360px) {
 	.RandomNumber__controls {
 		position: absolute;
 		bottom: 25%;
+	}
+
+	.game-winners h1{
+		font-size: 16px;
+	}
+
+	.poll-results h1{
+		font-size: 16px;
+	}
+
+	.poll-results .row:not(:first-child){
+		width: 320px;
 	}
 }
 
@@ -2492,16 +2623,4 @@ footer h6 {
     /* #wheel canvas {
         width: 400px;
     } */
-
-	.RandomPicker__choice:before {
-		content: '';
-		background-image: url(winner_template_header.png);
-		background-repeat: no-repeat;
-		background-size: 90%;
-		height: 100%;
-		position: absolute;
-		top: -29px;
-		left: 17px;
-		width: 100%;
-	}
 }
