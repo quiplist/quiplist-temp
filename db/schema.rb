@@ -276,29 +276,6 @@ ActiveRecord::Schema.define(version: 2021_05_29_194143) do
     t.index ["responder_type", "responder_id"], name: "index_reactions_on_responder_type_and_responder_id"
   end
 
-  create_table "settings", force: :cascade do |t|
-    t.string "video_asset"
-    t.json "image_assets"
-    t.boolean "is_image", default: true
-    t.string "landing_page_background"
-    t.string "landing_page_background_color", default: "#3F48CC"
-    t.string "landing_page_mouse_out", default: "#6C63FF"
-    t.string "landing_page_mouse_over", default: "#861CCE"
-    t.string "about_us_background"
-    t.string "about_us_background_color", default: "#3F48CC"
-    t.string "about_us_mouse_out", default: "#6C63FF"
-    t.string "about_us_mouse_over", default: "#861CCE"
-    t.string "contact_us_background"
-    t.string "contact_us_background_color", default: "#3F48CC"
-    t.string "contact_us_mouse_out", default: "#6C63FF"
-    t.string "contact_us_mouse_over", default: "#861CCE"
-    t.string "contact_us_spiel"
-    t.string "contact_us_email"
-    t.string "about_us_spiel"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
