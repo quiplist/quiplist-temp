@@ -1727,6 +1727,7 @@ span#choice {
 	color: #020202;
 	font-family: 'Montserrat';
 	height: auto;
+	width: auto;
 }
 
 /* .swal2-popup.swal2-modal.swal2-show::after {
@@ -1743,12 +1744,16 @@ h2#swal2-title {
 	color: #020202;
 	font-family: 'Montserrat';
 	margin: 0px;
-	font-size: 22px;
 	font-weight: 700;
+	font-size: 56px;
+    text-transform: uppercase;
 }
 
 #swal2-content{
 	color: #020202;
+	font-size: 36px;
+    font-weight: bold;
+	margin-top: 8px;
 	
 }
 
@@ -1832,6 +1837,11 @@ h2#swal2-title {
 .RandomPicker{
 	position: relative;
 	width: 700px;
+}
+
+.random-number{
+	display: flex;
+    justify-content: center;
 }
 
 .RandomNumber__controls {
@@ -2532,6 +2542,14 @@ footer h6 {
 
 	.poll-results h1{
 		font-size: 36px;
+	}
+
+	h2#swal2-title{
+		font-size: 24px;
+	}
+
+	#swal2-content{
+		font-size: 16px;
 	}
 }
 
