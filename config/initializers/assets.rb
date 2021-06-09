@@ -7,10 +7,6 @@ Rails.application.config.assets.version = '1.0'
 # Rails.application.config.assets.paths << Emoji.images_path
 # Add Yarn node_modules folder to the asset load path.
 Rails.application.config.assets.paths << Rails.root.join('node_modules')
-Rails.application.config.assets.precompile += %w( Memory Game (WebGL).data )
-Rails.application.config.assets.precompile += %w( Memory Game (WebGL).framework.sj )
-Rails.application.config.assets.precompile += %w( Memory Game (WebGL).loader.js )
-Rails.application.config.assets.precompile += %w( Memory Game (WebGL).wasm )
 
 # Precompile additional assets.
 # application.js, application.css, and all non-JS/CSS in the app/assets
