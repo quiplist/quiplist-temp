@@ -1,4 +1,4 @@
-<div class="home">
+<div class="home" style="<%= @settings.landing_page_background? ? "background-image: url(\'#{@settings.landing_page_background.url}\')" : "" %>">
    <section id="section1">
       <div id="sliderIndicators" class="carousel slide" data-bs-ride="carousel">
          <div class="carousel-inner">
@@ -39,16 +39,17 @@
                </div>
                <div class="row justify-content-end align-items-center mb-3">
                   <div class="col-9 text-start">
-                     <div class="form-check px-0 align-items-center">
+                     <!-- <div class="form-check px-0 align-items-center">
                         <input type="checkbox" id="terms">
                         <label class="form-check-label px-1" for="terms">
                         I agree to the Terms of Service
                         and Privacy Policy.
                         </label>
-                     </div>
+                     </div> -->
                   </div>
                   <div class="col-3 text-end">
-                     <button type="submit" class="btn btn-event-code" disabled>Join</button>
+                     <!-- <button type="submit" class="btn btn-event-code" disabled>Join</button> -->
+                     <button type="submit" class="btn btn-event-code">Join</button>
                   </div>
                </div>
                <% end %>

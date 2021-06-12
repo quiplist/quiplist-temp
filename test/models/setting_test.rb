@@ -13,6 +13,7 @@
 #  contact_us_email              :string
 #  contact_us_mouse_out          :string           default("#6C63FF")
 #  contact_us_mouse_over         :string           default("#861CCE")
+#  contact_us_number             :string
 #  contact_us_spiel              :string
 #  image_assets                  :json
 #  is_image                      :boolean          default(TRUE)

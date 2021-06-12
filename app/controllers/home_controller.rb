@@ -1,6 +1,7 @@
 class HomeController < ApplicationController
   layout 'main'
   before_action :authenticate_user!, except: [:welcome, :find_event, :forgot_password, :reset_password, :about_us, :contact_us]
+  before_action :set_settings, only: [:welcome, :about_us, :contact_us]
   before_action :fetch_reaction, except: [:welcome, :find_event, :profile, :update_profile, :forgot_password, :reset_password, :about_us, :contact_us]
   before_action -> { check_event_code params[:event_code] }, except: [:welcome, :forgot_password, :reset_password, :about_us, :contact_us]
 
@@ -44,12 +45,15 @@ class HomeController < ApplicationController
 
   def find_event
     if @event.nil?
+      set_settings
       flash.now[:alert] = 'Invalid Event Code!'
       render :welcome, layout: "application"
     elsif @event.queued?
+      set_settings
       flash.now[:alert] = 'Event not yet started!'
       render :welcome, layout: "application"
     elsif @event.done?
+      set_settings
       flash.now[:alert] = 'Event already done!'
       render :welcome, layout: "application"
     elsif current_user.nil?
@@ -103,6 +107,10 @@ class HomeController < ApplicationController
   end
 
   private
+
+  def set_settings
+    @settings = Setting.first
+  end
 
   def user_params
     added_attrs = [:email, :password, :password_confirmation, :contact_number,

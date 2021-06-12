@@ -59,5 +59,24 @@ namespace :release do
       end
     end
 
+    desc "Create Settings"
+    task "create_settings" => :environment do
+      begin
+        ActiveRecord::Base.transaction do
+          puts "Creating Settings..."
+          Setting.create(about_us_spiel: "WE MAKE EVENTS - live and virtual - HAPPEN. <br/>
+            Our thrust is to generate ideas, produce event materials, videos, and content for our clients\' needs and demands as we keep abreast of the industry\'s latest innovations.<br/>
+            We are a team of skilled and experienced events management professionals. Passionate and dedicated to what we do, we make every event fun-filled, exciting, and remarkable.<br/>
+            In each and every service that we take, we aim to bring your content to a world of creativity that would transcend beyond your purpose. Our goal is to make unimaginable things happen for you.<br/>",
+            contact_us_spiel: "Contact Us Placeholder...", contact_us_email: 'quiplist@gmail.com')
+        end
+        puts "TASK FINISHED!"
+      rescue Exception => e
+        puts "An error occured and changes were reverted"
+        puts "ERROR: #{e.message}"
+        puts e.backtrace
+      end
+    end
+
   end
 end

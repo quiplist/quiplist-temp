@@ -13,6 +13,7 @@
 #  contact_us_email              :string
 #  contact_us_mouse_out          :string           default("#6C63FF")
 #  contact_us_mouse_over         :string           default("#861CCE")
+#  contact_us_number             :string
 #  contact_us_spiel              :string
 #  image_assets                  :json
 #  is_image                      :boolean          default(TRUE)
@@ -30,4 +31,9 @@ class Setting < ApplicationRecord
   mount_uploader :landing_page_background, AssetUploader
   mount_uploader :about_us_background, AssetUploader
   mount_uploader :contact_us_background, AssetUploader
+
+
+  validates :video_asset, presence: true, unless: :is_image?
+  validates :image_assets, presence: true, if: :is_image?
+  validates :contact_us_email, presence: true
 end

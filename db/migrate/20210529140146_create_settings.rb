@@ -18,8 +18,8 @@ class CreateSettings < ActiveRecord::Migration[6.0]
       t.string :contact_us_mouse_over, default: "#861CCE"
       t.string :contact_us_spiel
       t.string :contact_us_email
+      t.string :contact_us_number
       t.string :about_us_spiel
-
       t.timestamps
     end
   end

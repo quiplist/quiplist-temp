@@ -1,26 +1,29 @@
-<section class="single-page-layout">
+<section class="single-page-layout" style="<%= @settings.contact_us_background? ? "background-image: url(\'#{@settings.contact_us_background.url}\')" : "" %>">
    <div class="container">
       <div class="row text-center py-5 justify-content-center">
          <div class="col-12 col-md-9">
             <h1>CONTACT US</h1>
             <p>
-               Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed
-               diam nonummy nibh euismod tincidunt ut laoreet Lorem ipsum
-               dolor sit amet, consectetuer adipiscing elit, sed diam nonummy
-               nibh euismod tincidunt ut laoreet dolore magna aliquam erat
-               volutpat. Ut wisi enim ad minim.
+               <%= @settings.contact_us_spiel.html_safe %>
             </p>
             <div class="connect-with-us">
                <div class="content">
-                  <p>Connect With us:</p>
-                  <p class="mx-3">
-                     For support or any questions
-                     <br />
-                     Email us at
-                     <a href="mailto:quiplist.events@gmail.com">
-                     quiplist.events@gmail.com
-                     </a>
-                  </p>
+                  <% unless @settings.contact_us_email.empty? && @settings.contact_us_email %>
+                    <p>Connect With us:</p>
+                    <p class="mx-3">
+                       For support or any questions
+                       <br />
+                       Email us at
+                       <a href="mailto:quiplist.events@gmail.com">
+                       <%= @settings.contact_us_email %>
+                       </a><br />
+                       <% unless @settings.contact_us_number.empty? %>
+                        or
+                        <br />
+                        Call us at <%= @settings.contact_us_number %>
+                       <% end %>
+                    </p>
+                  <% end %>
                </div>
             </div>
          </div>
