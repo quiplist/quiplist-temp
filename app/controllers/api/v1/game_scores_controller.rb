@@ -6,10 +6,8 @@ class Api::V1::GameScoresController < Api::ApplicationController
   def index
     event_id = params[:event_id] || nil
     game_id = params[:game_id] || nil
-    topped = params[:topped] || 10
     per_page = params[:per_page] || 10
     page = params[:page] || 1
-
     @game_scores = if game_id.nil? && !event_id.nil?
       GameScore.where(event_id: event_id)
     elsif !game_id.nil? && event_id.nil?
@@ -19,9 +17,8 @@ class Api::V1::GameScoresController < Api::ApplicationController
     else
       GameScore.all
     end
-    @game_scores = @game_scores.sorted.topped(topped)
-    @game_scores = Kaminari.paginate_array(@game_scores).page(page).per(per_page)
-
+    @game_scores = @game_scores.sorted.page(page).per(per_page)
+  
     render json: @game_scores,
            meta: pagination(@game_scores),
            adapter: :json
