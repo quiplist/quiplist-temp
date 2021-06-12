@@ -3,12 +3,16 @@
 # Table name: events
 #
 #  id                              :bigint           not null, primary key
+#  background_music                :string
 #  brochure                        :string
 #  description                     :string
+#  disable_expo_games              :boolean          default(FALSE)
 #  end_date                        :date
 #  end_time                        :datetime
 #  event_code                      :string
 #  event_type                      :integer          default(0)
+#  has_background_music            :boolean          default(FALSE)
+#  has_expo                        :boolean          default(FALSE)
 #  include_abo_number              :boolean          default(TRUE)
 #  include_abo_type                :boolean          default(TRUE)
 #  include_aes_number              :boolean          default(TRUE)
