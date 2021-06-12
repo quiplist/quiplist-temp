@@ -54,7 +54,7 @@
               <label for="choices">Choices</label>
           </div>
           <div class="row">
-            <% @questionnaire.choices.each_with_index do |c, index| %>
+            <% @questionnaire.choices.take(12).each_with_index do |c, index| %>
               <div class="col-4 col-md-2 mb-2">
                     <%= f.fields_for :choices, c do |ff| %>
                       <%= ff.text_field :name, class: 'form-control', placeholder: "", id: "select-letters-field" %>
