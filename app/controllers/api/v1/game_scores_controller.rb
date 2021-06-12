@@ -8,6 +8,11 @@ class Api::V1::GameScoresController < Api::ApplicationController
     game_id = params[:game_id] || nil
     per_page = params[:per_page] || 10
     page = params[:page] || 1
+    order_by = if params[:order_by].nil?
+        'desc'
+      else
+        (params[:order_by].downcase == "asc" ? 'asc' : 'desc')
+      end
     @game_scores = if game_id.nil? && !event_id.nil?
       GameScore.where(event_id: event_id)
     elsif !game_id.nil? && event_id.nil?
@@ -17,8 +22,8 @@ class Api::V1::GameScoresController < Api::ApplicationController
     else
       GameScore.all
     end
-    @game_scores = @game_scores.sorted.page(page).per(per_page)
-  
+    @game_scores = @game_scores.sorted(order_by).page(page).per(per_page)
+
     render json: @game_scores,
            meta: pagination(@game_scores),
            adapter: :json

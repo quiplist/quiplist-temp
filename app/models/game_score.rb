@@ -22,6 +22,6 @@ class GameScore < ApplicationRecord
   validates :score, presence: true
   validates :game_id, presence: true
 
-  scope :sorted, -> { order(score: :desc) }
+  scope :sorted, -> (order) { order("score #{order}") }
   scope :topped, -> (top) { limit(top) }
 end
