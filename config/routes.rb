@@ -31,6 +31,7 @@ Rails.application.routes.draw do
       end
       resources :raffles, except: [:index]
       resources :questionnaires, except: [:index]
+
     end
     resources :admins do
       post :create_admin_events, on: :member
@@ -44,6 +45,7 @@ Rails.application.routes.draw do
     resources :users, except: [:new, :edit, :create, :update, :destroy] do
       put :reset_password, on: :member
     end
+    resources :settings, only: [:index, :update]
   end
 
   namespace :api, defaults: { format: :json } do
