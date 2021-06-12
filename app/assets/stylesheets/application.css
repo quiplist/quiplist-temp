@@ -1934,7 +1934,7 @@ h2#swal2-title {
     background: transparent;
 }
 
-.toolbar .btn-check:focus+.btn-outline-primary, 
+.toolbar .btn-check:focus+.btn-outline-primary,
 .toolbar .btn-outline-primary:focus {
     box-shadow: none !important;
 }
@@ -2087,6 +2087,10 @@ li.breadcrumb-item a {
     font-weight: 700;
 }
 
+.home #section1{
+	height: 50vh;
+}
+
 footer h6 {
 	color: #1a1a1a;
 	font-family: "Arial";
@@ -2208,7 +2212,7 @@ footer h6 {
     /* #wheel {
         left: 75%;
     } */
-	
+
 }
 
 @media screen and (max-width:767px) {

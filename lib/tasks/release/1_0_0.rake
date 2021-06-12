@@ -40,5 +40,24 @@ namespace :release do
         puts e.backtrace
       end
     end
+
+    desc "Create Access Right (Game Application) to existing admins"
+    task "create_access_game_application" => :environment do
+      begin
+        ActiveRecord::Base.transaction do
+          puts "Creating Access Rights..."
+          Admin.find_each do |admin|
+            privilege = admin.super_admin? ? AccessRight::FULL_ACCESS : AccessRight::VIEW_ONLY
+            AccessRight.create!(name: AccessRight::GAME_APPLICATION, privilege: privilege, admin: admin)
+          end
+        end
+        puts "TASK FINISHED!"
+      rescue Exception => e
+        puts "An error occured and changes were reverted"
+        puts "ERROR: #{e.message}"
+        puts e.backtrace
+      end
+    end
+
   end
 end

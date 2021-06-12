@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  use_doorkeeper
   get 'errors/show'
   get 'errors/unauthorized'
   root to: 'home#welcome'
@@ -12,6 +13,7 @@ Rails.application.routes.draw do
   post '/reset_password', to: 'home#reset_password', as: :reset_password
   get '/contact_us', to: 'home#contact_us', as: :contact_us
   get '/about_us', to: 'home#about_us', as: :about_us
+  get '/memory_game', to: 'games#memory_game', as: :memory_game
 
   scope 'admins' do
     get '/forgot_password', to: 'admins#forgot_password', as: :admin_forgot_password
@@ -55,9 +57,12 @@ Rails.application.routes.draw do
       resources :events, only: [:show]
       resources :raffles, only: [:index, :show, :update]
       resources :questionnaires, only: [:update]
-      resources :guest_lists, only: [:index]
+      resources :guest_lists, only: [:index, :show]
       resources :answers, only: [:create]
-      #get '/fetch_current_event/:event_code', to: 'events#fetch_current_event', as: :fetch_current_event
+      get '/fetch_current_event/:id', to: 'events#fetch_current_event', as: :fetch_current_event
+
+      resources :game_scores, only: [:create, :index, :show, :update]
+      resources :users, only: [:show]
     end
   end
 

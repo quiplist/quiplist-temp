@@ -13,6 +13,7 @@ class Ability
       can_manage_admins?(user)
       can_manage_clients?(user)
       can_manage_settings?(user)
+      can_manage_game_applications?(user)
       return
     elsif user.client?
       can :manage, :all
@@ -101,4 +102,11 @@ class Ability
     end
   end
 
+  def can_manage_game_applications?(user)
+    if user.access_rights.game_application.view_only?
+      can :read, Doorkeeper::Application
+    elsif user.access_rights.game_application.full_access?
+      can :manage, Doorkeeper::Application
+    end
+  end
 end

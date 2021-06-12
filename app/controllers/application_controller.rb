@@ -1,4 +1,5 @@
 class ApplicationController < ActionController::Base
+  include ApplicationHelper
   before_action :set_current_user
   # DeviseController.respond_to :html, :json
   # rescue_from ActiveRecord::RecordNotFound do |exception|
@@ -63,6 +64,14 @@ class ApplicationController < ActionController::Base
   def set_current_user
     @current_user = current_user || current_admin
   end
+
+  # def current_resource_owner
+  #   Admin.find(doorkeeper_token.application.owner_id) if doorkeeper_token
+  # end
+  #
+  # def current_admin
+  #   current_resource_owner
+  # end
 
   private
 

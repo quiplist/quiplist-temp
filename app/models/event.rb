@@ -89,6 +89,7 @@ class Event < ApplicationRecord
   has_many :admin_events, dependent: :destroy
   has_many :admins, through: :admin_events
   has_many :announcements, dependent: :destroy
+  has_many :game_scores, dependent: :destroy
 
   mount_uploader :brochure, BrochureUploader
   mount_uploader :stream_video, StreamVideoUploader
