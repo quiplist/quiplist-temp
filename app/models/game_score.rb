@@ -3,7 +3,7 @@
 # Table name: game_scores
 #
 #  id            :bigint           not null, primary key
-#  score         :string
+#  score         :integer
 #  created_at    :datetime         not null
 #  updated_at    :datetime         not null
 #  event_id      :bigint
@@ -21,4 +21,7 @@ class GameScore < ApplicationRecord
 
   validates :score, presence: true
   validates :game_id, presence: true
+
+  scope :sorted, -> { order(score: :desc) }
+  scope :topped, -> (top) { limit(top) }
 end
