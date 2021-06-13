@@ -14,6 +14,7 @@ Rails.application.routes.draw do
   get '/contact_us', to: 'home#contact_us', as: :contact_us
   get '/about_us', to: 'home#about_us', as: :about_us
   get '/memory_game', to: 'games#memory_game', as: :memory_game
+  get '/events/:event_code/expo', to: 'home#expo', as: :expo
 
   scope 'admins' do
     get '/forgot_password', to: 'admins#forgot_password', as: :admin_forgot_password
