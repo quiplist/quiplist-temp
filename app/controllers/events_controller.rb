@@ -20,6 +20,9 @@
 
     @questionnaires = Questionnaire.where(event: @event)
     @questionnaires = @questionnaires.sorted
+
+    @feed_backs = FeedBack.where(event: @event)
+    @feed_backs = @feed_backs.sorted
   end
 
   def create

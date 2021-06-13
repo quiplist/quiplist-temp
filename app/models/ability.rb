@@ -13,6 +13,7 @@ class Ability
       can_manage_admins?(user)
       can_manage_clients?(user)
       can_manage_game_applications?(user)
+      can_manage_feed_backs?(user)
       return
     elsif user.client?
       can :manage, :all
@@ -98,6 +99,14 @@ class Ability
       can :read, Doorkeeper::Application
     elsif user.access_rights.game_application.full_access?
       can :manage, Doorkeeper::Application
+    end
+  end
+
+  def can_manage_feed_backs?(user)
+    if user.access_rights.feed_back.view_only?
+      can :read, FeedBack
+    elsif user.access_rights.feed_back.full_access?
+      can :manage, FeedBack
     end
   end
 end

@@ -32,6 +32,7 @@ Rails.application.routes.draw do
       end
       resources :raffles, except: [:index]
       resources :questionnaires, except: [:index]
+      resources :feed_backs, except: [:index]
     end
     resources :admins do
       post :create_admin_events, on: :member

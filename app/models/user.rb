@@ -51,6 +51,8 @@ class User < ApplicationRecord
   has_many :reactions, as: :responder
   has_many :chats, as: :sender
   has_many :answers
+  has_many :ratings, dependent: :destroy
+  has_many :feed_backs, through: :ratings
 
   mount_uploader :profile_image, ProfileImageUploader
 
