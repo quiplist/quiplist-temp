@@ -216,4 +216,52 @@ body, html {
   
   }
   
-  
+/**
+* Actions
+**/
+
+.action-wrapper i.fas,
+.action-wrapper i.far {
+    color: #3943ca;
+    font-size: 22px;
+}
+
+.action-wrapper i.fas.fa-check-circle,
+.action-wrapper i.far.fa-check-circle{
+	color: #28a745;
+}
+
+
+fieldset {
+	border: solid 1px #000 !important;
+	padding: 0 10px 20px 10px;
+	border-bottom: none;
+	border-radius: 10px;
+	color: #000;
+}
+
+fieldset i {
+    color: #000;
+}
+
+fieldset legend {
+	width: auto !important;
+	border: none;
+	font-size: 14px;
+	float: none;
+	color: #000;
+}
+
+
+.questionnaire--actions{
+	position: relative;
+    margin: 0px 10px;
+}
+
+.questionnaire--actions input[type="submit"]{
+	z-index: 2;
+    background: transparent;
+    border: none;
+    position: absolute;
+    width: 100%;
+}

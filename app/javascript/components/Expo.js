@@ -12,43 +12,31 @@ import Island from "images/island.png";
 
 class Expo extends React.Component {
 
-    openModal(modal){
-        var _targetModal = document.getElementById(modal);
-
-        _targetModal.style.display = "block";
-    }
-
-    closeModal(modal){
-        var _targetModal = document.getElementById(modal);
-
-        _targetModal.style.display = "none";
-    }
-
     render() {
 
         return (
             <div className="bg">
                 <div className="cntr">
                     <br/><img className="island" src={Island}/> 
-                    <a href="#" id="platinumBtn" onClick={()=>this.openModal("platinumModal")} > 
+                    <a href="#" id="platinumBtn" > 
                         <img className="zoom bora" src={Bora}/> 
                     </a>
-                    <a href="#" id="programBtn" onClick={()=>this.openModal("programModal")}> 
+                    <a href="#" id="programBtn"> 
                         <img className="zoom mProgram" src={MainProgram}/> 
                     </a>
-                    <a href="#" id="diamondBtn" onClick={()=>this.openModal("diamondModal")}>  
+                    <a href="#" id="diamondBtn">  
                         <img className="zoom diamond" src={Diamond}/> 
                     </a>
-                    <a href="#" id="feedbackBtn" onClick={()=>this.openModal("feedbackModal")}> 
+                    <a href="#" id="feedbackBtn"> 
                         <img className="zoom feedback" src={Feedback}/> 
                     </a>
-                    <a href="#" id="alsBtn" onClick={()=>this.openModal("alsModal")}> 
+                    <a href="#" id="alsBtn"> 
                         <img className="zoom als" src={Als}/> 
                     </a>
-                    <a href="#" id="corBtn" onClick={()=>this.openModal("corModal")}> 
+                    <a href="#" id="corBtn"> 
                         <img className="zoom cor" src={Coreplus}/> 
                     </a>
-                    <a href="#" id="anivBtn" onClick={()=>this.openModal("anivModal")}> 
+                    <a href="#" id="anivBtn"> 
                         <img className="zoom aniv" src={Aniv}/> 
                     </a>
 
@@ -58,7 +46,7 @@ class Expo extends React.Component {
                         {/* Platinum Content */}
                         <div className="modal-content">
                             <div className="modal-header">
-                                <span className="close" onClick={()=>this.closeModal("platinumModal")}>&times;</span>
+                                <span className="close">&times;</span>
                                 <h2>Platinum Seminar</h2>
                             </div>
                             <div className="modal-body">
@@ -94,7 +82,7 @@ class Expo extends React.Component {
                         {/* Program Content  */}
                         <div className="modal-content">
                             <div className="modal-header">
-                                <span className="close" onClick={()=>this.closeModal("programModal")}>&times;</span>
+                                <span className="close">&times;</span>
                                 <h2>Main Program</h2>
                             </div>
                             <div className="modal-body">
@@ -114,7 +102,7 @@ class Expo extends React.Component {
                         {/*  Diamond Content */}
                         <div className="modal-content">
                             <div className="modal-header">
-                                <span className="close" onClick={()=>this.closeModal("diamondModal")}>&times;</span>
+                                <span className="close">&times;</span>
                                 <h2>Diamond Invitational</h2>
                             </div>
                             <div className="modal-body">
@@ -147,7 +135,7 @@ class Expo extends React.Component {
                         {/* feedback Content */}
                         <div className="modal-content">
                             <div className="modal-header">
-                                <span className="close" onClick={()=>this.closeModal("feedbackModal")}>&times;</span>
+                                <span className="close">&times;</span>
                                 <h2>Feedback</h2>
                             </div>
                             <div className="modal-body">
@@ -167,7 +155,7 @@ class Expo extends React.Component {
                         {/*  CorePlus Content --> */}
                         <div className="modal-content">
                             <div className="modal-header">
-                                <span className="close" onClick={()=>this.closeModal("corModal")}>&times;</span>
+                                <span className="close">&times;</span>
                                 <h2>Core Plus</h2>
                             </div>
                             <div className="modal-body">
@@ -215,7 +203,7 @@ class Expo extends React.Component {
                         {/*  CorePlus Content  */}
                         <div className="modal-content">
                             <div className="modal-header">
-                                <span className="close" onClick={()=>this.closeModal("alsModal")}>&times;</span>
+                                <span className="close">&times;</span>
                                 <h2>ALS Hawaii</h2>
                             </div>
                             <div className="modal-body">
@@ -265,7 +253,7 @@ class Expo extends React.Component {
                         {/* Aniv Content */}
                         <div className="modal-content">
                             <div className="modal-header">
-                                <span className="close" onClick={()=>this.closeModal("anivModal")}>&times;</span>
+                                <span className="close">&times;</span>
                                 <h2>ALS Hawaii</h2>
                             </div>
                             <div className="modal-body">
