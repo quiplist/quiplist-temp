@@ -1,4 +1,5 @@
 class ApplicationController < ActionController::Base
+  include ApplicationHelper
   before_action :set_current_user
   # DeviseController.respond_to :html, :json
   # rescue_from ActiveRecord::RecordNotFound do |exception|
@@ -30,7 +31,11 @@ class ApplicationController < ActionController::Base
     if (resource.super_admin? || resource.admin?) && event.nil?
       events_path
     elsif !event.nil? && resource.client?
-      home_path(event_code: event.event_code)
+      if event.has_expo?
+        expo_path(event_code: event.event_code)
+      else
+        home_path(event_code: event.event_code)
+      end
     else
       root_path
     end

@@ -6,4 +6,8 @@ module ApplicationHelper
   def time_formatter(obj)
     obj.strftime("%H:%M") unless obj.nil?
   end
+
+  def is_i?(obj)
+    /\A[-+]?\d+\z/ === self
+  end
 end
