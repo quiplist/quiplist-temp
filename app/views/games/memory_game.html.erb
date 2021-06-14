@@ -43,16 +43,16 @@
 <body>
 	<div id="gameContainer">
 		<canvas id="unity-canvas" data-pixel-art=""></canvas>
-		<script src="<%= asset_path '/games/memory_game/Build/Memory Game (WebGL).loader.js' %>"></script>
+		<script src="<%= asset_path '/games/memory_game/Build/MemoryGame.loader.js' %>"></script>
 		<script>
 			createUnityInstance(document.querySelector("#unity-canvas"), {
-				dataUrl: "<%= asset_path '/games/memory_game/Build/Memory Game (WebGL).data' %>",
-				frameworkUrl: "<%= asset_path '/games/memory_game/Build/Memory Game (WebGL).framework.js' %>",
-				codeUrl: "<%= asset_path '/games/memory_game/Build/Memory Game (WebGL).wasm' %>",
+				dataUrl: "<%= asset_path '/games/memory_game/Build/MemoryGame.data' %>",
+				frameworkUrl: "<%= asset_path '/games/memory_game/Build/MemoryGame.framework.js' %>",
+				codeUrl: "<%= asset_path '/games/memory_game/Build/MemoryGame.wasm' %>",
 				streamingAssetsUrl: "StreamingAssets",
 				companyName: "Don Romantiko Games",
 				productName: "ALS GAME",
-				productVersion: "1.0",
+				productVersion: "2.0",
 			}).then(function (instance) {
 				var canvas = instance.Module.canvas;
 				var container = canvas.parentElement;
@@ -89,6 +89,10 @@
 				}
 				window.addEventListener('resize', onResize);
 				onResize();
+
+				instance.SendMessage("game_manager", "ReturnGetUserID", "<%= @current_user.id %>");
+				instance.SendMessage("game_manager", "ReturnGetGuestListID", "<%= @guest.id %>");
+				instance.SendMessage("game_manager", "ReturnGetEventID", "<%= @event.id %>");
 			});
 		</script>
 	</div>
