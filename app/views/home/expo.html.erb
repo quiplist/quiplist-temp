@@ -1,18 +1,3 @@
-<!-- div class="container content-wrapper">
-  <div class="row event-wrapper-admin">
-    <div class="" style="<%= @event.main_background? ? "background-image: url(\'#{@event.main_background.url}\')" : "" %>">
-      <div class="container-fluid px-3">
-          <%= react_component("ExpoActions", {
-            url: @event.stream_key,
-            eventId: @event.id,
-            currentUserId: @current_user.id,
-            eventId: @event.id,
-          })%>
-
-      </div>
-    </div>
-
-  </div>
-</div -->
-
-<%= react_component("Expo")%>
+<%= react_component("Expo", {
+    eventId: @event.id
+  })%>

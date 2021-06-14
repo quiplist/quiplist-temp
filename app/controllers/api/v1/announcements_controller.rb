@@ -2,7 +2,10 @@ class Api::V1::AnnouncementsController < Api::ApplicationController
   before_action -> { set_event params[:event_id] }, only: [:index, :create, :update]
 
   def index
-    @announcement = @event.announcements.last
+    on_expo = params[:on_expo] == 'true'
+    @announcement = @event.announcements.main_program.last
+    @announcement = @event.announcements.on_expo.last if on_expo
+
     render json: @announcement
   end
 
