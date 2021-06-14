@@ -50,12 +50,18 @@
     </div>
   </div>
   <div class="row text-start mt-3">
-    <div class="col">
+    <div class="col col-lg-3">
         <% if can? :manage, Event %>
           <%= link_to "Go to Event", launch_event_path(@event), class: "btn btn-edit btn-lg event_raffle event--live", target: :_blank %>
         <% end %>
     </div>
+    <div class="col col-lg-3">
+        <% if can? :manage, Event %>
+          <%= link_to "Go to Expo", expo_event_path(@event), class: "btn btn-edit btn-lg event_raffle event--live", target: :_blank %>
+        <% end %>
+    </div>
   </div>
+
   <div class="row">
     <div class="col col-lg-12">
       <hr/>

@@ -85,6 +85,10 @@
   def launch
   end
 
+  def expo
+    render layout: "expo"
+  end
+
   private
 
   def event_params

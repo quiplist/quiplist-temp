@@ -23,6 +23,7 @@ Rails.application.routes.draw do
     resources :events, except: [:new, :edit] do
       put :upload_brochure, to: 'events#upload_brochure', on: :member
       get :launch, to: 'events#launch', on: :member
+      get :expo, to: 'events#expo', on: :member
 
       resources :guest_lists do
         post :set_status, on: :collection
