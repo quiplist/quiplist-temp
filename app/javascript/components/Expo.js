@@ -83,7 +83,26 @@ class Expo extends React.Component {
     this.setState(state => ({ currentEvent: evnt }))
   }
 
+  announcement = () => {
+    let announcement = {};
+    if(this.state.currentAnnouncement !== undefined) {
+      announcement = this.state.currentAnnouncement;
+    }
+
+    return announcement;
+  }
+
   render() {
+    const totalAnnoucements = this.state.announcements.length;
+    if (totalAnnoucements === 0) return null;
+    let announcement = this.announcement();
+    console.log(announcement)
+    let display;
+    if (announcement.display_annoucement) {
+      display = <marquee>{announcement.message}</marquee>;
+    }
+
+
     const isAdmin = (this.state.currentUser.user_type === 'Admin')
     let actions;
     if (isAdmin) {
@@ -101,8 +120,10 @@ class Expo extends React.Component {
         {actions}
         <div className="row expomap">
           <div className="col px-0">
-            <marquee>Test</marquee>
-            <ExpoMap />
+            {display}
+            <ExpoMap
+              currentEvent = {this.state.currentEvent}
+            />
           </div>
         </div>
       </div>

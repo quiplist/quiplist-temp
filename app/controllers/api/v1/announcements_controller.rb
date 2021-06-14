@@ -3,9 +3,9 @@ class Api::V1::AnnouncementsController < Api::ApplicationController
 
   def index
     on_expo = params[:on_expo] == 'true'
-    @announcement = @event.announcements.main_program.last
-    @announcement = @event.announcements.on_expo.last if on_expo
-
+    # @announcement = @event.announcements.main_program.last
+    # @announcement = @event.announcements.on_expo.last if on_expo
+    @announcement = @event.announcements.last
     render json: @announcement
   end
 
