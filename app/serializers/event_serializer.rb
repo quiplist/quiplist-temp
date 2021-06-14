@@ -102,6 +102,7 @@ class EventSerializer < ActiveModel::Serializer
   has_many :announcements
   has_many :raffles
   has_many :questionnaires
+  has_many :feed_backs
 
   def brochure_url
     object.has_brochure? ? object.brochure.url : ""
