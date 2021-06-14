@@ -99,8 +99,9 @@ class Expo extends React.Component {
     return (
       <div>
         {actions}
-        <div className="row">
-          <div className="col">
+        <div className="row expomap">
+          <div className="col px-0">
+            <marquee>Test</marquee>
             <ExpoMap />
           </div>
         </div>

@@ -6,255 +6,228 @@ body, html {
 
 
 .cntr {
-
-  height:  800px;
+  /* height:  800px;
   width:  1920px;
-  left: 50%;
-  position: absolute;
-  top: 100%; 
-  transform: translate(-50%, -115%);
+  left: 50%; */
+  position: relative;
+  height: 100%;
+  /* top: 100%; 
+  transform: translate(-50%, -115%); */
 }
 
 .bg {
-  /* The image used */
-  background-image: url("bg.jpg");
-
-  /* Full height */
-  height: 105%;
-  width: 102%;
-
-  /* Center and scale the image nicely */
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-  z-index: -1;
-
+  height: 100%;
 }
-.bora {
+
+.island a img{
+  width: 100%;
+  height: 100%;
+}
+
+#platinumBtn{
+  position: absolute;
+  top: 66%;
+  left: 9%;
+  z-index: 1;
+  height: 122px;
+  width: 200px;
+}
+
+#anivBtn{
+  position: absolute;
+  top: 17%;
+  left: 15%;
+  z-index: 1;
+  /* height: 225px;
+  width: 243px; */
+}
+
+#diamondBtn{
 	position: absolute;
-	top: 600px;
-	left: 150px;
 	z-index: 1;
-	height: 122px;
-	width: 200px;
-
-}
-
-.mProgram{
-	position: absolute;
-	top: 440px;
-	left: 490px;
-	z-index: 1;
-	height: 177px;
-	width: 193px;
-
-}
-
-.diamond{
-	position: absolute;
-	top: 220px;
-	left: 730px;
-	z-index: 1;
-	height: 165px;
-	width: 190px;
-
-}
-
-.feedback{
-	position: absolute;
-	top: 200px;
-	left: 1020px;
-	z-index: 1;
-	height: 215px;
-	width: 132px;
-
-}
-
-.aniv{
-  position: absolute;
-  top: 200px;
-  left: 330px;
-  z-index: 1;
-  height: 225px;
-  width: 243px;
-
-}
-
-
-.als{
-  position: absolute;
-  top: 280px;
-  left: 1250px;
-  z-index: 1;
-  height: 102px;
-  width: 102px;
-
-}
-
-.alsVid1{
-  position: absolute;
-  top: 420px;
-  left: 1250px;
-  z-index: 1;
-  height: 50px;
-  width: 35px;
-
-}
-
-
-.alsVid2{
-  position: absolute;
-  top: 370px;
-  left: 1400px;
-  z-index: 1;
-  height: 50px;
-  width: 35px;
-
-}
-
-
-.alsVid3{
-  position: absolute;
-  top: 420px;
-  left: 1450px;
-  z-index: 1;
-  height: 50px;
-  width: 35px;
-
-}
-
-
-.alsVid4{
-  position: absolute;
-  top: 560px;
-  left: 1550px;
-  z-index: 1;
-  height: 50px;
-  width: 35px;
-
-}
-
-
-.alsVid5{
-  position: absolute;
-  top: 620px;
-  left: 1450px;
-  z-index: 1;
-  height: 50px;
-  width: 35px;
-}
-
-
-
-.sales{
-  position: absolute;
-  top: 450px;
-  left: 1500px;
-  z-index: 1;
-  height: 75px;
   width: 150px;
-
+  height: auto;
+  left: 40%;
+  top: 25%;
 }
 
-.fruit{
+#feedbackBtn{
   position: absolute;
-  top: 530px;
-  left: 1400px;
+	z-index: 1;
+  left: 55%;
+  top: 20%;
+  width: 110px;
+  height: auto;
+}
+
+#programBtn{
+	position: absolute;
+	z-index: 1;
+  width: 150px;
+  height: auto;
+  top: 48%;
+  left: 28%;
+}
+
+#alsBtn{
+  position: absolute;
   z-index: 1;
-  height: 80px;
-  width: 112px;
-
+  left: 66%;
+  top: 32%;
+  width: 90px;
+  height: auto;
 }
 
-
-
-.cor{
+#corBtn{
   position: absolute;
-  top: 530px;
-  left: 920px;
   z-index: 1;
-  height: 30;
-  width: 61px;
-
+  left: 50%;
+  top: 59%;
+  width: 50px;
+  height: auto;
 }
 
-
-
-.corVid1{
+#powertBtn{
   position: absolute;
-  top: 730px;
-  left: 870px;
+  z-index: 1;
+  width: 50px;
+  left: 45%;
+  top: 62%;
+}
+
+#game3tBtn{
+  position: absolute;
+  z-index: 1;
+  width: 50px;
+  left: 55%;
+  top: 62%;
+}
+
+#bonanzaBtn{
+  position: absolute;
+  left: 48%;
+  top: 48%;
+  z-index: 1;
+  height: 53px;
+  width:  95px;
+}
+
+#alsVid1tBtn{
+  position: absolute;
+  top: 60%;
+  left: 81%;
   z-index: 1;
   height: 50px;
   width: 35px;
 }
 
-.corVid2{
+#alsVid2tBtn{
   position: absolute;
-  top: 680px;
-  left: 1020px;
+  left: 75%;
+  top: 42%;
   z-index: 1;
   height: 50px;
   width: 35px;
+}
+
+#alsVid3tBtn{
+  position: absolute;
+  left: 78%;
+    top: 47%;
+  z-index: 1;
+  height: 50px;
+  width: 35px;
+}
+
+#alsVid4tBtn{
+  position: absolute;
+  top: 47%;
+  left: 67%;
+  z-index: 1;
+  height: 50px;
+  width: 35px;
+}
+
+#alsVid5tBtn{
+  position: absolute;
+  left: 72%;
+  top: 69%;
+  z-index: 1;
+  height: 50px;
+  width: 35px;
+}
+
+#salesBtn{
+  position: absolute;
+  z-index: 1;
+  left: 80%;
+  top: 50%;
+  width: 100px;
+}
+
+#fruitBtn{
+  position: absolute;
+  z-index: 1;
+  left: 75%;
+  top: 60%;
+  width: 75px;
+  height: auto;
+}
+
+#corVid1tBtn{
+  position: absolute;
+  top: 76%;
+  left: 44%;
+  z-index: 1;
+  height: 50px;
+  width: 35px;
+}
+
+#corVid2tBtn{
+  position: absolute;
+  z-index: 1;
+  height: 50px;
+  width: 35px;
+  top: 73%;
+  left: 56%;
 }
 
 
 
 
 .island {
-  /* background-image: url("bora.png"); */
-  position: absolute;
+  background-image: url(island.png);
+  /* position: absolute;
   top: -100px;
-  left: 0px;
+  left: 0px; */
+  bottom: 0;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-size: 100% 70%;
+  background-repeat: no-repeat;
+  background-position: bottom;
 
 }
 
 .hdr {
   /* background-image: url("bora.png"); */
-  position: absolute;
+  /* position: absolute;
   top: 30px;
-  left: 330px;
+  left: 330px; */
 
-
-}
-
-
-.power{
   position: absolute;
-  top: 570px;
-  left: 820px;
-  z-index: 1;
-  height: 50;
-  width:  75px;
-
+  width: 70%;
+  height: auto;
+  object-fit: contain;
+  top: 0;
+  left: 50%;
+  transform: translate(-50%, 0%);
 }
 
-.game3{
-  position: absolute;
-  top: 570px;
-  left: 1020px;
-  z-index: 1;
-  height: 50;
-  width:  75px;
-
-}
-
-
-
-
-.bonanza{
-  position: absolute;
-  top: 440px;
-  left: 900px;
-  z-index: 1;
-  height: 53   ;
-  width:  95px;
-
-}
 
 
 .zoom {
-  padding: 50px;
   transition: transform .1s; /* Animation */
   margin: 0 auto;
 }
@@ -264,78 +237,6 @@ body, html {
 
 }
 
-
-/***** MODAL *****/
-
-/* The Modal (background) */
-.modal {
-  display: none; /* Hidden by default */
-  position: fixed; /* Stay in place */
-  z-index: 1; /* Sit on top */
-  padding-top: 100px; /* Location of the box */
-  left: 0;
-  top: 0;
-  width: 100%; /* Full width */
-  height: 100%; /* Full height */
-  overflow: auto; /* Enable scroll if needed */
-  background-color: rgb(0,0,0); /* Fallback color */
-  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
-}
-
-/* Modal Content */
-.modal-content {
-  position: relative;
-  background-color: #fefefe;
-  margin: auto;
-  padding: 0;
-  border: 1px solid #888;
-  width: 80%;
-  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
-  -webkit-animation-name: animatetop;
-  -webkit-animation-duration: 0.4s;
-  animation-name: animatetop;
-  animation-duration: 0.4s
-}
-
-/* Add Animation */
-@-webkit-keyframes animatetop {
-  from {top:-300px; opacity:0} 
-  to {top:0; opacity:1}
-}
-
-@keyframes animatetop {
-  from {top:-300px; opacity:0}
-  to {top:0; opacity:1}
-}
-
-/* The Close Button */
-.close {
-  color: white;
-  float: right;
-  font-size: 28px;
-  font-weight: bold;
-}
-
-.close:hover,
-.close:focus {
-  color: #000;
-  text-decoration: none;
-  cursor: pointer;
-}
-
-.modal-header {
-  padding: 2px 16px;
-  background-color: #10b0c8;
-  color: white;
-}
-
-.modal-body {padding: 2px 16px;}
-
-.modal-footer {
-  padding: 2px 16px;
-  
-  color: 727272;
-}
 
 
 /* //Thumbnail */
@@ -350,10 +251,7 @@ body, html {
 .img_thumb:hover {
   box-shadow: 0 0 2px 1px rgba(0, 140, 186, 0.5);
 }
-th, td {
-  padding: 15px;
 
-}
 
 
 /**
@@ -363,6 +261,27 @@ th, td {
 div[data-react-class="Expo"]{
   height: 100%;
   box-sizing: unset;
+}
+
+div[data-react-class="Expo"] > div{
+  height: 100%;
+  width: 100%;
+}
+
+div[data-react-class="Expo"] .expomap{
+  background-image: url(bg.jpg);
+  height: 100%;
+  width: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  z-index: -1;
+  margin: 0px;
+}
+
+div[data-react-class="Expo"] .menti-wrapper {
+  display: flex;
+  justify-content: space-between;
 }
 
 *, ::after, ::before{
@@ -401,16 +320,45 @@ fieldset legend {
 	color: #000;
 }
 
-
-.questionnaire--actions{
-	position: relative;
-    margin: 0px 10px;
+.expomap marquee{
+  background: rgba(255, 255, 255, 0.8);
+  padding: 10px;
 }
 
-.questionnaire--actions input[type="submit"]{
-	z-index: 2;
-    background: transparent;
-    border: none;
-    position: absolute;
-    width: 100%;
+
+/* @media screen and (min-width: 1200px){
+  #anivBtn{
+    height: 200px;
+    width: 200px;
+  }
+} */
+
+@media screen and (min-width: 1920px){
+  #anivBtn{
+    top: 21%;
+    left: 18%;
+  }
+
+  #diamondBtn{
+    width: 200px;
+    left: 41%;
+    top: 27%;
+  }
+
+  #feedbackBtn{
+    left: 56%;
+    top: 27%;
+  }
+
+  #programBtn{
+    width: 200px;
+  }
+
+  #corBtn{
+    width: 70px;
+  }
+
+  #powerBtn{
+    left: 46%;
+  }
 }

@@ -42,9 +42,9 @@ class ExpoActions extends React.Component {
 
     return (
       <React.Fragment>
-        <div className="row my-3">
+        <div className="row my-3 w-100">
           <div className="col-12 col-md-6 col-lg-4">
-            <div className="action-wrapper">
+            <div className="action-wrapper px-3 py-3">
               <fieldset>
               <legend>Controls</legend>
                 <div className="row h-100">
@@ -66,7 +66,7 @@ class ExpoActions extends React.Component {
             </div>
           </div>
           <div className="col-12 col-md-6 col-lg-4">
-            <div className="action-wrapper">
+            <div className="action-wrapper px-3 py-3">
               <fieldset>
                 <legend>Announcement</legend>
                 <AnnouncementInput
