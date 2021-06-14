@@ -52,7 +52,7 @@
 				streamingAssetsUrl: "StreamingAssets",
 				companyName: "Don Romantiko Games",
 				productName: "ALS GAME",
-				productVersion: "1.0",
+				productVersion: "2.0",
 			}).then(function (instance) {
 				var canvas = instance.Module.canvas;
 				var container = canvas.parentElement;
@@ -88,12 +88,11 @@
 					scaleToFit = true;
 				}
 				window.addEventListener('resize', onResize);
+				onResize();
 
 				instance.SendMessage("game_manager", "ReturnGetUserID", "<%= @current_user.id %>");
 				instance.SendMessage("game_manager", "ReturnGetGuestListID", "<%= @guest.id %>");
 				instance.SendMessage("game_manager", "ReturnGetEventID", "<%= @event.id %>");
-
-				onResize();
 			});
 		</script>
 	</div>
