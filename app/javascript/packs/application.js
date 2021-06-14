@@ -343,12 +343,12 @@ $(document).ready(function () {
       });
     }
 
-    var checkbox = document.querySelector('#terms');
-    if (checkbox !== null) {
-      checkbox.addEventListener('change', function (e) {
-         this.checked ? $(".btn-event-code").prop('disabled', false) : $(".btn-event-code").prop('disabled', true);;
-      });
-    }
+    // var checkbox = document.querySelector('#terms');
+    // if (checkbox !== null) {
+    //   checkbox.addEventListener('change', function (e) {
+    //      this.checked ? $(".btn-event-code").prop('disabled', false) : $(".btn-event-code").prop('disabled', true);;
+    //   });
+    // }
 
     //admin dashboard user_dropdown
     var dropdown_trigger = $(".user_dropdown_wrapper i");

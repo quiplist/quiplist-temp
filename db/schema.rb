@@ -294,6 +294,7 @@ ActiveRecord::Schema.define(version: 2021_06_12_102205) do
     t.string "contact_us_mouse_over", default: "#861CCE"
     t.string "contact_us_spiel"
     t.string "contact_us_email"
+    t.string "contact_us_number"
     t.string "about_us_spiel"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false

@@ -1,14 +1,10 @@
-<section class="single-page-layout">
+<section class="single-page-layout" style="<%= @settings.about_us_background? ? "background-image: url(\'#{@settings.about_us_background.url}\')" : "" %>">
    <div class="container">
       <div class="row text-center py-5 justify-content-center">
          <div class="col-12 col-md-9">
             <h1>ABOUT US</h1>
             <p>
-               Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed
-               diam nonummy nibh euismod tincidunt ut laoreet Lorem ipsum
-               dolor sit amet, consectetuer adipiscing elit, sed diam nonummy
-               nibh euismod tincidunt ut laoreet dolore magna aliquam erat
-               volutpat. Ut wisi enim ad minim.
+               <%= @settings.about_us_spiel.html_safe %>
             </p>
          </div>
       </div>

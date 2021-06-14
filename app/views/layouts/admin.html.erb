@@ -53,7 +53,15 @@
                               <% if can? :index, User %>
                                 <%= link_to users_path do %>
                                   <i class="fas fa-user-plus"></i>
-                                  <span>Client</span>
+                                  <span>Clients</span>
+                                <% end %>
+                              <% end %>
+                            </li>
+                            <li>
+                              <% if can? :index, Setting %>
+                                <%= link_to settings_path do %>
+                                  <i class="fas fa-wrench"></i>
+                                  <span>Settings</span>
                                 <% end %>
                               <% end %>
                             </li>
