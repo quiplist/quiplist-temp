@@ -1,15 +1,19 @@
 class GamesController < ApplicationController
   layout false
 
+  before_action :authenticate_user!
+  before_action -> { check_event_code params[:event_code] }
+
   def memory_game
-    @event_id = 9
-    @user_id = 10
-    @guest_list_id = 626
+    render_404 if @event.nil?
+    @guest = GuestList.invitation(current_user, @event)
+    @current_user = current_user
   end
 
-  def sample
-    @event_id = 9
-    @user_id = 10
-    @guest_list_id = 626
+  def fishing_boat
+    render_404 if @event.nil?
+    @guest = GuestList.invitation(current_user, @event)
+    @current_user = current_user
   end
+
 end
