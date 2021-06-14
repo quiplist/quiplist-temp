@@ -18,7 +18,7 @@ class Announcement extends React.Component {
     if (totalAnnoucements === 0) return null;
     let announcement = this.announcement();
     let display;
-    if (announcement.display_annoucement) {
+    if (announcement.display_annoucement && !announcement.on_expo) {
       display = <marquee>{announcement.message}</marquee>;
     }
 

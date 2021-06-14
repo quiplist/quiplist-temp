@@ -56,7 +56,7 @@ Rails.application.routes.draw do
       resources :chats, only: [:index, :create]
       resources :announcements, only: [:index, :create, :update]
       get '/fetch_current_user', to: 'users#fetch_current_user', as: :fetch_current_user
-      resources :events, only: [:show]
+      resources :events, only: [:show, :update]
       resources :raffles, only: [:index, :show, :update]
       resources :questionnaires, only: [:update]
       resources :guest_lists, only: [:index, :show]

@@ -27,7 +27,7 @@ class Api::V1::AnnouncementsController < Api::ApplicationController
   private
 
   def announcement_params
-    params.require(:announcement).permit(:message, :admin_id, :event_id, :display_annoucement)
+    params.require(:announcement).permit(:message, :admin_id, :event_id, :display_annoucement, :on_expo)
   end
 
   def set_event(id)
