@@ -306,6 +306,7 @@ fieldset {
 	border-bottom: none;
 	border-radius: 10px;
 	color: #000;
+  height: 80px;
 }
 
 fieldset i {
@@ -323,6 +324,19 @@ fieldset legend {
 .expomap marquee{
   background: rgba(255, 255, 255, 0.8);
   padding: 10px;
+}
+
+.questionnaire--actions{
+	position: relative;
+    margin: 0px 10px;
+}
+
+.questionnaire--actions input[type="submit"]{
+	z-index: 2;
+    background: transparent;
+    border: none;
+    position: absolute;
+    width: 100%;
 }
 
 
