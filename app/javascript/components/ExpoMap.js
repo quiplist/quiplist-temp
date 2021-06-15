@@ -21,6 +21,10 @@ class ExpoMap extends React.Component {
     this.state = {};
   }
 
+  openMyWindow = () => {
+    window.open("https://www.youtube.com/watch?v=dQw4w9WgXcQ", "Popup","toolbar=no, location=no, statusbar=no, menubar=no, scrollbars=1, resizable=0, width=580, height=600, top=30")
+   }
+
   render() {
     return (
       <div className="bg">
@@ -63,7 +67,7 @@ class ExpoMap extends React.Component {
                 <a href="games/coreplus-game_002.html" target="_blank" id="powertBtn">
                     <img className="zoom power" src={Power}/>
                 </a>
-                <a href="games/coreplus-game_003.html" target="_blank" id="game3tBtn">
+                <a href="#" id="game3tBtn" onClick={() => window.open("http://127.0.0.1:3000/events/facebook/games/fishing_boat", "Popup","toolbar=no, location=no, statusbar=no, menubar=no, scrollbars=1, resizable=0, width=580, height=600, top=30")}>
                     <img className="zoom game3" src={Power}/>
                 </a>
                 <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank" id="alsVid1tBtn">
