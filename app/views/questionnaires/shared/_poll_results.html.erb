@@ -10,7 +10,7 @@
     <% @ratings.each do |rating| %>
       <div class="row">
         <div class="col-3">
-          <div class="poll-results--percent"><%= rating[:percent] %></div>
+          <div class="poll-results--percent"><%= number_to_percentage(rating[:percent], precision: 2) %></div>
         </div>
         <div class="col">
           <h2 class="poll-results--choice"><%= rating[:name] %></h2>

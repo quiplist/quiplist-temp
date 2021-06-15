@@ -29,11 +29,12 @@ class Answer < ApplicationRecord
     total_answers = questionnaire.answered_correctly.count
     return ratings if total_answers.zero?
     questionnaire.choices.each do |choice|
-      total_choice = Answer.correctly_answered(choice.name, questionnaire).count
-      if total_choice.zero?
+      total_choice_answer = Answer.correctly_answered(choice.name, questionnaire).count
+      if total_choice_answer.zero?
         ratings << { percent: 0, name: choice.name }
       else
-        ratings << { percent: ((total_choice / total_answers) * 100), name: choice.name }
+        percent = ((total_choice_answer.to_f / total_answers.to_f) * 100)
+        ratings << { percent: percent, name: choice.name }
       end
     end
 
