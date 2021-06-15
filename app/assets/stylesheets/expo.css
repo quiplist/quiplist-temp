@@ -284,9 +284,9 @@ div[data-react-class="Expo"] .menti-wrapper {
   justify-content: space-between;
 }
 
-*, ::after, ::before{
+/* *, ::after, ::before{
   box-sizing: unset;
-}
+} */
 
 .action-wrapper i.fas,
 .action-wrapper i.far {

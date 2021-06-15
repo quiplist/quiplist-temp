@@ -43,9 +43,46 @@ class ExpoMap extends React.Component {
                 <a href="#" target="_blank" id="diamondBtn">
                     <img className="zoom diamond" src={Diamond}/>
                 </a>
-                <a href="#" id="feedbackBtn">
+                <a type="button" data-bs-toggle="modal" data-bs-target="#feedbackModal" id="feedbackBtn">
                     <img className="zoom feedback" src={Feedback}/>
                 </a>
+
+                {/* Start modal for feedback */}
+                <div className="modal fade" id="feedbackModal" tabIndex="-1" aria-labelledby="feedbackModalLabel" aria-hidden="true">
+                    <div className="modal-dialog">
+                        <div className="modal-content">
+                        <div className="modal-header">
+                            <h5 className="modal-title" id="feedbackModalLabel">Feedback Form</h5>
+                            <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div className="modal-body">
+                            <form>
+                                <div className="mb-3">
+                                    <label htmlFor="exampleInputEmail1" className="form-label">Email address</label>
+                                    <input type="email" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"/>
+                                    <div id="emailHelp" className="form-text">We'll never share your email with anyone else.</div>
+                                </div>
+                                <select className="mb-3 form-select" aria-label="Default select example">
+                                    <option defaultValue>Open this select menu</option>
+                                    <option value="1">One</option>
+                                    <option value="2">Two</option>
+                                    <option value="3">Three</option>
+                                </select>
+                                <div className="mb-3 form-check">
+                                    <input type="checkbox" className="form-check-input" id="exampleCheck1"/>
+                                    <label className="form-check-label" htmlFor="exampleCheck1">Check me out</label>
+                                    </div>
+                            </form>
+                        </div>
+                        <div className="modal-footer">
+                            <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="button" className="btn btn-primary">Save changes</button>
+                        </div>
+                        </div>
+                    </div>
+                </div>
+                {/* End modal for feedback */}
+
                 <a href="#" target="_blank" id="alsBtn">
                     <img className="zoom als" src={Als}/>
                 </a>
