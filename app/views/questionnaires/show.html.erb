@@ -1,69 +1,7 @@
-<%= render partial: "layouts/shared/breadcrumbs", locals: {
-  links: [
-    { path: events_path, path_name: "Event" },
-    { path: event_path(@event), path_name: "#{@event.id}" },
-  ],
-  current_path: "Show Questionnaire"
-} %>
-<div class="container content-wrapper">
-   <%= render partial: "layouts/shared/success_messages", locals: { messages: flash[:notice] } %>
-   <%= render partial: "layouts/shared/alert_messages", locals: { messages: flash[:alert] } %>
-   <div class="row">
-      <div class="col-12 text-start">
-         <h2 class="admin_title"><%= @questionnaire.questionnaire_type_name %></h2>
-      </div>
-   </div>
-   <div class="row text-start mb-3 mx-3">
-      <div class="col col-lg-4">
-         <div class="admin_wrapper">
-            <span class="mr-3"><strong>Question:</strong></span><br>
-            <span class="admin_detail"><%= @questionnaire.question %></span>
-         </div>
-      </div>
-   </div>
-   <div class="row text-start mb-3 mx-3">
-      <div class="col col-lg-4">
-         <div class="admin_wrapper">
-            <span class="mr-3"><strong>Choices:</strong></span><br>
-            <span class="admin_detail">
-              <% @questionnaire.choices.each do |choice| %>
-                <%= choice.name %> <br/>
-              <% end %>
-            </span>
-         </div>
-      </div>
-      <div class="col col-lg-4">
-         <div class="admin_wrapper">
-            <span class="mr-3"><strong>Correct Answer</strong></span><br>
-            <span class="admin_detail"><%= @questionnaire.correct_answer %></span>
-         </div>
-      </div>
-   </div>
-   <div class="row">
-      <div class="col col-lg-12">
-         <hr/>
-      </div>
-   </div>
-   <div class="row">
-      <div class="col col-lg-12">
-         <div class="tab-pane fade show active" id="nav-events" role="tabpanel" aria-labelledby="nav-events-tab">
-            <table id="event_list_table" class="table data-table hover">
-               <thead>
-                  <tr>
-                     <th>Answer</th>
-                     <th>Full Name</th>
-                  </tr>
-               </thead>
-               <tbody>
-                  <% @questionnaire.answered_correctly.each do |answers| %>
-                  <tr>
-                     <td><%= answers.answer %></td>
-                     <td><%= answers.user.full_name %></td>
-                  </tr>
-                  <% end %>
-               </tbody>
-            </table>
-         </div>
-      </div>
-   </div>
-</div>
+<% if @questionnaire.multiple_choice? || @questionnaire.yes_or_no? || @questionnaire.select_letters? || @questionnaire.identification? %>
+  <%= render partial: "questionnaires/shared/winners_results", correctly_answered: @correctly_answered %>
+<% elsif @questionnaire.poll? %>
+  <%= render partial: "questionnaires/shared/poll_results" %>
+<% else %>
+  <%= render partial: "questionnaires/shared/q_and_a" %>
+<% end %>

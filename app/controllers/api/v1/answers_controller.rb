@@ -12,6 +12,6 @@ class Api::V1::AnswersController < Api::ApplicationController
   private
 
   def answer_params
-    params.require(:answer).permit(:answer, :questionnaire_id, :user_id)
+    params.require(:answer).permit(:answer, :questionnaire_id, :user_id, :pinned)
   end
 end

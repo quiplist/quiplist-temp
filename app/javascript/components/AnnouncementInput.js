@@ -71,7 +71,7 @@ class AnnouncementInput extends Component {
 
   render() {
     return (
-      <div className="menti-wrapper">
+      <div className="menti-wrapper announcement__field">
         <form
           action="."
           onSubmit={e => {

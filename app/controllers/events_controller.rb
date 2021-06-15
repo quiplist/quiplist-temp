@@ -105,7 +105,13 @@
       :include_member_company, :required_member_company, :include_member_id, :required_member_id,
       :include_member_type, :required_member_type, :include_upline, :required_upline, :include_who_invited_you,
       :required_who_invited_you, :include_abo_type, :include_distributor_type, :required_abo_type,
-      :required_distributor_type, :with_guest_member_type, :with_guest_abo_type, :with_guest_distributor_type)
+      :required_distributor_type, :with_guest_member_type, :with_guest_abo_type, :with_guest_distributor_type,
+      :random_name_background, :random_name_background_color, :random_name_draw_mouse_out, :random_name_draw_mouse_over,
+      :random_name_winner_mouse_out, :random_name_winner_mouse_over, :random_number_background, :random_number_background_color,
+      :random_number_draw_mouse_out, :random_number_draw_mouse_over, :random_number_winner_mouse_out, :random_number_winner_mouse_over,
+      :spin_a_wheel_background, :spin_a_wheel_background_color, :spin_a_wheel_draw_mouse_out, :spin_a_wheel_draw_mouse_over, 
+      :spin_a_wheel_winner_mouse_out, :spin_a_wheel_winner_mouse_over
+    )
   end
 
   def upload_params
