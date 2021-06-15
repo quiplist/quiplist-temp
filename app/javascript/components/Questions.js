@@ -69,10 +69,6 @@ class Questions extends React.Component {
       } else if (isOngoing) {
 
         let isAnsweredOrIsAdmin = (this.props.isAnsweredQuestionnaire || this.props.isAdmin)
-        console.log("isAnsweredOrIsAdmin")
-        console.log(isAnsweredOrIsAdmin)
-        console.log(this.props.isAdmin)
-        console.log("isAnsweredOrIsAdmin")
         if (currentQuestionnaire.is_multiple_choice) {
           choices = <MultipleChoice
                       currentQuestionnaire = {this.props.currentQuestionnaire}

@@ -1754,7 +1754,7 @@ h2#swal2-title {
 	font-size: 36px;
     font-weight: bold;
 	margin-top: 8px;
-	
+
 }
 
 /* .swal2-popup.swal2-modal.swal2-show:before {
@@ -1771,6 +1771,19 @@ h2#swal2-title {
 
 .raffle-wrapper{
 	background-image: url(blue-bg.png);
+	background-size: cover;
+	background-position: bottom;
+	color: #fff;
+	position: relative;
+	height: 100vh;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	overflow: hidden;
+}
+
+.menti-wrapper{
 	background-size: cover;
 	background-position: bottom;
 	color: #fff;
@@ -2158,9 +2171,9 @@ footer h6 {
 
 .menti-wrapper{
 	display: flex;
-    flex-direction: column;
-    height: 100%;
-    justify-content: space-between;
+  flex-direction: column;
+  height: 100%;
+  justify-content: space-between;
 }
 
 .game-winners{
@@ -2169,8 +2182,9 @@ footer h6 {
 
 .game-winners h1{
 	font-weight: 700;
-    font-size: 56px;
-    text-transform: uppercase;
+  font-size: 56px;
+  text-transform: uppercase;
+  color: black;
 }
 
 .game-winners--cards .row:not(:first-child) .game-winner--wrapper{
@@ -2238,8 +2252,10 @@ footer h6 {
 
 .poll-results h1{
 	font-weight: 700;
-    font-size: 56px;
-    text-transform: uppercase;
+  font-size: 56px;
+  text-transform: uppercase;
+	padding-top: 20%;
+  color: black;
 }
 
 @media screen and (min-width:1024px) {

@@ -1,13 +1,19 @@
 class QuestionnairesController < ApplicationController
-  layout 'admin'
+  layout 'admin', except: [:show]
 
   before_action :authenticate_admin!
   load_and_authorize_resource :event
   load_and_authorize_resource :questionnaire, through: :event
 
   def show
+    if @questionnaire.multiple_choice? || @questionnaire.yes_or_no? || @questionnaire.select_letters?
+      @correctly_answered = Answer.correctly_answered(@questionnaire.correct_answer, @questionnaire).sorted.take(10)
+    elsif @questionnaire.poll?
+      @ratings = Answer.get_rating(@questionnaire)
+    end
+    render layout: "no_layout"
   end
-  
+
   def new
     filler_choices
   end
