@@ -1548,6 +1548,7 @@ ul.sidebar-list {
 .question--fh{
 	height: 130px;
 	overflow-y: auto;
+	width: 100%;
 }
 
 .question-wrapper>.row {
@@ -1794,6 +1795,10 @@ h2#swal2-title {
 	align-items: center;
 	justify-content: center;
 	overflow: hidden;
+}
+
+.menti-wrapper p{
+	color: #000;
 }
 
 
@@ -2257,6 +2262,10 @@ footer h6 {
   text-transform: uppercase;
 	padding-top: 20%;
   color: black;
+}
+
+.announcement__field form{
+	width: 100%;
 }
 
 @media screen and (min-width:1024px) {
