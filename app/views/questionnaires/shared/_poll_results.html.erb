@@ -1,0 +1,21 @@
+<section class="container-fluid menti-wrapper px-0 poll-results">
+  <% if @ratings.empty? %>
+    <div class="row">
+      <h1>No Results!</h1>
+    </div>
+  <% else %>
+    <div class="row">
+      <h1>Poll Results</h1>
+    </div>
+    <% @ratings.each do |rating| %>
+      <div class="row">
+        <div class="col-3">
+          <div class="poll-results--percent"><%= number_to_percentage(rating[:percent], precision: 2) %></div>
+        </div>
+        <div class="col">
+          <h2 class="poll-results--choice"><%= rating[:name] %></h2>
+        </div>
+      </div>
+    <% end %>
+  <% end %>
+</section>

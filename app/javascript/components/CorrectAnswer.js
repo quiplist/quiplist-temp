@@ -1,17 +1,24 @@
 import React  from 'react';
 import PropTypes from "prop-types";
+import HasAnswer from './HasAnswer'
+import HasNoAnswer from './HasNoAnswer'
 
 class CorrectAnswer extends React.Component {
 
   render() {
+    let correctAnswer;
+    let isPoll = this.props.currentQuestionnaire.is_poll;
+    let isQAndA = this.props.currentQuestionnaire.is_q_and_a
+    if (isPoll || isQAndA) {
+      correctAnswer = <HasNoAnswer />
+    } else {
+      correctAnswer = <HasAnswer
+                        correctAnswer = {this.props.currentQuestionnaire.correct_answer}
+                      />
+    }
     return (
       <div className="row align-items-center text-center">
-        <div className="col-6">
-          <h3>Correct Answer</h3>
-        </div>
-        <div className="col-6">
-          <span className="answer--show">{this.props.currentQuestionnaire.correct_answer}</span>
-        </div>
+        {correctAnswer}
       </div>
     )
   }
