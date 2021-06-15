@@ -102,7 +102,6 @@ class Expo extends React.Component {
       display = <marquee>{announcement.message}</marquee>;
     }
 
-
     const isAdmin = (this.state.currentUser.user_type === 'Admin')
     let actions;
     if (isAdmin) {
@@ -124,6 +123,7 @@ class Expo extends React.Component {
             <ExpoMap
               currentEvent = {this.state.currentEvent}
               guestListId = {this.props.guestListId}
+              isAdmin = {isAdmin}
             />
           </div>
         </div>

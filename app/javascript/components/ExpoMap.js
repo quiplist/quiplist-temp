@@ -26,6 +26,27 @@ class ExpoMap extends React.Component {
     let fishingBoatUrl = `/events/${this.props.currentEvent.event_code}/games/fishing_boat`;
     let powerTowerUrl = `https://ignitrondigital.com/qp/power-game?event_id=${this.props.currentEvent.id}&guest_list_id=${this.props.guestListId}`;
     let fruitFallUrl = `https://ignitrondigital.com/qp/fruit-fall-game?event_id=${this.props.currentEvent.id}&guest_list_id=${this.props.guestListId}`;
+    let mainProgramUrl;
+
+    if (this.props.isAdmin) {
+      mainProgramUrl = `/admins/events/${this.props.currentEvent.id}/launch`
+    } else {
+      mainProgramUrl = `/events/${this.props.currentEvent.event_code}`;
+    }
+
+    let disabled = (this.props.currentEvent.disable_expo_games || this.props.isAdmin);
+    let onClickMemoryGame, onClickFishingBoat, onClickPowerTower, onClickFruitFall;
+    if (disabled) {
+      onClickMemoryGame = null;
+      onClickFishingBoat = null;
+      onClickPowerTower = null;
+      onClickFruitFall = null
+    } else {
+      onClickMemoryGame = () => window.open(memoryGameUrl, "Popup","toolbar=no, location=no, statusbar=no, menubar=no, scrollbars=1, resizable=0, width=750, height=770, left=350, top=200")
+      onClickFishingBoat = () => window.open(fishingBoatUrl, "Popup","toolbar=no, location=no, statusbar=no, menubar=no, scrollbars=1, resizable=0, width=750, height=770, left=350, top=200")
+      onClickPowerTower = () => window.open(powerTowerUrl, "Popup","toolbar=no, location=no, statusbar=no, menubar=no, scrollbars=1, resizable=0, width=750, height=770, left=350, top=200")
+      onClickFruitFall = () => window.open(fruitFallUrl, "Popup","toolbar=no, location=no, statusbar=no, menubar=no, scrollbars=1, resizable=0, width=750, height=770, left=350, top=200")
+    }
     return (
       <div className="bg">
         <div className="cntr">
@@ -37,14 +58,14 @@ class ExpoMap extends React.Component {
                 <a href="#"  target="_blank"  id="platinumBtn">
                     <img className="zoom bora" src={Bora}/>
                 </a>
-                <a href="#" id="programBtn">
+                <a href={mainProgramUrl} target="_blank" id="programBtn">
                     <img className="zoom mProgram" src={MainProgram}/>
                 </a>
                 <a href="#" target="_blank" id="diamondBtn">
                     <img className="zoom diamond" src={Diamond}/>
                 </a>
-                <a type="button" data-bs-toggle="modal" data-bs-target="#feedbackModal" id="feedbackBtn">
-                    <img className="zoom feedback" src={Feedback}/>
+                <a type="button" disabled={this.props.isAdmin} data-bs-toggle="modal" data-bs-target="#feedbackModal" id="feedbackBtn">
+                    <img className="zoom feedback" src={Feedback} disabled={this.props.isAdmin}/>
                 </a>
 
                 {/* Start modal for feedback */}
@@ -76,7 +97,7 @@ class ExpoMap extends React.Component {
                         </div>
                         <div className="modal-footer">
                             <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            <button type="button" className="btn btn-primary">Save changes</button>
+                            <button type="button" className="btn btn-primary" disabled={this.props.isAdmin}>Save changes</button>
                         </div>
                         </div>
                     </div>
@@ -86,10 +107,10 @@ class ExpoMap extends React.Component {
                 <a href="#" target="_blank" id="alsBtn">
                     <img className="zoom als" src={Als}/>
                 </a>
-                <a href="#" id="salesBtn" onClick={() => window.open(fishingBoatUrl, "Popup","toolbar=no, location=no, statusbar=no, menubar=no, scrollbars=1, resizable=0, width=750, height=770, left=350, top=200")}>
+                <a href="#" id="salesBtn" onClick={onClickFishingBoat}>
                     <img className="zoom sales" src={Sales}/>
                 </a>
-                <a href="#" target="_blank"  id="fruitBtn" onClick={() => window.open(fruitFallUrl, "Popup","toolbar=no, location=no, statusbar=no, menubar=no, scrollbars=1, resizable=0, width=750, height=770, left=350, top=200")}>
+                <a href="#" id="fruitBtn" onClick={onClickFruitFall}>
                     <img className="zoom fruit" src={Fruit}/>
                 </a>
                 <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank"  id="corVid1tBtn">
@@ -98,13 +119,13 @@ class ExpoMap extends React.Component {
                 <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank"  id="corVid2tBtn">
                     <img className="zoom corVid2" src={Pin} alt="corVid2"/>
                 </a>
-                <a href="#" id="bonanzaBtn" onClick={() => window.open(memoryGameUrl, "Popup","toolbar=no, location=no, statusbar=no, menubar=no, scrollbars=1, resizable=0, width=750, height=770, left=350, top=200")}>
-                    <img className="zoom bonanza" src={Bonanza}/>
+                <a href="#" id="bonanzaBtn" onClick={onClickMemoryGame}>
+                    <img className="zoom bonanza" src={Bonanza} />
                 </a>
-                <a href="#" id="powertBtn" onClick={() => window.open(powerTowerUrl, "Popup","toolbar=no, location=no, statusbar=no, menubar=no, scrollbars=1, resizable=0, width=750, height=770, left=350, top=200")}>
+                <a href="#" id="powertBtn" onClick={onClickPowerTower}>
                     <img className="zoom power" src={Power}/>
                 </a>
-                <a href="#" id="game3tBtn" onClick={() => window.open("http://127.0.0.1:3000/events/facebook/games/fishing_boat", "Popup","toolbar=no, location=no, statusbar=no, menubar=no, scrollbars=1, resizable=0, width=580, height=600, top=30")}>
+                <a href="#" id="game3tBtn">
                     <img className="zoom game3" src={Power}/>
                 </a>
                 <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank" id="alsVid1tBtn">
