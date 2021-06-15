@@ -31,7 +31,9 @@ Rails.application.routes.draw do
         get :download_csv, on: :collection
       end
       resources :raffles, except: [:index]
-      resources :questionnaires, except: [:index]
+      resources :questionnaires, except: [:index] do
+        get '/pinned/:answer_id', to: 'questionnaires#pinned', on: :member, as: :pinned_answer
+      end
     end
     resources :admins do
       post :create_admin_events, on: :member

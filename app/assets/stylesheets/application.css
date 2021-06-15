@@ -2218,6 +2218,7 @@ footer h6 {
 
 .game-winner--wrapper h2{
 	width: 100%;
+	word-wrap: break-word;
 }
 
 .poll-results .row:not(:first-child){

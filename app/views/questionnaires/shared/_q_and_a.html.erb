@@ -1,0 +1,25 @@
+<section class="container-fluid menti-wrapper px-0 game-winners">
+   <div class="container">
+     <% if @questions.empty? %>
+      <h1>No Questions!</h1>
+     <% else %>
+      <h1>Questions!</h1>
+      <div class="game-winners--cards">
+        <% @questions.each_with_index do |q, index| %>
+          <div class="row">
+            <div class="col">
+              <div class="game-winner--wrapper">
+                <h2><%= q.answer %></h2>
+                <% unless (index + 1) == 1 %>
+                  <%= link_to pinned_answer_event_questionnaire_path(event_id: @event, id: @questionnaire, answer_id: q.id), class: "text-xl-start text-primary" do %>
+                    <i class="fa fa-thumb-tack" aria-hidden="true"></i>
+                  <% end %>
+                <% end %>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    <% end %>
+   </div>
+</section>

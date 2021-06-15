@@ -4,6 +4,7 @@
 #
 #  id               :bigint           not null, primary key
 #  answer           :string
+#  pinned           :boolean          default(FALSE)
 #  created_at       :datetime         not null
 #  updated_at       :datetime         not null
 #  questionnaire_id :bigint

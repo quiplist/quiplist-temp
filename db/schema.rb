@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_06_12_102205) do
+ActiveRecord::Schema.define(version: 2021_06_15_111928) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -58,6 +58,7 @@ ActiveRecord::Schema.define(version: 2021_06_12_102205) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.boolean "display_annoucement", default: true
+    t.boolean "on_expo", default: false
     t.index ["admin_id"], name: "index_announcements_on_admin_id"
     t.index ["event_id"], name: "index_announcements_on_event_id"
   end
@@ -68,6 +69,7 @@ ActiveRecord::Schema.define(version: 2021_06_12_102205) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "user_id"
+    t.boolean "pinned", default: false
     t.index ["questionnaire_id"], name: "index_answers_on_questionnaire_id"
     t.index ["user_id"], name: "index_answers_on_user_id"
   end
@@ -169,6 +171,19 @@ ActiveRecord::Schema.define(version: 2021_06_12_102205) do
     t.string "random_number_draw_mouse_out", default: "#6C63FF"
     t.string "random_number_winner_mouse_over", default: "#861CCE"
     t.string "random_number_winner_mouse_out", default: "#6C63FF"
+    t.boolean "has_expo", default: false
+    t.boolean "has_background_music", default: false
+    t.boolean "disable_expo_games", default: false
+    t.string "background_music"
+  end
+
+  create_table "feed_backs", force: :cascade do |t|
+    t.bigint "event_id"
+    t.string "question"
+    t.integer "question_type", default: 0
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["event_id"], name: "index_feed_backs_on_event_id"
   end
 
   create_table "game_scores", force: :cascade do |t|
@@ -265,6 +280,16 @@ ActiveRecord::Schema.define(version: 2021_06_12_102205) do
     t.index ["guest_list_id"], name: "index_raffles_on_guest_list_id"
   end
 
+  create_table "ratings", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "feed_back_id"
+    t.string "answer"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["feed_back_id"], name: "index_ratings_on_feed_back_id"
+    t.index ["user_id"], name: "index_ratings_on_user_id"
+  end
+
   create_table "reactions", force: :cascade do |t|
     t.bigint "event_id"
     t.string "responder_type"
@@ -294,6 +319,7 @@ ActiveRecord::Schema.define(version: 2021_06_12_102205) do
     t.string "contact_us_mouse_over", default: "#861CCE"
     t.string "contact_us_spiel"
     t.string "contact_us_email"
+    t.string "contact_us_number"
     t.string "about_us_spiel"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false

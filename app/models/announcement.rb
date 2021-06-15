@@ -5,6 +5,7 @@
 #  id                  :bigint           not null, primary key
 #  display_annoucement :boolean          default(TRUE)
 #  message             :string
+#  on_expo             :boolean          default(FALSE)
 #  created_at          :datetime         not null
 #  updated_at          :datetime         not null
 #  admin_id            :bigint
