@@ -620,6 +620,7 @@ $(document).ready(function () {
             element.setAttribute("disabled", "disabled");
           });
         }
+
         $("#raffle_choices").on("change", function(){
           var raffle_val = $(this).val()
           console.log(raffle_val)
