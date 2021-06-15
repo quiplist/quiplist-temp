@@ -123,6 +123,7 @@ class Expo extends React.Component {
             {display}
             <ExpoMap
               currentEvent = {this.state.currentEvent}
+              guestListId = {this.props.guestListId}
             />
           </div>
         </div>

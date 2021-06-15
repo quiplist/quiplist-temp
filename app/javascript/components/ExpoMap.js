@@ -22,6 +22,10 @@ class ExpoMap extends React.Component {
   }
 
   render() {
+    let memoryGameUrl = `/events/${this.props.currentEvent.event_code}/games/memory_game`;
+    let fishingBoatUrl = `/events/${this.props.currentEvent.event_code}/games/fishing_boat`;
+    let powerTowerUrl = `https://ignitrondigital.com/qp/power-game?event_id=${this.props.currentEvent.id}&guest_list_id=${this.props.guestListId}`;
+    let fruitFallUrl = `https://ignitrondigital.com/qp/fruit-fall-game?event_id=${this.props.currentEvent.id}&guest_list_id=${this.props.guestListId}`;
     return (
       <div className="bg">
         <div className="cntr">
@@ -82,10 +86,10 @@ class ExpoMap extends React.Component {
                 <a href="#" target="_blank" id="alsBtn">
                     <img className="zoom als" src={Als}/>
                 </a>
-                <a href="games/als-game_001.html" target="_blank"  id="salesBtn">
+                <a href="#" id="salesBtn" onClick={() => window.open(fishingBoatUrl, "Popup","toolbar=no, location=no, statusbar=no, menubar=no, scrollbars=1, resizable=0, width=750, height=770, left=350, top=200")}>
                     <img className="zoom sales" src={Sales}/>
                 </a>
-                <a href="games/als-game_002.html" target="_blank"  id="fruitBtn">
+                <a href="#" target="_blank"  id="fruitBtn" onClick={() => window.open(fruitFallUrl, "Popup","toolbar=no, location=no, statusbar=no, menubar=no, scrollbars=1, resizable=0, width=750, height=770, left=350, top=200")}>
                     <img className="zoom fruit" src={Fruit}/>
                 </a>
                 <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank"  id="corVid1tBtn">
@@ -94,10 +98,10 @@ class ExpoMap extends React.Component {
                 <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank"  id="corVid2tBtn">
                     <img className="zoom corVid2" src={Pin} alt="corVid2"/>
                 </a>
-                <a href="games/coreplus-game_001.html" target="_blank" id="bonanzaBtn">
+                <a href="#" id="bonanzaBtn" onClick={() => window.open(memoryGameUrl, "Popup","toolbar=no, location=no, statusbar=no, menubar=no, scrollbars=1, resizable=0, width=750, height=770, left=350, top=200")}>
                     <img className="zoom bonanza" src={Bonanza}/>
                 </a>
-                <a href="games/coreplus-game_002.html" target="_blank" id="powertBtn">
+                <a href="#" id="powertBtn" onClick={() => window.open(powerTowerUrl, "Popup","toolbar=no, location=no, statusbar=no, menubar=no, scrollbars=1, resizable=0, width=750, height=770, left=350, top=200")}>
                     <img className="zoom power" src={Power}/>
                 </a>
                 <a href="#" id="game3tBtn" onClick={() => window.open("http://127.0.0.1:3000/events/facebook/games/fishing_boat", "Popup","toolbar=no, location=no, statusbar=no, menubar=no, scrollbars=1, resizable=0, width=580, height=600, top=30")}>
