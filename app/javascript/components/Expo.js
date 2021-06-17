@@ -46,6 +46,7 @@ class Expo extends React.Component {
     fetch(fetchRatingsUrl)
     .then(response => response.json())
     .then(result => {
+      console.log(result)
       this.setState({ ratings: result })
     });
 

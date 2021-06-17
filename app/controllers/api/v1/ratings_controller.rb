@@ -19,6 +19,7 @@ class Api::V1::RatingsController < Api::ApplicationController
                                         disabled: true
                                       }
       end
+      response_json[:has_answered] = true
     else
       guest = GuestList.invitation(@user, @event)
       if guest.ratings.empty?
@@ -46,6 +47,7 @@ class Api::V1::RatingsController < Api::ApplicationController
                                         }
         end
       end
+      response_json[:has_answered] = guest.has_answered_feed_back
     end
 
     render json: response_json
