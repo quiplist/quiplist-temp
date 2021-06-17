@@ -4,17 +4,19 @@ import PropTypes from "prop-types";
 class ExpoFeedBackQuestionsRatings extends React.Component {
 
   render() {
-    console.log(this.props.options)
     return (
       <div>
-        <label htmlFor="question" className="form-label">{this.props.question}</label>
-        <select className="mb-3 form-select"
+        <label htmlFor={this.props.ratingId} className="form-label">{this.props.question}</label>
+        <select className="answer mb-3 form-select"
           disabled={this.props.disabled}
-          value={this.props.answer}
-          onChange={this.handleChange}>
-            {Object.keys(this.props.options).map(function (key) {
+          name="answer"
+          id={this.props.ratingId}
+          data-id={this.props.i}
+          onChange={(e) => this.props.handleChange(this.props.guestListId, this.props.feedBackId, e)}
+          >
+            {Object.keys(this.props.options).map(function (key, index) {
             return (
-              <option value={key}>{this.props.options[key]}</option>
+              <option key={index} value={key}>{this.props.options[key]}</option>
               );
           }, this)}
         </select>

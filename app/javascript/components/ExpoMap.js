@@ -72,7 +72,7 @@ class ExpoMap extends React.Component {
                 {/* Start modal for feedback */}
                 <ExpoFeedBackForm
                   ratings = {this.props.ratings}
-                  
+
                 />
                 {/* End modal for feedback */}
 

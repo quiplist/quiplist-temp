@@ -1,6 +1,10 @@
 import React  from 'react';
 import PropTypes from "prop-types";
 import ExpoFeedBackQuestions from './ExpoFeedBackQuestions'
+import ExpoFeedBackQuestionsRatings from './ExpoFeedBackQuestionsRatings';
+import ExpoFeedBackQuestionsInput from './ExpoFeedBackQuestionsInput';
+
+
 
 class ExpoFeedBackForm extends React.Component {
 
@@ -10,6 +14,14 @@ class ExpoFeedBackForm extends React.Component {
       feedBackAnswers: [],
       hasAnswered: this.props.ratings.has_answered
     };
+  }
+
+  createUI() {
+     return this.state.ratings.feed_backs.map((fb, i) =>
+         <div key={i}>
+    	    <input type="text" value={fb||''} onChange={this.handleChange.bind(this, i)} />
+         </div>
+     )
   }
 
   submitFeedBack = feedBackAnswers => {
@@ -43,9 +55,23 @@ class ExpoFeedBackForm extends React.Component {
   }
 
   addFeedBackAnswers = answer => {
-    this.setState(state => ({ feedBackAnswers: [...state.feedBackAnswers, answer] }))
+    this.setState((prevState) => ({
+      feedBackAnswers: [...prevState.feedBackAnswers, answer]
+    }));
   }
 
+  handleChange = (e, guestListId, feedBackId) => {
+    console.log(e.target.name)
+    if (["answer"].includes(e.target.name)) {
+      let answers = [...this.state.feedBackAnswers]
+      answers[e.target.dataset.id][e.target.name] = e.target.value
+      answers[e.target.dataset.id]["guest_list_id"] = guestListId
+      answers[e.target.dataset.id]["feed_back_id"] = feedBackId
+      this.setState({ answers })
+    } else {
+      this.state({ [e.target.name]:e.target.value })
+    }
+  }
 
   render() {
     return (
@@ -56,27 +82,59 @@ class ExpoFeedBackForm extends React.Component {
                   <h5 className="modal-title" id="feedbackModalLabel">Feedback Form</h5>
                   <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
               </div>
-              <div className="modal-body">
-                  <form
-                  onSubmit={e => {
-                    e.preventDefault()
-                    this.state.submitFeedBack(this.state.feedBackAnswers)
-                    this.setState({ hasAnswered: true })
-                  }}>
-                  {this.props.ratings.feed_backs.map((rating, index) =>
-                    <ExpoFeedBackQuestions
-                      key = {index}
-                      rating = {rating}
-                      addFeedBackAnswers = {answer => this.addFeedBackAnswers(answer)}
-                    />
-                  )}
+              <form onSubmit={e => {
+                e.preventDefault()
+                this.submitFeedBack(this.state.feedBackAnswers)
+                this.setState({ hasAnswered: true })
+              }}>
+                <div className="modal-body">
+                  {this.props.ratings.feed_backs.map((rating, index) => {
+                    let ratingId = `rating-${index}`
+                    let formInput;
+                    if (rating.question_type === 0) {
+                      formInput = <ExpoFeedBackQuestionsRatings
+                        ratingId = {ratingId}
+                        question = {rating.question}
+                        disabled = {rating.disabled}
+                        answer = {rating.answer}
+                        options = {rating.options}
+                        guestListId = {rating.guest_list_id}
+                        feedBackId = {rating.feed_back_id}
+                        i = {index}
+                        handleChange = {(e, guestListId, feedBackId) => this.handleChange(e, guestListId, feedBackId)}
+                      />
 
-                  </form>
-              </div>
-              <div className="modal-footer">
-                  <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                  <button type="button" className="btn btn-primary" disabled={this.state.hasAnswered}>Save changes</button>
-              </div>
+                    } else {
+                      formInput = <ExpoFeedBackQuestionsInput
+                        ratingId = {ratingId}
+                        question = {rating.question}
+                        disabled = {rating.disabled}
+                        answer = {rating.answer}
+                        guestListId = {rating.guest_list_id}
+                        feedBackId = {rating.feed_back_id}
+                        i = {index}
+                        handleChange = {(e, guestListId, feedBackId) => this.handleChange(e, guestListId, feedBackId)}
+                      />
+                    }
+                    return (
+                      <div key={index} className="mb-3">
+                        {formInput}
+                      </div>
+                    )
+
+                  })
+                }
+
+                </div>
+                <div className="modal-footer">
+                    <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <input
+                      type="Submit" value={'Send'}
+                      className="btn btn-primary"
+                      disabled={this.state.hasAnswered}
+                    />
+                </div>
+              </form>
               </div>
           </div>
       </div>

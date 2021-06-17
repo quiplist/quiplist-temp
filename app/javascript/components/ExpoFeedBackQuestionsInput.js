@@ -6,8 +6,17 @@ class ExpoFeedBackQuestionsInput extends React.Component {
   render() {
     return (
       <div>
-        <label htmlFor="question" className="form-label">{this.props.question}</label>
-        <input type="text" className="form-control" value={this.props.answer} id="answer" name="answer" disabled={this.props.disabled}/>
+        <label htmlFor={this.props.ratingId} className="form-label">{this.props.question}</label>
+        <input
+          type="text"
+          className="answer form-control"
+          name="answer"
+          id={this.props.ratingId}
+          data-id={this.props.i}
+          disabled={this.props.disabled}
+          onChange={(e) => this.props.handleChange(this.props.guestListId, this.props.feedBackId, e)}
+        />
+
       </div>
     )
   }

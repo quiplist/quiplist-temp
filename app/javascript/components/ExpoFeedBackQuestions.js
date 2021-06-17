@@ -13,7 +13,11 @@ class ExpoFeedBackQuestions extends React.Component {
         disabled = {this.props.rating.disabled}
         answer = {this.props.rating.answer}
         options = {this.props.rating.options}
+        guestListId = {this.props.rating.guest_list_id}
+        feedBackId = {this.props.rating.feed_back_id}
         addFeedBackAnswers = {answer => this.props.addFeedBackAnswers(answer)}
+        handleChange = {(i, e) => this.props.handleChange(i, e)}
+        i = {this.props.i}
       />
 
     } else {
@@ -22,11 +26,14 @@ class ExpoFeedBackQuestions extends React.Component {
         disabled = {this.props.rating.disabled}
         answer = {this.props.rating.answer}
         addFeedBackAnswers = {answer => this.props.addFeedBackAnswers(answer)}
+        handleChange = {(i, e) => this.props.handleChange(i, e)}
+        guestListId = {this.props.rating.guest_list_id}
+        feedBackId = {this.props.rating.feed_back_id}
+        i = {this.props.i}
       />
     }
-    console.log(this.props.rating)
     return (
-      <div className="mb-3">
+      <div key={this.props.i} className="mb-3">
         {formInput}
       </div>
     )
