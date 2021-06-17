@@ -2,17 +2,17 @@
 #
 # Table name: ratings
 #
-#  id           :bigint           not null, primary key
-#  answer       :string
-#  created_at   :datetime         not null
-#  updated_at   :datetime         not null
-#  feed_back_id :bigint
-#  user_id      :bigint
+#  id            :bigint           not null, primary key
+#  answer        :string
+#  created_at    :datetime         not null
+#  updated_at    :datetime         not null
+#  feed_back_id  :bigint
+#  guest_list_id :bigint
 #
 # Indexes
 #
-#  index_ratings_on_feed_back_id  (feed_back_id)
-#  index_ratings_on_user_id       (user_id)
+#  index_ratings_on_feed_back_id   (feed_back_id)
+#  index_ratings_on_guest_list_id  (guest_list_id)
 #
 
 # This model initially had no columns defined. If you add columns to the

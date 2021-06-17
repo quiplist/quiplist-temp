@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_06_15_111928) do
+ActiveRecord::Schema.define(version: 2021_06_16_141537) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -206,6 +206,7 @@ ActiveRecord::Schema.define(version: 2021_06_15_111928) do
     t.integer "raffle_status", default: 0
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.boolean "has_answered_feed_back", default: false
     t.index ["approver_id"], name: "index_guest_lists_on_approver_id"
     t.index ["event_id"], name: "index_guest_lists_on_event_id"
     t.index ["user_id"], name: "index_guest_lists_on_user_id"
@@ -281,13 +282,13 @@ ActiveRecord::Schema.define(version: 2021_06_15_111928) do
   end
 
   create_table "ratings", force: :cascade do |t|
-    t.bigint "user_id"
     t.bigint "feed_back_id"
     t.string "answer"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "guest_list_id"
     t.index ["feed_back_id"], name: "index_ratings_on_feed_back_id"
-    t.index ["user_id"], name: "index_ratings_on_user_id"
+    t.index ["guest_list_id"], name: "index_ratings_on_guest_list_id"
   end
 
   create_table "reactions", force: :cascade do |t|

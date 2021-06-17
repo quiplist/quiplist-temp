@@ -17,7 +17,7 @@ class FeedBack < ApplicationRecord
 
   belongs_to :event
   has_many :ratings, dependent: :destroy
-  has_many :users, through: :ratings
+  has_many :guest_lists, through: :ratings
 
   RATING = 0
   OPEN_ENDED = 1

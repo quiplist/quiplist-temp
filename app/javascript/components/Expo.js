@@ -11,6 +11,8 @@ class Expo extends React.Component {
       announcements: [],
       currentAnnouncement: {},
       currentUser: {},
+      feedBacks: [],
+      ratings: []
     };
   }
 
@@ -26,8 +28,10 @@ class Expo extends React.Component {
     fetch(fetchEventUrl)
     .then(resp => resp.json())
     .then(result => {
+      console.log(result)
       this.setState({ currentEvent: result })
       this.setState({ announcements: result.announcements })
+      this.setState({ feedBacks: result.feed_backs })
     });
 
 
@@ -36,6 +40,13 @@ class Expo extends React.Component {
     .then(response => response.json())
     .then(result => {
       this.setState({ currentAnnouncement: result })
+    });
+
+    const fetchRatingsUrl = `/api/v1/ratings?event_id=${this.props.eventId}&user_id=${this.props.userId}&is_admin=${this.props.isAdmin}`;
+    fetch(fetchRatingsUrl)
+    .then(response => response.json())
+    .then(result => {
+      this.setState({ ratings: result })
     });
 
     this.eventsChannel = this.cable.subscriptions.create(
@@ -124,6 +135,7 @@ class Expo extends React.Component {
               currentEvent = {this.state.currentEvent}
               guestListId = {this.props.guestListId}
               isAdmin = {isAdmin}
+              ratings = {this.state.ratings}
             />
           </div>
         </div>
