@@ -66,9 +66,25 @@ class ExpoMap extends React.Component {
             {/* <img className="island" src={Island}/> */}
             <div className="island">
 
-                <a href="#"  target="_blank"  id="platinumBtn">
+                <a type="button" data-bs-toggle="modal" data-bs-target="#boraModal" id="platinumBtn">
                     <img className="zoom bora" src={Bora}/>
                 </a>
+                {/* Start modal for iframe */}
+                <div className="modal fade" id="boraModal" tabIndex="-1" aria-labelledby="boraModalLabel" aria-hidden="true">
+                  <div className="modal-dialog modal-lg">
+                    <div className="modal-content">
+                      <div className="modal-header">
+                        <h5 className="modal-title" id="boraModalLabel">Iframe</h5>
+                        <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                      </div>
+                      <div className="modal-body">
+                        <iframe width="100%" height="315" src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                {/* End modal for iframe */}
+
                 {mainProgram}
                 <a href="#" target="_blank" id="diamondBtn">
                     <img className="zoom diamond" src={Diamond}/>
@@ -80,7 +96,6 @@ class ExpoMap extends React.Component {
                 {/* Start modal for feedback */}
                 <ExpoFeedBackForm
                   ratings = {this.props.ratings}
-
                 />
                 {/* End modal for feedback */}
 

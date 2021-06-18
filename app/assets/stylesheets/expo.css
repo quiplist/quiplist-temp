@@ -2,6 +2,7 @@ body, html {
   height: 100%;
   font-family: Arial, Helvetica, sans-serif;
   background-color: #fade55;
+  overflow: hidden;
 }
 
 
@@ -19,24 +20,20 @@ body, html {
   height: 100%;
 }
 
-.island a img{
-  width: 100%;
-  height: 100%;
-}
 
 #platinumBtn{
   position: absolute;
   top: 66%;
   left: 9%;
   z-index: 1;
-  height: 122px;
-  width: 200px;
+  height: auto;
+  width: 120px;
 }
 
 #anivBtn{
   position: absolute;
-  top: 17%;
-  left: 15%;
+  top: 20%;
+  left: 22%;
   z-index: 1;
   /* height: 225px;
   width: 243px; */
@@ -45,7 +42,7 @@ body, html {
 #diamondBtn{
 	position: absolute;
 	z-index: 1;
-  width: 150px;
+  width: 90px;
   height: auto;
   left: 40%;
   top: 25%;
@@ -63,10 +60,10 @@ body, html {
 #programBtn{
 	position: absolute;
 	z-index: 1;
-  width: 150px;
+  width: 83px;
   height: auto;
-  top: 48%;
-  left: 28%;
+  top: 47%;
+  left: 30%;
 }
 
 #alsBtn{
@@ -91,7 +88,7 @@ body, html {
   position: absolute;
   z-index: 1;
   width: 50px;
-  left: 45%;
+  left: 43%;
   top: 62%;
 }
 
@@ -99,7 +96,7 @@ body, html {
   position: absolute;
   z-index: 1;
   width: 50px;
-  left: 55%;
+  left: 57%;
   top: 62%;
 }
 
@@ -252,8 +249,6 @@ body, html {
   box-shadow: 0 0 2px 1px rgba(0, 140, 186, 0.5);
 }
 
-
-
 /**
 * Actions
 **/
@@ -377,5 +372,105 @@ fieldset legend {
 
   #powerBtn{
     left: 46%;
+  }
+}
+
+@media screen and (min-width: 768px){
+  .island img{
+    width: 100%;
+    height: 100%;
+  }
+}
+
+@media screen and (min-width: 320px) and (max-width: 767px){
+
+  #anivBtn {
+    top: 20%;
+    left: 22%;
+    width: 6%;
+    height: auto;
+  }
+
+  #platinumBtn{
+    width: 10%;
+  }
+
+  #programBtn{
+    width: 6%;
+    left: 30%;
+  }
+
+  #diamondBtn{
+    width: 8%;
+    left: 41%;
+  }
+
+  #feedbackBtn{
+    width: 9%;
+  }
+
+  #alsBtn{
+    width: 8%;
+  }
+
+  #salesBtn{
+    width: 10%;
+  }
+
+  #fruitBtn{
+    width: 7%;
+    left: 72%;
+  }
+
+  #corBtn{
+    width: 5%;
+  }
+
+  #alsVid1tBtn,
+  #alsVid2tBtn, #alsVid3tBtn,
+  #alsVid4tBtn, #alsVid5tBtn,
+  #corVid1tBtn, #corVid2tBtn{
+    width: 3%;
+  }
+
+  #alsVid5tBtn{
+    top: 71%;
+    left: 70%;
+  }
+
+  #bonanzaBtn{
+    width: 10%;
+  }
+
+  #powertBtn{
+    width: 6%;
+    left: 42%;
+  }
+
+  #game3tBtn{
+    width: 6%;
+    left: 57%;
+  }
+
+  #corVid2tBtn{
+    top: 77%;
+  }
+
+  .island img {
+      width: 100%;
+      height: auto;
+  }
+}
+
+@media screen and (min-width: 320px) and (max-width: 1024px) and (orientation: portrait) {
+  html {
+    transform: rotate(-90deg);
+    transform-origin: left top;
+    width: 100vh;
+    height: 100vw;
+    overflow-x: hidden;
+    position: absolute;
+    top: 100%;
+    left: 0;
   }
 }
