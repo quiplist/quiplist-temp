@@ -8,13 +8,14 @@ class AudioPlayer extends React.Component {
     return (
       <div>
         <iframe
+          className="background-music"
           width="100%"
           height="500"
           src={audioUrl}
           frameBorder="0"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
           allowFullScreen
-          style={"display: none"}>
+        >
         </iframe>
         <audio id="player" autoPlay loop>
             <source src={audioUrl} />

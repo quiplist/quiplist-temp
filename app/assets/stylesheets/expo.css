@@ -11,7 +11,7 @@ body, html {
   left: 50%; */
   position: relative;
   height: 100%;
-  /* top: 100%; 
+  /* top: 100%;
   transform: translate(-50%, -115%); */
 }
 
@@ -337,6 +337,9 @@ fieldset legend {
     border: none;
     position: absolute;
     width: 100%;
+}
+.background-music {
+  display: none;
 }
 
 
