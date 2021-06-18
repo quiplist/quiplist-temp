@@ -73,7 +73,8 @@ class RandomPicker extends React.PureComponent {
         this.stop()
         element.classList.add("winner");
         Swal.fire({
-          title: this.state.currentChoice.user.full_name,
+          background: this.state.currentEvent.random_name_winner_background_color,
+          title: `<span style="color: ${this.state.currentEvent.random_name_winner_font_color}">${this.state.currentChoice.user.full_name}</span>`,
           showCancelButton: false,
           showConfirmButton: false
         })
@@ -126,7 +127,10 @@ class RandomPicker extends React.PureComponent {
     if (this.state.guestLists.length === 0) return null;
     return (
       <div className="RandomPicker">
-        <RandomPickerChoice choice={currentChoice} />
+        <RandomPickerChoice
+          choice={currentChoice}
+          currentEvent={currentEvent}
+        />
         <RandomPickerControls
           currentEvent={currentEvent}
           currentRaffle={currentRaffle}
@@ -148,11 +152,17 @@ RandomPicker.propTypes = {
 
 class RandomPickerChoice extends React.PureComponent {
   render() {
-    const { choice } = this.props;
+    const { choice, currentEvent } = this.props;
     const content = (Object.keys(choice).length == 0) ? '' : choice.user.full_name;
     return (
       <div className="RandomPicker__choice px-2">
-        <span id="choice" className="RandomPicker__choiceItem">{content}</span>
+        <span
+          id="choice"
+          className="RandomPicker__choiceItem"
+          style={{ background : currentEvent.random_name_background_color, color : currentEvent.random_name_font_color }}
+          >
+          {content}
+        </span>
       </div>
     );
   }
