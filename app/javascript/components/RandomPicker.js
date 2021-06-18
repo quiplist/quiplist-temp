@@ -45,8 +45,9 @@ class RandomPicker extends React.PureComponent {
       if(this.state.currentRaffle.status === 2) {
         this.setState({ currentChoice: result.winner})
         Swal.fire({
-          title: 'Congratulations',
-          text: result.won,
+          background: result.event.random_name_winner_background_color,
+          title: `<span style="color: ${result.event.random_name_winner_font_color}">Congratulations</span>`,
+          html: `<span style="color: ${result.event.random_name_winner_font_color}">${result.won}</span>`,
           showCancelButton: false,
           showConfirmButton: false
         })
