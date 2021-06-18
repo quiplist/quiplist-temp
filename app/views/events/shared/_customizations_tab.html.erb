@@ -68,6 +68,11 @@
                          <%= f.check_box :disable_expo_games, class: 'form-check-input' %> Disable game at start of expo?
                        </label>
                      </div>
+                     <div class="mb-3 row">
+                       <label class="col-sm-12 col-form-label">
+                         <%= f.check_box :disable_main_event, class: 'form-check-input' %> Disable main event at start of expo?
+                       </label>
+                     </div>
                      <label for="backgroundImage">Background Music</label>
                      <div class="row">
                         <label class="col-sm-12 col-lg-9 col-form-label">
@@ -140,7 +145,6 @@
            </div>
             <div class="col">
                <div class="card shadow-sm mb-3">
-                  <h3 class="card-text">Registration Fields</h3>
                   <%= form_for @event, as: :event, url: event_path(@event), method: :put, html: { class: "table-responsive" } do |f| %>
                   <table class="table hover">
                      <thead>
