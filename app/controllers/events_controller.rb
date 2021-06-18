@@ -111,7 +111,9 @@
       :random_number_draw_mouse_out, :random_number_draw_mouse_over, :random_number_winner_mouse_out, :random_number_winner_mouse_over,
       :spin_a_wheel_background, :spin_a_wheel_background_color, :spin_a_wheel_draw_mouse_out, :spin_a_wheel_draw_mouse_over,
       :spin_a_wheel_winner_mouse_out, :spin_a_wheel_winner_mouse_over, :has_expo, :has_background_music, :disable_expo_games,
-      :background_music, :disable_main_event
+      :background_music, :disable_main_event, :random_name_winner_background_color, :random_number_winner_background_color,
+      :spin_a_wheel_winner_background_color, :random_name_winner_font_color, :random_number_winner_font_color, :spin_a_wheel_winner_font_color,
+      :random_name_font_color, :random_number_font_color, :spin_a_wheel_font_color
     )
   end
 

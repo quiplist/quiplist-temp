@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_06_18_063647) do
+ActiveRecord::Schema.define(version: 2021_06_18_080552) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -176,6 +176,15 @@ ActiveRecord::Schema.define(version: 2021_06_18_063647) do
     t.boolean "disable_expo_games", default: false
     t.string "background_music"
     t.boolean "disable_main_event", default: false
+    t.string "random_name_winner_background_color", default: "#FFFFFF"
+    t.string "random_number_winner_background_color", default: "#FFFFFF"
+    t.string "spin_a_wheel_winner_background_color", default: "#FFFFFF"
+    t.string "random_name_winner_font_color", default: "#000000"
+    t.string "random_number_winner_font_color", default: "#000000"
+    t.string "spin_a_wheel_winner_font_color", default: "#000000"
+    t.string "random_name_font_color", default: "#FFFFFF"
+    t.string "random_number_font_color", default: "#FFFFFF"
+    t.string "spin_a_wheel_font_color", default: "#FFFFFF"
   end
 
   create_table "feed_backs", force: :cascade do |t|
