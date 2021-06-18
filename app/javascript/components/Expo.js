@@ -2,6 +2,7 @@ import React  from 'react';
 import ExpoActions from "./ExpoActions";
 import ExpoMap from "./ExpoMap";
 import ActionCable from 'actioncable';
+import AudioPlayer from "./AudioPlayer";
 
 class Expo extends React.Component {
   constructor(props) {
@@ -128,6 +129,7 @@ class Expo extends React.Component {
     }
     return (
       <div>
+        <AudioPlayer currentEvent = {this.state.currentEvent} />
         {actions}
         <div className="row expomap">
           <div className="col px-0">

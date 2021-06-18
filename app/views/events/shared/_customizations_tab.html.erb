@@ -1,9 +1,9 @@
 <div class="tab-pane fade show" id="nav-customizations" role="tabpanel" aria-labelledby="nav-customizations-tab">
    <div class="row row-cols-12 mb-5">
       <div class="col">
-         <h2>Main Page</h2>
+         <h2>Main Event and Expo</h2>
          <div class="row">
-            <div class="col">
+            <div class="col col-lg-6">
                <div class="card shadow-sm">
                   <%= image_tag @event.main_background.url, class: "image-card" %>
                   <div class="card-body">
@@ -48,6 +48,39 @@
                   </div>
                </div>
             </div>
+            <div class="col col-lg-6">
+               <div class="card shadow-sm">
+                  <div class="card-body">
+                    <p class="card-text">This is where you will enable your Expo Feature in your Event.</p>
+                     <%= form_for @event, as: :event, url: event_path(@event), method: :put, html: { class: "" } do |f| %>
+                     <div class="mb-3 row">
+                       <label class="col-sm-12 col-form-label">
+                         <%= f.check_box :has_expo, class: 'form-check-input' %> Enable Expo?
+                       </label>
+                     </div>
+                     <div class="mb-3 row">
+                       <label class="col-sm-12 col-form-label">
+                         <%= f.check_box :has_background_music, class: 'form-check-input' %> Has background music?
+                       </label>
+                     </div>
+                     <div class="mb-3 row">
+                       <label class="col-sm-12 col-form-label">
+                         <%= f.check_box :disable_expo_games, class: 'form-check-input' %> Disable game at start of expo?
+                       </label>
+                     </div>
+                     <label for="backgroundImage">Background Music</label>
+                     <div class="row">
+                        <label class="col-sm-12 col-lg-9 col-form-label">
+                        <%= f.file_field :background_music, accept: 'audio/mp4,audio/mp3,audio/wma,audio/wav', class: 'w-100' %>
+                        </label>
+                        <div class="col-sm-12 col-lg-3 text-end">
+                           <%= submit_tag "Save", class: "btn btn-submit" %>
+                        </div>
+                     </div>
+                     <% end %>
+                  </div>
+               </div>
+            </div>
          </div>
       </div>
    </div>
@@ -60,6 +93,51 @@
       <div class="col">
          <h2>Registration</h2>
          <div class="row">
+           <div class="col col-lg-6">
+              <div class="card shadow-sm">
+                 <%= image_tag @event.session_background.url, class: "image-card" %>
+                 <div class="card-body">
+                    <p class="card-text">This is where you will customize your Session/Registration. These are the default background and mouse colors</p>
+                    <%= form_for @event, as: :event, url: event_path(@event), method: :put, html: { class: "" } do |f| %>
+                    <label for="backgroundColor">Background Color</label>
+                    <div class="mb-3 row">
+                       <label class="col-sm-2 col-form-label">
+                       <span class="badge" style="background-color: <%= @event.session_background_color %>"><%= @event.session_background_color %></span>
+                       </label>
+                       <div class="col-sm-10">
+                          <%= f.text_field :session_background_color, class: 'form-control', id: "session_mouse_out", placeholder: "#6C63FF" %>
+                       </div>
+                    </div>
+                    <label for="mouseColor">Mouse Color</label>
+                    <div class="mb-3 row">
+                       <label class="col-sm-2 col-form-label">
+                       <span class="badge" style="background-color: <%= @event.session_mouse_out %>"><%= @event.session_mouse_out %></span>
+                       </label>
+                       <div class="col-sm-10">
+                          <%= f.text_field :session_mouse_out, class: 'form-control', id: "session_mouse_out", placeholder: "#6C63FF" %>
+                       </div>
+                    </div>
+                    <div class="mb-3 row">
+                       <label class="col-sm-2 col-form-label">
+                       <span class="badge" style="background-color: <%= @event.session_mouse_over %>"><%= @event.session_mouse_over %></span>
+                       </label>
+                       <div class="col-sm-10">
+                          <%= f.text_field :session_mouse_over, class: 'form-control', id: "session_mouse_out", placeholder: "#861CCE" %>
+                       </div>
+                    </div>
+                    <label for="backgroundImage">Background Image</label>
+                    <div class="row">
+                       <label class="col-sm-12 col-lg-9 col-form-label">
+                       <%= f.file_field :session_background, accept: 'image/png,image/jpg,image/jpeg', class: 'w-100' %>
+                       </label>
+                       <div class="col-sm-12 col-lg-3 text-end">
+                          <%= submit_tag "Save", class: "btn btn-submit" %>
+                       </div>
+                    </div>
+                    <% end %>
+                 </div>
+              </div>
+           </div>
             <div class="col">
                <div class="card shadow-sm mb-3">
                   <h3 class="card-text">Registration Fields</h3>
@@ -67,7 +145,7 @@
                   <table class="table hover">
                      <thead>
                         <tr>
-                           <th scope="col">Personal Information</th>
+                           <th scope="col">Fields</th>
                            <th scope="col">Included?</th>
                            <th scope="col">Required?</th>
                         </tr>
@@ -155,18 +233,10 @@
                         </tr>
                      </tbody>
                   </table>
-                  <div class="col-12 text-end">
-                     <%= submit_tag "Save", class: "btn btn-submit" %>
-                  </div>
-                  <% end %>
-               </div>
-               <div class="card shadow-sm">
-                  <h3 class="card-text">Registration Fields - Drop down</h3>
-                  <%= form_for @event, as: :event, url: event_path(@event), method: :put, html: { class: "table-responsive" } do |f| %>
                   <table class="table hover">
                      <thead>
                         <tr>
-                           <th scope="col">Personal Information</th>
+                           <th scope="col">Drop down options</th>
                            <th scope="col">With Guest?</th>
                         </tr>
                      </thead>
@@ -191,51 +261,7 @@
                   <% end %>
                </div>
             </div>
-            <div class="col">
-               <div class="card shadow-sm">
-                  <%= image_tag @event.session_background.url, class: "image-card" %>
-                  <div class="card-body">
-                     <p class="card-text">This is where you will customize your Session/Registration. These are the default background and mouse colors</p>
-                     <%= form_for @event, as: :event, url: event_path(@event), method: :put, html: { class: "" } do |f| %>
-                     <label for="backgroundColor">Background Color</label>
-                     <div class="mb-3 row">
-                        <label class="col-sm-2 col-form-label">
-                        <span class="badge" style="background-color: <%= @event.session_background_color %>"><%= @event.session_background_color %></span>
-                        </label>
-                        <div class="col-sm-10">
-                           <%= f.text_field :session_background_color, class: 'form-control', id: "session_mouse_out", placeholder: "#6C63FF" %>
-                        </div>
-                     </div>
-                     <label for="mouseColor">Mouse Color</label>
-                     <div class="mb-3 row">
-                        <label class="col-sm-2 col-form-label">
-                        <span class="badge" style="background-color: <%= @event.session_mouse_out %>"><%= @event.session_mouse_out %></span>
-                        </label>
-                        <div class="col-sm-10">
-                           <%= f.text_field :session_mouse_out, class: 'form-control', id: "session_mouse_out", placeholder: "#6C63FF" %>
-                        </div>
-                     </div>
-                     <div class="mb-3 row">
-                        <label class="col-sm-2 col-form-label">
-                        <span class="badge" style="background-color: <%= @event.session_mouse_over %>"><%= @event.session_mouse_over %></span>
-                        </label>
-                        <div class="col-sm-10">
-                           <%= f.text_field :session_mouse_over, class: 'form-control', id: "session_mouse_out", placeholder: "#861CCE" %>
-                        </div>
-                     </div>
-                     <label for="backgroundImage">Background Image</label>
-                     <div class="row">
-                        <label class="col-sm-12 col-lg-9 col-form-label">
-                        <%= f.file_field :session_background, accept: 'image/png,image/jpg,image/jpeg', class: 'w-100' %>
-                        </label>
-                        <div class="col-sm-12 col-lg-3 text-end">
-                           <%= submit_tag "Save", class: "btn btn-submit" %>
-                        </div>
-                     </div>
-                     <% end %>
-                  </div>
-               </div>
-            </div>
+
          </div>
       </div>
    </div>
@@ -246,9 +272,9 @@
    </div>
    <div class="row row-cols-12 mb-5">
       <div class="col">
-        <h2>Raffle</h2>
-        <div class="row">
-          <div class="col">
+        <h2>Raffles</h2>
+        <div class="row mb-5">
+          <div class="col col-lg-6">
              <div class="card shadow-sm">
                 <%= image_tag @event.random_name_background.url, class: "image-card" %>
                 <div class="card-body">
@@ -310,7 +336,7 @@
                 </div>
              </div>
           </div>
-          <div class="col">
+          <div class="col col-lg-6">
              <div class="card shadow-sm">
                 <%= image_tag @event.random_number_background.url, class: "image-card" %>
                 <div class="card-body">
@@ -372,7 +398,9 @@
                 </div>
              </div>
           </div>
-          <div class="col">
+        </div>
+        <div class="row justify-content-md-center mb-5">
+          <div class="col col-lg-6"">
              <div class="card shadow-sm">
                 <%= image_tag @event.spin_a_wheel_background.url, class: "image-card" %>
                 <div class="card-body">

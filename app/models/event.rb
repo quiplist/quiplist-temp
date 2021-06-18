@@ -105,6 +105,8 @@ class Event < ApplicationRecord
   mount_uploader :spin_a_wheel_background, AssetUploader
   mount_uploader :random_name_background, AssetUploader
   mount_uploader :random_number_background, AssetUploader
+  mount_uploader :background_music, BackgroundMusicUploader
+
 
   PRIVATE = 0
   PUBLIC = 1
