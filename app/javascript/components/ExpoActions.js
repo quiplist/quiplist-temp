@@ -3,6 +3,7 @@ import ActionCable from 'actioncable';
 import AnnouncementInput from './AnnouncementInput'
 import Announcement from './Announcement'
 import EnableDisableGames from './EnableDisableGames'
+import EnableDisableMainEvent from './EnableDisableMainEvent'
 import React from 'react'
 import ReactDOM from 'react-dom'
 
@@ -32,7 +33,32 @@ class ExpoActions extends React.Component {
     })
     .then(resp => resp.json())
     .then(result => {
-      console.log(result)
+      this.props.eventCable.send({result})
+      this.props.updateCurrentEvent(result)
+    })
+  }
+
+  enableDisableMainEvent = (evnt) => {
+    // on submitting the ChatInput form, send the message, add it to the list and reset the input
+    const url = `/api/v1/events/${evnt.id}`;
+    let enabled = (!evnt.disable_main_event)
+
+    const body = {
+      event: {
+        disable_main_event: enabled
+      }
+    }
+
+    fetch(url, {
+        method: "PUT",
+        headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json"
+        },
+        body: JSON.stringify(body)
+    })
+    .then(resp => resp.json())
+    .then(result => {
       this.props.eventCable.send({result})
       this.props.updateCurrentEvent(result)
     })
@@ -48,7 +74,7 @@ class ExpoActions extends React.Component {
               <fieldset>
               <legend>Controls</legend>
                 <div className="row h-100">
-                  <div className="col-sm-12 col-md-6 has-border-fh">
+                  <div className="col-sm-12 col-md-12 has-border-fh">
                     <div className="menti-wrapper">
                     <div className="row text-end mt-3">
                       <div className="col d-flex flex-wrap justify-content-end">
@@ -56,6 +82,13 @@ class ExpoActions extends React.Component {
                         <EnableDisableGames
                           currentEvent = {this.props.currentEvent}
                           enableDisableGames = {evnt => this.enableDisableGames(evnt)}
+                        />
+                      </div>
+                      <div className="col d-flex flex-wrap justify-content-end">
+                        Main Event
+                        <EnableDisableMainEvent
+                          currentEvent = {this.props.currentEvent}
+                          enableDisableMainEvent = {evnt => this.enableDisableMainEvent(evnt)}
                         />
                       </div>
                     </div>

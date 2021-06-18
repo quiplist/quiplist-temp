@@ -27,17 +27,27 @@ class ExpoMap extends React.Component {
     let fishingBoatUrl = `/events/${this.props.currentEvent.event_code}/games/fishing_boat`;
     let powerTowerUrl = `https://ignitrondigital.com/qp/power-game?event_id=${this.props.currentEvent.id}&guest_list_id=${this.props.guestListId}`;
     let fruitFallUrl = `https://ignitrondigital.com/qp/fruit-fall-game?event_id=${this.props.currentEvent.id}&guest_list_id=${this.props.guestListId}`;
-    let mainProgramUrl;
-
-    if (this.props.isAdmin) {
-      mainProgramUrl = `/admins/events/${this.props.currentEvent.id}/launch`
+    let mainProgramUrl, mainProgram;
+    let onClickMemoryGame, onClickFishingBoat, onClickPowerTower, onClickFruitFall;
+    let disabledGames = (this.props.currentEvent.disable_expo_games || this.props.isAdmin);
+    let disabledMainEvent = this.props.currentEvent.disable_main_event;
+    if (disabledMainEvent) {
+      mainProgram = <a href="#" id="programBtn">
+          <img className="zoom mProgram" src={MainProgram}/>
+      </a>
     } else {
-      mainProgramUrl = `/events/${this.props.currentEvent.event_code}`;
+      if (this.props.isAdmin) {
+        mainProgramUrl = `/admins/events/${this.props.currentEvent.id}/launch`;
+      } else {
+        mainProgramUrl = `/events/${this.props.currentEvent.event_code}`;
+      }
+      mainProgram = <a href={mainProgramUrl} target="_blank" id="programBtn">
+          <img className="zoom mProgram" src={MainProgram}/>
+      </a>
     }
 
-    let disabled = (this.props.currentEvent.disable_expo_games || this.props.isAdmin);
-    let onClickMemoryGame, onClickFishingBoat, onClickPowerTower, onClickFruitFall;
-    if (disabled) {
+
+    if (disabledGames) {
       onClickMemoryGame = null;
       onClickFishingBoat = null;
       onClickPowerTower = null;
@@ -59,9 +69,7 @@ class ExpoMap extends React.Component {
                 <a href="#"  target="_blank"  id="platinumBtn">
                     <img className="zoom bora" src={Bora}/>
                 </a>
-                <a href={mainProgramUrl} target="_blank" id="programBtn">
-                    <img className="zoom mProgram" src={MainProgram}/>
-                </a>
+                {mainProgram}
                 <a href="#" target="_blank" id="diamondBtn">
                     <img className="zoom diamond" src={Diamond}/>
                 </a>

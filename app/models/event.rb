@@ -7,6 +7,7 @@
 #  brochure                        :string
 #  description                     :string
 #  disable_expo_games              :boolean          default(FALSE)
+#  disable_main_event              :boolean          default(FALSE)
 #  end_date                        :date
 #  end_time                        :datetime
 #  event_code                      :string

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_06_16_141537) do
+ActiveRecord::Schema.define(version: 2021_06_18_063647) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -175,6 +175,7 @@ ActiveRecord::Schema.define(version: 2021_06_16_141537) do
     t.boolean "has_background_music", default: false
     t.boolean "disable_expo_games", default: false
     t.string "background_music"
+    t.boolean "disable_main_event", default: false
   end
 
   create_table "feed_backs", force: :cascade do |t|

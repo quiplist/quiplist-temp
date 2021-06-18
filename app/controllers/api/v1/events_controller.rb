@@ -29,6 +29,6 @@ class Api::V1::EventsController < Api::ApplicationController
   end
 
   def event_params
-    params.require(:event).permit(:disable_expo_games)
+    params.require(:event).permit(:disable_expo_games, :disable_main_event)
   end
 end

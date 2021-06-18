@@ -29,7 +29,6 @@ class Expo extends React.Component {
     fetch(fetchEventUrl)
     .then(resp => resp.json())
     .then(result => {
-      console.log(result)
       this.setState({ currentEvent: result })
       this.setState({ announcements: result.announcements })
       this.setState({ feedBacks: result.feed_backs })
@@ -47,7 +46,6 @@ class Expo extends React.Component {
     fetch(fetchRatingsUrl)
     .then(response => response.json())
     .then(result => {
-      console.log(result)
       this.setState({ ratings: result })
     });
 
@@ -109,7 +107,6 @@ class Expo extends React.Component {
     const totalAnnoucements = this.state.announcements.length;
     if (totalAnnoucements === 0) return null;
     let announcement = this.announcement();
-    console.log(announcement)
     let display;
     if (announcement.display_annoucement) {
       display = <marquee>{announcement.message}</marquee>;

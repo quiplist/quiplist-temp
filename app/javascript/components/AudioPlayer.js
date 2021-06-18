@@ -4,7 +4,6 @@ class AudioPlayer extends React.Component {
   render() {
     let rootUrl = `public/uploads/event/background_music/${this.props.currentEvent.id}/`
     let audioUrl = this.props.currentEvent.background_music.url
-    console.log(this.props.currentEvent.background_music.url)
     return (
       <div>
         <iframe

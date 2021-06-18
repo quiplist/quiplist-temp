@@ -7,6 +7,7 @@
 #  brochure                        :string
 #  description                     :string
 #  disable_expo_games              :boolean          default(FALSE)
+#  disable_main_event              :boolean          default(FALSE)
 #  end_date                        :date
 #  end_time                        :datetime
 #  event_code                      :string
@@ -94,7 +95,7 @@ class EventSerializer < ActiveModel::Serializer
     :random_name_draw_mouse_out, :random_name_winner_mouse_over, :random_name_winner_mouse_out,
     :random_number_background, :random_number_background_color, :random_number_draw_mouse_over,
     :random_number_draw_mouse_out, :random_number_winner_mouse_over, :random_number_winner_mouse_out,
-    :has_expo, :has_background_music, :disable_expo_games, :background_music
+    :has_expo, :has_background_music, :disable_expo_games, :background_music, :disable_main_event
 
   has_many :guest_lists
   has_many :users, through: :guest_lists
