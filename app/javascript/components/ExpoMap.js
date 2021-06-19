@@ -14,23 +14,100 @@ import Pin from "images/standin.png";
 import Bonanza from "images/bonanza.png";
 import Power from "images/power.png";
 import Header from "images/header.png";
-import BrinzeFoundation from "images/brinzeFoundation.png";
+import BronzeFoundation from "images/bronzeFoundation.png";
 import Bronze from "images/bronze.png";
 import Crush from "images/crush.png";
 import CorePlusIcon from "images/corePlusIcon.png";
 import CustomerSales from "images/customerSales.png";
-// import Als_Hawaii from "pdfs/als_hawaii.pdf";
+//import AlsHawaii from "pdfs/als_hawaii.pdf";
 // import Diamond_Invitational from "pdfs/diamond_invitational.pdf";
 // import Platinum_Seminar from "pdfs/platinum_seminar.png";
 import ExpoFeedBackForm from './ExpoFeedBackForm';
+import ReactPlayer from 'react-player'
 
 class ExpoMap extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      customerSalesVideo: false,
+      bronzeFoundationVideo: false,
+      bronzeBuilderVideo: false,
+      corePlusLadderVideo: false,
+      anivVideo: false,
+    };
+  }
+
+  customerSalesVideoPlay() {
+    // You can use the play method as normal on your video ref
+    // debugger;
+    this.setState({ customerSalesVideo: true })
+    //this.refs.vidRef.getInternalPlayer().playVideo()
+  }
+
+  customerSalesVideoPause() {
+    // Pause as well
+    //this.refs.vidRef.getInternalPlayer().pauseVideo()
+    this.setState({ customerSalesVideo: false })
+  }
+
+  bronzeFoundationVideoPlay() {
+    // You can use the play method as normal on your video ref
+    // debugger;
+    this.setState({ bronzeFoundationVideo: true })
+    //this.refs.vidRef.getInternalPlayer().playVideo()
+  }
+
+  bronzeFoundationVideoPause() {
+    // Pause as well
+    //this.refs.vidRef.getInternalPlayer().pauseVideo()
+    this.setState({ bronzeFoundationVideo: false })
+  }
+
+  bronzeBuilderVideoPlay() {
+    // You can use the play method as normal on your video ref
+    // debugger;
+    this.setState({ bronzeBuilderVideo: true })
+    //this.refs.vidRef.getInternalPlayer().playVideo()
+  }
+
+  bronzeBuilderVideoPause() {
+    // Pause as well
+    //this.refs.vidRef.getInternalPlayer().pauseVideo()
+    this.setState({ bronzeBuilderVideo: false })
+  }
+
+  corePlusLadderVideoPlay() {
+    // You can use the play method as normal on your video ref
+    // debugger;
+    this.setState({ corePlusLadderVideo: true })
+    //this.refs.vidRef.getInternalPlayer().playVideo()
+  }
+
+  corePlusLadderVideoPause() {
+    // Pause as well
+    //this.refs.vidRef.getInternalPlayer().pauseVideo()
+    this.setState({ corePlusLadderVideo: false })
+  }
+
+  anivVideoPlay() {
+    // You can use the play method as normal on your video ref
+    // debugger;
+    this.setState({ anivVideo: true })
+    //this.refs.vidRef.getInternalPlayer().playVideo()
+  }
+
+  anivVideoPause() {
+    // Pause as well
+    //this.refs.vidRef.getInternalPlayer().pauseVideo()
+    this.setState({ anivVideo: false })
   }
 
   render() {
+    let customerSalesUrl = "https://www.youtube.com/watch?v=BJXuoaz9YN0";
+    let bronzeFoundationUrl = "https://www.youtube.com/watch?v=PzATwjeLNt4"
+    let bronzeBuilderUrl = "https://www.youtube.com/watch?v=4Xp3rwz1-jg";
+    let corePlusLadderUrl = "https://youtu.be/ri0oBXYu0H4";
+    let anivUrl = "https://youtu.be/5Q_z32uRsSU";
     let memoryGameUrl = `/events/${this.props.currentEvent.event_code}/games/memory_game`;
     let fishingBoatUrl = `/events/${this.props.currentEvent.event_code}/games/fishing_boat`;
     let powerTowerUrl = `https://ignitrondigital.com/qp/power-game?event_id=${this.props.currentEvent.id}&guest_list_id=${this.props.guestListId}`;
@@ -74,26 +151,10 @@ class ExpoMap extends React.Component {
             {/* <img className="island" src={Island}/> */}
             <div className="island">
 
-                <a type="button" data-bs-toggle="modal" data-bs-target="#boraModal" data-bs-src id="platinumBtn">
+                <a type="button" id="platinumBtn">
                     <img className="zoom bora" src={Bora}/>
                 </a>
                 {/* Start modal for iframe */}
-
-                <div className="modal fade" id="boraModal" tabIndex="-1" aria-labelledby="boraModalLabel" aria-hidden="true">
-                  <div className="modal-dialog modal-lg">
-                    <div className="modal-content">
-                      <div className="modal-header">
-                        <h5 className="modal-title" id="boraModalLabel">Platinum Seminar</h5>
-                        <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                      </div>
-                      <div className="modal-body">
-                        <div>
-                          <iframe id="demoVideo" width="100%" height="315" src="https://www.youtube.com/embed/dQw4w9WgXcQ?enablejsapi=1," title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
 
 
                 {/* End modal for iframe */}
@@ -121,12 +182,61 @@ class ExpoMap extends React.Component {
                 <a href="#" id="fruitBtn" onClick={onClickFruitFall}>
                     <img className="zoom fruit" src={Fruit}/>
                 </a>
-                <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank"  id="corVid1tBtn">
-                    <img className="zoom corVid1" src={CorePlusIcon} alt="corVid1" />
+
+                <a type="button" data-bs-toggle="modal" id="corVid1tBtn" data-bs-target="#corePlusModal" onClick={this.corePlusLadderVideoPlay.bind(this)}>
+                    <img className="zoom corVid1" src={CorePlusIcon}/>
                 </a>
-                <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank"  id="corVid2tBtn">
-                    <img className="zoom corVid2" src={CustomerSales} alt="corVid2"/>
+
+                <div className="modal fade" id="corePlusModal" tabIndex="-1" aria-labelledby="boraModalLabel" aria-hidden="true">
+                  <div className="modal-dialog modal-lg">
+                    <div className="modal-content">
+                      <div className="modal-header">
+                        <h5 className="modal-title" id="boraModalLabel">Core Plus Ladder</h5>
+                        <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close" onClick={this.corePlusLadderVideoPause.bind(this)}></button>
+                      </div>
+                      <div className="modal-body">
+                        <div>
+                        <ReactPlayer url={corePlusLadderUrl}
+                          width="100%"
+                          pip={true}
+                          ref="vidRef"
+                          controls={true}
+                          playing={this.state.corePlusLadderVideo}
+                        >
+                        </ReactPlayer>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <a type="button" data-bs-toggle="modal" id="corVid2tBtn" data-bs-target="#customerSalesModal" onClick={this.customerSalesVideoPlay.bind(this)}>
+                    <img className="zoom corVid2" src={CustomerSales}/>
                 </a>
+
+                <div className="modal fade" id="customerSalesModal" tabIndex="-1" aria-labelledby="boraModalLabel" aria-hidden="true">
+                  <div className="modal-dialog modal-lg">
+                    <div className="modal-content">
+                      <div className="modal-header">
+                        <h5 className="modal-title" id="boraModalLabel">Customer Sales Incentives</h5>
+                        <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close" onClick={this.customerSalesVideoPause.bind(this)}></button>
+                      </div>
+                      <div className="modal-body">
+                        <div>
+                        <ReactPlayer url={customerSalesUrl}
+                          width="100%"
+                          pip={true}
+                          ref="vidRef"
+                          controls={true}
+                          playing={this.state.customerSalesVideo}
+                        >
+                        </ReactPlayer>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
                 <a href="#" id="bonanzaBtn" onClick={onClickMemoryGame}>
                     <img className="zoom bonanza" src={Bonanza} />
                 </a>
@@ -151,20 +261,93 @@ class ExpoMap extends React.Component {
                 <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank" id="alsVid5tBtn">
                     <img className="zoom alsVid5" src={Pin} alt="alsVid5"/>
                 </a>
-                <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank" id="alsVid6tBtn">
-                    <img className="zoom alsVid5" src={Bronze} alt="alsVid5"/>
+
+                <a type="button" data-bs-toggle="modal" id="alsVid6tBtn" data-bs-target="#bronze" onClick={this.bronzeBuilderVideoPlay.bind(this)}>
+                    <img className="zoom alsVid6" src={Bronze}/>
                 </a>
-                <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank" id="alsVid7tBtn">
-                    <img className="zoom alsVid5" src={BrinzeFoundation} alt="alsVid5"/>
+
+                <div className="modal fade" id="bronze" tabIndex="-1" aria-labelledby="boraModalLabel" aria-hidden="true">
+                  <div className="modal-dialog modal-lg">
+                    <div className="modal-content">
+                      <div className="modal-header">
+                        <h5 className="modal-title" id="boraModalLabel">Bronze Builder Incentives</h5>
+                        <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close" onClick={this.bronzeBuilderVideoPause.bind(this)}></button>
+                      </div>
+                      <div className="modal-body">
+                        <div>
+                        <ReactPlayer url={bronzeBuilderUrl}
+                          width="100%"
+                          pip={true}
+                          ref="vidRef"
+                          controls={true}
+                          playing={this.state.bronzeBuilderVideo}
+                        >
+                        </ReactPlayer>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <a type="button" data-bs-toggle="modal" id="alsVid7tBtn" data-bs-target="#bronzeFoundationModal" onClick={this.bronzeFoundationVideoPlay.bind(this)}>
+                    <img className="zoom alsVid7" src={BronzeFoundation}/>
                 </a>
+
+                <div className="modal fade" id="bronzeFoundationModal" tabIndex="-1" aria-labelledby="boraModalLabel" aria-hidden="true">
+                  <div className="modal-dialog modal-lg">
+                    <div className="modal-content">
+                      <div className="modal-header">
+                        <h5 className="modal-title" id="boraModalLabel">Bronze Foundation Incentives</h5>
+                        <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close" onClick={this.bronzeFoundationVideoPause.bind(this)}></button>
+                      </div>
+                      <div className="modal-body">
+                        <div>
+                        <ReactPlayer url={bronzeFoundationUrl}
+                          width="100%"
+                          pip={true}
+                          ref="vidRef"
+                          controls={true}
+                          playing={this.state.bronzeFoundationVideo}
+                        >
+                        </ReactPlayer>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
 
 
                 <a href="#" target="_blank" id="corBtn">
                     <img className="zoom cor" src={Coreplus}/>
                 </a>
-                <a href="#" target="_blank" id="anivBtn">
+
+                <a type="button" data-bs-toggle="modal" id="anivBtn" data-bs-target="#anivModal" onClick={this.anivVideoPlay.bind(this)}>
                     <img className="zoom aniv" src={Aniv}/>
                 </a>
+
+                <div className="modal fade" id="anivModal" tabIndex="-1" aria-labelledby="boraModalLabel" aria-hidden="true">
+                  <div className="modal-dialog modal-lg">
+                    <div className="modal-content">
+                      <div className="modal-header">
+                        <h5 className="modal-title" id="boraModalLabel">25th Anniversary</h5>
+                        <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close" onClick={this.anivVideoPause.bind(this)}></button>
+                      </div>
+                      <div className="modal-body">
+                        <div>
+                        <ReactPlayer url={anivUrl}
+                          width="100%"
+                          pip={true}
+                          ref="vidRef"
+                          controls={true}
+                          playing={this.state.anivVideo}
+                        >
+                        </ReactPlayer>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
 
 
             </div>
