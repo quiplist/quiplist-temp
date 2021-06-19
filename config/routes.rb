@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   get '/events/:event_code', to: 'home#index', as: :home
   get '/events/:event_code/thank_you', to: 'home#thank_you', as: :thank_you
   get '/events/:event_code/denied', to: 'home#denied', as: :denied
+  get '/events/:event_code/disabled', to: 'home#disabled', as: :disabled
   get '/find_event', to: 'home#find_event', as: :find_event
   get '/profile', to: 'home#profile', as: :profile
   put '/profile', to: 'home#update_profile', as: :update_profile
