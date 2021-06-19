@@ -75,16 +75,16 @@ class ExpoActions extends React.Component {
               <legend>Controls</legend>
                 <div className="row h-100">
                   <div className="col-sm-12 col-md-12 has-border-fh">
-                    <div className="menti-wrapper">
-                    <div className="row text-end mt-3">
-                      <div className="col d-flex flex-wrap justify-content-end">
+                    <div className="menti-wrapper h-100">
+                    <div className="row text-end w-100 h-100">
+                      <div className="col d-flex flex-wrap justify-content-end align-items-center">
                         Games
                         <EnableDisableGames
                           currentEvent = {this.props.currentEvent}
                           enableDisableGames = {evnt => this.enableDisableGames(evnt)}
                         />
                       </div>
-                      <div className="col d-flex flex-wrap justify-content-end">
+                      <div className="col d-flex flex-wrap align-items-center">
                         Main Event
                         <EnableDisableMainEvent
                           currentEvent = {this.props.currentEvent}
