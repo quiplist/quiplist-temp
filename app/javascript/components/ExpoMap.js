@@ -74,10 +74,11 @@ class ExpoMap extends React.Component {
             {/* <img className="island" src={Island}/> */}
             <div className="island">
 
-                <a type="button" data-bs-toggle="modal" data-bs-target="#boraModal" id="platinumBtn">
+                <a type="button" data-bs-toggle="modal" data-bs-target="#boraModal" data-bs-src id="platinumBtn">
                     <img className="zoom bora" src={Bora}/>
                 </a>
                 {/* Start modal for iframe */}
+
                 <div className="modal fade" id="boraModal" tabIndex="-1" aria-labelledby="boraModalLabel" aria-hidden="true">
                   <div className="modal-dialog modal-lg">
                     <div className="modal-content">
@@ -87,13 +88,14 @@ class ExpoMap extends React.Component {
                       </div>
                       <div className="modal-body">
                         <div>
-
+                          <iframe id="demoVideo" width="100%" height="315" src="https://www.youtube.com/embed/dQw4w9WgXcQ?enablejsapi=1," title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
                         </div>
-                        <iframe width="100%" height="315" src="https://www.youtube.com/watch?v=dQw4w9WgXcQ" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
                       </div>
                     </div>
                   </div>
                 </div>
+
+
                 {/* End modal for iframe */}
 
                 {mainProgram}
@@ -163,6 +165,8 @@ class ExpoMap extends React.Component {
                 <a href="#" target="_blank" id="anivBtn">
                     <img className="zoom aniv" src={Aniv}/>
                 </a>
+
+
             </div>
 
 
