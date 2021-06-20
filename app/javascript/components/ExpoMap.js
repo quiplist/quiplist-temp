@@ -112,8 +112,9 @@ class ExpoMap extends React.Component {
     let fishingBoatUrl = `/events/${this.props.currentEvent.event_code}/games/fishing_boat`;
     let powerTowerUrl = `https://ignitrondigital.com/qp/power-game?event_id=${this.props.currentEvent.id}&guest_list_id=${this.props.guestListId}`;
     let fruitFallUrl = `https://ignitrondigital.com/qp/fruit-fall-game?event_id=${this.props.currentEvent.id}&guest_list_id=${this.props.guestListId}`;
+    let candyGameUrl = `https://ignitrondigital.com/qp/candy-game?event_id=${this.props.currentEvent.id}&guest_list_id=${this.props.guestListId}`;
     let mainProgramUrl, mainProgram;
-    let onClickMemoryGame, onClickFishingBoat, onClickPowerTower, onClickFruitFall;
+    let onClickMemoryGame, onClickFishingBoat, onClickPowerTower, onClickFruitFall, onClickCandyGame;
     let disabledGames = (this.props.currentEvent.disable_expo_games || this.props.isAdmin);
     let disabledMainEvent = this.props.currentEvent.disable_main_event;
     if (disabledMainEvent) {
@@ -136,12 +137,14 @@ class ExpoMap extends React.Component {
       onClickMemoryGame = null;
       onClickFishingBoat = null;
       onClickPowerTower = null;
-      onClickFruitFall = null
+      onClickFruitFall = null;
+      onClickCandyGame = null;
     } else {
       onClickMemoryGame = () => window.open(memoryGameUrl, "Popup","toolbar=no, location=no, statusbar=no, menubar=no, scrollbars=1, resizable=0, width=750, height=770, left=350, top=200")
       onClickFishingBoat = () => window.open(fishingBoatUrl, "Popup","toolbar=no, location=no, statusbar=no, menubar=no, scrollbars=1, resizable=0, width=750, height=770, left=350, top=200")
       onClickPowerTower = () => window.open(powerTowerUrl, "Popup","toolbar=no, location=no, statusbar=no, menubar=no, scrollbars=1, resizable=0, width=750, height=770, left=350, top=200")
       onClickFruitFall = () => window.open(fruitFallUrl, "Popup","toolbar=no, location=no, statusbar=no, menubar=no, scrollbars=1, resizable=0, width=750, height=770, left=350, top=200")
+      onClickCandyGame = () => window.open(candyGameUrl, "Popup","toolbar=no, location=no, statusbar=no, menubar=no, scrollbars=1, resizable=0, width=750, height=770, left=350, top=200")
     }
     return (
       <div className="bg">
@@ -160,18 +163,42 @@ class ExpoMap extends React.Component {
                 {/* End modal for iframe */}
 
                 {mainProgram}
-                <a href="#"  id="diamondBtn">
-                    <img className="zoom diamond" src={Diamond}/>
+
+                <a type="button" data-bs-toggle="modal" id="diamondBtn" data-bs-target="#diamondModal">
+                  <img className="zoom diamond" src={Diamond}/>
                 </a>
+
+                <div className="modal fade" id="diamondModal" data-bs-backdrop="static" data-bs-keyboard="false" tabIndex="-1" aria-labelledby="corePlusModalLabel" aria-hidden="true">
+                  <div className="modal-dialog modal-lg">
+                    <div className="modal-content">
+                      <div className="modal-header">
+                        <h5 className="modal-title" id="boraModalLabel">Core Plus Ladder</h5>
+                        <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close" onClick={this.corePlusLadderVideoPause.bind(this)}></button>
+                      </div>
+                      <div className="modal-body">
+                        <div>
+                        <ReactPlayer url={corePlusLadderUrl}
+                          width="100%"
+                          pip={true}
+                          ref="vidRef"
+                          controls={true}
+                          playing={this.state.corePlusLadderVideo}
+                        >
+                        </ReactPlayer>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
                 <a type="button" disabled={this.props.isAdmin} data-bs-toggle="modal" data-bs-target="#feedbackModal" id="feedbackBtn">
                     <img className="zoom feedback" src={Feedback} disabled={this.props.isAdmin}/>
                 </a>
 
-                {/* Start modal for feedback */}
-                <ExpoFeedBackForm
+                {/* uncomment feedback form */}
+                {/*<ExpoFeedBackForm
                   ratings = {this.props.ratings}
-                />
-                {/* End modal for feedback */}
+                />*/}
 
                 <a href="#"  id="alsBtn">
                     <img className="zoom als" src={Als}/>
@@ -240,7 +267,7 @@ class ExpoMap extends React.Component {
                 <a href="#" id="bonanzaBtn" onClick={onClickMemoryGame}>
                     <img className="zoom bonanza" src={Bonanza} />
                 </a>
-                <a href="#" id="powertBtn" onClick={onClickPowerTower}>
+                <a href="#" id="powertBtn" onClick={onClickCandyGame}>
                     <img className="zoom power" src={Crush}/>
                 </a>
                 <a href="#" id="game3tBtn" onClick={onClickPowerTower}>
