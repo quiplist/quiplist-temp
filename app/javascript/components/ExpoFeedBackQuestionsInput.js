@@ -14,7 +14,7 @@ class ExpoFeedBackQuestionsInput extends React.Component {
           id={this.props.ratingId}
           data-id={this.props.i}
           disabled={this.props.disabled}
-          onChange={(e) => this.props.handleChange(this.props.guestListId, this.props.feedBackId, e)}
+          onChange={(e) => this.props.handleChange(e, this.props.guestListId, this.props.feedBackId,)}
         />
 
       </div>
