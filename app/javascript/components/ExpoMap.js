@@ -178,11 +178,11 @@ class ExpoMap extends React.Component {
     let pin2Url = "https://www.youtube.com/watch?v=IePryUxYRl4";
     let pin3Url = "https://www.youtube.com/watch?v=A4J-fbAuVoA";
     let pin4Url = "https://www.youtube.com/watch?v=_G9jT1aXrRY";
-    let pin5Url = "https://www.youtube.com/watch?v=yZ_g8vP70rw"; //to be changed
+    let pin5Url = "https://www.youtube.com/watch?v=yZ_g8vP70rw";
     let customerSalesUrl = "https://www.youtube.com/watch?v=BJXuoaz9YN0";
     let bronzeFoundationUrl = "https://www.youtube.com/watch?v=PzATwjeLNt4"
     let bronzeBuilderUrl = "https://www.youtube.com/watch?v=4Xp3rwz1-jg";
-    let corePlusLadderUrl = "https://www.youtube.com/watch?v=lrl9ueWOnOI";
+    let corePlusLadderUrl = "https://www.youtube.com/watch?v=9JiWPChtekM";
     let anivUrl = "https://www.youtube.com/watch?v=xRZB9k3mrJw";
     let memoryGameUrl = `/events/${this.props.currentEvent.event_code}/games/memory_game`;
     let fishingBoatUrl = `/events/${this.props.currentEvent.event_code}/games/fishing_boat`;
@@ -243,7 +243,7 @@ class ExpoMap extends React.Component {
                       </div>
                       <div className="modal-body">
                         <div>
-                          <embed type="application/pdf" src={PlatinumSeminar} width="1105" height="600" />
+                          <embed type="application/pdf" src={PlatinumSeminar} className="modal-pdf" width="1105" height="600" />
                         </div>
                       </div>
                     </div>
@@ -265,7 +265,7 @@ class ExpoMap extends React.Component {
                       </div>
                       <div className="modal-body">
                         <div>
-                          <embed type="application/pdf" src={DiamondInvitational} width="1105" height="600" />
+                          <embed type="application/pdf" src={DiamondInvitational} className="modal-pdf" width="1105" height="600" />
                         </div>
                       </div>
                     </div>
@@ -294,7 +294,7 @@ class ExpoMap extends React.Component {
                       </div>
                       <div className="modal-body">
                         <div>
-                          <embed type="application/pdf" src={AlsHawaii} width="1105" height="600" />
+                          <embed type="application/pdf" src={AlsHawaii} className="modal-pdf" width="1105" height="600" />
                         </div>
                       </div>
                     </div>
@@ -579,7 +579,7 @@ class ExpoMap extends React.Component {
                       </div>
                       <div className="modal-body">
                         <div>
-                          <embed type="application/pdf" src={CorePlusPdf} width="1105" height="600" />
+                          <embed type="application/pdf" src={CorePlusPdf} className="modal-pdf" width="1105" height="600" />
                         </div>
                       </div>
                     </div>
