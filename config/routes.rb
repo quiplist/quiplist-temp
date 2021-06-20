@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   get '/events/:event_code', to: 'home#index', as: :home
   get '/events/:event_code/thank_you', to: 'home#thank_you', as: :thank_you
   get '/events/:event_code/denied', to: 'home#denied', as: :denied
+  get '/events/:event_code/disabled', to: 'home#disabled', as: :disabled
   get '/find_event', to: 'home#find_event', as: :find_event
   get '/profile', to: 'home#profile', as: :profile
   put '/profile', to: 'home#update_profile', as: :update_profile
@@ -13,6 +14,7 @@ Rails.application.routes.draw do
   post '/reset_password', to: 'home#reset_password', as: :reset_password
   get '/contact_us', to: 'home#contact_us', as: :contact_us
   get '/about_us', to: 'home#about_us', as: :about_us
+  get '/events/:event_code/expo', to: 'home#expo', as: :expo
   get '/events/:event_code/games/memory_game', to: 'games#memory_game', as: :memory_game
   get '/events/:event_code/games/fishing_boat', to: 'games#fishing_boat', as: :fishing_boat
 
@@ -23,6 +25,7 @@ Rails.application.routes.draw do
     resources :events, except: [:new, :edit] do
       put :upload_brochure, to: 'events#upload_brochure', on: :member
       get :launch, to: 'events#launch', on: :member
+      get :expo, to: 'events#expo', on: :member
 
       resources :guest_lists do
         post :set_status, on: :collection
@@ -34,6 +37,7 @@ Rails.application.routes.draw do
       resources :questionnaires, except: [:index] do
         get '/pinned/:answer_id', to: 'questionnaires#pinned', on: :member, as: :pinned_answer
       end
+      resources :feed_backs, except: [:index]
     end
     resources :admins do
       post :create_admin_events, on: :member
@@ -57,7 +61,7 @@ Rails.application.routes.draw do
       resources :chats, only: [:index, :create]
       resources :announcements, only: [:index, :create, :update]
       get '/fetch_current_user', to: 'users#fetch_current_user', as: :fetch_current_user
-      resources :events, only: [:show]
+      resources :events, only: [:show, :update]
       resources :raffles, only: [:index, :show, :update]
       resources :questionnaires, only: [:update]
       resources :guest_lists, only: [:index, :show]
@@ -66,6 +70,7 @@ Rails.application.routes.draw do
 
       resources :game_scores, only: [:create, :index, :show, :update]
       resources :users, only: [:show]
+      resources :ratings, only: [:index, :create]
     end
   end
 

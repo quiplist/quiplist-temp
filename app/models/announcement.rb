@@ -21,6 +21,8 @@ class Announcement < ApplicationRecord
   belongs_to :admin
 
   default_scope { order(created_at: :asc) }
+  scope :main_program, -> { where(on_expo: false) }
+  scope :on_expo, -> { where(on_expo: true) }
 
   validates :message, presence: true
 end

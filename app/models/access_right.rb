@@ -24,6 +24,7 @@ class AccessRight < ApplicationRecord
   ADMIN = 4
   CLIENT = 5
   GAME_APPLICATION = 7
+  FEED_BACK = 8
 
 
   NAMES = {
@@ -31,6 +32,7 @@ class AccessRight < ApplicationRecord
     GUEST_LIST => "Guest Lists",
     RAFFLE => "Raffles",
     QUESTIONNAIRE => "Questionnaires",
+    FEED_BACK => "Feed Back",
     ADMIN => "Admins",
     CLIENT => "Clients",
     GAME_APPLICATION => "Game Application Settings"
@@ -53,6 +55,7 @@ class AccessRight < ApplicationRecord
   scope :admin, -> { find_by(name: ADMIN) }
   scope :client, -> { find_by(name: CLIENT) }
   scope :game_application, -> { find_by(name: GAME_APPLICATION) }
+  scope :feed_back, -> { find_by(name: FEED_BACK) }
 
 
 

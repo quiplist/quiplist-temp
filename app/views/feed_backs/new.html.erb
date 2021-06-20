@@ -1,0 +1,26 @@
+<%= render partial: "layouts/shared/breadcrumbs", locals: {
+  links: [
+    { path: events_path, path_name: "Event" },
+    { path: event_path(@event), path_name: "#{@event.id}" }
+  ],
+  current_path: "New Feed Back"
+} %>
+
+<div class="container content-wrapper">
+  <div class="row mb-3">
+    <div class="col-12 text-start">
+      <h2 class="event_title">Create Feed Back</h2>
+    </div>
+    <hr/>
+  </div>
+    <%= form_for @feed_back, as: :feed_back, url: event_feed_backs_path(event_id: @event.id, id: @feed_back.id), method: :post, html: { class: "" } do |f| %>
+      <%= render partial: "layouts/shared/success_messages", locals: { messages: flash[:notice] } %>
+      <%= render partial: "layouts/shared/error_messages", locals: { messages: @feed_back.errors.full_messages } %>
+      <%= render partial: "feed_backs/shared/form", locals: {f: f} %>
+      <div class="row">
+        <div class="col-12 text-end">
+          <%= submit_tag "Create Feed Back", class: "btn btn-submit" %>
+        </div>
+      </div>
+    <% end %>
+</div>

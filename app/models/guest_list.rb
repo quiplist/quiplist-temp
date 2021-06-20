@@ -2,15 +2,16 @@
 #
 # Table name: guest_lists
 #
-#  id            :bigint           not null, primary key
-#  raffle_number :integer
-#  raffle_status :integer          default(0)
-#  status        :integer          default(0)
-#  created_at    :datetime         not null
-#  updated_at    :datetime         not null
-#  approver_id   :bigint
-#  event_id      :bigint
-#  user_id       :bigint
+#  id                     :bigint           not null, primary key
+#  has_answered_feed_back :boolean          default(FALSE)
+#  raffle_number          :integer
+#  raffle_status          :integer          default(0)
+#  status                 :integer          default(0)
+#  created_at             :datetime         not null
+#  updated_at             :datetime         not null
+#  approver_id            :bigint
+#  event_id               :bigint
+#  user_id                :bigint
 #
 # Indexes
 #
@@ -25,6 +26,8 @@ class GuestList < ApplicationRecord
   belongs_to :event
   has_many :raffles
   has_many :game_scores
+  has_many :ratings, dependent: :destroy
+  has_many :feed_backs, through: :ratings
 
   PENDING = 0
   APPROVED = 1

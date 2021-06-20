@@ -17,7 +17,7 @@
 #  index_announcements_on_event_id  (event_id)
 #
 class AnnouncementSerializer < ActiveModel::Serializer
-  attributes :id, :message, :admin_id, :admin_name, :event_id, :created_at, :display_annoucement
+  attributes :id, :message, :admin_id, :admin_name, :event_id, :created_at, :display_annoucement, :on_expo
 
   belongs_to :event
 
