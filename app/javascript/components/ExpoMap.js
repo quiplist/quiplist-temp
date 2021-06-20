@@ -14,7 +14,15 @@ import Pin from "images/standin.png";
 import Bonanza from "images/bonanza.png";
 import Power from "images/power.png";
 import Header from "images/header.png";
-import ExpoFeedBackForm from './ExpoFeedBackForm'
+import BrinzeFoundation from "images/brinzeFoundation.png";
+import Bronze from "images/bronze.png";
+import Crush from "images/crush.png";
+import CorePlusIcon from "images/corePlusIcon.png";
+import CustomerSales from "images/customerSales.png";
+// import Als_Hawaii from "pdfs/als_hawaii.pdf";
+// import Diamond_Invitational from "pdfs/diamond_invitational.pdf";
+// import Platinum_Seminar from "pdfs/platinum_seminar.png";
+import ExpoFeedBackForm from './ExpoFeedBackForm';
 
 class ExpoMap extends React.Component {
   constructor(props) {
@@ -66,23 +74,28 @@ class ExpoMap extends React.Component {
             {/* <img className="island" src={Island}/> */}
             <div className="island">
 
-                <a type="button" data-bs-toggle="modal" data-bs-target="#boraModal" id="platinumBtn">
+                <a type="button" data-bs-toggle="modal" data-bs-target="#boraModal" data-bs-src id="platinumBtn">
                     <img className="zoom bora" src={Bora}/>
                 </a>
                 {/* Start modal for iframe */}
+
                 <div className="modal fade" id="boraModal" tabIndex="-1" aria-labelledby="boraModalLabel" aria-hidden="true">
                   <div className="modal-dialog modal-lg">
                     <div className="modal-content">
                       <div className="modal-header">
-                        <h5 className="modal-title" id="boraModalLabel">Iframe</h5>
+                        <h5 className="modal-title" id="boraModalLabel">Platinum Seminar</h5>
                         <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                       </div>
                       <div className="modal-body">
-                        <iframe width="100%" height="315" src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
+                        <div>
+                          <iframe id="demoVideo" width="100%" height="315" src="https://www.youtube.com/embed/dQw4w9WgXcQ?enablejsapi=1," title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
+                        </div>
                       </div>
                     </div>
                   </div>
                 </div>
+
+
                 {/* End modal for iframe */}
 
                 {mainProgram}
@@ -109,18 +122,18 @@ class ExpoMap extends React.Component {
                     <img className="zoom fruit" src={Fruit}/>
                 </a>
                 <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank"  id="corVid1tBtn">
-                    <img className="zoom corVid1" src={Pin} alt="corVid1" />
+                    <img className="zoom corVid1" src={CorePlusIcon} alt="corVid1" />
                 </a>
                 <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank"  id="corVid2tBtn">
-                    <img className="zoom corVid2" src={Pin} alt="corVid2"/>
+                    <img className="zoom corVid2" src={CustomerSales} alt="corVid2"/>
                 </a>
                 <a href="#" id="bonanzaBtn" onClick={onClickMemoryGame}>
                     <img className="zoom bonanza" src={Bonanza} />
                 </a>
                 <a href="#" id="powertBtn" onClick={onClickPowerTower}>
-                    <img className="zoom power" src={Power}/>
+                    <img className="zoom power" src={Crush}/>
                 </a>
-                <a href="#" id="game3tBtn">
+                <a href="#" id="game3tBtn" onClick={onClickPowerTower}>
                     <img className="zoom game3" src={Power}/>
                 </a>
                 <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank" id="alsVid1tBtn">
@@ -138,6 +151,12 @@ class ExpoMap extends React.Component {
                 <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank" id="alsVid5tBtn">
                     <img className="zoom alsVid5" src={Pin} alt="alsVid5"/>
                 </a>
+                <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank" id="alsVid6tBtn">
+                    <img className="zoom alsVid5" src={Bronze} alt="alsVid5"/>
+                </a>
+                <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank" id="alsVid7tBtn">
+                    <img className="zoom alsVid5" src={BrinzeFoundation} alt="alsVid5"/>
+                </a>
 
 
                 <a href="#" target="_blank" id="corBtn">
@@ -146,6 +165,8 @@ class ExpoMap extends React.Component {
                 <a href="#" target="_blank" id="anivBtn">
                     <img className="zoom aniv" src={Aniv}/>
                 </a>
+
+
             </div>
 
 

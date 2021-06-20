@@ -19,6 +19,7 @@
     "react": "^17.0.1",
     "react-data-table-component": "^6.11.7",
     "react-dom": "^17.0.1",
+    "react-pdf": "^5.3.0",
     "react-wheel-of-prizes": "^1.0.8",
     "react_ujs": "^2.6.1",
     "styled-components": "^5.2.3",
@@ -27,6 +28,7 @@
   },
   "version": "0.1.0",
   "devDependencies": {
+    "pdfjs-dist": "^2.8.335",
     "webpack-dev-server": "^3.11.2"
   }
 }

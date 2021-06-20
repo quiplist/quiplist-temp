@@ -87,7 +87,8 @@ body, html {
 #powertBtn{
   position: absolute;
   z-index: 1;
-  width: 50px;
+  height: 40px;
+  width: 75px;
   left: 43%;
   top: 62%;
 }
@@ -154,6 +155,24 @@ body, html {
   width: 35px;
 }
 
+#alsVid6tBtn{
+  position: absolute;
+  left: 62%;
+  top: 69%;
+  z-index: 1;
+  height: 50px;
+  width: 50px;
+}
+
+#alsVid7tBtn{
+  position: absolute;
+  left: 52%;
+  top: 69%;
+  z-index: 1;
+  height: 50px;
+  width: 50px;
+}
+
 #salesBtn{
   position: absolute;
   z-index: 1;
@@ -177,14 +196,14 @@ body, html {
   left: 44%;
   z-index: 1;
   height: 50px;
-  width: 35px;
+  width: 50px;
 }
 
 #corVid2tBtn{
   position: absolute;
   z-index: 1;
   height: 50px;
-  width: 35px;
+  width: 50px;
   top: 73%;
   left: 56%;
 }
@@ -201,7 +220,7 @@ body, html {
   position: absolute;
   width: 100%;
   height: 100%;
-  background-size: 100% 70%;
+  background-size: 100% 100%;
   background-repeat: no-repeat;
   background-position: bottom;
 
@@ -458,6 +477,7 @@ fieldset legend {
   #alsVid1tBtn,
   #alsVid2tBtn, #alsVid3tBtn,
   #alsVid4tBtn, #alsVid5tBtn,
+  #alsVid6tBtn, #alsVid7tBtn,
   #corVid1tBtn, #corVid2tBtn{
     width: 3%;
   }
