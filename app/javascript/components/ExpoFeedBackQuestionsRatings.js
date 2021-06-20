@@ -6,7 +6,7 @@ class ExpoFeedBackQuestionsRatings extends React.Component {
   render() {
     return (
       <div>
-        
+
         <label htmlFor={this.props.ratingId} className="form-label">{this.props.question}</label>
         <select className="answer mb-3 form-select"
           defaultValue="default"

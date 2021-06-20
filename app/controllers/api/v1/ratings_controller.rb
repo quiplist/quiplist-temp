@@ -1,5 +1,5 @@
 class Api::V1::RatingsController < Api::ApplicationController
-  before_action -> { set_event params[:event_id] }, only: [:index, :create]
+  before_action -> { set_event params[:event_id] }, only: [:index]
   before_action -> { set_user params[:user_id] }, only: [:index]
 
   def index
@@ -54,16 +54,29 @@ class Api::V1::RatingsController < Api::ApplicationController
   end
 
   def create
-    # @ratings = Announcement.new(announcement_params)
-    # @announcement.save
-    # render json: @announcement
+    begin
+      ActiveRecord::Base.transaction do
+        #guest_list_id = nil
+        params[:ratings].each do |rating|
+          Rating.create(answer: rating[:answer], guest_list_id: rating[:guest_list_id], feed_back_id: rating[:feed_back_id])
+          GuestList.find(rating[:guest_list_id]).update(has_answered_feed_back: true)
+        end
+      end
+      render json: { sucess: "create ratings" }
+    end
   end
 
   private
 
-  def announcement_params
-    params.require(:announcement).permit(:message, :admin_id, :event_id, :display_annoucement, :on_expo)
-  end
+  # def rating_params
+  #   params.permit(
+  #     ratings: [
+  #       :answer,
+  #       :feed_back_id,
+  #       :guest_list_id,
+  #     ]
+  #   )
+  # end
 
   def set_event(id)
     @event = Event.find(id)

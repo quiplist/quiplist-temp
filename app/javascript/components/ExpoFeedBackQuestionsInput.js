@@ -11,6 +11,7 @@ class ExpoFeedBackQuestionsInput extends React.Component {
           type="text"
           className="answer form-control"
           name="answer"
+          value={this.props.answer}
           id={this.props.ratingId}
           data-id={this.props.i}
           disabled={this.props.disabled}

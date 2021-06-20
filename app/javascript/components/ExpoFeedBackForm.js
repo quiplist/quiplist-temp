@@ -29,32 +29,24 @@ class ExpoFeedBackForm extends React.Component {
 
   submitFeedBack = feedBackAnswers => {
     // on submitting the ChatInput form, send the message, add it to the list and reset the input
-    const url = "/api/v1/chats";
+    const url = "/api/v1/ratings";
     console.log(feedBackAnswers)
-    // const body = {
-    //   chat: {
-    //     sender_id: this.props.currentUser.id,
-    //     sender_type: this.props.currentUser.user_type,
-    //     message: messageString,
-    //     event_id: this.props.currentEvent.id
-    //   }
-    // }
+    const body = {
+      ratings: feedBackAnswers
+    }
 
-
-
-    // fetch(url, {
-    //     method: "POST",
-    //     headers: {
-    //         "Content-Type": "application/json",
-    //         Accept: "application/json"
-    //     },
-    //     body: JSON.stringify(body)
-    // })
-    // .then(resp => resp.json())
-    // .then(result => {
-    //   //this.addChat(result)
-    //   this.props.chatCable.send({result})
-    // })
+    fetch(url, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json"
+        },
+        body: JSON.stringify(body)
+    })
+    .then(resp => resp.json())
+    .then(result => {
+      this.setState({ hasAnswered: true })
+    })
   }
 
   addFeedBackAnswers = answer => {
@@ -91,6 +83,7 @@ class ExpoFeedBackForm extends React.Component {
     let feedbackForm = [];
     if (ratings.feed_backs === undefined) return null;
     feedbackForm = ratings.feed_backs;
+    console.log(feedbackForm)
 
     return (
       <div className="modal fade" id="feedbackModal" tabIndex="-1" aria-labelledby="feedbackModalLabel" aria-hidden="true">

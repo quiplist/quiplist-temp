@@ -70,7 +70,7 @@ Rails.application.routes.draw do
 
       resources :game_scores, only: [:create, :index, :show, :update]
       resources :users, only: [:show]
-      resources :ratings
+      resources :ratings, only: [:index, :create]
     end
   end
 
