@@ -20,6 +20,9 @@
 
     @questionnaires = Questionnaire.where(event: @event)
     @questionnaires = @questionnaires.sorted
+
+    @feed_backs = FeedBack.where(event: @event)
+    @feed_backs = @feed_backs.sorted
   end
 
   def create
@@ -82,6 +85,11 @@
   def launch
   end
 
+  def expo
+    return redirect_to event_path(@event), alert: "Expo feature is not avaible for this event." unless @event.has_expo?
+    render layout: "expo"
+  end
+
   private
 
   def event_params
@@ -102,8 +110,11 @@
       :random_name_background, :random_name_background_color, :random_name_draw_mouse_out, :random_name_draw_mouse_over,
       :random_name_winner_mouse_out, :random_name_winner_mouse_over, :random_number_background, :random_number_background_color,
       :random_number_draw_mouse_out, :random_number_draw_mouse_over, :random_number_winner_mouse_out, :random_number_winner_mouse_over,
-      :spin_a_wheel_background, :spin_a_wheel_background_color, :spin_a_wheel_draw_mouse_out, :spin_a_wheel_draw_mouse_over, 
-      :spin_a_wheel_winner_mouse_out, :spin_a_wheel_winner_mouse_over
+      :spin_a_wheel_background, :spin_a_wheel_background_color, :spin_a_wheel_draw_mouse_out, :spin_a_wheel_draw_mouse_over,
+      :spin_a_wheel_winner_mouse_out, :spin_a_wheel_winner_mouse_over, :has_expo, :has_background_music, :disable_expo_games,
+      :background_music, :disable_main_event, :random_name_winner_background_color, :random_number_winner_background_color,
+      :spin_a_wheel_winner_background_color, :random_name_winner_font_color, :random_number_winner_font_color, :spin_a_wheel_winner_font_color,
+      :random_name_font_color, :random_number_font_color, :spin_a_wheel_font_color
     )
   end
 

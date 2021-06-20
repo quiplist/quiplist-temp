@@ -1,7 +1,7 @@
 class HomeController < ApplicationController
-  layout 'main'
+  layout 'main', except: [:expo]
   before_action :authenticate_user!, except: [:welcome, :find_event, :forgot_password, :reset_password, :about_us, :contact_us]
-  before_action :fetch_reaction, except: [:welcome, :find_event, :profile, :update_profile, :forgot_password, :reset_password, :about_us, :contact_us]
+  before_action :fetch_reaction, except: [:welcome, :find_event, :profile, :update_profile, :forgot_password, :reset_password, :about_us, :contact_us, :expo, :disabled]
   before_action -> { check_event_code params[:event_code] }, except: [:welcome, :forgot_password, :reset_password, :about_us, :contact_us]
 
   def index
@@ -9,7 +9,9 @@ class HomeController < ApplicationController
 
     GuestList.create_guest_list(current_user, @event)
     @guest = GuestList.invitation(current_user, @event)
-    if @guest.pending?
+    if @event.disable_main_event?
+      redirect_to disabled_path(event_code: @event.event_code)
+    elsif @guest.pending?
       redirect_to thank_you_path(event_code: @event.event_code)
     elsif @guest.denied?
       redirect_to denied_path(event_code: @event.event_code)
@@ -38,6 +40,10 @@ class HomeController < ApplicationController
     end
   end
 
+  def disabled
+    render_404 if @event.nil?
+  end
+
   def welcome
     render layout: "application"
   end
@@ -55,7 +61,11 @@ class HomeController < ApplicationController
     elsif current_user.nil?
       redirect_to new_user_registration_path(event_code: @event.event_code)
     else
-      redirect_to home_path(event_code: @event.event_code)
+      if @event.has_expo?
+        redirect_to expo_path(event_code: @event.event_code)
+      else
+        redirect_to home_path(event_code: @event.event_code)
+      end
     end
   end
 
@@ -100,6 +110,11 @@ class HomeController < ApplicationController
 
   def contact_us
     render layout: "application"
+  end
+
+  def expo
+    @guest = GuestList.invitation(current_user, @event)
+    render layout: "expo"
   end
 
   private

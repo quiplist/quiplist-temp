@@ -113,7 +113,11 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # The path used after sign up.
   def after_sign_up_path_for(resource, event)
     #super(resource)
-    home_path(event_code: event.event_code)
+    if event.has_expo?
+      expo_path(event_code: event.event_code)
+    else
+      home_path(event_code: event.event_code)
+    end
   end
 
   # The path used after sign up for inactive accounts.

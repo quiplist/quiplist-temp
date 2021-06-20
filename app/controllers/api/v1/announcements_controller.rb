@@ -2,6 +2,9 @@ class Api::V1::AnnouncementsController < Api::ApplicationController
   before_action -> { set_event params[:event_id] }, only: [:index, :create, :update]
 
   def index
+    on_expo = params[:on_expo] == 'true'
+    # @announcement = @event.announcements.main_program.last
+    # @announcement = @event.announcements.on_expo.last if on_expo
     @announcement = @event.announcements.last
     render json: @announcement
   end
@@ -27,7 +30,7 @@ class Api::V1::AnnouncementsController < Api::ApplicationController
   private
 
   def announcement_params
-    params.require(:announcement).permit(:message, :admin_id, :event_id, :display_annoucement)
+    params.require(:announcement).permit(:message, :admin_id, :event_id, :display_annoucement, :on_expo)
   end
 
   def set_event(id)

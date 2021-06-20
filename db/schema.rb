@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_06_15_111928) do
+ActiveRecord::Schema.define(version: 2021_06_18_080552) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -175,6 +175,16 @@ ActiveRecord::Schema.define(version: 2021_06_15_111928) do
     t.boolean "has_background_music", default: false
     t.boolean "disable_expo_games", default: false
     t.string "background_music"
+    t.boolean "disable_main_event", default: false
+    t.string "random_name_winner_background_color", default: "#FFFFFF"
+    t.string "random_number_winner_background_color", default: "#FFFFFF"
+    t.string "spin_a_wheel_winner_background_color", default: "#FFFFFF"
+    t.string "random_name_winner_font_color", default: "#000000"
+    t.string "random_number_winner_font_color", default: "#000000"
+    t.string "spin_a_wheel_winner_font_color", default: "#000000"
+    t.string "random_name_font_color", default: "#FFFFFF"
+    t.string "random_number_font_color", default: "#FFFFFF"
+    t.string "spin_a_wheel_font_color", default: "#FFFFFF"
   end
 
   create_table "feed_backs", force: :cascade do |t|
@@ -206,6 +216,7 @@ ActiveRecord::Schema.define(version: 2021_06_15_111928) do
     t.integer "raffle_status", default: 0
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.boolean "has_answered_feed_back", default: false
     t.index ["approver_id"], name: "index_guest_lists_on_approver_id"
     t.index ["event_id"], name: "index_guest_lists_on_event_id"
     t.index ["user_id"], name: "index_guest_lists_on_user_id"
@@ -281,13 +292,13 @@ ActiveRecord::Schema.define(version: 2021_06_15_111928) do
   end
 
   create_table "ratings", force: :cascade do |t|
-    t.bigint "user_id"
     t.bigint "feed_back_id"
     t.string "answer"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "guest_list_id"
     t.index ["feed_back_id"], name: "index_ratings_on_feed_back_id"
-    t.index ["user_id"], name: "index_ratings_on_user_id"
+    t.index ["guest_list_id"], name: "index_ratings_on_guest_list_id"
   end
 
   create_table "reactions", force: :cascade do |t|
@@ -299,30 +310,6 @@ ActiveRecord::Schema.define(version: 2021_06_15_111928) do
     t.datetime "updated_at", precision: 6, default: -> { "now()" }, null: false
     t.index ["event_id"], name: "index_reactions_on_event_id"
     t.index ["responder_type", "responder_id"], name: "index_reactions_on_responder_type_and_responder_id"
-  end
-
-  create_table "settings", force: :cascade do |t|
-    t.string "video_asset"
-    t.json "image_assets"
-    t.boolean "is_image", default: true
-    t.string "landing_page_background"
-    t.string "landing_page_background_color", default: "#3F48CC"
-    t.string "landing_page_mouse_out", default: "#6C63FF"
-    t.string "landing_page_mouse_over", default: "#861CCE"
-    t.string "about_us_background"
-    t.string "about_us_background_color", default: "#3F48CC"
-    t.string "about_us_mouse_out", default: "#6C63FF"
-    t.string "about_us_mouse_over", default: "#861CCE"
-    t.string "contact_us_background"
-    t.string "contact_us_background_color", default: "#3F48CC"
-    t.string "contact_us_mouse_out", default: "#6C63FF"
-    t.string "contact_us_mouse_over", default: "#861CCE"
-    t.string "contact_us_spiel"
-    t.string "contact_us_email"
-    t.string "contact_us_number"
-    t.string "about_us_spiel"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "users", force: :cascade do |t|
