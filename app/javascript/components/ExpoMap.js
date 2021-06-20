@@ -35,6 +35,11 @@ class ExpoMap extends React.Component {
       bronzeBuilderVideo: false,
       corePlusLadderVideo: false,
       anivVideo: false,
+      pin1Video: false,
+      pin2Video: false,
+      pin3Video: false,
+      pin4Video: false,
+      pin5Video: false,
     };
   }
 
@@ -103,12 +108,82 @@ class ExpoMap extends React.Component {
     this.setState({ anivVideo: false })
   }
 
+  pin1VideoPlay() {
+    // You can use the play method as normal on your video ref
+    // debugger;
+    this.setState({ pin1Video: true })
+    //this.refs.vidRef.getInternalPlayer().playVideo()
+  }
+
+  pin1VideoPause() {
+    // Pause as well
+    //this.refs.vidRef.getInternalPlayer().pauseVideo()
+    this.setState({ pin1Video: false })
+  }
+
+  pin2VideoPlay() {
+    // You can use the play method as normal on your video ref
+    // debugger;
+    this.setState({ pin2Video: true })
+    //this.refs.vidRef.getInternalPlayer().playVideo()
+  }
+
+  pin2VideoPause() {
+    // Pause as well
+    //this.refs.vidRef.getInternalPlayer().pauseVideo()
+    this.setState({ pin2Video: false })
+  }
+
+  pin3VideoPlay() {
+    // You can use the play method as normal on your video ref
+    // debugger;
+    this.setState({ pin3Video: true })
+    //this.refs.vidRef.getInternalPlayer().playVideo()
+  }
+
+  pin3VideoPause() {
+    // Pause as well
+    //this.refs.vidRef.getInternalPlayer().pauseVideo()
+    this.setState({ pin3Video: false })
+  }
+
+  pin4VideoPlay() {
+    // You can use the play method as normal on your video ref
+    // debugger;
+    this.setState({ pin4Video: true })
+    //this.refs.vidRef.getInternalPlayer().playVideo()
+  }
+
+  pin4VideoPause() {
+    // Pause as well
+    //this.refs.vidRef.getInternalPlayer().pauseVideo()
+    this.setState({ pin4Video: false })
+  }
+
+  pin5VideoPlay() {
+    // You can use the play method as normal on your video ref
+    // debugger;
+    this.setState({ pin5Video: true })
+    //this.refs.vidRef.getInternalPlayer().playVideo()
+  }
+
+  pin5VideoPause() {
+    // Pause as well
+    //this.refs.vidRef.getInternalPlayer().pauseVideo()
+    this.setState({ pin5Video: false })
+  }
+
   render() {
+    let pin1Url = "https://www.youtube.com/watch?v=d3ReqRiCeXg";
+    let pin2Url = "https://www.youtube.com/watch?v=IePryUxYRl4";
+    let pin3Url = "https://www.youtube.com/watch?v=A4J-fbAuVoA";
+    let pin4Url = "https://www.youtube.com/watch?v=_G9jT1aXrRY";
+    let pin5Url = "https://www.youtube.com/watch?v=2Q_C4AogMOE"; //to be changed
     let customerSalesUrl = "https://www.youtube.com/watch?v=BJXuoaz9YN0";
     let bronzeFoundationUrl = "https://www.youtube.com/watch?v=PzATwjeLNt4"
     let bronzeBuilderUrl = "https://www.youtube.com/watch?v=4Xp3rwz1-jg";
-    let corePlusLadderUrl = "https://youtu.be/ri0oBXYu0H4";
-    let anivUrl = "https://youtu.be/5Q_z32uRsSU";
+    let corePlusLadderUrl = "https://www.youtube.com/watch?v=lrl9ueWOnOI";
+    let anivUrl = "https://www.youtube.com/watch?v=xRZB9k3mrJw";
     let memoryGameUrl = `/events/${this.props.currentEvent.event_code}/games/memory_game`;
     let fishingBoatUrl = `/events/${this.props.currentEvent.event_code}/games/fishing_boat`;
     let powerTowerUrl = `https://ignitrondigital.com/qp/power-game?event_id=${this.props.currentEvent.id}&guest_list_id=${this.props.guestListId}`;
@@ -297,21 +372,145 @@ class ExpoMap extends React.Component {
                 <a href="#" id="game3tBtn" onClick={onClickPowerTower}>
                     <img className="zoom game3" src={Power}/>
                 </a>
-                <a href="#" id="alsVid1tBtn">
-                    <img className="zoom alsVid1" src={Pin} alt="alsVid1"/>
+
+                <a type="button" data-bs-toggle="modal" id="alsVid1tBtn" data-bs-target="#pin1Modal" onClick={this.pin1VideoPlay.bind(this)}>
+                    <img className="zoom alsVid1" src={Pin}/>
                 </a>
-                <a href="#" id="alsVid2tBtn">
-                    <img className="zoom alsVid2" src={Pin} alt="alsVid2"/>
+
+                <div className="modal fade" id="pin1Modal" data-bs-backdrop="static" data-bs-keyboard="false" tabIndex="-1" aria-labelledby="pin1ModalLabel" aria-hidden="true">
+                  <div className="modal-dialog modal-lg">
+                    <div className="modal-content">
+                      <div className="modal-header">
+                        <h5 className="modal-title" id="boraModalLabel">Diamond Crater Head</h5>
+                        <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close" onClick={this.pin1VideoPause.bind(this)}></button>
+                      </div>
+                      <div className="modal-body">
+                        <div>
+                        <ReactPlayer url={pin1Url}
+                          width="100%"
+                          pip={true}
+                          ref="vidRef"
+                          controls={true}
+                          playing={this.state.pin1Video}
+                        >
+                        </ReactPlayer>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <a type="button" data-bs-toggle="modal" id="alsVid2tBtn" data-bs-target="#pin2Modal" onClick={this.pin2VideoPlay.bind(this)}>
+                    <img className="zoom alsVid2" src={Pin}/>
                 </a>
-                <a href="#" id="alsVid3tBtn">
-                    <img className="zoom alsVid3" src={Pin} alt="alsVid3"/>
+
+                <div className="modal fade" id="pin2Modal" data-bs-backdrop="static" data-bs-keyboard="false" tabIndex="-1" aria-labelledby="pin2ModalLabel" aria-hidden="true">
+                  <div className="modal-dialog modal-lg">
+                    <div className="modal-content">
+                      <div className="modal-header">
+                        <h5 className="modal-title" id="boraModalLabel">Pearl Harbor</h5>
+                        <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close" onClick={this.pin2VideoPause.bind(this)}></button>
+                      </div>
+                      <div className="modal-body">
+                        <div>
+                        <ReactPlayer url={pin2Url}
+                          width="100%"
+                          pip={true}
+                          ref="vidRef"
+                          controls={true}
+                          playing={this.state.pin2Video}
+                        >
+                        </ReactPlayer>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <a type="button" data-bs-toggle="modal" id="alsVid3tBtn" data-bs-target="#pin3Modal" onClick={this.pin3VideoPlay.bind(this)}>
+                    <img className="zoom alsVid3" src={Pin}/>
                 </a>
-                <a href="#" id="alsVid4tBtn">
-                    <img className="zoom alsVid4" src={Pin} alt="alsVid4"/>
+
+                <div className="modal fade" id="pin3Modal" data-bs-backdrop="static" data-bs-keyboard="false" tabIndex="-1" aria-labelledby="pin3ModalLabel" aria-hidden="true">
+                  <div className="modal-dialog modal-lg">
+                    <div className="modal-content">
+                      <div className="modal-header">
+                        <h5 className="modal-title" id="boraModalLabel">Waikiki Beach</h5>
+                        <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close" onClick={this.pin3VideoPause.bind(this)}></button>
+                      </div>
+                      <div className="modal-body">
+                        <div>
+                        <ReactPlayer url={pin3Url}
+                          width="100%"
+                          pip={true}
+                          ref="vidRef"
+                          controls={true}
+                          playing={this.state.pin3Video}
+                        >
+                        </ReactPlayer>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <a type="button" data-bs-toggle="modal" id="alsVid4tBtn" data-bs-target="#pin4Modal" onClick={this.pin4VideoPlay.bind(this)}>
+                    <img className="zoom alsVid4" src={Pin}/>
                 </a>
+
+                <div className="modal fade" id="pin4Modal" data-bs-backdrop="static" data-bs-keyboard="false" tabIndex="-1" aria-labelledby="pin4ModalLabel" aria-hidden="true">
+                  <div className="modal-dialog modal-lg">
+                    <div className="modal-content">
+                      <div className="modal-header">
+                        <h5 className="modal-title" id="boraModalLabel">Hanauma Bay</h5>
+                        <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close" onClick={this.pin4VideoPause.bind(this)}></button>
+                      </div>
+                      <div className="modal-body">
+                        <div>
+                        <ReactPlayer url={pin4Url}
+                          width="100%"
+                          pip={true}
+                          ref="vidRef"
+                          controls={true}
+                          playing={this.state.pin4Video}
+                        >
+                        </ReactPlayer>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
                 <a href="#" id="alsVid5tBtn">
                     <img className="zoom alsVid5" src={Pin} alt="alsVid5"/>
                 </a>
+
+                <a type="button" data-bs-toggle="modal" id="alsVid5tBtn" data-bs-target="#pin5Modal" onClick={this.pin5VideoPlay.bind(this)}>
+                    <img className="zoom alsVid5" src={Pin}/>
+                </a>
+
+                <div className="modal fade" id="pin5Modal" data-bs-backdrop="static" data-bs-keyboard="false" tabIndex="-1" aria-labelledby="pin5ModalLabel" aria-hidden="true">
+                  <div className="modal-dialog modal-lg">
+                    <div className="modal-content">
+                      <div className="modal-header">
+                        <h5 className="modal-title" id="boraModalLabel">Stairway to Heaven</h5>
+                        <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close" onClick={this.pin5VideoPause.bind(this)}></button>
+                      </div>
+                      <div className="modal-body">
+                        <div>
+                        <ReactPlayer url={pin5Url}
+                          width="100%"
+                          pip={true}
+                          ref="vidRef"
+                          controls={true}
+                          playing={this.state.pin5Video}
+                        >
+                        </ReactPlayer>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
 
                 <a type="button" data-bs-toggle="modal" id="alsVid6tBtn" data-bs-target="#bronze" onClick={this.bronzeBuilderVideoPlay.bind(this)}>
                     <img className="zoom alsVid6" src={Bronze}/>

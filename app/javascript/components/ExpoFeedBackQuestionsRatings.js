@@ -12,6 +12,7 @@ class ExpoFeedBackQuestionsRatings extends React.Component {
           defaultValue="default"
           disabled={this.props.disabled}
           name="answer"
+          defaultValue={this.props.answer}
           id={this.props.ratingId}
           data-id={this.props.i}
           onChange={(e) => this.props.handleChange(e, this.props.guestListId, this.props.feedBackId, this.props.i)}
