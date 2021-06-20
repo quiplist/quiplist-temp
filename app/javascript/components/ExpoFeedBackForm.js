@@ -63,7 +63,7 @@ class ExpoFeedBackForm extends React.Component {
     }));
   }
 
-  handleChange = (e, guestListId, feedBackId) => {
+  handleChange = (e, guestListId, feedBackId, index) => {
     console.log(e.target.name)
     if (["answer"].includes(e.target.name)) {
       let answers = [...this.state.feedBackAnswers];
@@ -74,7 +74,7 @@ class ExpoFeedBackForm extends React.Component {
         "feed_back_id": feedBackId
       }
 
-      answers.push(item)
+      answers[index] = item
       //answers[e.target.dataset.id][e.target.name] = e.target.value;
      // answers[e.target.dataset.id]["guest_list_id"] = guestListId
      // answers[e.target.dataset.id]["feed_back_id"] = feedBackId
@@ -119,7 +119,7 @@ class ExpoFeedBackForm extends React.Component {
                         guestListId = {rating.guest_list_id}
                         feedBackId = {rating.feed_back_id}
                         i = {index}
-                        handleChange = {(e, guestListId, feedBackId) => this.handleChange(e, guestListId, feedBackId)}
+                        handleChange = {(e, guestListId, feedBackId, index) => this.handleChange(e, guestListId, feedBackId, index)}
                       />
 
                     } else {
@@ -131,7 +131,7 @@ class ExpoFeedBackForm extends React.Component {
                         guestListId = {rating.guest_list_id}
                         feedBackId = {rating.feed_back_id}
                         i = {index}
-                        handleChange = {(e, guestListId, feedBackId) => this.handleChange(e, guestListId, feedBackId)}
+                        handleChange = {(e, guestListId, feedBackId, index) => this.handleChange(e, guestListId, feedBackId, index)}
                       />
                     }
                     return (
