@@ -73,8 +73,7 @@ class ExpoFeedBackForm extends React.Component {
         "guest_list_id": guestListId,
         "feed_back_id": feedBackId
       }
-      answers = [];
-      
+
       answers.push(item)
       //answers[e.target.dataset.id][e.target.name] = e.target.value;
      // answers[e.target.dataset.id]["guest_list_id"] = guestListId
@@ -88,6 +87,11 @@ class ExpoFeedBackForm extends React.Component {
 
 
   render() {
+    let ratings = this.props.ratings;
+    let feedbackForm = [];
+    if (ratings.feed_backs === undefined) return null;
+    feedbackForm = ratings.feed_backs;
+
     return (
       <div className="modal fade" id="feedbackModal" tabIndex="-1" aria-labelledby="feedbackModalLabel" aria-hidden="true">
           <div className="modal-dialog">
@@ -102,7 +106,7 @@ class ExpoFeedBackForm extends React.Component {
                 this.setState({ hasAnswered: true })
               }}>
                 <div className="modal-body">
-                  {this.props.ratings.feed_backs.map((rating, index) => {
+                  {feedbackForm.map((rating, index) => {
                     let ratingId = `rating-${index}`
                     let formInput;
                     if (rating.question_type === 0) {
