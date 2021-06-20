@@ -238,7 +238,7 @@ class ExpoMap extends React.Component {
                     <img className="zoom corVid1" src={CorePlusIcon}/>
                 </a>
 
-                {/* <div className="modal fade" id="corePlusModal" data-bs-backdrop="static" data-bs-keyboard="false" tabIndex="-1" aria-labelledby="corePlusModalLabel" aria-hidden="true">
+                <div className="modal fade" id="corePlusModal" data-bs-backdrop="static" data-bs-keyboard="false" tabIndex="-1" aria-labelledby="corePlusModalLabel" aria-hidden="true">
                   <div className="modal-dialog modal-lg">
                     <div className="modal-content">
                       <div className="modal-header">
@@ -259,13 +259,13 @@ class ExpoMap extends React.Component {
                       </div>
                     </div>
                   </div>
-                </div> */}
+                </div>
 
                 <a type="button" data-bs-toggle="modal" id="corVid2tBtn" data-bs-target="#customerSalesModal" onClick={this.customerSalesVideoPlay.bind(this)}>
                     <img className="zoom corVid2" src={CustomerSales}/>
                 </a>
 
-                {/* <div className="modal fade" id="customerSalesModal" data-bs-backdrop="static" data-bs-keyboard="false" tabIndex="-1" aria-labelledby="customerSalesModalLabel" aria-hidden="true">
+                <div className="modal fade" id="customerSalesModal" data-bs-backdrop="static" data-bs-keyboard="false" tabIndex="-1" aria-labelledby="customerSalesModalLabel" aria-hidden="true">
                   <div className="modal-dialog modal-lg">
                     <div className="modal-content">
                       <div className="modal-header">
@@ -286,7 +286,7 @@ class ExpoMap extends React.Component {
                       </div>
                     </div>
                   </div>
-                </div> */}
+                </div>
 
                 <a href="#" id="bonanzaBtn" onClick={onClickMemoryGame}>
                     <img className="zoom bonanza" src={Bonanza} />
@@ -317,7 +317,7 @@ class ExpoMap extends React.Component {
                     <img className="zoom alsVid6" src={Bronze}/>
                 </a>
 
-                {/* <div className="modal fade" id="bronze" data-bs-backdrop="static" data-bs-keyboard="false" tabIndex="-1" aria-labelledby="bronzeModalLabel" aria-hidden="true">
+                <div className="modal fade" id="bronze" data-bs-backdrop="static" data-bs-keyboard="false" tabIndex="-1" aria-labelledby="bronzeModalLabel" aria-hidden="true">
                   <div className="modal-dialog modal-lg">
                     <div className="modal-content">
                       <div className="modal-header">
@@ -338,13 +338,13 @@ class ExpoMap extends React.Component {
                       </div>
                     </div>
                   </div>
-                </div> */}
+                </div>
 
                 <a type="button" data-bs-toggle="modal" id="alsVid7tBtn" data-bs-target="#bronzeFoundationModal" onClick={this.bronzeFoundationVideoPlay.bind(this)}>
                     <img className="zoom alsVid7" src={BronzeFoundation}/>
                 </a>
 
-                {/* <div className="modal fade" id="bronzeFoundationModal" data-bs-backdrop="static" data-bs-keyboard="false" tabIndex="-1" aria-labelledby="bronzeFoundationModalLabel" aria-hidden="true">
+                <div className="modal fade" id="bronzeFoundationModal" data-bs-backdrop="static" data-bs-keyboard="false" tabIndex="-1" aria-labelledby="bronzeFoundationModalLabel" aria-hidden="true">
                   <div className="modal-dialog modal-lg">
                     <div className="modal-content">
                       <div className="modal-header">
@@ -365,13 +365,13 @@ class ExpoMap extends React.Component {
                       </div>
                     </div>
                   </div>
-                </div> */}
+                </div>
 
                 <a type="button" data-bs-toggle="modal" id="corBtn" data-bs-target="#coreModal">
                   <img className="zoom cor" src={Coreplus}/>
                 </a>
 
-                {/* <div className="modal fade" id="coreModal" data-bs-backdrop="static" data-bs-keyboard="false" tabIndex="-1" aria-labelledby="coreLabel" aria-hidden="true">
+                <div className="modal fade" id="coreModal" data-bs-backdrop="static" data-bs-keyboard="false" tabIndex="-1" aria-labelledby="coreLabel" aria-hidden="true">
                   <div className="modal-dialog modal-xl">
                     <div className="modal-content">
                       <div className="modal-header">
@@ -385,13 +385,13 @@ class ExpoMap extends React.Component {
                       </div>
                     </div>
                   </div>
-                </div> */}
+                </div>
 
                 <a type="button" data-bs-toggle="modal" id="anivBtn" data-bs-target="#anivModal" onClick={this.anivVideoPlay.bind(this)}>
                     <img className="zoom aniv" src={Aniv}/>
                 </a>
 
-                {/* <div className="modal fade" id="anivModal" data-bs-backdrop="static" data-bs-keyboard="false" tabIndex="-1" aria-labelledby="anivModalLabel" aria-hidden="true">
+                <div className="modal fade" id="anivModal" data-bs-backdrop="static" data-bs-keyboard="false" tabIndex="-1" aria-labelledby="anivModalLabel" aria-hidden="true">
                   <div className="modal-dialog modal-lg">
                     <div className="modal-content">
                       <div className="modal-header">
@@ -412,7 +412,7 @@ class ExpoMap extends React.Component {
                       </div>
                     </div>
                   </div>
-                </div> */}
+                </div>
 
 
 
