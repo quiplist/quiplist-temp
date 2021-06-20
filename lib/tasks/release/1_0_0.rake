@@ -59,5 +59,25 @@ namespace :release do
         puts e.backtrace
       end
     end
+
+    desc "Reset all user password"
+    task "reset_user_password" => :environment do
+      begin
+        ActiveRecord::Base.transaction do
+          puts "Resetting passwords..."
+          User.all.each do |user|
+            user.password = 'password'
+            user.password_confirmation  = 'password'
+            user.save!
+            puts ">> User #{user.id} updated.."
+          end
+        end
+        puts "TASK FINISHED!"
+      rescue Exception => e
+        puts "An error occured and changes were reverted"
+        puts "ERROR: #{e.message}"
+        puts e.backtrace
+      end
+    end
   end
 end
