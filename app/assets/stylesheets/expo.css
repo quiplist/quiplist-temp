@@ -203,10 +203,13 @@ body, html {
   z-index: 1;
   height: auto;
   width: 40px;
-  top: 76%;
+  top: 80%;
   left: 55%;
 }
 
+.modal-pdf {
+  max-width: -webkit-fill-available;
+}
 
 
 
@@ -506,7 +509,7 @@ fieldset legend {
   }
 
   #corVid2tBtn{
-    top: 77%;
+    top: 80%;
   }
 
   .island img {
