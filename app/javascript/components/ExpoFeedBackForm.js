@@ -73,12 +73,13 @@ class ExpoFeedBackForm extends React.Component {
         "guest_list_id": guestListId,
         "feed_back_id": feedBackId
       }
+      answers = [];
       
       answers.push(item)
       //answers[e.target.dataset.id][e.target.name] = e.target.value;
      // answers[e.target.dataset.id]["guest_list_id"] = guestListId
      // answers[e.target.dataset.id]["feed_back_id"] = feedBackId
-      console.log(answers)
+      //console.log(answers)
       this.setState({ feedBackAnswers: answers })
     } else {
       this.state({ [e.target.name]:e.target.value })
