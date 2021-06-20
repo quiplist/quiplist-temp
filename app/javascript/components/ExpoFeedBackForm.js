@@ -14,12 +14,15 @@ class ExpoFeedBackForm extends React.Component {
       feedBackAnswers: [],
       hasAnswered: this.props.ratings.has_answered
     };
+
+    this.handleChange = this.handleChange.bind(this)
   }
 
   createUI() {
      return this.state.ratings.feed_backs.map((fb, i) =>
          <div key={i}>
-    	    <input type="text" value={fb||''} onChange={this.handleChange.bind(this, i)} />
+    	    {/* <input type="text" value={fb||''} onChange={this.handleChange.bind(this, i)} /> */}
+          <input type="text" onChange={this.handleChange.bind(this, i)} />
          </div>
      )
   }
@@ -63,15 +66,25 @@ class ExpoFeedBackForm extends React.Component {
   handleChange = (e, guestListId, feedBackId) => {
     console.log(e.target.name)
     if (["answer"].includes(e.target.name)) {
-      let answers = [...this.state.feedBackAnswers]
-      answers[e.target.dataset.id][e.target.name] = e.target.value
-      answers[e.target.dataset.id]["guest_list_id"] = guestListId
-      answers[e.target.dataset.id]["feed_back_id"] = feedBackId
-      this.setState({ answers })
+      let answers = [...this.state.feedBackAnswers];
+
+      let item = {
+        [e.target.name]: e.target.value,
+        "guest_list_id": guestListId,
+        "feed_back_id": feedBackId
+      }
+      
+      answers.push(item)
+      //answers[e.target.dataset.id][e.target.name] = e.target.value;
+     // answers[e.target.dataset.id]["guest_list_id"] = guestListId
+     // answers[e.target.dataset.id]["feed_back_id"] = feedBackId
+      console.log(answers)
+      this.setState({ feedBackAnswers: answers })
     } else {
       this.state({ [e.target.name]:e.target.value })
     }
   }
+
 
   render() {
     return (
@@ -129,10 +142,15 @@ class ExpoFeedBackForm extends React.Component {
                 <div className="modal-footer">
                     <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                     <input
-                      type="Submit" value={'Send'}
+                      type="Submit"
                       className="btn btn-primary"
                       disabled={this.state.hasAnswered}
                     />
+                    {/* <input
+                      type="Submit" value={'Send'}
+                      className="btn btn-primary"
+                      disabled={this.state.hasAnswered}
+                    /> */}
                 </div>
               </form>
               </div>
