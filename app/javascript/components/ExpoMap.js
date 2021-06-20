@@ -19,9 +19,10 @@ import Bronze from "images/bronze.png";
 import Crush from "images/crush.png";
 import CorePlusIcon from "images/corePlusIcon.png";
 import CustomerSales from "images/customerSales.png";
-//import AlsHawaii from "pdfs/als_hawaii.pdf";
-// import Diamond_Invitational from "pdfs/diamond_invitational.pdf";
-// import Platinum_Seminar from "pdfs/platinum_seminar.png";
+import AlsHawaii from "pdfs/als_hawaii.pdf";
+import DiamondInvitational from "pdfs/diamond_invitational.pdf";
+import PlatinumSeminar from "pdfs/platinum_seminar.pdf";
+import CorePlusPdf from "pdfs/core_plus.pdf";
 import ExpoFeedBackForm from './ExpoFeedBackForm';
 import ReactPlayer from 'react-player'
 
@@ -154,13 +155,25 @@ class ExpoMap extends React.Component {
             {/* <img className="island" src={Island}/> */}
             <div className="island">
 
-                <a type="button" id="platinumBtn">
-                    <img className="zoom bora" src={Bora}/>
+                <a type="button" data-bs-toggle="modal" id="platinumBtn" data-bs-target="#platinumModal">
+                  <img className="zoom bora" src={Bora}/>
                 </a>
-                {/* Start modal for iframe */}
 
-
-                {/* End modal for iframe */}
+                <div className="modal fade" id="platinumModal" data-bs-backdrop="static" data-bs-keyboard="false" tabIndex="-1" aria-labelledby="platinumLabel" aria-hidden="true">
+                  <div className="modal-dialog modal-xl">
+                    <div className="modal-content">
+                      <div className="modal-header">
+                        <h5 className="modal-title" id="boraModalLabel">Platinum Seminar</h5>
+                        <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                      </div>
+                      <div className="modal-body">
+                        <div>
+                          <embed type="application/pdf" src={PlatinumSeminar} width="1105" height="600" />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
 
                 {mainProgram}
 
@@ -168,23 +181,16 @@ class ExpoMap extends React.Component {
                   <img className="zoom diamond" src={Diamond}/>
                 </a>
 
-                <div className="modal fade" id="diamondModal" data-bs-backdrop="static" data-bs-keyboard="false" tabIndex="-1" aria-labelledby="corePlusModalLabel" aria-hidden="true">
-                  <div className="modal-dialog modal-lg">
+                <div className="modal fade" id="diamondModal" data-bs-backdrop="static" data-bs-keyboard="false" tabIndex="-1" aria-labelledby="diamondLabel" aria-hidden="true">
+                  <div className="modal-dialog modal-xl">
                     <div className="modal-content">
                       <div className="modal-header">
-                        <h5 className="modal-title" id="boraModalLabel">Core Plus Ladder</h5>
-                        <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close" onClick={this.corePlusLadderVideoPause.bind(this)}></button>
+                        <h5 className="modal-title" id="boraModalLabel">Diamond Invitational</h5>
+                        <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                       </div>
                       <div className="modal-body">
                         <div>
-                        <ReactPlayer url={corePlusLadderUrl}
-                          width="100%"
-                          pip={true}
-                          ref="vidRef"
-                          controls={true}
-                          playing={this.state.corePlusLadderVideo}
-                        >
-                        </ReactPlayer>
+                          <embed type="application/pdf" src={DiamondInvitational} width="1105" height="600" />
                         </div>
                       </div>
                     </div>
@@ -200,9 +206,27 @@ class ExpoMap extends React.Component {
                   ratings = {this.props.ratings}
                 />*/}
 
-                <a href="#"  id="alsBtn">
-                    <img className="zoom als" src={Als}/>
+                <a type="button" data-bs-toggle="modal" id="alsBtn" data-bs-target="#alsModal">
+                  <img className="zoom bora" src={Als}/>
                 </a>
+
+                <div className="modal fade" id="alsModal" data-bs-backdrop="static" data-bs-keyboard="false" tabIndex="-1" aria-labelledby="alsLabel" aria-hidden="true">
+                  <div className="modal-dialog modal-xl">
+                    <div className="modal-content">
+                      <div className="modal-header">
+                        <h5 className="modal-title" id="boraModalLabel">Als Hawaii</h5>
+                        <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                      </div>
+                      <div className="modal-body">
+                        <div>
+                          <embed type="application/pdf" src={AlsHawaii} width="1105" height="600" />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+
                 <a href="#" id="salesBtn" onClick={onClickFishingBoat}>
                     <img className="zoom sales" src={Sales}/>
                 </a>
@@ -343,10 +367,25 @@ class ExpoMap extends React.Component {
                   </div>
                 </div>
 
-
-                <a href="#"  id="corBtn">
-                    <img className="zoom cor" src={Coreplus}/>
+                <a type="button" data-bs-toggle="modal" id="corBtn" data-bs-target="#coreModal">
+                  <img className="zoom cor" src={Coreplus}/>
                 </a>
+
+                <div className="modal fade" id="coreModal" data-bs-backdrop="static" data-bs-keyboard="false" tabIndex="-1" aria-labelledby="coreLabel" aria-hidden="true">
+                  <div className="modal-dialog modal-xl">
+                    <div className="modal-content">
+                      <div className="modal-header">
+                        <h5 className="modal-title" id="boraModalLabel">Core Plus</h5>
+                        <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                      </div>
+                      <div className="modal-body">
+                        <div>
+                          <embed type="application/pdf" src={CorePlusPdf} width="1105" height="600" />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
 
                 <a type="button" data-bs-toggle="modal" id="anivBtn" data-bs-target="#anivModal" onClick={this.anivVideoPlay.bind(this)}>
                     <img className="zoom aniv" src={Aniv}/>
