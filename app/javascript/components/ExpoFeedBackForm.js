@@ -18,19 +18,10 @@ class ExpoFeedBackForm extends React.Component {
     this.handleChange = this.handleChange.bind(this)
   }
 
-  createUI() {
-     return this.state.ratings.feed_backs.map((fb, i) =>
-         <div key={i}>
-    	    {/* <input type="text" value={fb||''} onChange={this.handleChange.bind(this, i)} /> */}
-          <input type="text" onChange={this.handleChange.bind(this, i)} />
-         </div>
-     )
-  }
 
   submitFeedBack = feedBackAnswers => {
     // on submitting the ChatInput form, send the message, add it to the list and reset the input
     const url = "/api/v1/ratings";
-    console.log(feedBackAnswers)
     const body = {
       ratings: feedBackAnswers
     }
@@ -56,7 +47,6 @@ class ExpoFeedBackForm extends React.Component {
   }
 
   handleChange = (e, guestListId, feedBackId, index) => {
-    console.log(e.target.name)
     if (["answer"].includes(e.target.name)) {
       let answers = [...this.state.feedBackAnswers];
 
@@ -67,10 +57,6 @@ class ExpoFeedBackForm extends React.Component {
       }
 
       answers[index] = item
-      //answers[e.target.dataset.id][e.target.name] = e.target.value;
-     // answers[e.target.dataset.id]["guest_list_id"] = guestListId
-     // answers[e.target.dataset.id]["feed_back_id"] = feedBackId
-      //console.log(answers)
       this.setState({ feedBackAnswers: answers })
     } else {
       this.state({ [e.target.name]:e.target.value })
@@ -83,7 +69,6 @@ class ExpoFeedBackForm extends React.Component {
     let feedbackForm = [];
     if (ratings.feed_backs === undefined) return null;
     feedbackForm = ratings.feed_backs;
-    console.log(feedbackForm)
 
     return (
       <div className="modal fade" id="feedbackModal" tabIndex="-1" aria-labelledby="feedbackModalLabel" aria-hidden="true">
@@ -144,11 +129,7 @@ class ExpoFeedBackForm extends React.Component {
                       className="btn btn-primary"
                       disabled={this.state.hasAnswered}
                     />
-                    {/* <input
-                      type="Submit" value={'Send'}
-                      className="btn btn-primary"
-                      disabled={this.state.hasAnswered}
-                    /> */}
+
                 </div>
               </form>
               </div>

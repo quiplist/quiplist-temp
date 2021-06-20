@@ -178,7 +178,7 @@ class ExpoMap extends React.Component {
     let pin2Url = "https://www.youtube.com/watch?v=IePryUxYRl4";
     let pin3Url = "https://www.youtube.com/watch?v=A4J-fbAuVoA";
     let pin4Url = "https://www.youtube.com/watch?v=_G9jT1aXrRY";
-    let pin5Url = "https://www.youtube.com/watch?v=2Q_C4AogMOE"; //to be changed
+    let pin5Url = "https://www.youtube.com/watch?v=yZ_g8vP70rw"; //to be changed
     let customerSalesUrl = "https://www.youtube.com/watch?v=BJXuoaz9YN0";
     let bronzeFoundationUrl = "https://www.youtube.com/watch?v=PzATwjeLNt4"
     let bronzeBuilderUrl = "https://www.youtube.com/watch?v=4Xp3rwz1-jg";
