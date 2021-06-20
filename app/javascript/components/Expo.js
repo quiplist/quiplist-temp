@@ -115,15 +115,15 @@ class Expo extends React.Component {
     const isAdmin = (this.state.currentUser.user_type === 'Admin')
     let actions;
     if (isAdmin) {
+      actions = <ExpoActions
+        currentUser = {this.state.currentUser}
+        currentEvent = {this.state.currentEvent}
+        announcementCable = {this.announcementsChannel}
+        currentAnnouncement = {this.state.currentAnnouncement}
+        updateAnnouncement = {announcement => this.updateAnnouncement(announcement)}
+        eventCable = {this.eventsChannel}
+        updateCurrentEvent = {evnt => this.updateCurrentEvent(evnt)} />
     }
-    actions = <ExpoActions
-      currentUser = {this.state.currentUser}
-      currentEvent = {this.state.currentEvent}
-      announcementCable = {this.announcementsChannel}
-      currentAnnouncement = {this.state.currentAnnouncement}
-      updateAnnouncement = {announcement => this.updateAnnouncement(announcement)}
-      eventCable = {this.eventsChannel}
-      updateCurrentEvent = {evnt => this.updateCurrentEvent(evnt)} />
     return (
       <div>
         <AudioPlayer currentEvent = {this.state.currentEvent} />
