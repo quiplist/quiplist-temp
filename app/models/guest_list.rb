@@ -159,7 +159,7 @@ class GuestList < ApplicationRecord
       attributes << "contact_number"
     end
     if event.include_who_invited_you
-      attributes << "who_invited_you?"
+      attributes << "who_invited_you"
     end
     if event.include_upline
       attributes << "upline"

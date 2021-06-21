@@ -123,7 +123,7 @@ class HomeController < ApplicationController
     added_attrs = [:email, :password, :password_confirmation, :contact_number,
       :full_name, :member_id, :member_type, :affiliation, :abo_number, :aes_number,
       :company, :id_number, :distributor_number, :employee_number, :mailing_address,
-      :member_company, :upline, :who_invited_you?]
+      :member_company, :upline, :who_invited_you, :abo_type, :distributor_type]
     params.require(:user).permit(added_attrs)
   end
 

@@ -27,7 +27,7 @@
 #  role                   :integer          default(2)
 #  temporary_password     :string
 #  upline                 :string
-#  who_invited_you?       :string
+#  who_invited_you        :string
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
 #  member_id              :string
@@ -135,7 +135,7 @@ class User < ApplicationRecord
   validates :mailing_address, presence: true, if: :required_mailing_address?
   validates :member_company, presence: true, if: :required_member_company?
   validates :upline, presence: true, if: :required_upline?
-  validates :who_invited_you?, presence: true, if: :required_who_invited_you?
+  validates :who_invited_you, presence: true, if: :required_who_invited_you?
 
 
 
