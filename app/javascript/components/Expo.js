@@ -105,11 +105,12 @@ class Expo extends React.Component {
 
   render() {
     const totalAnnoucements = this.state.announcements.length;
-    if (totalAnnoucements === 0) return null;
-    let announcement = this.announcement();
     let display;
-    if (announcement.display_annoucement) {
-      display = <marquee>{announcement.message}</marquee>;
+    if (totalAnnoucements !== 0) {
+      let announcement = this.announcement();
+      if (announcement.display_annoucement) {
+        display = <marquee>{announcement.message}</marquee>;
+      }
     }
 
     const isAdmin = (this.state.currentUser.user_type === 'Admin')

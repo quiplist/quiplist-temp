@@ -2,6 +2,8 @@ import React from 'react'
 
 class AudioPlayer extends React.Component {
   render() {
+
+    if (Object.keys(this.props.currentEvent).length === 0) return null;
     let rootUrl = `public/uploads/event/background_music/${this.props.currentEvent.id}/`
     let audioUrl = this.props.currentEvent.background_music.url
     return (
