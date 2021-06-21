@@ -118,7 +118,7 @@
             <td><%= guest_list.user.contact_number %></td>
           <% end %>
           <% if @event.include_who_invited_you %>
-            <td><%= guest_list.user.who_invited_you? %></td>
+            <td><%= guest_list.user.who_invited_you %></td>
           <% end %>
           <% if @event.include_upline %>
             <td><%= guest_list.user.upline %></td>

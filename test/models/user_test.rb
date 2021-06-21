@@ -27,7 +27,7 @@
 #  role                   :integer          default(2)
 #  temporary_password     :string
 #  upline                 :string
-#  who_invited_you?       :string
+#  who_invited_you        :string
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
 #  member_id              :string
