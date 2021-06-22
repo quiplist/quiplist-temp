@@ -16,4 +16,10 @@ class GamesController < ApplicationController
     @current_user = current_user
   end
 
+  def test_game
+    render_404 if @event.nil?
+    @guest = GuestList.invitation(current_user, @event)
+    @current_user = current_user
+  end
+
 end
