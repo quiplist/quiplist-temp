@@ -216,11 +216,11 @@ class ExpoMap extends React.Component {
       onClickFruitFall = null;
       onClickCandyGame = null;
     } else {
-      onClickMemoryGame = () => window.open(memoryGameUrl, "Popup","toolbar=no, location=no, statusbar=no, menubar=no, scrollbars=1, resizable=0, width=750, height=770, left=350, top=200")
-      onClickFishingBoat = () => window.open(fishingBoatUrl, "Popup","toolbar=no, location=no, statusbar=no, menubar=no, scrollbars=1, resizable=0, width=750, height=770, left=350, top=200")
-      onClickPowerTower = () => window.open(powerTowerUrl, "Popup","toolbar=no, location=no, statusbar=no, menubar=no, scrollbars=1, resizable=0, width=750, height=770, left=350, top=200")
-      onClickFruitFall = () => window.open(fruitFallUrl, "Popup","toolbar=no, location=no, statusbar=no, menubar=no, scrollbars=1, resizable=0, width=750, height=770, left=350, top=200")
-      onClickCandyGame = () => window.open(candyGameUrl, "Popup","toolbar=no, location=no, statusbar=no, menubar=no, scrollbars=1, resizable=0, width=750, height=770, left=350, top=200")
+      onClickMemoryGame = () => window.open(memoryGameUrl, "Popup", "toolbar=no, location=no, statusbar=no, menubar=no, scrollbars=1, resizable=0, width=750, height=770, left=350, top=200")
+      onClickFishingBoat = () => window.open(fishingBoatUrl, "Popup", "toolbar=no, location=no, statusbar=no, menubar=no, scrollbars=1, resizable=0, width=750, height=770, left=350, top=200")
+      onClickPowerTower = () => window.open(powerTowerUrl, "Popup", "toolbar=no, location=no, statusbar=no, menubar=no, scrollbars=1, resizable=0, width=750, height=770, left=350, top=200")
+      onClickFruitFall = () => window.open(fruitFallUrl, "Popup", "toolbar=no, location=no, statusbar=no, menubar=no, scrollbars=1, resizable=0, width=750, height=770, left=350, top=200")
+      onClickCandyGame = () => window.open(candyGameUrl, "Popup", "toolbar=no, location=no, statusbar=no, menubar=no, scrollbars=1, resizable=0, width=750, height=770, left=350, top=200")
     }
     return (
       <div className="bg">
@@ -317,7 +317,7 @@ class ExpoMap extends React.Component {
                   <div className="modal-dialog modal-lg">
                     <div className="modal-content">
                       <div className="modal-header">
-                        <h5 className="modal-title" id="boraModalLabel">Core Plus Ladder</h5>
+                        <h5 className="modal-title" id="boraModalLabel">Leader Incentives</h5>
                         <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close" onClick={this.corePlusLadderVideoPause.bind(this)}></button>
                       </div>
                       <div className="modal-body">
