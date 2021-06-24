@@ -7,7 +7,7 @@ class HasNoAnswer extends React.Component {
     return (
       <div className="row align-items-center text-center">
         <div className="col-12">
-          <h3>Thank you for your respond!</h3>
+          <h3>Thank you for your response!</h3>
         </div>
       </div>
     )
