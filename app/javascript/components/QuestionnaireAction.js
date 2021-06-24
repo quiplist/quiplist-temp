@@ -10,7 +10,7 @@ class QuestionnaireAction extends React.Component {
         <div className="action-wrapper">
           <fieldset>
             <legend>Questionnaire</legend>
-            <div className="menti-wrapper">
+            <div className="menti-wrapper menti-controllers">
               <p className="my-0 question--fh">Question: {this.props.currentQuestionnaire.question} </p>
               <PlayPausePagination
                 modelName={"questionnaires"}
