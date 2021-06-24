@@ -216,11 +216,11 @@ class ExpoMap extends React.Component {
       onClickFruitFall = null;
       onClickCandyGame = null;
     } else {
-      onClickMemoryGame = () => window.open(memoryGameUrl, "Popup", "toolbar=no, location=no, statusbar=no, menubar=no, scrollbars=1, resizable=0, width=750, height=770, left=350, top=200")
-      onClickFishingBoat = () => window.open(fishingBoatUrl, "Popup", "toolbar=no, location=no, statusbar=no, menubar=no, scrollbars=1, resizable=0, width=750, height=770, left=350, top=200")
-      onClickPowerTower = () => window.open(powerTowerUrl, "Popup", "toolbar=no, location=no, statusbar=no, menubar=no, scrollbars=1, resizable=0, width=750, height=770, left=350, top=200")
-      onClickFruitFall = () => window.open(fruitFallUrl, "Popup", "toolbar=no, location=no, statusbar=no, menubar=no, scrollbars=1, resizable=0, width=750, height=770, left=350, top=200")
-      onClickCandyGame = () => window.open(candyGameUrl, "Popup", "toolbar=no, location=no, statusbar=no, menubar=no, scrollbars=1, resizable=0, width=750, height=770, left=350, top=200")
+      onClickMemoryGame = () => window.open(memoryGameUrl, "Popup", "toolbar=no, location=no, statusbar=no, menubar=no, scrollbars=1, resizable=0, width=1150, height=770, left=150, top=200")
+      onClickFishingBoat = () => window.open(fishingBoatUrl, "Popup", "toolbar=no, location=no, statusbar=no, menubar=no, scrollbars=1, resizable=0, width=1150, height=770, left=150, top=200")
+      onClickPowerTower = () => window.open(powerTowerUrl, "Popup", "toolbar=no, location=no, statusbar=no, menubar=no, scrollbars=1, resizable=0, width=1150, height=770, left=150, top=200")
+      onClickFruitFall = () => window.open(fruitFallUrl, "Popup", "toolbar=no, location=no, statusbar=no, menubar=no, scrollbars=1, resizable=0, width=1150, height=770, left=150, top=200")
+      onClickCandyGame = () => window.open(candyGameUrl, "Popup", "toolbar=no, location=no, statusbar=no, menubar=no, scrollbars=1, resizable=0, width=1150, height=770, left=150, top=200")
     }
     return (
       <div className="bg">
