@@ -742,9 +742,6 @@ $(document).ready(function () {
             }
         }
     }
-
-
-
 });
 
 window.streamValueTypeChange = function(id) {
@@ -765,4 +762,3 @@ window.streamValueTypeChange = function(id) {
           break;
   }
 }
-

@@ -395,32 +395,49 @@ fieldset legend {
 }
 
 @media screen and (min-width: 1920px){
-  #anivBtn{
-    top: 21%;
-    left: 18%;
-  }
 
   #diamondBtn{
-    width: 200px;
-    left: 41%;
-    top: 27%;
+    left: 42.5%;
+    top: 35%;
   }
 
-  #feedbackBtn{
+  #feedbackBtn {
     left: 56%;
-    top: 27%;
+    top: 34%;
   }
 
-  #programBtn{
-    width: 200px;
+  #alsBtn{
+    top: 42%;
+  }
+
+  #alsVid1tBtn,
+  #alsVid2tBtn, #alsVid3tBtn,
+  #alsVid4tBtn, #alsVid5tBtn{
+    width: 40px;
+  }
+
+  #alsVid6tBtn, #alsVid7tBtn, #corVid1tBtn, #corVid2tBtn{
+    width: 60px;
+  }
+
+  #salesBtn{
+    width: 150px;
   }
 
   #corBtn{
-    width: 70px;
+    width: 60px;
   }
 
-  #powerBtn{
-    left: 46%;
+  #programBtn{
+    width: 100px;
+  }
+
+  #powertBtn{
+    width: 100px;
+  }
+
+  #game3tBtn{
+    width: 70px;
   }
 }
 
