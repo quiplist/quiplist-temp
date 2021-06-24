@@ -1785,7 +1785,7 @@ h2#swal2-title {
 }
 
 .menti-wrapper{
-	background-image: url(temporary_bg_menti.jpg); /* Temporary bg. to be changed after expo */
+	/* background-image: url(temporary_bg_menti.jpg); /* Temporary bg. to be changed after expo */ */
 	background-size: cover;
 	background-position: bottom;
 	color: #fff;
@@ -2178,10 +2178,12 @@ footer h6 {
 .menti-wrapper{
 	display: flex;
   flex-direction: column;
+	/* height: 100%;
+  justify-content: space-between; */
 
 }
 
-.menti-winners-wrapper {
+.menti-controllers {
 	height: 100%;
   justify-content: space-between;
 }
@@ -2209,7 +2211,7 @@ footer h6 {
     align-items: center;
     width: 700px;
     margin: 0 auto;
-    /* background: #000; to be changed back after expo */
+    /* background: #000;  to be changed back after expo */
 		background: #5da4e2;
     color: #fff;
     border-radius: 10px;
@@ -2221,7 +2223,7 @@ footer h6 {
 	font-weight: 900;
     font-size: 38px;
     background: #Fff;
-    color: #000;
+    color: #8ac4f7;
     border-radius: 50px;
     width: 60px;
     height: 60px;
@@ -2240,7 +2242,7 @@ footer h6 {
 }
 
 .poll-results .poll-results--percent{
-	/* background: #000; to be changed back after expo */
+	/* background: #000; to be changed back after expo  */
 	background: #5da4e2;
     height: 100%;
     border-radius: 5px;
@@ -2253,7 +2255,7 @@ footer h6 {
 }
 
 .poll-results .poll-results--choice{
-	/* background: #000; to be changed back after expo */
+	/* background: #000; to be changed back after expo  */
 	background: #5da4e2;
     height: 100%;
     border-radius: 5px;
@@ -2271,7 +2273,8 @@ footer h6 {
   font-size: 56px;
   text-transform: uppercase;
 	padding-top: 20%;
-  color: #5da4e2;
+	color: #5da4e2;
+  /* color: black; to be changed back after expo */
 }
 
 .announcement__field form{
