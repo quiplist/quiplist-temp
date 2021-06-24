@@ -637,7 +637,7 @@ div#admins_views {
 }
 
 #chat-message h6 {
-	font-size: 16px;
+	font-size: 14px;
 	text-transform: capitalize;
 	font-weight: 700;
 	margin: 0px;
@@ -645,7 +645,7 @@ div#admins_views {
 
 #chat-message p {
 	text-align: left;
-	font-size: 20px;
+	font-size: 18px;
 	font-family: 'Arial';
 	margin: 0px 0px 0px 5px;
 }
