@@ -230,7 +230,7 @@ class ExpoMap extends React.Component {
             {/* <img className="island" src={Island}/> */}
             <div className="island">
 
-                <a type="button" data-bs-toggle="modal" id="platinumBtn" data-bs-target="#platinumModal">
+                <a  data-bs-toggle="modal" id="platinumBtn" data-bs-target="#platinumModal">
                   <img className="zoom bora" src={Bora}/>
                 </a>
 
@@ -239,7 +239,7 @@ class ExpoMap extends React.Component {
                     <div className="modal-content">
                       <div className="modal-header">
                         <h5 className="modal-title" id="boraModalLabel">Platinum Seminar</h5>
-                        <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        <button  className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                       </div>
                       <div className="modal-body">
                         <div>
@@ -252,7 +252,7 @@ class ExpoMap extends React.Component {
 
                 {mainProgram}
 
-                <a type="button" data-bs-toggle="modal" id="diamondBtn" data-bs-target="#diamondModal">
+                <a  data-bs-toggle="modal" id="diamondBtn" data-bs-target="#diamondModal">
                   <img className="zoom diamond" src={Diamond}/>
                 </a>
 
@@ -261,7 +261,7 @@ class ExpoMap extends React.Component {
                     <div className="modal-content">
                       <div className="modal-header">
                         <h5 className="modal-title" id="boraModalLabel">Diamond Invitational</h5>
-                        <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        <button  className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                       </div>
                       <div className="modal-body">
                         <div>
@@ -272,7 +272,7 @@ class ExpoMap extends React.Component {
                   </div>
                 </div>
 
-                <a type="button" disabled={this.props.isAdmin} data-bs-toggle="modal" data-bs-target="#feedbackModal" id="feedbackBtn">
+                <a  disabled={this.props.isAdmin} data-bs-toggle="modal" data-bs-target="#feedbackModal" id="feedbackBtn">
                     <img className="zoom feedback" src={Feedback} disabled={this.props.isAdmin}/>
                 </a>
 
@@ -281,7 +281,7 @@ class ExpoMap extends React.Component {
                   ratings = {this.props.ratings}
                 />
 
-                <a type="button" data-bs-toggle="modal" id="alsBtn" data-bs-target="#alsModal">
+                <a  data-bs-toggle="modal" id="alsBtn" data-bs-target="#alsModal">
                   <img className="zoom bora" src={Als}/>
                 </a>
 
@@ -290,7 +290,7 @@ class ExpoMap extends React.Component {
                     <div className="modal-content">
                       <div className="modal-header">
                         <h5 className="modal-title" id="boraModalLabel">Als Hawaii</h5>
-                        <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        <button  className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                       </div>
                       <div className="modal-body">
                         <div>
@@ -309,7 +309,7 @@ class ExpoMap extends React.Component {
                     <img className="zoom fruit" src={Fruit}/>
                 </a>
 
-                <a type="button" data-bs-toggle="modal" id="corVid1tBtn" data-bs-target="#corePlusModal" onClick={this.corePlusLadderVideoPlay.bind(this)}>
+                <a  data-bs-toggle="modal" id="corVid1tBtn" data-bs-target="#corePlusModal" onClick={this.corePlusLadderVideoPlay.bind(this)}>
                     <img className="zoom corVid1" src={CorePlusIcon}/>
                 </a>
 
@@ -318,7 +318,7 @@ class ExpoMap extends React.Component {
                     <div className="modal-content">
                       <div className="modal-header">
                         <h5 className="modal-title" id="boraModalLabel">Leader Incentives</h5>
-                        <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close" onClick={this.corePlusLadderVideoPause.bind(this)}></button>
+                        <button  className="btn-close" data-bs-dismiss="modal" aria-label="Close" onClick={this.corePlusLadderVideoPause.bind(this)}></button>
                       </div>
                       <div className="modal-body">
                         <div>
@@ -336,7 +336,7 @@ class ExpoMap extends React.Component {
                   </div>
                 </div>
 
-                <a type="button" data-bs-toggle="modal" id="corVid2tBtn" data-bs-target="#customerSalesModal" onClick={this.customerSalesVideoPlay.bind(this)}>
+                <a  data-bs-toggle="modal" id="corVid2tBtn" data-bs-target="#customerSalesModal" onClick={this.customerSalesVideoPlay.bind(this)}>
                     <img className="zoom corVid2" src={CustomerSales}/>
                 </a>
 
@@ -345,7 +345,7 @@ class ExpoMap extends React.Component {
                     <div className="modal-content">
                       <div className="modal-header">
                         <h5 className="modal-title" id="boraModalLabel">Customer Sales Incentives</h5>
-                        <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close" onClick={this.customerSalesVideoPause.bind(this)}></button>
+                        <button  className="btn-close" data-bs-dismiss="modal" aria-label="Close" onClick={this.customerSalesVideoPause.bind(this)}></button>
                       </div>
                       <div className="modal-body">
                         <div>
@@ -373,7 +373,7 @@ class ExpoMap extends React.Component {
                     <img className="zoom game3" src={Power}/>
                 </a>
 
-                <a type="button" data-bs-toggle="modal" id="alsVid1tBtn" data-bs-target="#pin1Modal" onClick={this.pin1VideoPlay.bind(this)}>
+                <a  data-bs-toggle="modal" id="alsVid1tBtn" data-bs-target="#pin1Modal" onClick={this.pin1VideoPlay.bind(this)}>
                     <img className="zoom alsVid1" src={Pin}/>
                 </a>
 
@@ -382,7 +382,7 @@ class ExpoMap extends React.Component {
                     <div className="modal-content">
                       <div className="modal-header">
                         <h5 className="modal-title" id="boraModalLabel">Diamond Crater Head</h5>
-                        <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close" onClick={this.pin1VideoPause.bind(this)}></button>
+                        <button  className="btn-close" data-bs-dismiss="modal" aria-label="Close" onClick={this.pin1VideoPause.bind(this)}></button>
                       </div>
                       <div className="modal-body">
                         <div>
@@ -400,7 +400,7 @@ class ExpoMap extends React.Component {
                   </div>
                 </div>
 
-                <a type="button" data-bs-toggle="modal" id="alsVid2tBtn" data-bs-target="#pin2Modal" onClick={this.pin2VideoPlay.bind(this)}>
+                <a  data-bs-toggle="modal" id="alsVid2tBtn" data-bs-target="#pin2Modal" onClick={this.pin2VideoPlay.bind(this)}>
                     <img className="zoom alsVid2" src={Pin}/>
                 </a>
 
@@ -409,7 +409,7 @@ class ExpoMap extends React.Component {
                     <div className="modal-content">
                       <div className="modal-header">
                         <h5 className="modal-title" id="boraModalLabel">Pearl Harbor</h5>
-                        <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close" onClick={this.pin2VideoPause.bind(this)}></button>
+                        <button  className="btn-close" data-bs-dismiss="modal" aria-label="Close" onClick={this.pin2VideoPause.bind(this)}></button>
                       </div>
                       <div className="modal-body">
                         <div>
@@ -427,7 +427,7 @@ class ExpoMap extends React.Component {
                   </div>
                 </div>
 
-                <a type="button" data-bs-toggle="modal" id="alsVid3tBtn" data-bs-target="#pin3Modal" onClick={this.pin3VideoPlay.bind(this)}>
+                <a  data-bs-toggle="modal" id="alsVid3tBtn" data-bs-target="#pin3Modal" onClick={this.pin3VideoPlay.bind(this)}>
                     <img className="zoom alsVid3" src={Pin}/>
                 </a>
 
@@ -436,7 +436,7 @@ class ExpoMap extends React.Component {
                     <div className="modal-content">
                       <div className="modal-header">
                         <h5 className="modal-title" id="boraModalLabel">Waikiki Beach</h5>
-                        <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close" onClick={this.pin3VideoPause.bind(this)}></button>
+                        <button  className="btn-close" data-bs-dismiss="modal" aria-label="Close" onClick={this.pin3VideoPause.bind(this)}></button>
                       </div>
                       <div className="modal-body">
                         <div>
@@ -454,7 +454,7 @@ class ExpoMap extends React.Component {
                   </div>
                 </div>
 
-                <a type="button" data-bs-toggle="modal" id="alsVid4tBtn" data-bs-target="#pin4Modal" onClick={this.pin4VideoPlay.bind(this)}>
+                <a  data-bs-toggle="modal" id="alsVid4tBtn" data-bs-target="#pin4Modal" onClick={this.pin4VideoPlay.bind(this)}>
                     <img className="zoom alsVid4" src={Pin}/>
                 </a>
 
@@ -463,7 +463,7 @@ class ExpoMap extends React.Component {
                     <div className="modal-content">
                       <div className="modal-header">
                         <h5 className="modal-title" id="boraModalLabel">Hanauma Bay</h5>
-                        <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close" onClick={this.pin4VideoPause.bind(this)}></button>
+                        <button  className="btn-close" data-bs-dismiss="modal" aria-label="Close" onClick={this.pin4VideoPause.bind(this)}></button>
                       </div>
                       <div className="modal-body">
                         <div>
@@ -485,7 +485,7 @@ class ExpoMap extends React.Component {
                     <img className="zoom alsVid5" src={Pin} alt="alsVid5"/>
                 </a>
 
-                <a type="button" data-bs-toggle="modal" id="alsVid5tBtn" data-bs-target="#pin5Modal" onClick={this.pin5VideoPlay.bind(this)}>
+                <a  data-bs-toggle="modal" id="alsVid5tBtn" data-bs-target="#pin5Modal" onClick={this.pin5VideoPlay.bind(this)}>
                     <img className="zoom alsVid5" src={Pin}/>
                 </a>
 
@@ -494,7 +494,7 @@ class ExpoMap extends React.Component {
                     <div className="modal-content">
                       <div className="modal-header">
                         <h5 className="modal-title" id="boraModalLabel">Stairway to Heaven</h5>
-                        <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close" onClick={this.pin5VideoPause.bind(this)}></button>
+                        <button  className="btn-close" data-bs-dismiss="modal" aria-label="Close" onClick={this.pin5VideoPause.bind(this)}></button>
                       </div>
                       <div className="modal-body">
                         <div>
@@ -512,7 +512,7 @@ class ExpoMap extends React.Component {
                   </div>
                 </div>
 
-                <a type="button" data-bs-toggle="modal" id="alsVid6tBtn" data-bs-target="#bronze" onClick={this.bronzeBuilderVideoPlay.bind(this)}>
+                <a  data-bs-toggle="modal" id="alsVid6tBtn" data-bs-target="#bronze" onClick={this.bronzeBuilderVideoPlay.bind(this)}>
                     <img className="zoom alsVid6" src={Bronze}/>
                 </a>
 
@@ -521,7 +521,7 @@ class ExpoMap extends React.Component {
                     <div className="modal-content">
                       <div className="modal-header">
                         <h5 className="modal-title" id="boraModalLabel">Bronze Builder Incentives</h5>
-                        <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close" onClick={this.bronzeBuilderVideoPause.bind(this)}></button>
+                        <button  className="btn-close" data-bs-dismiss="modal" aria-label="Close" onClick={this.bronzeBuilderVideoPause.bind(this)}></button>
                       </div>
                       <div className="modal-body">
                         <div>
@@ -539,7 +539,7 @@ class ExpoMap extends React.Component {
                   </div>
                 </div>
 
-                <a type="button" data-bs-toggle="modal" id="alsVid7tBtn" data-bs-target="#bronzeFoundationModal" onClick={this.bronzeFoundationVideoPlay.bind(this)}>
+                <a  data-bs-toggle="modal" id="alsVid7tBtn" data-bs-target="#bronzeFoundationModal" onClick={this.bronzeFoundationVideoPlay.bind(this)}>
                     <img className="zoom alsVid7" src={BronzeFoundation}/>
                 </a>
 
@@ -548,7 +548,7 @@ class ExpoMap extends React.Component {
                     <div className="modal-content">
                       <div className="modal-header">
                         <h5 className="modal-title" id="boraModalLabel">Bronze Foundation Incentives</h5>
-                        <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close" onClick={this.bronzeFoundationVideoPause.bind(this)}></button>
+                        <button  className="btn-close" data-bs-dismiss="modal" aria-label="Close" onClick={this.bronzeFoundationVideoPause.bind(this)}></button>
                       </div>
                       <div className="modal-body">
                         <div>
@@ -566,7 +566,7 @@ class ExpoMap extends React.Component {
                   </div>
                 </div>
 
-                <a type="button" data-bs-toggle="modal" id="corBtn" data-bs-target="#coreModal">
+                <a  data-bs-toggle="modal" id="corBtn" data-bs-target="#coreModal">
                   <img className="zoom cor" src={Coreplus}/>
                 </a>
 
@@ -575,7 +575,7 @@ class ExpoMap extends React.Component {
                     <div className="modal-content">
                       <div className="modal-header">
                         <h5 className="modal-title" id="boraModalLabel">Core Plus</h5>
-                        <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        <button  className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                       </div>
                       <div className="modal-body">
                         <div>
@@ -586,7 +586,7 @@ class ExpoMap extends React.Component {
                   </div>
                 </div>
 
-                <a type="button" data-bs-toggle="modal" id="anivBtn" data-bs-target="#anivModal" onClick={this.anivVideoPlay.bind(this)}>
+                <a  data-bs-toggle="modal" id="anivBtn" data-bs-target="#anivModal" onClick={this.anivVideoPlay.bind(this)}>
                     <img className="zoom aniv" src={Aniv}/>
                 </a>
 
@@ -595,7 +595,7 @@ class ExpoMap extends React.Component {
                     <div className="modal-content">
                       <div className="modal-header">
                         <h5 className="modal-title" id="boraModalLabel">25th Anniversary</h5>
-                        <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close" onClick={this.anivVideoPause.bind(this)}></button>
+                        <button  className="btn-close" data-bs-dismiss="modal" aria-label="Close" onClick={this.anivVideoPause.bind(this)}></button>
                       </div>
                       <div className="modal-body">
                         <div>

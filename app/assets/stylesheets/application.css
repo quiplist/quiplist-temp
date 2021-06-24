@@ -2281,6 +2281,19 @@ display: flex;
 	width: 100%;
 }
 
+@media screen and (min-width: 320px) and (max-width: 767px) and (orientation: portrait) {
+	.has-orientation-mobile{
+		transform: rotate(-90deg);
+		transform-origin: left top;
+		width: 100vh;
+		height: 100vw;
+		overflow-x: hidden;
+		position: absolute;
+		top: 100%;
+		left: 0;
+	}
+}
+
 @media screen and (min-width:1024px) {
 	div[data-react-class="FacebookLive"],
 	.fb-wrapper,
