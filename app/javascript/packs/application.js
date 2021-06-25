@@ -116,8 +116,12 @@ $(document).ready(function () {
             {
                 "targets": [ 2 ],
                 "visible": false
+            },{
+                "targets": [ 4 ],
+                "visible": false
             },
-        ]
+        ],
+      "order": [[ 4, "desc" ]]
     });
 
     $("div.user.toolbar").html("\
@@ -762,3 +766,17 @@ window.streamValueTypeChange = function(id) {
           break;
   }
 }
+
+
+$(window).scroll(function() {
+    var scroll = $(window).scrollTop();
+    console.log(scroll)
+
+    if($('.navbar-main').length > 0){
+      if (scroll >= 10) {
+        $('.navbar-main').addClass("scrolled");
+      } else {
+        $('.navbar-main').removeClass("scrolled");
+      }
+    }
+});

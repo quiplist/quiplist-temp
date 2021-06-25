@@ -27,6 +27,15 @@ body {
 	z-index: 1;
 }
 
+.navbar{
+	background: transparent;
+    box-shadow: none;
+    border: 0;
+    position: fixed;
+    width: 100%;
+    top: 0;
+}
+
 .login-wrapper {
 	max-width: 800px;
 	margin: 0 auto;
@@ -541,6 +550,8 @@ div#admins_views {
 
 .collapse.show li.nav-item {
 	background: #fff;
+	padding: 0px 16px;
+	transition: all 0.2s ease-in-out;
 }
 
 .login_form input {
@@ -1522,6 +1533,7 @@ ul.sidebar-list {
 	background: rgb(13, 17, 82, 0.6);
 	top: 15px;
 	width: 100%;
+	left: 11px;
 }
 
 .event-wrapper-admin .announcement>.row {
@@ -2141,13 +2153,27 @@ footer h6 {
 }
 
 
-.inner-page__nav{
+/* .inner-page__nav{
 	background: #0F1867;
     border: 0;
 	box-shadow: 0px 10px 18px -8px rgba(131,131,131,0.75);
 	-webkit-box-shadow: 0px 10px 18px -8px rgba(131,131,131,0.75);
 	-moz-box-shadow: 0px 10px 18px -8px rgba(131,131,131,0.75);
+} */
+
+.navbar-main{
+	z-index: 2;
 }
+
+.navbar-main.scrolled{
+	background: #F1F1F1;
+	transition: all 0.2s ease;
+}
+
+.navbar-main img{
+	width: 15%;
+}
+
 
 .inner-page__nav .collapse.show li.nav-item {
     background: transparent;
@@ -2328,6 +2354,10 @@ display: flex;
 		font-size: 30px;
 		height: 500px;
 	}
+
+	.navbar-main .container-fluid .navbar-brand{
+		width: 80%;
+	}
 }
 
 @media (max-width: 768px) {
@@ -2363,6 +2393,7 @@ display: flex;
 	.single-page-layout{
 		height: 100vh;
 	}
+	
 }
 
 @media screen and (max-width:767px) {
