@@ -15,36 +15,30 @@
 
   <body>
     <div class="has-orientation-mobile">
-    <nav class="navbar navbar-expand-lg inner-page__nav">
-      <div class="container-fluid">
-        <div class="row w-100 align-items-center">
-          <div class="col-3 col-md-4 col-lg-1">
-            <a class="navbar-brand" href="/">
-              <%= image_tag "white-logo.png", class: "img-fluid" %>
-            </a>
-          </div>
-          <div class="col-9 col-md-8 col-lg-11 text-end">
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-              <i class="fas fa-bars"></i>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-              <ul class="navbar-nav w-100 justify-content-end">
-                <li class="nav-item"><%= link_to "Event", home_path(event_code: @event.event_code), class: "nav-link", style: "color: #{@event.main_mouse_out};", onmouseover:"this.style.color='#{@event.main_mouse_over}'", onmouseout:"this.style.color='#{@event.main_mouse_out}'" %></li>
-                <li class="nav-item"><%= link_to "Profile", profile_path(event_code: @event.event_code), class: "nav-link", style: "color: #{@event.main_mouse_out};", onmouseover:"this.style.color='#{@event.main_mouse_over}'", onmouseout:"this.style.color='#{@event.main_mouse_out}'" %></li>
-                <li class="nav-item"><%= link_to "Change password", edit_user_registration_path(event_code: @event.event_code), class: "nav-link", style: "color: #{@event.main_mouse_out};", onmouseover:"this.style.color='#{@event.main_mouse_over}'", onmouseout:"this.style.color='#{@event.main_mouse_out}'" %></li>
-                <li class="nav-item">
-                  <% if current_user %>
-                    <%= link_to destroy_user_session_path, class: 'nav-link', id: "logout", style: "color: #{@event.main_mouse_out};", onmouseover:"this.style.color='#{@event.main_mouse_over}'", onmouseout:"this.style.color='#{@event.main_mouse_out}'" do %>
-                      Logout
-                    <% end %>
+      <nav class="navbar navbar-expand-lg navbar-light navbar-main">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="/">
+            <%= image_tag "white-logo.png", class: "img-fluid" %>
+          </a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar" aria-controls="mainNavbar" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="mainNavbar">
+            <ul class="navbar-nav w-100 justify-content-end">
+              <li class="nav-item"><%= link_to "Event", home_path(event_code: @event.event_code), class: "nav-link", style: "color: #{@event.main_mouse_out};", onmouseover:"this.style.color='#{@event.main_mouse_over}'", onmouseout:"this.style.color='#{@event.main_mouse_out}'" %></li>
+              <li class="nav-item"><%= link_to "Profile", profile_path(event_code: @event.event_code), class: "nav-link", style: "color: #{@event.main_mouse_out};", onmouseover:"this.style.color='#{@event.main_mouse_over}'", onmouseout:"this.style.color='#{@event.main_mouse_out}'" %></li>
+              <li class="nav-item"><%= link_to "Change password", edit_user_registration_path(event_code: @event.event_code), class: "nav-link", style: "color: #{@event.main_mouse_out};", onmouseover:"this.style.color='#{@event.main_mouse_over}'", onmouseout:"this.style.color='#{@event.main_mouse_out}'" %></li>
+              <li class="nav-item">
+                <% if current_user %>
+                  <%= link_to destroy_user_session_path, class: 'nav-link', id: "logout", style: "color: #{@event.main_mouse_out};", onmouseover:"this.style.color='#{@event.main_mouse_over}'", onmouseout:"this.style.color='#{@event.main_mouse_out}'" do %>
+                    Logout
                   <% end %>
-                </li>
-              </ul>
-            </div>
+                <% end %>
+              </li>
+            </ul>
           </div>
         </div>
-      </div>
-    </nav>
+      </nav>
 
 
 

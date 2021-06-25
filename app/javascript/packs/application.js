@@ -762,3 +762,17 @@ window.streamValueTypeChange = function(id) {
           break;
   }
 }
+
+  
+$(window).scroll(function() {    
+    var scroll = $(window).scrollTop();
+    console.log(scroll)
+
+    if($('.navbar-main').length > 0){
+      if (scroll >= 10) {
+        $('.navbar-main').addClass("scrolled");
+      } else {
+        $('.navbar-main').removeClass("scrolled");
+      }
+    }
+});
