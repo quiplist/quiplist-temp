@@ -24,7 +24,7 @@
         </button>
         <div class="collapse navbar-collapse" id="mainNavbar">
           <ul class="navbar-nav w-100 justify-content-end">
-            <li class="nav-item"><%= link_to "Event", home_path(event_code: @event.event_code), class: "nav-link", style: "color: #{@event.main_mouse_out};", onmouseover:"this.style.color='#{@event.main_mouse_over}'", onmouseout:"this.style.color='#{@event.main_mouse_out}'" %></li>
+            <li class="nav-item"><%= link_to "Expo", expo_path(event_code: @event.event_code), class: "nav-link", style: "color: #{@event.main_mouse_out};", onmouseover:"this.style.color='#{@event.main_mouse_over}'", onmouseout:"this.style.color='#{@event.main_mouse_out}'" %></li>
             <li class="nav-item"><%= link_to "Profile", profile_path(event_code: @event.event_code), class: "nav-link", style: "color: #{@event.main_mouse_out};", onmouseover:"this.style.color='#{@event.main_mouse_over}'", onmouseout:"this.style.color='#{@event.main_mouse_out}'" %></li>
             <li class="nav-item"><%= link_to "Change password", edit_user_registration_path(event_code: @event.event_code), class: "nav-link", style: "color: #{@event.main_mouse_out};", onmouseover:"this.style.color='#{@event.main_mouse_over}'", onmouseout:"this.style.color='#{@event.main_mouse_out}'" %></li>
             <li class="nav-item">

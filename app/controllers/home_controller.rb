@@ -113,8 +113,12 @@ class HomeController < ApplicationController
   end
 
   def expo
-    @guest = GuestList.invitation(current_user, @event)
-    render layout: "expo"
+    if @event.has_expo?
+      @guest = GuestList.invitation(current_user, @event)
+      render layout: "expo"
+    else
+      redirect_to home_path(event_code: @event.event_code)
+    end
   end
 
   private

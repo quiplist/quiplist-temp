@@ -116,8 +116,12 @@ $(document).ready(function () {
             {
                 "targets": [ 2 ],
                 "visible": false
+            },{
+                "targets": [ 4 ],
+                "visible": false
             },
-        ]
+        ],
+      "order": [[ 4, "desc" ]]
     });
 
     $("div.user.toolbar").html("\
@@ -763,8 +767,8 @@ window.streamValueTypeChange = function(id) {
   }
 }
 
-  
-$(window).scroll(function() {    
+
+$(window).scroll(function() {
     var scroll = $(window).scrollTop();
     console.log(scroll)
 

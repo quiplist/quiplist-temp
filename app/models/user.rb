@@ -144,7 +144,7 @@ class User < ApplicationRecord
   scope :client, -> { where(role: CLIENT) }
   scope :non_member, -> { where(member_type: NON_MEMBER) }
   scope :member, -> { where(member_type: MEMBER) }
-  scope :sorted, -> { order(full_name: :asc) }
+  scope :sorted, -> { order(updated_at: :desc) }
   scope :search, lambda {|query|
     where("email ILIKE ? OR
           full_name ILIKE ?", "%#{query}%", "%#{query}%")
