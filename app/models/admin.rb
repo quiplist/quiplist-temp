@@ -54,6 +54,7 @@ class Admin < ApplicationRecord
 
   SUPER_ADMIN = 0
   ADMIN = 1
+  CLIENT = 2
 
   ROLE_TYPES = {
     SUPER_ADMIN => "Super Admin",
@@ -81,6 +82,10 @@ class Admin < ApplicationRecord
 
   def admin?
     role == ADMIN
+  end
+
+  def client?
+    role == CLIENT
   end
 
   def self.last_super_admin?
