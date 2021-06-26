@@ -184,44 +184,58 @@ class ExpoMap extends React.Component {
     let bronzeBuilderUrl = "https://www.youtube.com/watch?v=4Xp3rwz1-jg";
     let corePlusLadderUrl = "https://www.youtube.com/watch?v=9JiWPChtekM";
     let anivUrl = "https://www.youtube.com/watch?v=xRZB9k3mrJw";
-    let memoryGameUrl = `/events/${this.props.currentEvent.event_code}/games/memory_game`;
-    let fishingBoatUrl = `/events/${this.props.currentEvent.event_code}/games/fishing_boat`;
-    let powerTowerUrl = `https://ignitrondigital.com/qp/power-game?event_id=${this.props.currentEvent.id}&guest_list_id=${this.props.guestListId}`;
-    let fruitFallUrl = `https://ignitrondigital.com/qp/fruit-fall-game?event_id=${this.props.currentEvent.id}&guest_list_id=${this.props.guestListId}`;
-    let candyGameUrl = `https://ignitrondigital.com/qp/candy-game?event_id=${this.props.currentEvent.id}&guest_list_id=${this.props.guestListId}`;
+    let memoryGameUrl;
+    let fishingBoatUrl;
+    let powerTowerUrl;
+    let fruitFallUrl;
+    let candyGameUrl;
     let mainProgramUrl, mainProgram;
     let onClickMemoryGame, onClickFishingBoat, onClickPowerTower, onClickFruitFall, onClickCandyGame;
-    let disabledGames = (this.props.currentEvent.disable_expo_games || this.props.isAdmin);
-    let disabledMainEvent = this.props.currentEvent.disable_main_event;
-    if (disabledMainEvent) {
-      mainProgram = <a href="#" id="programBtn">
-          <img className="zoom mProgram" src={MainProgram}/>
-      </a>
-    } else {
-      if (this.props.isAdmin) {
-        mainProgramUrl = `/admins/events/${this.props.currentEvent.id}/launch`;
+    let disabledGames = true
+    let disabledMainEvent = true
+    if (this.props.currentEvent !== undefined || this.props.guestListId !== undefined) {
+      memoryGameUrl = `/events/${this.props.currentEvent.event_code}/games/memory_game`;
+      fishingBoatUrl = `/events/${this.props.currentEvent.event_code}/games/fishing_boat`;
+      powerTowerUrl = `https://ignitrondigital.com/qp/power-game?event_id=${this.props.currentEvent.id}&guest_list_id=${this.props.guestListId}`;
+      fruitFallUrl = `https://ignitrondigital.com/qp/fruit-fall-game?event_id=${this.props.currentEvent.id}&guest_list_id=${this.props.guestListId}`;
+      candyGameUrl = `https://ignitrondigital.com/qp/candy-game?event_id=${this.props.currentEvent.id}&guest_list_id=${this.props.guestListId}`;
+      disabledGames = (this.props.currentEvent.disable_expo_games || this.props.isAdmin);
+      disabledMainEvent = this.props.currentEvent.disable_main_event;
+      if (disabledMainEvent) {
+        mainProgram = <a href="#" id="programBtn">
+            <img className="zoom mProgram" src={MainProgram}/>
+        </a>
       } else {
-        mainProgramUrl = `/events/${this.props.currentEvent.event_code}`;
+        if (this.props.currentEvent.event_code !== undefined || this.props.currentEvent.id !== undefined) {
+          if (this.props.isAdmin) {
+            mainProgramUrl = `/admins/events/${this.props.currentEvent.id}/launch`;
+          } else {
+            mainProgramUrl = `/events/${this.props.currentEvent.event_code}`;
+          }
+        } else {
+          mainProgramUrl = "#"
+        }
+        mainProgram = <a href={mainProgramUrl} target="_blank" id="programBtn">
+            <img className="zoom mProgram" src={MainProgram}/>
+        </a>
       }
-      mainProgram = <a href={mainProgramUrl} target="_blank" id="programBtn">
-          <img className="zoom mProgram" src={MainProgram}/>
-      </a>
+
+      if (disabledGames || this.props.currentEvent.event_code === undefined || this.props.currentEvent.id === undefined) {
+        onClickMemoryGame = null;
+        onClickFishingBoat = null;
+        onClickPowerTower = null;
+        onClickFruitFall = null;
+        onClickCandyGame = null;
+      } else {
+        onClickMemoryGame = () => window.open(memoryGameUrl, "Popup", "toolbar=no, location=no, statusbar=no, menubar=no, scrollbars=1, resizable=0, width=1150, height=770, left=150, top=200")
+        onClickFishingBoat = () => window.open(fishingBoatUrl, "Popup", "toolbar=no, location=no, statusbar=no, menubar=no, scrollbars=1, resizable=0, width=1150, height=770, left=150, top=200")
+        onClickPowerTower = () => window.open(powerTowerUrl, "Popup", "toolbar=no, location=no, statusbar=no, menubar=no, scrollbars=1, resizable=0, width=1150, height=770, left=150, top=200")
+        onClickFruitFall = () => window.open(fruitFallUrl, "Popup", "toolbar=no, location=no, statusbar=no, menubar=no, scrollbars=1, resizable=0, width=1150, height=770, left=150, top=200")
+        onClickCandyGame = () => window.open(candyGameUrl, "Popup", "toolbar=no, location=no, statusbar=no, menubar=no, scrollbars=1, resizable=0, width=1150, height=770, left=150, top=200")
+      }
+
     }
 
-
-    if (disabledGames) {
-      onClickMemoryGame = null;
-      onClickFishingBoat = null;
-      onClickPowerTower = null;
-      onClickFruitFall = null;
-      onClickCandyGame = null;
-    } else {
-      onClickMemoryGame = () => window.open(memoryGameUrl, "Popup", "toolbar=no, location=no, statusbar=no, menubar=no, scrollbars=1, resizable=0, width=1150, height=770, left=150, top=200")
-      onClickFishingBoat = () => window.open(fishingBoatUrl, "Popup", "toolbar=no, location=no, statusbar=no, menubar=no, scrollbars=1, resizable=0, width=1150, height=770, left=150, top=200")
-      onClickPowerTower = () => window.open(powerTowerUrl, "Popup", "toolbar=no, location=no, statusbar=no, menubar=no, scrollbars=1, resizable=0, width=1150, height=770, left=150, top=200")
-      onClickFruitFall = () => window.open(fruitFallUrl, "Popup", "toolbar=no, location=no, statusbar=no, menubar=no, scrollbars=1, resizable=0, width=1150, height=770, left=150, top=200")
-      onClickCandyGame = () => window.open(candyGameUrl, "Popup", "toolbar=no, location=no, statusbar=no, menubar=no, scrollbars=1, resizable=0, width=1150, height=770, left=150, top=200")
-    }
     return (
       <div className="bg">
         <div className="cntr">
