@@ -40,6 +40,6 @@ class Rating < ApplicationRecord
   scope :excellent, -> { where(answer: EXCELLENT) }
 
   def rating_name
-    (self.question.question_type == FeedBack::RATING) ? RATINGS[answer] : answer
+    (self.feed_back.question_type == FeedBack::RATING) ? RATINGS[answer.to_i] : answer
   end
 end

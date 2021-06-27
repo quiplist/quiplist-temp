@@ -13,6 +13,7 @@
 #
 #  index_feed_backs_on_event_id  (event_id)
 #
+require 'csv'
 class FeedBack < ApplicationRecord
 
   belongs_to :event
@@ -35,6 +36,22 @@ class FeedBack < ApplicationRecord
 
   def question_type_name
     QUESTION_TYPES[question_type]
+  end
+
+  def to_csv(feedback)
+    attributes = %w{question full_name answer}
+
+    CSV.generate(headers: true) do |csv|
+      csv << attributes
+
+      feedback.ratings.each do |rating|
+        data = []
+        data << rating.feed_back.question
+        data << rating.guest_list.user.full_name
+        data << rating.rating_name
+        csv << data
+      end
+    end
   end
 
 

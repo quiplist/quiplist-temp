@@ -35,6 +35,14 @@ class FeedBacksController < ApplicationController
     redirect_to event_path(@event), notice: "Feed Back deleted successfully!"
   end
 
+  def download_csv
+    @feed_back = FeedBack.find(params[:id])
+    respond_to do |format|
+      format.html
+      format.csv { send_data @feed_back.to_csv(@feed_back), filename: "#{@feed_back.question}.csv" }
+    end
+  end
+
   private
 
   def feed_back_params
