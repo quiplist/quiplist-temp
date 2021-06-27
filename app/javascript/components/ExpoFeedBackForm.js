@@ -12,7 +12,7 @@ class ExpoFeedBackForm extends React.Component {
     super(props);
     this.state = {
       feedBackAnswers: [],
-      hasAnswered: this.props.ratings.has_answered
+      hasAnswered: false
     };
 
     this.handleChange = this.handleChange.bind(this)
@@ -69,72 +69,105 @@ class ExpoFeedBackForm extends React.Component {
     let feedbackForm = [];
     if (ratings.feed_backs === undefined) return null;
     feedbackForm = ratings.feed_backs;
+    let disableSubmit = this.state.hasAnswered;
+    if (this.props.ratings.has_answered !== undefined) {
+      disableSubmit = this.props.ratings.has_answered
+    }
 
     return (
-      <div className="modal fade" id="feedbackModal" tabIndex="-1" aria-labelledby="feedbackModalLabel" aria-hidden="true">
+      <div>
+        <div className="modal fade" id="feedbackModal" tabIndex="-1" aria-labelledby="feedbackModalLabel" aria-hidden="true">
+            <div className="modal-dialog">
+                <div className="modal-content">
+                <div className="modal-header">
+                    <h5 className="modal-title" id="feedbackModalLabel">Feedback Form</h5>
+                    <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <form onSubmit={e => {
+                  // console.log(e)
+                  e.preventDefault()
+                  this.submitFeedBack(this.state.feedBackAnswers)
+                  this.setState({ hasAnswered: true })
+                  $('#feedbackModal').modal('hide');
+                  $('#thankYouModal').modal('show');
+
+                  //alert("THANK YOU. YOUR RESPONSES HAVE BEEN SUBMITTED.")
+
+
+                }}>
+                  <div className="modal-body">
+                    {feedbackForm.map((rating, index) => {
+                      let ratingId = `rating-${index}`
+                      let formInput;
+                      if (rating.question_type === 0) {
+                        formInput = <ExpoFeedBackQuestionsRatings
+                          ratingId = {ratingId}
+                          question = {rating.question}
+                          disabled = {rating.disabled}
+                          answer = {rating.answer}
+                          options = {rating.options}
+                          guestListId = {rating.guest_list_id}
+                          feedBackId = {rating.feed_back_id}
+                          i = {index}
+                          handleChange = {(e, guestListId, feedBackId, index) => this.handleChange(e, guestListId, feedBackId, index)}
+                        />
+
+                      } else {
+                        formInput = <ExpoFeedBackQuestionsInput
+                          ratingId = {ratingId}
+                          question = {rating.question}
+                          disabled = {rating.disabled}
+                          answer = {rating.answer}
+                          guestListId = {rating.guest_list_id}
+                          feedBackId = {rating.feed_back_id}
+                          i = {index}
+                          handleChange = {(e, guestListId, feedBackId, index) => this.handleChange(e, guestListId, feedBackId, index)}
+                        />
+                      }
+                      return (
+                        <div key={index} className="mb-3">
+                          {formInput}
+                        </div>
+                      )
+
+                    })
+                  }
+
+                  </div>
+                  <div className="modal-footer">
+                      <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                      <input
+                        type="Submit"
+                        disabled={disableSubmit}
+                        className="btn btn-primary"
+                        // data-bs-dismiss="modal"
+                        // data-bs-toggle="modal"
+                        // data-bs-target="#thank-you"
+                      />
+
+                  </div>
+                </form>
+                </div>
+            </div>
+        </div>
+
+        <div className="modal fade" id="thankYouModal" tabIndex="-1" aria-labelledby="diamondLabel" aria-hidden="true">
           <div className="modal-dialog">
-              <div className="modal-content">
+            <div className="modal-content">
               <div className="modal-header">
-                  <h5 className="modal-title" id="feedbackModalLabel">Feedback Form</h5>
-                  <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <h5 className="modal-title" id="boraModalLabel">FeedBack Form</h5>
+                <button  className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
               </div>
-              <form onSubmit={e => {
-                e.preventDefault()
-                this.submitFeedBack(this.state.feedBackAnswers)
-                this.setState({ hasAnswered: true })
-              }}>
-                <div className="modal-body">
-                  {feedbackForm.map((rating, index) => {
-                    let ratingId = `rating-${index}`
-                    let formInput;
-                    if (rating.question_type === 0) {
-                      formInput = <ExpoFeedBackQuestionsRatings
-                        ratingId = {ratingId}
-                        question = {rating.question}
-                        disabled = {rating.disabled}
-                        answer = {rating.answer}
-                        options = {rating.options}
-                        guestListId = {rating.guest_list_id}
-                        feedBackId = {rating.feed_back_id}
-                        i = {index}
-                        handleChange = {(e, guestListId, feedBackId, index) => this.handleChange(e, guestListId, feedBackId, index)}
-                      />
-
-                    } else {
-                      formInput = <ExpoFeedBackQuestionsInput
-                        ratingId = {ratingId}
-                        question = {rating.question}
-                        disabled = {rating.disabled}
-                        answer = {rating.answer}
-                        guestListId = {rating.guest_list_id}
-                        feedBackId = {rating.feed_back_id}
-                        i = {index}
-                        handleChange = {(e, guestListId, feedBackId, index) => this.handleChange(e, guestListId, feedBackId, index)}
-                      />
-                    }
-                    return (
-                      <div key={index} className="mb-3">
-                        {formInput}
-                      </div>
-                    )
-
-                  })
-                }
-
+              <div className="modal-body">
+                <div>
+                  <p>THANK YOU. YOUR RESPONSES HAVE BEEN SUBMITTED.</p>
                 </div>
-                <div className="modal-footer">
-                    <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <input
-                      type="Submit"
-                      className="btn btn-primary"
-                      disabled={this.state.hasAnswered}
-                    />
-
-                </div>
-              </form>
               </div>
+            </div>
           </div>
+        </div>
       </div>
+
     )
   }
 }
