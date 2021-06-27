@@ -138,7 +138,7 @@ class ExpoFeedBackForm extends React.Component {
                       <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                       <input
                         type="Submit"
-                        disabled={disableSubmit}
+                        disabled={disableSubmit || this.state.hasAnswered}
                         className="btn btn-primary"
                         // data-bs-dismiss="modal"
                         // data-bs-toggle="modal"
