@@ -18,11 +18,11 @@ class ExpoFeedBackQuestionsRatings extends React.Component {
           onChange={(e) => this.props.handleChange(e, this.props.guestListId, this.props.feedBackId, this.props.i)}
           >
             <option value="default" defaultValue disabled="disabled">Select an option</option>
-            <option value="0">Poor</option>
-            <option value="1">Fair</option>
-            <option value="2">Good</option>
-            <option value="3">Very Good</option>
             <option value="4">Excellent</option>
+            <option value="3">Very Good</option>
+            <option value="2">Good</option>
+            <option value="1">Fair</option>
+            <option value="0">Poor</option>
             {/* {Object.keys(this.props.options).map(function (key, index) {
             return (
               <option key={index} value={key}>{this.props.options[key]}</option>
