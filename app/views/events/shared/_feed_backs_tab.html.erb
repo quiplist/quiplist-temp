@@ -17,8 +17,11 @@
           <td><%= feed_back.question_type_name %></td>
           <td class="text-center">
             <% if can? :show, FeedBack %>
-              <%= link_to "Show", event_feed_back_path(event_id: @event.id, id: feed_back.id), class: 'btn btn-view' %>
+              <%= link_to "Download", download_csv_event_feed_back_path(event_id: @event.id, id: feed_back.id, format: "csv"), class: 'btn-dowload-csv' %>
             <% end %>
+            <%# if can? :show, FeedBack %>
+              <%#= link_to "Show", event_feed_back_path(event_id: @event.id, id: feed_back.id), class: 'btn btn-view' %>
+            <%# end %>
             <% if can? :update, FeedBack %>
               <%= link_to "Edit", edit_event_feed_back_path(event_id: @event.id, id: feed_back.id), class: 'btn btn-edit' %>
             <% end %>

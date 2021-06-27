@@ -38,7 +38,9 @@ Rails.application.routes.draw do
       resources :questionnaires, except: [:index] do
         get '/pinned/:answer_id', to: 'questionnaires#pinned', on: :member, as: :pinned_answer
       end
-      resources :feed_backs, except: [:index]
+      resources :feed_backs, except: [:index] do
+        get :download_csv, on: :member
+      end
     end
     resources :admins do
       post :create_admin_events, on: :member
