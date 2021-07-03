@@ -14,13 +14,13 @@ class Api::V1::GameScoresController < Api::ApplicationController
         (params[:order_by].downcase == "asc" ? 'asc' : 'desc')
       end
     @game_scores = if game_id.nil? && !event_id.nil?
-      GameScore.where(event_id: event_id)
+      GameScore.where(event_id: event_id).where('game_scores.score != ?', '0')
     elsif !game_id.nil? && event_id.nil?
-      GameScore.where(game_id: game_id)
+      GameScore.where(game_id: game_id).where('game_scores.score != ?', '0')
     elsif !game_id.nil? && !event_id.nil?
-      GameScore.where(game_id: game_id, event_id: event_id)
+      GameScore.where(game_id: game_id, event_id: event_id).where('game_scores.score != ?', '0')
     else
-      GameScore.all
+      GameScore.where('game_scores.score != ?', '0')
     end
     @game_scores = @game_scores.sorted(order_by).page(page).per(per_page)
 
