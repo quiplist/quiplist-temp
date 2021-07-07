@@ -139,6 +139,7 @@
     </tbody>
   </table>
   <div>
-    <%= link_to "Export CSV", download_csv_event_guest_lists_path(@event, format: "csv"), class: "btn-dowload-csv" %>
+    <%= link_to "Export CSV", event_path(@event), class: "btn-dowload-csv" %>
+    <%#= link_to "Export CSV", download_csv_event_guest_lists_path(@event, format: "csv"), class: "btn-dowload-csv" %>
   </div>
 </div>
