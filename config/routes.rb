@@ -32,7 +32,7 @@ Rails.application.routes.draw do
         post :set_status, on: :collection
         post :set_raffle_status, on: :collection
         get :reset_raffle_statuses, on: :collection
-        # get :download_csv, on: :collection
+        get :download_csv, on: :collection
       end
       resources :raffles, except: [:index]
       resources :questionnaires, except: [:index] do

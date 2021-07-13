@@ -73,8 +73,8 @@
       <% @guest_lists.each do |guest_list| %>
         <tr>
           <td><%= guest_list.status_name %></td>
-          <td><%#= guest_list.user.full_name %>********</td>
-          <td><%#= guest_list.user.email %> ********</td>
+          <td><%= guest_list.user.full_name %></td>
+          <td><%= guest_list.user.email %></td>
           <% if @event.include_company %>
             <td><%= guest_list.user.company %></td>
           <% end %>
@@ -115,7 +115,7 @@
             <td><%= guest_list.user.mailing_address %></td>
           <% end %>
           <% if @event.include_contact_number %>
-            <td><%#= guest_list.user.contact_number %> ********</td>
+            <td><%= guest_list.user.contact_number %></td>
           <% end %>
           <% if @event.include_who_invited_you %>
             <td><%= guest_list.user.who_invited_you %></td>
@@ -139,7 +139,6 @@
     </tbody>
   </table>
   <div>
-    <%= link_to "Export CSV", event_path(@event), class: "btn-dowload-csv" %>
-    <%#= link_to "Export CSV", download_csv_event_guest_lists_path(@event, format: "csv"), class: "btn-dowload-csv" %>
+    <%= link_to "Export CSV", download_csv_event_guest_lists_path(@event, format: "csv"), class: "btn-dowload-csv" %>
   </div>
 </div>
