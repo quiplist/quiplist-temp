@@ -10,7 +10,7 @@ class YoutubeLive extends React.Component {
       <div className="youtube-wrapper">
         <iframe
           width="100%"
-          height="500"
+          height="665"
           src={`https://www.youtube.com/embed/${this.props.url}`}
           frameBorder="0"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
