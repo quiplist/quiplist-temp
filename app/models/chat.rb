@@ -28,7 +28,7 @@ class Chat < ApplicationRecord
     REACTION => "Reaction"
   }
 
-  default_scope { order(created_at: :asc).limit(100) }
+  default_scope { order(created_at: :asc) }
 
   def default?
     chat_type == DEFAULT
