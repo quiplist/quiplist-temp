@@ -109,8 +109,6 @@ class EventSerializer < ActiveModel::Serializer
     :spin_a_wheel_winner_background_color, :random_name_winner_font_color, :random_number_winner_font_color,
     :spin_a_wheel_winner_font_color, :random_name_font_color, :random_number_font_color, :spin_a_wheel_font_color
 
-  has_many :guest_lists
-  has_many :users, through: :guest_lists
   has_many :chats
   has_many :announcements
   # has_many :raffles

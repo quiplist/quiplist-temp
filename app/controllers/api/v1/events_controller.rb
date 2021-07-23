@@ -5,7 +5,7 @@ class Api::V1::EventsController < Api::ApplicationController
   before_action :set_event, only: [:fetch_current_event, :update]
 
   def show
-    render json: @event, include: [:guest_lists, :chats, :announcements]
+    render json: @event, include: [:chats, :announcements]
   end
 
   def update
