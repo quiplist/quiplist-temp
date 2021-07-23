@@ -170,8 +170,6 @@ class Actions extends React.Component {
     return (
       <React.Fragment>
         <div className="row my-3">
-          {raffleAction}
-          {questionnaireAction}
           <div className="col-12 col-md-6 col-lg-4">
             <div className="action-wrapper">
               <fieldset>
