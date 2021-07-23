@@ -2307,6 +2307,16 @@ display: flex;
 	width: 100%;
 }
 
+.session-bg{
+	background: url("shine_bg.png");
+}
+
+.main-bg{
+	background: url("shine_with_logo.jpeg");
+}
+
+
+
 @media screen and (min-width: 320px) and (max-width: 767px) and (orientation: portrait) {
 	.has-orientation-mobile{
 		transform: rotate(-90deg);

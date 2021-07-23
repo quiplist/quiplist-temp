@@ -72,12 +72,6 @@
           <% if (can? :index, Raffle) %>
             <a class="nav-link" id="nav-raffles-tab" data-bs-toggle="tab" href="#nav-raffles" role="tab" aria-controls="nav-raffles" aria-selected="true">RAFFLES</a>
           <% end %>
-          <% if (can? :index, Questionnaire) %>
-            <a class="nav-link" id="nav-questionnaires-tab" data-bs-toggle="tab" href="#nav-questionnaires" role="tab" aria-controls="nav-questionnaires" aria-selected="true">QUESTIONNAIRES</a>
-          <% end %>
-          <% if (can? :index, FeedBack) %>
-            <a class="nav-link" id="nav-feed-backs-tab" data-bs-toggle="tab" href="#nav-feed-backs" role="tab" aria-controls="nav-feed-backs" aria-selected="true">FEED BACKS</a>
-          <% end %>
           <% if (can? :update, Event) && current_admin.super_admin? %>
             <a class="nav-link" id="nav-customizations-tab" data-bs-toggle="tab" href="#nav-customizations" role="tab" aria-controls="nav-customizations" aria-selected="true">CUSTOMIZE EVENT</a>
           <% end %>
@@ -89,12 +83,6 @@
         <% end %>
         <% if can? :index, Raffle %>
           <%= render partial: "events/shared/raffles_tab" %>
-        <% end %>
-        <% if can? :index, Questionnaire %>
-          <%= render partial: "events/shared/questionnaires_tab" %>
-        <% end %>
-        <% if can? :index, FeedBack %>
-          <%= render partial: "events/shared/feed_backs_tab" %>
         <% end %>
         <% if (can? :update, Event) && current_admin.super_admin? %>
           <%= render partial: "events/shared/customizations_tab" %>

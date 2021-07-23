@@ -1,4 +1,4 @@
-<div class="container-fluid single-page-layout" style="<%= @event.session_background? ? "background-image: url(\'#{@event.session_background.url}\')" : "" %>">
+<div class="container-fluid single-page-layout session-bg">
     <div class="row register-wrapper align-items-center justify-content-center" >
       <%= render "users/shared/registration_new", resource: resource, resource_name: resource_name %>
       <%= render "users/shared/session_new", resource: resource, resource_name: resource_name %>

@@ -61,8 +61,8 @@ class Live extends React.Component {
       this.setState({ currentEvent: result })
       this.setState({ chats: result.chats })
       this.setState({ announcements: result.announcements })
-      this.setState({ raffles: result.raffles })
-      this.setState({ guestLists: result.guest_lists })
+      // this.setState({ raffles: result.raffles })
+      // this.setState({ guestLists: result.guest_lists })
       // this.setState({ questionnaires: result.questionnaires })
       // if(this.state.questionnaires.length > 0) {
       //   this.setQuestionnaire(result.questionnaires[0])
@@ -196,9 +196,9 @@ class Live extends React.Component {
     }
     if (isAdmin) {
       actions = <Actions
-        raffles = {this.state.raffles}
+        // raffles = {this.state.raffles}
         //questionnaires = {this.state.questionnaires}
-        guestLists = {this.state.guestLists}
+        // guestLists = {this.state.guestLists}
         currentUser = {this.state.currentUser}
         currentEvent = {this.state.currentEvent}
         //currentQuestionnaire = {this.state.currentQuestionnaire}

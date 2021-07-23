@@ -27,46 +27,10 @@ class Chat extends React.Component {
   }
 
   componentDidMount() {
-
     this.scrollToBottom();
-    // this.cable = ActionCable.createConsumer('/cable');
-
-    // fetch('/api/v1/fetch_current_user')
-    // .then(response => response.json())
-    // .then(result => {
-    //   this.setState({ currentUser: result })
-    // });
-
-    // const fetchEventUrl = `/api/v1/events/${this.props.eventId}`;
-    // fetch(fetchEventUrl)
-    // .then(resp => resp.json())
-    // .then(result => {
-    //   this.setState({ currentEvent: result })
-    //   this.setState({ chats: result.chats })
-    // });
-    //
-    // this.eventsChannel = this.cable.subscriptions.create(
-    //   {
-    //     channel: `EventsChannel`,
-    //     id: this.props.eventId
-    //   },{
-    //     connected: () => {
-    //       console.log("connected!")
-    //     },
-    //     disconnected: () => {},
-    //     received: data => {
-    //       this.props.addChat(data.result)
-    //     }
-    //   });
   }
 
-  // addChat = chat => {
-  //   this.setState(state => ({ chats: [...state.chats, chat] }))
-  // }
-
-
   submitMessage = messageString => {
-    // on submitting the ChatInput form, send the message, add it to the list and reset the input
     const url = "/api/v1/chats";
     const body = {
       chat: {
@@ -89,7 +53,6 @@ class Chat extends React.Component {
     })
     .then(resp => resp.json())
     .then(result => {
-      //this.addChat(result)
       this.props.chatCable.send({result})
     })
   }
@@ -118,11 +81,5 @@ class Chat extends React.Component {
     );
   }
 }
-
-// Chat.propTypes = {
-//   eventId: PropTypes.number.isRequired,
-//   addChat: PropTypes.func.isRequired,
-//   chats: PropTypes.array.isRequired
-// };
 
 export default Chat

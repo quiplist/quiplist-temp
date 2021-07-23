@@ -1,7 +1,0 @@
-<% if @questionnaire.multiple_choice? || @questionnaire.yes_or_no? || @questionnaire.select_letters? || @questionnaire.identification? %>
-  <%= render partial: "questionnaires/shared/winners_results", correctly_answered: @correctly_answered %>
-<% elsif @questionnaire.poll? %>
-  <%= render partial: "questionnaires/shared/poll_results" %>
-<% else %>
-  <%= render partial: "questionnaires/shared/q_and_a" %>
-<% end %>

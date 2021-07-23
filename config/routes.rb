@@ -14,10 +14,6 @@ Rails.application.routes.draw do
   post '/reset_password', to: 'home#reset_password', as: :reset_password
   get '/contact_us', to: 'home#contact_us', as: :contact_us
   get '/about_us', to: 'home#about_us', as: :about_us
-  get '/events/:event_code/expo', to: 'home#expo', as: :expo
-  get '/events/:event_code/games/memory_game', to: 'games#memory_game', as: :memory_game
-  get '/events/:event_code/games/fishing_boat', to: 'games#fishing_boat', as: :fishing_boat
-  get '/events/:event_code/games/test_game', to: 'games#test_game', as: :test_game
 
   scope 'admins' do
     get '/forgot_password', to: 'admins#forgot_password', as: :admin_forgot_password
