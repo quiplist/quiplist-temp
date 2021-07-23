@@ -5,12 +5,11 @@ class Api::V1::EventsController < Api::ApplicationController
   before_action :set_event, only: [:fetch_current_event, :update]
 
   def show
-    render json: @event, include: [:guest_lists, :chats, :announcements, :raffles, :questionnaires, :feed_backs]
+    render json: @event, include: [:guest_lists, :chats, :announcements]
   end
 
   def update
     if @event.update event_params
-        puts "successfully enable/disabled expo games!"
         EventsChannel.broadcast_to(@event, ActiveModelSerializers::SerializableResource.new(@event).as_json)
     end
     render json: @event

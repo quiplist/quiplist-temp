@@ -1,6 +1,6 @@
 import React  from 'react';
 import PropTypes from "prop-types";
-import Questions from "./Questions";
+// import Questions from "./Questions";
 
 class YoutubeLive extends React.Component {
 

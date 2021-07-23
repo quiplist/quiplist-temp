@@ -1,7 +1,7 @@
 class HomeController < ApplicationController
-  layout 'main', except: [:expo]
+  layout 'main'
   before_action :authenticate_user!, except: [:welcome, :find_event, :forgot_password, :reset_password, :about_us, :contact_us]
-  before_action :fetch_reaction, except: [:welcome, :find_event, :profile, :update_profile, :forgot_password, :reset_password, :about_us, :contact_us, :expo, :disabled]
+  before_action :fetch_reaction, except: [:welcome, :find_event, :profile, :update_profile, :forgot_password, :reset_password, :about_us, :contact_us, :disabled]
   before_action -> { check_event_code params[:event_code] }, except: [:welcome, :forgot_password, :reset_password, :about_us, :contact_us]
 
   def index
@@ -61,11 +61,12 @@ class HomeController < ApplicationController
     elsif current_user.nil?
       redirect_to new_user_registration_path(event_code: @event.event_code)
     else
-      if @event.has_expo?
-        redirect_to expo_path(event_code: @event.event_code)
-      else
-        redirect_to home_path(event_code: @event.event_code)
-      end
+      # if @event.has_expo?
+      #   redirect_to expo_path(event_code: @event.event_code)
+      # else
+      #   redirect_to home_path(event_code: @event.event_code)
+      # end
+      redirect_to home_path(event_code: @event.event_code)
     end
   end
 
@@ -110,15 +111,6 @@ class HomeController < ApplicationController
 
   def contact_us
     render layout: "application"
-  end
-
-  def expo
-    if @event.has_expo?
-      @guest = GuestList.invitation(current_user, @event)
-      render layout: "expo"
-    else
-      redirect_to home_path(event_code: @event.event_code)
-    end
   end
 
   private

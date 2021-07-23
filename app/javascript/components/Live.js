@@ -38,9 +38,9 @@ class Live extends React.Component {
       currentUser: {},
       raffles: [],
       guestLists: [],
-      questionnaires: [],
-      currentQuestionnaire: {},
-      isAnsweredQuestionnaire: false
+      // questionnaires: [],
+      // currentQuestionnaire: {},
+      // isAnsweredQuestionnaire: false
     };
 
 
@@ -61,17 +61,17 @@ class Live extends React.Component {
       this.setState({ currentEvent: result })
       this.setState({ chats: result.chats })
       this.setState({ announcements: result.announcements })
-      this.setState({ raffles: result.raffles })
-      this.setState({ guestLists: result.guest_lists })
-      this.setState({ questionnaires: result.questionnaires })
-      if(this.state.questionnaires.length > 0) {
-        this.setQuestionnaire(result.questionnaires[0])
-        console.log(this.state.currentQuestionnaire)
-        if (this.state.currentQuestionnaire.answered_correctly.length > 0) {
-          let isAnswered = this.state.currentQuestionnaire.answered_correctly.some(answer => answer.user_id === this.state.currentUser.id)
-          this.setIsAnsweredQuestionnaire(isAnswered)
-        }
-      }
+      // this.setState({ raffles: result.raffles })
+      // this.setState({ guestLists: result.guest_lists })
+      // this.setState({ questionnaires: result.questionnaires })
+      // if(this.state.questionnaires.length > 0) {
+      //   this.setQuestionnaire(result.questionnaires[0])
+      //   console.log(this.state.currentQuestionnaire)
+      //   if (this.state.currentQuestionnaire.answered_correctly.length > 0) {
+      //     let isAnswered = this.state.currentQuestionnaire.answered_correctly.some(answer => answer.user_id === this.state.currentUser.id)
+      //     this.setIsAnsweredQuestionnaire(isAnswered)
+      //   }
+      // }
     });
 
 
@@ -111,30 +111,30 @@ class Live extends React.Component {
         }
       });
 
-    this.questionnairesChannel = this.cable.subscriptions.create(
-      {
-        channel: `QuestionnairesChannel`,
-        id: this.props.eventId
-      },{
-        connected: () => {
-          console.log("Questionnaire Channel connected!")
-        },
-        disconnected: () => {},
-        received: data => {
-          this.setQuestionnaire(data.result)
-          console.log("cable1")
-          console.log(data.result)
-          console.log("cable1")
-          if (data.result !== undefined) {
-            if (data.result.answered_correctly.length > 0) {
-              let isAnswered = data.result.answered_correctly.some(answer => answer.user_id === this.state.currentUser.id)
-              this.setIsAnsweredQuestionnaire(isAnswered)
-            } else {
-              this.setIsAnsweredQuestionnaire(false)
-            }
-          }
-        }
-      });
+    // this.questionnairesChannel = this.cable.subscriptions.create(
+    //   {
+    //     channel: `QuestionnairesChannel`,
+    //     id: this.props.eventId
+    //   },{
+    //     connected: () => {
+    //       console.log("Questionnaire Channel connected!")
+    //     },
+    //     disconnected: () => {},
+    //     received: data => {
+    //       this.setQuestionnaire(data.result)
+    //       console.log("cable1")
+    //       console.log(data.result)
+    //       console.log("cable1")
+    //       if (data.result !== undefined) {
+    //         if (data.result.answered_correctly.length > 0) {
+    //           let isAnswered = data.result.answered_correctly.some(answer => answer.user_id === this.state.currentUser.id)
+    //           this.setIsAnsweredQuestionnaire(isAnswered)
+    //         } else {
+    //           this.setIsAnsweredQuestionnaire(false)
+    //         }
+    //       }
+    //     }
+    //   });
   }
 
   addChat = chat => {
@@ -167,47 +167,48 @@ class Live extends React.Component {
     if(isFB){
       video = <FacebookLive
                 url={this.state.url}
-                questionnaires = {this.state.questionnaires}
-                currentQuestionnaire = {this.state.currentQuestionnaire}
-                isAnsweredQuestionnaire = {this.state.isAnsweredQuestionnaire}
-                setIsAnsweredQuestionnaire = {isAnswered => this.setIsAnsweredQuestionnaire(isAnswered)}
+                //questionnaires = {this.state.questionnaires}
+                //currentQuestionnaire = {this.state.currentQuestionnaire}
+                //isAnsweredQuestionnaire = {this.state.isAnsweredQuestionnaire}
+                //setIsAnsweredQuestionnaire = {isAnswered => this.setIsAnsweredQuestionnaire(isAnswered)}
                 currentUser = {this.state.currentUser}
                 isAdmin = {isAdmin}
               />;
     }else if(isYT) {
       video = <YoutubeLive
                 url={this.state.url}
-                questionnaires = {this.state.questionnaires}
-                currentQuestionnaire = {this.state.currentQuestionnaire}
-                isAnsweredQuestionnaire = {this.state.isAnsweredQuestionnaire}
-                setIsAnsweredQuestionnaire = {isAnswered => this.setIsAnsweredQuestionnaire(isAnswered)}
+               // questionnaires = {this.state.questionnaires}
+               // currentQuestionnaire = {this.state.currentQuestionnaire}
+               // isAnsweredQuestionnaire = {this.state.isAnsweredQuestionnaire}
+               // setIsAnsweredQuestionnaire = {isAnswered => this.setIsAnsweredQuestionnaire(isAnswered)}
                 currentUser = {this.state.currentUser}
                 isAdmin = {isAdmin}
               />;
     }else {
       video = <None
-                questionnaires = {this.state.questionnaires}
-                currentQuestionnaire = {this.state.currentQuestionnaire}
-                isAnsweredQuestionnaire = {this.state.isAnsweredQuestionnaire}
-                setIsAnsweredQuestionnaire = {isAnswered => this.setIsAnsweredQuestionnaire(isAnswered)}
+                //questionnaires = {this.state.questionnaires}
+                //currentQuestionnaire = {this.state.currentQuestionnaire}
+                //isAnsweredQuestionnaire = {this.state.isAnsweredQuestionnaire}
+                //setIsAnsweredQuestionnaire = {isAnswered => this.setIsAnsweredQuestionnaire(isAnswered)}
                 currentUser = {this.state.currentUser}
                 isAdmin = {isAdmin}
               />;
     }
     if (isAdmin) {
       actions = <Actions
-        raffles = {this.state.raffles}
-        questionnaires = {this.state.questionnaires}
-        guestLists = {this.state.guestLists}
+        // raffles = {this.state.raffles}
+        //questionnaires = {this.state.questionnaires}
+        // guestLists = {this.state.guestLists}
         currentUser = {this.state.currentUser}
         currentEvent = {this.state.currentEvent}
-        currentQuestionnaire = {this.state.currentQuestionnaire}
+        //currentQuestionnaire = {this.state.currentQuestionnaire}
         announcementCable = {this.announcementsChannel}
         currentAnnouncement = {this.state.currentAnnouncement}
         updateAnnouncement = {announcement => this.updateAnnouncement(announcement)}
-        questionnaireCable = {this.questionnairesChannel}
-        setQuestionnaire = {questionnaire => this.setQuestionnaire(questionnaire)}
-        setIsAnsweredQuestionnaire = {isAnswered => this.setIsAnsweredQuestionnaire(isAnswered)} />
+        //questionnaireCable = {this.questionnairesChannel}
+        //setQuestionnaire = {questionnaire => this.setQuestionnaire(questionnaire)}
+        //setIsAnsweredQuestionnaire = {isAnswered => this.setIsAnsweredQuestionnaire(isAnswered)} 
+        />
     }
 
     return (

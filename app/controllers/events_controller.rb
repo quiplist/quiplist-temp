@@ -85,11 +85,6 @@
   def launch
   end
 
-  def expo
-    return redirect_to event_path(@event), alert: "Expo feature is not avaible for this event." unless @event.has_expo?
-    render layout: "expo"
-  end
-
   private
 
   def event_params

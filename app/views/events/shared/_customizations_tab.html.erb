@@ -1,9 +1,9 @@
 <div class="tab-pane fade show" id="nav-customizations" role="tabpanel" aria-labelledby="nav-customizations-tab">
    <div class="row row-cols-12 mb-5">
       <div class="col">
-         <h2>Main Event and Expo</h2>
+         <h2>Main Event</h2>
          <div class="row">
-            <div class="col col-lg-6">
+            <div class="col col-lg-12">
                <div class="card shadow-sm">
                   <%= image_tag @event.main_background.url, class: "image-card" %>
                   <div class="card-body">
@@ -39,44 +39,6 @@
                      <div class="row">
                         <label class="col-sm-12 col-lg-9 col-form-label">
                         <%= f.file_field :main_background, accept: 'image/png,image/jpg,image/jpeg', class: 'w-100' %>
-                        </label>
-                        <div class="col-sm-12 col-lg-3 text-end">
-                           <%= submit_tag "Save", class: "btn btn-submit" %>
-                        </div>
-                     </div>
-                     <% end %>
-                  </div>
-               </div>
-            </div>
-            <div class="col col-lg-6">
-               <div class="card shadow-sm">
-                  <div class="card-body">
-                    <p class="card-text">This is where you will enable your Expo Feature in your Event.</p>
-                     <%= form_for @event, as: :event, url: event_path(@event), method: :put, html: { class: "" } do |f| %>
-                     <div class="mb-3 row">
-                       <label class="col-sm-12 col-form-label">
-                         <%= f.check_box :has_expo, class: 'form-check-input' %> Enable Expo?
-                       </label>
-                     </div>
-                     <div class="mb-3 row">
-                       <label class="col-sm-12 col-form-label">
-                         <%= f.check_box :has_background_music, class: 'form-check-input' %> Has background music?
-                       </label>
-                     </div>
-                     <div class="mb-3 row">
-                       <label class="col-sm-12 col-form-label">
-                         <%= f.check_box :disable_expo_games, class: 'form-check-input' %> Disable game at start of expo?
-                       </label>
-                     </div>
-                     <div class="mb-3 row">
-                       <label class="col-sm-12 col-form-label">
-                         <%= f.check_box :disable_main_event, class: 'form-check-input' %> Disable main event at start of expo?
-                       </label>
-                     </div>
-                     <label for="backgroundImage">Background Music</label>
-                     <div class="row">
-                        <label class="col-sm-12 col-lg-9 col-form-label">
-                        <%= f.file_field :background_music, accept: 'audio/mp4,audio/mp3,audio/wma,audio/wav', class: 'w-100' %>
                         </label>
                         <div class="col-sm-12 col-lg-3 text-end">
                            <%= submit_tag "Save", class: "btn btn-submit" %>

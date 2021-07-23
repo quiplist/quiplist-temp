@@ -31,11 +31,7 @@ class ApplicationController < ActionController::Base
     if (resource.super_admin? || resource.admin?) && event.nil?
       events_path
     elsif !event.nil? && resource.client?
-      if event.has_expo?
-        expo_path(event_code: event.event_code)
-      else
         home_path(event_code: event.event_code)
-      end
     else
       root_path
     end
