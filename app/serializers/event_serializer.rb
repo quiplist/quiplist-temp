@@ -113,6 +113,10 @@ class EventSerializer < ActiveModel::Serializer
   has_many :announcements
   # has_many :raffles
 
+  def chats
+    object.chats.last(100)
+  end
+
   def brochure_url
     object.has_brochure? ? object.brochure.url : ""
   end
