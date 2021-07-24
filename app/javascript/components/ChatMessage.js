@@ -3,7 +3,10 @@ import React, { Component } from 'react';
 class ChatMessage extends Component {
   whichUser = () => {
     let classNameValue = "";
-    if (this.props.chat.chat_type === 1 || this.props.chat.chat_type === null) {
+    if (this.props.chat === null) {
+      return classNameValue;
+    }
+    if (this.props.chat.chat_type === 1) {
       classNameValue += 'reaction-message'
     } else {
       if ((this.props.chat.sender_type === 'Admin') &&
@@ -27,6 +30,7 @@ class ChatMessage extends Component {
   render() {
       // when rendering the chat message, I need to first check whether the author of that message is my current user or not (by comparing ids)
       // if it is my current user, I will align the chat message div to the right of the page, and use a different color to differentiate their messages from the others' messages
+
     return (
       <div id="chat-message" className={this.whichUser()}>
         {this.props.chat.chat_type === 1 ? "" : <h6>{this.props.chat.sender_name}: </h6>}
