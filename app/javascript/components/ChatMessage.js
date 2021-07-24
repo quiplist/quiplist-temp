@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 class ChatMessage extends Component {
   whichUser = () => {
     let classNameValue = "";
-    if (this.props.chat.chat_type === 1) {
+    if (this.props.chat.chat_type === 1 || this.props.chat.chat_type === null) {
       classNameValue += 'reaction-message'
     } else {
       if ((this.props.chat.sender_type === 'Admin') &&
@@ -12,7 +12,7 @@ class ChatMessage extends Component {
       }else if (this.props.chat.sender_type === 'Admin'){
         classNameValue += ' current-admin-message'
       }
-      
+
       if ((this.props.chat.sender_id === parseInt(this.props.currentUser.id)) &&
             (this.props.chat.sender_type === this.props.currentUser.user_type)) {
         classNameValue += ' current-user-message'
