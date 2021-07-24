@@ -37,7 +37,8 @@ class Chat extends React.Component {
         sender_id: this.props.currentUser.id,
         sender_type: this.props.currentUser.user_type,
         message: messageString,
-        event_id: this.props.currentEvent.id
+        event_id: this.props.currentEvent.id,
+        chat_type: 0
       }
     }
 

@@ -18,6 +18,6 @@ class Api::V1::ChatsController < Api::ApplicationController
   private
 
   def message_params
-    params.require(:chat).permit(:message, :sender_id, :sender_type, :event_id)
+    params.require(:chat).permit(:message, :sender_id, :sender_type, :event_id, :chat_type)
   end
 end

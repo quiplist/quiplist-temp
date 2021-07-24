@@ -445,7 +445,8 @@ function createReaction(emotion, userId, userType, eventId, chatCable) {
       emotion: emotion,
       responder_id: userId,
       responder_type: userType,
-      event_id: eventId
+      event_id: eventId,
+      chat_type: 1
     }
   };
 
