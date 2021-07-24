@@ -114,7 +114,7 @@ class EventSerializer < ActiveModel::Serializer
   # has_many :raffles
 
   def chats
-    object.chats.last(20)
+    object.chats.last(10)
   end
 
   def brochure_url
