@@ -3,26 +3,29 @@ import React, { Component } from 'react';
 class ChatMessage extends Component {
   whichUser = () => {
     let classNameValue = "";
+    console.log(this.props.chat)
     if (this.props.chat === null) {
       return classNameValue;
-    }
-    if (this.props.chat.chat_type === 1) {
-      classNameValue += 'reaction-message'
     } else {
-      if ((this.props.chat.sender_type === 'Admin') &&
-          (this.props.currentUser.user_type === 'Admin')) {
-        classNameValue += ' current-admin-message'
-      }else if (this.props.chat.sender_type === 'Admin'){
-        classNameValue += ' current-admin-message'
-      }
-
-      if ((this.props.chat.sender_id === parseInt(this.props.currentUser.id)) &&
-            (this.props.chat.sender_type === this.props.currentUser.user_type)) {
-        classNameValue += ' current-user-message'
+      if (this.props.chat.chat_type === 1) {
+        classNameValue += 'reaction-message'
       } else {
-        classNameValue += ' other-user-message'
+        if ((this.props.chat.sender_type === 'Admin') &&
+            (this.props.currentUser.user_type === 'Admin')) {
+          classNameValue += ' current-admin-message'
+        }else if (this.props.chat.sender_type === 'Admin'){
+          classNameValue += ' current-admin-message'
+        }
+
+        if ((this.props.chat.sender_id === parseInt(this.props.currentUser.id)) &&
+              (this.props.chat.sender_type === this.props.currentUser.user_type)) {
+          classNameValue += ' current-user-message'
+        } else {
+          classNameValue += ' other-user-message'
+        }
       }
     }
+
 
     return classNameValue;
   }
